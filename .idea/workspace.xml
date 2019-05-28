@@ -1,0 +1,964 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="cfc920c7-1f5f-4ec5-94b3-42926262640f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../joydrv/.idea/joydrv.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/bin/activate" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/bin/activate.csh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/bin/activate.fish" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/bin/easy_install" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/bin/easy_install-3.7" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/bin/pip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/bin/pip3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/bin/pip3.7" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/bin/python" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/bin/python3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/bin/python3.7" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/devices.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/hello.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/PyYAML-5.1-py3.7.egg-info/PKG-INFO" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/PyYAML-5.1-py3.7.egg-info/SOURCES.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/PyYAML-5.1-py3.7.egg-info/dependency_links.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/PyYAML-5.1-py3.7.egg-info/installed-files.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/PyYAML-5.1-py3.7.egg-info/top_level.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/_libsuinput.cpython-37m-x86_64-linux-gnu.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/easy-install.pth" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/evdev-1.2.0-py3.7.egg-info/PKG-INFO" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/evdev-1.2.0-py3.7.egg-info/SOURCES.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/evdev-1.2.0-py3.7.egg-info/dependency_links.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/evdev-1.2.0-py3.7.egg-info/installed-files.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/evdev-1.2.0-py3.7.egg-info/top_level.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/evdev-1.2.0-py3.7.egg-info/zip-safe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/evdev/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/evdev/_ecodes.cpython-37m-x86_64-linux-gnu.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/evdev/_input.cpython-37m-x86_64-linux-gnu.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/evdev/_uinput.cpython-37m-x86_64-linux-gnu.so" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/evdev/device.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/evdev/ecodes.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/evdev/eventio.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/evdev/eventio_async.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/evdev/events.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/evdev/evtest.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/evdev/ff.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/evdev/genecodes.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/evdev/uinput.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/evdev/util.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/EGG-INFO/PKG-INFO" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/EGG-INFO/SOURCES.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/EGG-INFO/dependency_links.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/EGG-INFO/entry_points.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/EGG-INFO/not-zip-safe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/EGG-INFO/top_level.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/__main__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/build_env.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/cache.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/cli/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/cli/autocompletion.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/cli/base_command.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/cli/cmdoptions.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/cli/main_parser.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/cli/parser.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/cli/status_codes.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/commands/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/commands/check.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/commands/completion.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/commands/configuration.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/commands/download.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/commands/freeze.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/commands/hash.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/commands/help.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/commands/install.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/commands/list.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/commands/search.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/commands/show.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/commands/uninstall.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/commands/wheel.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/configuration.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/download.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/exceptions.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/index.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/locations.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/models/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/models/candidate.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/models/format_control.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/models/index.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/models/link.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/operations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/operations/check.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/operations/freeze.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/operations/prepare.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/pep425tags.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/pyproject.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/req/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/req/constructors.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/req/req_file.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/req/req_install.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/req/req_set.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/req/req_tracker.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/req/req_uninstall.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/resolve.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/utils/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/utils/appdirs.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/utils/compat.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/utils/deprecation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/utils/encoding.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/utils/filesystem.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/utils/glibc.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/utils/hashes.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/utils/logging.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/utils/misc.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/utils/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/utils/outdated.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/utils/packaging.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/utils/setuptools_build.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/utils/temp_dir.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/utils/typing.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/utils/ui.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/vcs/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/vcs/bazaar.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/vcs/git.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/vcs/mercurial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/vcs/subversion.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_internal/wheel.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/appdirs.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/cachecontrol/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/cachecontrol/_cmd.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/cachecontrol/adapter.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/cachecontrol/cache.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/cachecontrol/caches/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/cachecontrol/caches/file_cache.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/cachecontrol/caches/redis_cache.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/cachecontrol/compat.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/cachecontrol/controller.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/cachecontrol/filewrapper.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/cachecontrol/heuristics.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/cachecontrol/serialize.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/cachecontrol/wrapper.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/certifi/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/certifi/__main__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/certifi/cacert.pem" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/certifi/core.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/chardet/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/chardet/big5freq.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/chardet/big5prober.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/chardet/chardistribution.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/chardet/charsetgroupprober.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/chardet/charsetprober.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/chardet/cli/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/chardet/cli/chardetect.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/chardet/codingstatemachine.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/chardet/compat.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/chardet/cp949prober.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/chardet/enums.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/chardet/escprober.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/chardet/escsm.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/chardet/eucjpprober.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/chardet/euckrfreq.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/chardet/euckrprober.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/chardet/euctwfreq.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/chardet/euctwprober.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/chardet/gb2312freq.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/chardet/gb2312prober.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/chardet/hebrewprober.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/chardet/jisfreq.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/chardet/jpcntx.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/chardet/langbulgarianmodel.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/chardet/langcyrillicmodel.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/chardet/langgreekmodel.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/chardet/langhebrewmodel.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/chardet/langhungarianmodel.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/chardet/langthaimodel.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/chardet/langturkishmodel.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/chardet/latin1prober.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/chardet/mbcharsetprober.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/chardet/mbcsgroupprober.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/chardet/mbcssm.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/chardet/sbcharsetprober.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/chardet/sbcsgroupprober.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/chardet/sjisprober.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/chardet/universaldetector.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/chardet/utf8prober.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/chardet/version.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/colorama/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/colorama/ansi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/colorama/ansitowin32.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/colorama/initialise.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/colorama/win32.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/colorama/winterm.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/distlib/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/distlib/_backport/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/distlib/_backport/misc.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/distlib/_backport/shutil.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/distlib/_backport/sysconfig.cfg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/distlib/_backport/sysconfig.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/distlib/_backport/tarfile.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/distlib/compat.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/distlib/database.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/distlib/index.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/distlib/locators.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/distlib/manifest.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/distlib/markers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/distlib/metadata.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/distlib/resources.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/distlib/scripts.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/distlib/t32.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/distlib/t64.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/distlib/util.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/distlib/version.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/distlib/w32.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/distlib/w64.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/distlib/wheel.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/distro.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/html5lib/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/html5lib/_ihatexml.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/html5lib/_inputstream.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/html5lib/_tokenizer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/html5lib/_trie/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/html5lib/_trie/_base.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/html5lib/_trie/datrie.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/html5lib/_trie/py.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/html5lib/_utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/html5lib/constants.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/html5lib/filters/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/html5lib/filters/alphabeticalattributes.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/html5lib/filters/base.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/html5lib/filters/inject_meta_charset.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/html5lib/filters/lint.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/html5lib/filters/optionaltags.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/html5lib/filters/sanitizer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/html5lib/filters/whitespace.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/html5lib/html5parser.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/html5lib/serializer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/html5lib/treeadapters/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/html5lib/treeadapters/genshi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/html5lib/treeadapters/sax.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/html5lib/treebuilders/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/html5lib/treebuilders/base.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/html5lib/treebuilders/dom.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/html5lib/treebuilders/etree.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/html5lib/treebuilders/etree_lxml.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/html5lib/treewalkers/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/html5lib/treewalkers/base.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/html5lib/treewalkers/dom.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/html5lib/treewalkers/etree.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/html5lib/treewalkers/etree_lxml.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/html5lib/treewalkers/genshi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/idna/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/idna/codec.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/idna/compat.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/idna/core.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/idna/idnadata.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/idna/intranges.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/idna/package_data.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/idna/uts46data.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/ipaddress.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/lockfile/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/lockfile/linklockfile.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/lockfile/mkdirlockfile.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/lockfile/pidlockfile.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/lockfile/sqlitelockfile.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/lockfile/symlinklockfile.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/msgpack/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/msgpack/_version.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/msgpack/exceptions.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/msgpack/fallback.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/packaging/__about__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/packaging/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/packaging/_compat.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/packaging/_structures.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/packaging/markers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/packaging/requirements.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/packaging/specifiers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/packaging/utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/packaging/version.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/pep517/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/pep517/_in_process.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/pep517/build.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/pep517/check.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/pep517/colorlog.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/pep517/compat.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/pep517/envbuild.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/pep517/wrappers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/pkg_resources/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/pkg_resources/py31compat.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/progress/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/progress/bar.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/progress/counter.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/progress/helpers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/progress/spinner.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/pyparsing.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/pytoml/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/pytoml/core.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/pytoml/parser.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/pytoml/test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/pytoml/utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/pytoml/writer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/requests/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/requests/__version__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/requests/_internal_utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/requests/adapters.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/requests/api.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/requests/auth.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/requests/certs.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/requests/compat.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/requests/cookies.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/requests/exceptions.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/requests/help.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/requests/hooks.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/requests/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/requests/packages.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/requests/sessions.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/requests/status_codes.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/requests/structures.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/requests/utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/retrying.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/six.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/urllib3/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/urllib3/_collections.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/urllib3/connection.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/urllib3/connectionpool.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/urllib3/contrib/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/urllib3/contrib/_appengine_environ.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/urllib3/contrib/_securetransport/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/urllib3/contrib/_securetransport/bindings.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/urllib3/contrib/_securetransport/low_level.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/urllib3/contrib/appengine.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/urllib3/contrib/ntlmpool.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/urllib3/contrib/pyopenssl.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/urllib3/contrib/securetransport.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/urllib3/contrib/socks.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/urllib3/exceptions.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/urllib3/fields.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/urllib3/filepost.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/urllib3/packages/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/urllib3/packages/backports/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/urllib3/packages/backports/makefile.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/urllib3/packages/six.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/urllib3/packages/ssl_match_hostname/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/urllib3/packages/ssl_match_hostname/_implementation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/urllib3/poolmanager.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/urllib3/request.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/urllib3/response.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/urllib3/util/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/urllib3/util/connection.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/urllib3/util/queue.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/urllib3/util/request.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/urllib3/util/response.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/urllib3/util/retry.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/urllib3/util/ssl_.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/urllib3/util/timeout.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/urllib3/util/url.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/urllib3/util/wait.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/webencodings/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/webencodings/labels.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/webencodings/mklabels.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/webencodings/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/_vendor/webencodings/x_user_defined.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/python_uinput-0.11.2-py3.7.egg-info/PKG-INFO" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/python_uinput-0.11.2-py3.7.egg-info/SOURCES.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/python_uinput-0.11.2-py3.7.egg-info/dependency_links.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/python_uinput-0.11.2-py3.7.egg-info/installed-files.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/python_uinput-0.11.2-py3.7.egg-info/top_level.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pyudev-0.21.0-py3.7.egg-info/PKG-INFO" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pyudev-0.21.0-py3.7.egg-info/SOURCES.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pyudev-0.21.0-py3.7.egg-info/dependency_links.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pyudev-0.21.0-py3.7.egg-info/installed-files.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pyudev-0.21.0-py3.7.egg-info/requires.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pyudev-0.21.0-py3.7.egg-info/top_level.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pyudev/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pyudev/_compat.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pyudev/_ctypeslib/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pyudev/_ctypeslib/_errorcheckers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pyudev/_ctypeslib/libc.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pyudev/_ctypeslib/libudev.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pyudev/_ctypeslib/utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pyudev/_os/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pyudev/_os/pipe.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pyudev/_os/poll.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pyudev/_qt_base.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pyudev/_util.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pyudev/core.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pyudev/device/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pyudev/device/_device.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pyudev/device/_errors.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pyudev/discover.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pyudev/glib.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pyudev/monitor.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pyudev/pyqt4.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pyudev/pyqt5.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pyudev/pyside.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pyudev/version.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/pyudev/wx.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/regexp-0.1-py3.7.egg-info/PKG-INFO" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/regexp-0.1-py3.7.egg-info/SOURCES.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/regexp-0.1-py3.7.egg-info/dependency_links.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/regexp-0.1-py3.7.egg-info/installed-files.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/regexp-0.1-py3.7.egg-info/top_level.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/regexp/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/setuptools-40.8.0-py3.7.egg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/setuptools.pth" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/six-1.12.0.dist-info/INSTALLER" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/six-1.12.0.dist-info/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/six-1.12.0.dist-info/METADATA" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/six-1.12.0.dist-info/RECORD" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/six-1.12.0.dist-info/WHEEL" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/six-1.12.0.dist-info/top_level.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/six.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/uinput/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/uinput/ev.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/yaml/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/yaml/composer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/yaml/constructor.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/yaml/cyaml.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/yaml/dumper.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/yaml/emitter.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/yaml/error.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/yaml/events.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/yaml/loader.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/yaml/nodes.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/yaml/parser.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/yaml/reader.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/yaml/representer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/yaml/resolver.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/yaml/scanner.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/yaml/serializer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/yaml/tokens.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/lib64" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/pyvenv.cfg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/tests/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/utils/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/utils/config.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../joydrv/venv/utils/devices.py" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../joydrv/venv/pyvenv.cfg">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../joydrv/venv/utils/config.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/yaml/loader.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="20" column="6" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/yaml/__init__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1590">
+              <caret line="113" selection-start-line="113" selection-end-line="113" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../joydrv/venv/hello.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="21" column="19" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
+              <folding>
+                <element signature="e#315#327#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/yaml/parser.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="8190">
+              <caret line="549" selection-start-line="549" selection-end-line="549" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../joydrv/venv/utils/devices.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="16" selection-start-line="16" selection-end-line="16" />
+              <folding>
+                <element signature="e#59#78#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../joydrv/venv/tests/__init__.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../joydrv/venv/devices.yaml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="720">
+              <caret line="48" column="8" selection-start-line="48" selection-start-column="8" selection-end-line="48" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/evdev/device.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="2" selection-start-line="2" selection-end-line="2" />
+              <folding>
+                <element signature="e#19#28#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../joydrv" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/venv/device.py" />
+        <option value="$PROJECT_DIR$/venv/devices.py" />
+        <option value="$PROJECT_DIR$/venv/config.py" />
+        <option value="$PROJECT_DIR$/venv/devices.yaml" />
+        <option value="$PROJECT_DIR$/venv/hello.py" />
+        <option value="$PROJECT_DIR$/venv/dtos/Rule.py" />
+        <option value="$PROJECT_DIR$/venv/utils/config.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="163" />
+    <option name="width" value="1122" />
+    <option name="height" value="837" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="joydrv" type="b2602c69:ProjectViewProjectNode" />
+              <item name="joydrv" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="joydrv" type="b2602c69:ProjectViewProjectNode" />
+              <item name="joydrv" type="462c0819:PsiDirectoryNode" />
+              <item name="venv" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="joydrv" type="b2602c69:ProjectViewProjectNode" />
+              <item name="joydrv" type="462c0819:PsiDirectoryNode" />
+              <item name="venv" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="joydrv" type="b2602c69:ProjectViewProjectNode" />
+              <item name="joydrv" type="462c0819:PsiDirectoryNode" />
+              <item name="venv" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../joydrv" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/venv/utils" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="DjangoTestsConfigurationType">
+      <module name="joydrv" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="TARGET" value="" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="PyBehaveRunConfigurationType" factoryName="Behave">
+      <module name="joydrv" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="ADDITIONAL_ARGS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="PyLettuceRunConfigurationType" factoryName="Lettuce">
+      <module name="joydrv" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="ADDITIONAL_ARGS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="joydrv" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="hello" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="joydrv" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$PROJECT_DIR$/venv/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../joydrv/venv" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../joydrv/venv/hello.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="Python.FlaskServer">
+      <module name="joydrv" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="Tox" factoryName="Tox">
+      <module name="joydrv" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Doctests">
+      <module name="joydrv" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Unittests">
+      <module name="joydrv" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.hello" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cfc920c7-1f5f-4ec5-94b3-42926262640f" name="Default Changelist" comment="" />
+      <created>1557210305782</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1557210305782</updated>
+      <workItem from="1557210308314" duration="18000" />
+      <workItem from="1557210430412" duration="11000" />
+      <workItem from="1557253813450" duration="2686000" />
+      <workItem from="1558877492069" duration="16000" />
+      <workItem from="1558977461071" duration="98000" />
+      <workItem from="1558978653272" duration="6038000" />
+      <workItem from="1559066506121" duration="501000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="9368000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="163" y="0" width="1122" height="837" extended-state="0" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16666667" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32686982" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3986842" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Database Changes" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.32732317" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.19194631" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="3" />
+      <window_info anchor="right" id="Database" order="4" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$" />
+    </ignored-roots>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/../joydrv/venv/hello.py</url>
+          <line>4</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/../joydrv/venv/hello.py</url>
+          <line>24</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/../joydrv/venv/utils/config.py</url>
+          <line>10</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/untitled$hello.coverage" NAME="hello Coverage Results" MODIFIED="1559066885371" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv" />
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>self._data['inputs']</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/venv/device.py" />
+    <entry file="file://$PROJECT_DIR$/venv/dtos/Rule.py" />
+    <entry file="file://$PROJECT_DIR$/../joydrv/venv/pyvenv.cfg">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/yaml/loader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="20" column="6" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/yaml/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1590">
+          <caret line="113" selection-start-line="113" selection-end-line="113" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/yaml/parser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8190">
+          <caret line="549" selection-start-line="549" selection-end-line="549" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../joydrv/venv/devices.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="720">
+          <caret line="48" column="8" selection-start-line="48" selection-start-column="8" selection-end-line="48" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../joydrv/venv/lib/python3.7/site-packages/evdev/device.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+          <folding>
+            <element signature="e#19#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../joydrv/venv/utils/devices.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+          <folding>
+            <element signature="e#59#78#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../joydrv/venv/tests/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../joydrv/venv/utils/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../joydrv/venv/hello.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="19" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
+          <folding>
+            <element signature="e#315#327#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

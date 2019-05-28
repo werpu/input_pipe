@@ -1,0 +1,12 @@
+Metadata-Version: 1.1
+Name: regexp
+Version: 0.1
+Summary: Python "re" shortcut library
+Home-page: https://github.com/prodotiscus/regexp
+Author: Fyodor Sizov
+Author-email: fedorsarbeit296@gmail.com
+License: UNKNOWN
+Download-URL: https://github.com/prodotiscus/regexp/archive/0.1.tar.gz
+Description: UNKNOWN
+Keywords: testing,logging,example
+Platform: UNKNOWN
