@@ -14,6 +14,7 @@ class Devices:
         self.devices = []
         self.matched = {}
         self.config = config
+
         devices = [evdev.InputDevice(path) for path in evdev.list_devices()]
 
         for device in devices:
@@ -26,13 +27,13 @@ class Devices:
     # also takes the rel device position into consideration
     # which is the relativ device in multiple matches
     def _device_match(self, device: evdev.InputDevice):
-        for key in el_vis(lambda: self.config.inputs, {}):
+        for key in tree_fetch(lambda: self.config.inputs, {}):
             name, name_re, phys, phys_re, rel_pos = self._get_config_input_params(key)
-            found = self._match(device, found, name, name_re, phys, phys_re)
+            found = self._match(device, name, name_re, phys, phys_re)
 
             if found:
                 accessor_key = name or phys or name_re or phys_re
-                already_processed = el_vis(lambda: self.matched[accessor_key], 1)
+                already_processed = tree_fetch(lambda: self.matched[accessor_key], 1)
                 if already_processed == rel_pos:
                     return True
                 else:
@@ -40,7 +41,9 @@ class Devices:
         return False
 
     @staticmethod
-    def _match(device, found, name, name_re, phys, phys_re):
+    def _match(device, name, name_re, phys, phys_re):
+        found = False
+
         if caseless_equal(device.name or "", name or DUMMY_DEFAULT):
             found = True
         elif re_match(device.phys or "", phys or DUMMY_DEFAULT):
@@ -53,11 +56,12 @@ class Devices:
 
     # fetches all the input params from the vonfig at position inputs.<key>
     def _get_config_input_params(self, key):
-        rel_pos = el_vis(lambda: self.config.inputs[key][RELPOS], 1)
-        name = el_vis(lambda: self.config.inputs[key][NAME], None)
-        phys = el_vis(lambda: self.config.inputs[key][PHYS], None)
-        name_re = el_vis(lambda: self.config.inputs[key][NAME_RE], None)
-        phys_re = el_vis(lambda: self.config.inputs[key][PHYS_RE], None)
+        rel_pos = tree_fetch(lambda: self.config.inputs[key][RELPOS], 1)
+        name = tree_fetch(lambda: self.config.inputs[key][NAME])
+        phys = tree_fetch(lambda: self.config.inputs[key][PHYS])
+        name_re = tree_fetch(lambda: self.config.inputs[key][NAME_RE])
+        phys_re = tree_fetch(lambda: self.config.inputs[key][PHYS_RE])
+
         return name, name_re, phys, phys_re, rel_pos
 
 
