@@ -5,7 +5,7 @@ import json
 class Config:
 
     def __init__(self, configfile='devices.yaml'):
-
+        self.inputs = None
         stream = open(configfile, 'r')
         self.__dict__ = yaml.load(stream, Loader=yaml.FullLoader)
         stream.close()
