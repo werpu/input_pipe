@@ -1,0 +1,228 @@
+/dev/input/event0
+   bustype : BUS_HOST
+   vendor  : 0x0
+   product : 0x1
+   version : 0
+   name    : "Power Button"
+   phys    : "PNP0C0C/button/input0"
+   bits ev : (null) (null)
+
+/dev/input/event1
+   bustype : BUS_HOST
+   vendor  : 0x0
+   product : 0x1
+   version : 0
+   name    : "Power Button"
+   phys    : "LNXPWRBN/button/input0"
+   bits ev : (null) (null)
+
+/dev/input/event2
+   bustype : BUS_HOST
+   vendor  : 0x0
+   product : 0x6
+   version : 0
+   name    : "Video Bus"
+   phys    : "LNXVIDEO/video/input0"
+   bits ev : (null) (null)
+
+/dev/input/event3
+   bustype : BUS_USB
+   vendor  : 0xd209
+   product : 0x410
+   version : 273
+   name    : "Ultimarc I-PAC Ultimarc I-PAC"
+   phys    : "usb-0000:38:00.3-3.2/input0"
+   uniq    : "8"
+   bits ev : (null) (null) (null) (null) (null)
+
+/dev/input/event4
+   bustype : BUS_USB
+   vendor  : 0xd209
+   product : 0x410
+   version : 273
+   name    : "Ultimarc I-PAC Ultimarc I-PAC"
+   phys    : "usb-0000:38:00.3-3.2/input1"
+   uniq    : "8"
+   bits ev : (null) (null) (null) (null)
+
+/dev/input/event5
+   bustype : BUS_USB
+   vendor  : 0xd209
+   product : 0x410
+   version : 273
+   name    : "Ultimarc I-PAC Ultimarc I-PAC Sy"
+   phys    : "usb-0000:38:00.3-3.2/input2"
+   uniq    : "8"
+   bits ev : (null) (null) (null)
+
+/dev/input/event6
+   bustype : BUS_USB
+   vendor  : 0xd209
+   product : 0x410
+   version : 273
+   name    : "Ultimarc I-PAC Ultimarc I-PAC Co"
+   phys    : "usb-0000:38:00.3-3.2/input2"
+   uniq    : "8"
+   bits ev : (null) (null) (null)
+
+/dev/input/event7
+   bustype : BUS_USB
+   vendor  : 0xd209
+   product : 0x410
+   version : 273
+   name    : "Ultimarc I-PAC Ultimarc I-PAC"
+   phys    : "usb-0000:38:00.3-3.2/input2"
+   uniq    : "8"
+   bits ev : (null) (null) (null) (null)
+
+/dev/input/event8
+   bustype : BUS_USB
+   vendor  : 0xd209
+   product : 0x410
+   version : 273
+   name    : "Ultimarc I-PAC Ultimarc I-PAC"
+   phys    : "usb-0000:38:00.3-3.2/input2"
+   uniq    : "8"
+   bits ev : (null) (null)
+
+/dev/input/event9
+   bustype : BUS_USB
+   vendor  : 0xd209
+   product : 0x1700
+   version : 273
+   name    : "Universal Human Interface Device"
+   phys    : "usb-0000:38:00.3-3.1.2/input0"
+   uniq    : "9"
+   bits ev : (null) (null) (null) (null)
+
+/dev/input/event10
+   bustype : BUS_USB
+   vendor  : 0xd209
+   product : 0x511
+   version : 273
+   name    : "Ultimarc UltraStik Ultimarc Ultr"
+   phys    : "usb-0000:38:00.3-3.3/input0"
+   uniq    : "1"
+   bits ev : (null) (null) (null) (null)
+
+/dev/input/event11
+   bustype : BUS_USB
+   vendor  : 0xd209
+   product : 0x511
+   version : 273
+   name    : "Ultimarc UltraStik Ultimarc Ultr"
+   phys    : "usb-0000:38:00.3-3.3/input1"
+   uniq    : "1"
+   bits ev : (null) (null) (null) (null)
+
+/dev/input/event12
+   bustype : BUS_USB
+   vendor  : 0xd209
+   product : 0x511
+   version : 273
+   name    : "Ultimarc UltraStik Ultimarc Ultr"
+   phys    : "usb-0000:38:00.3-3.3/input2"
+   uniq    : "1"
+   bits ev : (null) (null) (null) (null)
+
+/dev/input/event13
+   bustype : BUS_USB
+   vendor  : 0xd209
+   product : 0x512
+   version : 273
+   name    : "Ultimarc UltraStik Ultimarc Ultr"
+   phys    : "usb-0000:38:00.3-3.1.3/input0"
+   uniq    : "1"
+   bits ev : (null) (null) (null) (null)
+
+/dev/input/event14
+   bustype : BUS_USB
+   vendor  : 0xd209
+   product : 0x512
+   version : 273
+   name    : "Ultimarc UltraStik Ultimarc Ultr"
+   phys    : "usb-0000:38:00.3-3.1.3/input1"
+   uniq    : "1"
+   bits ev : (null) (null) (null) (null)
+
+/dev/input/event15
+   bustype : BUS_USB
+   vendor  : 0xd209
+   product : 0x512
+   version : 273
+   name    : "Ultimarc UltraStik Ultimarc Ultr"
+   phys    : "usb-0000:38:00.3-3.1.3/input2"
+   uniq    : "1"
+   bits ev : (null) (null) (null) (null)
+
+/dev/input/event16
+   bustype : (null)
+   vendor  : 0x0
+   product : 0x0
+   version : 0
+   name    : "HD-Audio Generic HDMI/DP,pcm=3"
+   phys    : "ALSA"
+   bits ev : (null) (null)
+
+/dev/input/event17
+   bustype : (null)
+   vendor  : 0x0
+   product : 0x0
+   version : 0
+   name    : "HD-Audio Generic HDMI/DP,pcm=7"
+   phys    : "ALSA"
+   bits ev : (null) (null)
+
+/dev/input/event18
+   bustype : (null)
+   vendor  : 0x0
+   product : 0x0
+   version : 0
+   name    : "HD-Audio Generic HDMI/DP,pcm=8"
+   phys    : "ALSA"
+   bits ev : (null) (null)
+
+/dev/input/event19
+   bustype : (null)
+   vendor  : 0x0
+   product : 0x0
+   version : 0
+   name    : "HD-Audio Generic HDMI/DP,pcm=9"
+   phys    : "ALSA"
+   bits ev : (null) (null)
+
+/dev/input/event20
+   bustype : BUS_USB
+   vendor  : 0x45e
+   product : 0x28e
+   version : 272
+   name    : "Microsoft X-Box 360 pad"
+   phys    : "moltengamepad/virtpad1"
+   bits ev : (null) (null) (null)
+
+/dev/input/event21
+   bustype : BUS_USB
+   vendor  : 0x45e
+   product : 0x28e
+   version : 272
+   name    : "Microsoft X-Box 360 pad"
+   phys    : "moltengamepad/virtpad2"
+   bits ev : (null) (null) (null)
+
+/dev/input/event22
+   bustype : BUS_USB
+   vendor  : 0x1
+   product : 0x1
+   version : 1
+   name    : "Virtual Keyboard (MoltenGamepad)"
+   phys    : "moltengamepad/keyboard"
+   bits ev : (null) (null) (null)
+
+/dev/input/event23
+   bustype : BUS_USB
+   vendor  : 0x1
+   product : 0x1
+   version : 1
+   name    : "Virtual Mouse (MoltenGamepad)"
+   phys    : "moltengamepad/relmouse"
+   bits ev : (null) (null) (null)
