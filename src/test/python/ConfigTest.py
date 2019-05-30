@@ -7,7 +7,7 @@ class MyTestCase(unittest.TestCase):
 
     def test_something(self):
         conf = Config("../resources/devices.yaml")
-        self.assertNotEqual(tree_fetch(lambda: conf.inputs["stick1"]["name"], None), None, "structure exists")
+        self.assertNotEqual(tree_fetch(lambda: conf.inputs["digital"]["name"], None), None, "structure exists")
         self.assertNotEqual(conf.rules[0]["from"], None, "structure exists")
 
 

@@ -8,7 +8,7 @@ from utils.langutils import *
 # determines the devices in the input devices
 # section and then stores the ones which match from
 # the inputs section of the config
-class Devices:
+class SourceDevices:
 
     def __init__(self, config: Config):
         self.devices = []
@@ -22,6 +22,10 @@ class Devices:
         for device in devices:
             if self._device_match(device):
                 self.devices.append(device)
+        if len(self.devices) > 0:
+            print("Following devices were found:")
+            for device in self.devices:
+                print("  - "+device.name)
 
     # externalized producer to be replaced in testing cases by mocks
     @staticmethod
@@ -59,7 +63,7 @@ class Devices:
     #
     @staticmethod
     def _full_match(device, name, name_re, phys, phys_re, vendor, product):
-        matchers = Devices.get_match_map(name, name_re, phys, phys_re, product, vendor)
+        matchers = SourceDevices.get_match_map(name, name_re, phys, phys_re, product, vendor)
 
         found = True
         for key in matchers:

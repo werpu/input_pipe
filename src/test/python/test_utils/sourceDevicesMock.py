@@ -1,12 +1,12 @@
-from utils.devices import Devices
+from utils.sourcedevices import SourceDevices
 from utils.config import Config
 from test_utils.deviceMock import DeviceMock
 
 
-class DevicesMock(Devices):
+class SourceDevicesMock(SourceDevices):
 
     def __init__(self, config: Config):
-        Devices.__init__(self, config)
+        SourceDevices.__init__(self, config)
 
     def get_available_devices(self):
         return [

@@ -12,10 +12,10 @@
 #        print('{} connected'.format(device))
 
 import evdev
-from utils.devices import Devices
+from utils.sourcedevices import SourceDevices
 from utils.config import Config
 
-deviceList = Devices()
+deviceList = SourceDevices()
 
 conf = Config()
 print(conf.inputs)
