@@ -10,11 +10,11 @@ inputs:
     relpos: 1
 
   analog_left:
-    name_re: ^Ultimarc.*Ultrastik\sPlayer1$
+    name_re: ^Ultimarc.*Ultrastik\sPlayer\ 1$
     relpos: 1
 
   analog_right:
-    name_re: ^Ultimarc.*Ultrastik\sPlayer2$
+    name_re: ^Ultimarc.*Ultrastik\sPlayer\ 2$
     relpos: 1
 
 

@@ -15,6 +15,8 @@ class Devices:
         self.matched = {}
         self.config = config
 
+        self._matched_devices = {}
+
         devices = self.get_available_devices()
 
         for device in devices:
@@ -32,14 +34,21 @@ class Devices:
     # also takes the rel device position into consideration
     # which is the relativ device in multiple matches
     def _device_match(self, device: evdev.InputDevice):
+
         for key in tree_fetch(lambda: self.config.inputs, {}):
             name, name_re, phys, phys_re, rel_pos, vendor, product = self._get_config_input_params(key)
+
+            device_match_string = str(self.config.inputs[key])
+
             found = self._full_match(device, name, name_re, phys, phys_re, vendor, product)
 
             if found:
+                if tree_fetch(lambda: self._matched_devices[device_match_string], False) is True:
+                    return False
                 accessor_key = name or phys or name_re or phys_re or vendor or product
                 already_processed = tree_fetch(lambda: self.matched[accessor_key], 1)
                 if already_processed == rel_pos:
+                    self._matched_devices[device_match_string] = True
                     return True
                 else:
                     self.matched[accessor_key] = already_processed + 1
@@ -50,21 +59,7 @@ class Devices:
     #
     @staticmethod
     def _full_match(device, name, name_re, phys, phys_re, vendor, product):
-        matchers = {}
-        # we also could iterate over the arguments but for the sake
-        # of the name mangling we do not
-        if name is not None:
-            matchers[NAME] = name
-        if name_re is not None:
-            matchers[NAME_RE] = name_re
-        if phys is not None:
-            matchers[PHYS] = phys
-        if phys_re is not None:
-            matchers[PHYS_RE] = phys_re
-        if vendor is not None:
-            matchers[VENDOR] = vendor
-        if vendor is not None:
-            matchers[PRODUCT] = product
+        matchers = Devices.get_match_map(name, name_re, phys, phys_re, product, vendor)
 
         found = True
         for key in matchers:
@@ -82,6 +77,24 @@ class Devices:
 
         return found
 
+    @staticmethod
+    def get_match_map(name, name_re, phys, phys_re, product, vendor):
+        matchers = {}
+        # we also could iterate over the arguments but for the sake
+        # of the name mangling we do not
+        if name is not None:
+            matchers[NAME] = name
+        if name_re is not None:
+            matchers[NAME_RE] = name_re
+        if phys is not None:
+            matchers[PHYS] = phys
+        if phys_re is not None:
+            matchers[PHYS_RE] = phys_re
+        if vendor is not None:
+            matchers[VENDOR] = vendor
+        if vendor is not None:
+            matchers[PRODUCT] = product
+        return matchers
 
     #
     # triggers if any of the supplied criteria matches
