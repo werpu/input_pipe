@@ -21,7 +21,7 @@ def re_match(my_str, r_exp):
     return re.search(r_exp, my_str, re.RegexFlag.IGNORECASE) is not None
 
 
-def tree_fetch(first_order_func: callable, default=None):
+def save_fetch(first_order_func: callable, default=None):
     try:
         return first_order_func()
     except KeyError or IndexError:

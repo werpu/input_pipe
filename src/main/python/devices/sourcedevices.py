@@ -39,7 +39,7 @@ class SourceDevices:
     # which is the relativ device in multiple matches
     def _device_match(self, device: evdev.InputDevice):
 
-        for key in tree_fetch(lambda: self.config.inputs, {}):
+        for key in save_fetch(lambda: self.config.inputs, {}):
             name, name_re, phys, phys_re, rel_pos, vendor, product = self._get_config_input_params(key)
 
             device_match_string = str(self.config.inputs[key])
@@ -47,10 +47,10 @@ class SourceDevices:
             found = self._full_match(device, name, name_re, phys, phys_re, vendor, product)
 
             if found:
-                if tree_fetch(lambda: self._matched_devices[device_match_string], False) is True:
+                if save_fetch(lambda: self._matched_devices[device_match_string], False) is True:
                     return False
                 accessor_key = name or phys or name_re or phys_re or vendor or product
-                already_processed = tree_fetch(lambda: self.matched[accessor_key], 1)
+                already_processed = save_fetch(lambda: self.matched[accessor_key], 1)
                 if already_processed == rel_pos:
                     self._matched_devices[device_match_string] = True
                     return True
@@ -123,13 +123,13 @@ class SourceDevices:
 
     # fetches all the input params from the vonfig at position inputs.<key>
     def _get_config_input_params(self, key):
-        rel_pos = tree_fetch(lambda: self.config.inputs[key][RELPOS], 1)
-        name = tree_fetch(lambda: self.config.inputs[key][NAME])
-        phys = tree_fetch(lambda: self.config.inputs[key][PHYS])
-        name_re = tree_fetch(lambda: self.config.inputs[key][NAME_RE])
-        phys_re = tree_fetch(lambda: self.config.inputs[key][PHYS_RE])
-        vendor = tree_fetch(lambda: self.config.inputs[key][INFO][1])
-        product = tree_fetch(lambda: self.config.inputs[key][INFO][2])
+        rel_pos = save_fetch(lambda: self.config.inputs[key][RELPOS], 1)
+        name = save_fetch(lambda: self.config.inputs[key][NAME])
+        phys = save_fetch(lambda: self.config.inputs[key][PHYS])
+        name_re = save_fetch(lambda: self.config.inputs[key][NAME_RE])
+        phys_re = save_fetch(lambda: self.config.inputs[key][PHYS_RE])
+        vendor = save_fetch(lambda: self.config.inputs[key][INFO][1])
+        product = save_fetch(lambda: self.config.inputs[key][INFO][2])
 
         return name, name_re, phys, phys_re, rel_pos, vendor, product
 
