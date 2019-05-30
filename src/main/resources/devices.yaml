@@ -5,20 +5,18 @@
 
 inputs:
 
-  stick1:
-    name: Ulimarc Ultrastick Player 1
+  digital:
+    name: Ultimarc I-PAC Ultimarc I-PAC
     relpos: 1
-    phys: blarg
 
-  stick1_re:
-    name_re: ^Ulimarc.*1$
+  analog_left:
+    name_re: ^Ulimarc.*Ultrastik\sPlayer\1$
     relpos: 1
-    phys_re: ^bl.g$
 
-  stick2:
-    name: Ulimarc Ultrastick Player 2
+  analog_right:
+    name_re: ^Ulimarc.*Ultrastik\sPlayer\2$
     relpos: 1
-    phys: blarg
+
 
 
 ########################################################################
@@ -49,13 +47,13 @@ outputs:
 # rules section, maps events from one device into another
 ##########################################################
 rules:
-  - from: stick1                         # analog 1
+  - from: digital                         # analog 1
     from_ev: (EV_KEY), code 103 (KEY_UP) # keyup event as coming in from evtest
     targets:
       - to: xbox1                            # artificial xbox controiler
         to_ev: (EV_KEY), code 103 (KEY_UP)   # pad up event
 
-  - from: stick1
+  - from: analog_left
     from_ev: (EV_KEY), code 103 (KEY_UP)
     targets:
       - to: xbox1

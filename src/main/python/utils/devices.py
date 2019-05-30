@@ -15,11 +15,16 @@ class Devices:
         self.matched = {}
         self.config = config
 
-        devices = [evdev.InputDevice(path) for path in evdev.list_devices()]
+        devices = self.get_available_devices()
 
         for device in devices:
             if self._device_match(device):
                 self.devices.append(device)
+
+    # externalized producer to be replaced in testing cases by mocks
+    @staticmethod
+    def get_available_devices():
+        return [evdev.InputDevice(path) for path in evdev.list_devices()]
 
     # Complex device match, it basically first
     # checks for a full name or phys match
@@ -51,29 +56,29 @@ class Devices:
         if name is not None:
             matchers[NAME] = name
         if name_re is not None:
-            matchers[NAME_RE] = name
+            matchers[NAME_RE] = name_re
         if phys is not None:
-            matchers[PHYS] = name
+            matchers[PHYS] = phys
         if phys_re is not None:
-            matchers[PHYS_RE] = name
+            matchers[PHYS_RE] = phys_re
         if vendor is not None:
-            matchers[VENDOR] = name
+            matchers[VENDOR] = vendor
         if vendor is not None:
-            matchers[PRODUCT] = name
+            matchers[PRODUCT] = product
 
         found = True
         for key in matchers:
             dev_key = key
             # vendor and product need special handling coming from the lib
             if dev_key == VENDOR:
-                found = found and caseless_equal(device[INFO][1], matchers[key])
+                found = found and caseless_equal(device.__getattribute__(INFO)[1], matchers[key])
             elif dev_key == product:
-                found = found and caseless_equal(device[INFO][2], matchers[key])
+                found = found and caseless_equal(device.__getattribute__(INFO)[2], matchers[key])
             elif re_match(key, "^.*_re$"):
                 dev_key = dev_key[:-3]
-                found = found and re_match(device[dev_key], matchers[key])
+                found = found and re_match(device.__getattribute__(dev_key), matchers[key])
             else:
-                found = found and caseless_equal(device[key], matchers[key])
+                found = found and caseless_equal(device.__getattribute__(key), matchers[key])
 
         return found
 

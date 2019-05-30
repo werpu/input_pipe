@@ -16,6 +16,8 @@ def caseless_equal(left, right):
 
 # a caseless re match
 def re_match(my_str, r_exp):
+    if r_exp is None:
+        return False
     return re.search(r_exp, my_str, re.RegexFlag.IGNORECASE) is not None
 
 
