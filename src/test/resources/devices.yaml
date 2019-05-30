@@ -25,12 +25,10 @@ inputs:
 outputs:
 
   xbox1:
-    create: yes
     name: Microsoft X-Box 360 pad
     type: xbx360
 
   xbox2:
-    create: yes
     name: Microsoft X-Box 360 pad
     type: xbx360
 

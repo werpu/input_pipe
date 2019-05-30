@@ -1,4 +1,4 @@
-from utils.sourcedevices import SourceDevices
+from devices.sourcedevices import SourceDevices
 from utils.config import Config
 from test_utils.deviceMock import DeviceMock
 
