@@ -1,3 +1,7 @@
+import os
+import stat
+from time import sleep
+
 from evdev import UInput, ecodes, AbsInfo
 from devices.drivers.basedriver import BaseDriver
 
@@ -21,6 +25,9 @@ class VirtualMouse(BaseDriver):
         }
 
     def create(self):
+
         self.input_dev = UInput(self.capabilities,
                                 self.name)
+        self.transfer_dev_data()
+
         return self

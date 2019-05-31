@@ -23,6 +23,8 @@ class BaseDriver(ABC):
                                 product=self.product,
                                 version=self.version,
                                 phys=self.phys)
+
+
         return self
 
     def write(self, e_type, e_sub_type, value):
@@ -36,3 +38,11 @@ class BaseDriver(ABC):
     def verify(self):
         self.input_dev.verify()
         return self
+
+    def transfer_dev_data(self):
+        self.phys = self.input_dev.phys
+        self.name = self.input_dev.name
+        self.version = self.input_dev.version
+        self.vendor = self.input_dev.vendor
+        self.bustype = self.input_dev.bustype
+        self.product = self.input_dev.product

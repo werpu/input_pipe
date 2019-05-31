@@ -11,8 +11,8 @@ class TargetDevTestCase(unittest.TestCase):
 
     def test_device_creation(self):
         self.assert_device(Xbox360())
-        #self.assert_device(VirtualMouse())
-        #self.assert_device(VirtualKeyboard())
+        self.assert_device(VirtualMouse())
+        self.assert_device(VirtualKeyboard())
 
     # Generic dives creation assert routine
     def assert_device(self, device_drv):
@@ -22,7 +22,7 @@ class TargetDevTestCase(unittest.TestCase):
         # give linux time to catch up usually 0.05sec on a semi modern machine
         while cnt < 3 and found is False:
             cnt += 1
-            sleep(0.3)
+            sleep(0.1)
             for dev in EvDevUtils.get_available_devices():
                 found = found or dev.phys == device_drv.phys
         self.assertTrue(found, "device created and available")
