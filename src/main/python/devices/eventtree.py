@@ -17,19 +17,19 @@ class EventTree:
 
         self.tree = {}
         for rule in save_fetch(lambda: config.rules, []):
-            rule_from = rule.__getattribute__("from")
-            from_ev_type, from_ev_code, from_ev_name = self.parse_ev(rule.__getattribute__("from_ev"))
-            targets = save_fetch(lambda: rule.__getattribute__("targets"), [])
+            rule_from = rule["from"]
+            from_ev_type, from_ev_code, from_ev_name = self.parse_ev(rule["from_ev"])
+            targets = save_fetch(lambda: rule["targets"], [])
             self.assert_targets(targets)
 
             last_node = build_tree(self.tree, rule_from, from_ev_type, from_ev_code, from_ev_name)
 
             for target in targets:
-                target_to = target.__getattribute__("to")
+                target_to = target["to"]
                 self.build_target_rule(last_node, rule_from, target, targetDevices, target_to)
 
     def build_target_rule(self, last_node, rule_from, target, targetDevices, target_to):
-        to_ev_type, to_ev_code, to_ev_name = self.parse_ev(target.__getattribute__("to_ev"))
+        to_ev_type, to_ev_code, to_ev_name = self.parse_ev(target["to_ev"])
 
         last_node[target_to] = save_fetch(lambda: last_node[target_to], {
             "ev_type": to_ev_type,
