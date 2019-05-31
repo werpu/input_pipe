@@ -30,10 +30,11 @@ def save_fetch(first_order_func: callable, default=None):
 
 def build_tree(target, *args):
 
-    currRoot = target
+    curr_root = target
     for arg in args:
-        currRoot = save_fetch(lambda: currRoot[arg], {})
+        curr_root[arg] = save_fetch(lambda: curr_root[arg], {})
+        curr_root = curr_root[arg]
 
-    return currRoot
+    return curr_root
 
 DUMMY_DEFAULT = "__booga__"
