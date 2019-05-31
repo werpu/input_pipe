@@ -15,7 +15,7 @@ class TargetDevices:
         for key in config.outputs:
             dev_key, dev_name, dev_type = self.get_config_data(key)
 
-            driver = save_fetch(DEV_TYPES[dev_type](), None)
+            driver = save_fetch(lambda: DEV_TYPES[dev_type](), None)
 
             if driver is not None:
                 self.drivers[dev_key] = driver

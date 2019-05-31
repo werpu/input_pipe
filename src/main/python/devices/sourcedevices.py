@@ -18,6 +18,11 @@ class SourceDevices:
 
         self._matched_devices = {}
 
+        #event tree which is built up from outside
+        #which maps the incoming pattern to the output devices
+        #in the fastest possible manner
+        self._event_tree = {}
+
         devices = self.get_available_devices()
 
         for device in devices:

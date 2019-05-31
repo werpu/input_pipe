@@ -1,4 +1,5 @@
 import unittest
+from time import sleep
 
 from devices.drivers.keybd import VirtualKeyboard
 from devices.drivers.mouse import VirtualMouse
@@ -6,7 +7,6 @@ from devices.drivers.xbx360 import Xbox360
 from devices.targetdevices import TargetDevices
 from utils.config import Config
 from utils.evdevutils import EvDevUtils
-from time import sleep
 
 
 # Tests for the target device capabilities
@@ -22,7 +22,11 @@ class TargetDevTestCase(unittest.TestCase):
     # config test for matching devices after creation
     def test_device_match(self):
         devices = TargetDevices(Config("../resources/devices.yaml"))
-        print("todo implement me")
+        self.assertEqual(len(devices.drivers), 4, "3 devices found")
+        self.assertTrue(devices.drivers["xbox1"] is not None)
+        self.assertTrue(devices.drivers["xbox2"] is not None)
+        self.assertTrue(devices.drivers["mouse1"] is not None)
+        self.assertTrue(devices.drivers["keybd1"] is not None)
 
     # Generic dives creation assert routine
     def _assert_created_device(self, device_drv):
