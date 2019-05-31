@@ -1,12 +1,14 @@
 
 # the event tree the base data structure for our event pipe
+from devices.sourcedevices import SourceDevices
+from devices.targetdevices import TargetDevices
 from utils.config import Config
-from utils.langutils import save_fetch
+from utils.langutils import save_fetch, build_tree
 
 
 class EventTree:
 
-    def __init__(self, config: Config):
+    def __init__(self, config: Config, sourceDevices: SourceDevices, targetDevices: TargetDevices):
         # format <from>, <ev_type>, <code> <to> <eventobject>*
         # now id an event is issued we translate the event data beginning
         # from the source over the event type into fine grained mappings
@@ -20,19 +22,21 @@ class EventTree:
             targets = save_fetch(lambda: rule.__getattribute__("targets"), [])
             self.assert_targets(targets)
 
-            self.tree[rule_from] = save_fetch(lambda: self.tree[rule_from], {})
+            last_node = build_tree(self.tree, rule_from, from_ev_type, from_ev_code, from_ev_name)
 
             for target in targets:
                 target_to = target.__getattribute__("to")
-                self.tree[rule_from][target_to] = save_fetch(lambda: self.tree[rule_from][target_to], {})
-                to_ev_type, to_ev_code, to_ev_name = self.parse_ev(target.__getattribute__("to_ev"))
-                self.tree[rule_from][target_to][to_ev_type] = \
-                    save_fetch(lambda: self.tree[rule_from][target_to][to_ev_type], {})
-                self.tree[rule_from][target_to][to_ev_type][to_ev_code] = \
-                    save_fetch(lambda: self.tree[rule_from][target_to][to_ev_type][to_ev_code], target_to)
-                self.tree[rule_from][target_to][to_ev_type][to_ev_name] = \
-                    save_fetch(lambda: self.tree[rule_from][target_to][to_ev_type][to_ev_name], target_to)
+                self.build_target_rule(last_node, rule_from, target, targetDevices, target_to)
 
+    def build_target_rule(self, last_node, rule_from, target, targetDevices, target_to):
+        to_ev_type, to_ev_code, to_ev_name = self.parse_ev(target.__getattribute__("to_ev"))
+
+        last_node[target_to] = save_fetch(lambda: last_node[target_to], {
+            "ev_type": to_ev_type,
+            "ev_code": to_ev_code,
+            "ev_name": to_ev_name,
+            "driver": targetDevices.drivers[target_to]
+        })
 
     def parse_ev(self, evstr):
         splitted = [my_str.strip() for my_str in evstr.split(",")]
@@ -43,7 +47,8 @@ class EventTree:
 
         return evtype, evcode, evname
 
-    def assert_targets(self, targets):
+    @staticmethod
+    def assert_targets(targets):
         if len(targets) == 0:
             raise ValueError("No targets in rule defined")
 
