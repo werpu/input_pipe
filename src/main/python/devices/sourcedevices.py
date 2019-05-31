@@ -1,6 +1,7 @@
 # https://python-evdev.readthedocs.io/en/latest/usage.html
 import evdev
 from utils.config import Config, PHYS_RE, NAME_RE, PHYS, NAME, RELPOS, VENDOR, PRODUCT, INFO
+from utils.evdevutils import EvDevUtils
 from utils.langutils import *
 
 
@@ -30,7 +31,7 @@ class SourceDevices:
     # externalized producer to be replaced in testing cases by mocks
     @staticmethod
     def get_available_devices():
-        return [evdev.InputDevice(path) for path in evdev.list_devices()]
+        return EvDevUtils.get_available_devices()
 
     # Complex device match, it basically first
     # checks for a full name or phys match

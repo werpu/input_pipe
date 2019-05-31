@@ -23,3 +23,4 @@ class VirtualMouse(BaseDriver):
     def create(self):
         self.input_dev = UInput(self.capabilities,
                                 self.name)
+        return self

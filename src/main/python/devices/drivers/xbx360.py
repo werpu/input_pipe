@@ -7,14 +7,15 @@ from devices.drivers.basedriver import BaseDriver
 # todo check with a real xbox controller
 class Xbox360(BaseDriver):
 
+    _init_cnt = 0
+
     def __init__(self):
         BaseDriver.__init__(self)
-        if Xbox360._init_cnt is None:
-            Xbox360._init_cnt = 0
+
         self.input_dev = None
         self.create_node = True
         self.bustype = "BUS_USB"
-        self.name = "Microsoft X-Box 360 pad",
+        self.name = "Microsoft X-Box 360 pad"
         self.vendor = 0x45e
         self.product = 0x28e
         self.version = 272
