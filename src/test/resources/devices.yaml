@@ -46,7 +46,7 @@ outputs:
 ##########################################################
 rules:
   - from: digital                         # analog 1
-    from_ev: (EV_KEY), code 103 (KEY_UP) # keyup event as coming in from evtest
+    from_ev: (EV_KEY), code 103 (KEY_UP)  # keyup event as coming in from evtest
     targets:
       - to: xbox1                            # artificial xbox controiler
         to_ev: (EV_KEY), code 103 (KEY_UP)   # pad up event
