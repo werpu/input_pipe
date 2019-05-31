@@ -1,5 +1,5 @@
 from evdev import UInput, ecodes
-from devices.drivers.basedriver import BaseDriver
+from ev_core.drivers.basedriver import BaseDriver
 
 
 class VirtualKeyboard(BaseDriver):

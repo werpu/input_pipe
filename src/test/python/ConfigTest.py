@@ -1,5 +1,5 @@
 import unittest
-from utils.config import Config
+from ev_core.config import Config
 from utils.langutils import *
 
 

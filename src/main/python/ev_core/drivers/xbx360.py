@@ -1,7 +1,7 @@
 # @see:https://python-evdev.readthedocs.io/en/latest/tutorial.html#create-uinput-device-with-capabilities-of-another-device
 
 from evdev import ecodes, AbsInfo
-from devices.drivers.basedriver import BaseDriver
+from ev_core.drivers.basedriver import BaseDriver
 
 
 # todo check with a real xbox controller

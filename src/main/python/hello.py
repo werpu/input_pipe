@@ -11,8 +11,8 @@
 #    if device.action == 'add':
 #        print('{} connected'.format(device))
 
-from devices.sourcedevices import SourceDevices
-from utils.config import Config
+from ev_core.sourcedevices import SourceDevices
+from ev_core.config import Config
 
 deviceList = SourceDevices()
 

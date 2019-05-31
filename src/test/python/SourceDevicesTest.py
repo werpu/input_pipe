@@ -1,7 +1,7 @@
 import unittest
 
 from test_utils.sourceDevicesMock import SourceDevicesMock
-from utils.config import Config
+from ev_core.config import Config
 
 
 class MyTestCase(unittest.TestCase):

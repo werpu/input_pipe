@@ -1,6 +1,6 @@
 # https://python-evdev.readthedocs.io/en/latest/usage.html
 import evdev
-from utils.config import Config, PHYS_RE, NAME_RE, PHYS, NAME, RELPOS, VENDOR, PRODUCT, INFO
+from ev_core.config import Config, PHYS_RE, NAME_RE, PHYS, NAME, RELPOS, VENDOR, PRODUCT, INFO
 from utils.evdevutils import EvDevUtils
 from utils.langutils import *
 

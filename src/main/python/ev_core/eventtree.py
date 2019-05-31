@@ -1,8 +1,8 @@
 
 # the event tree the base data structure for our event pipe
-from devices.sourcedevices import SourceDevices
-from devices.targetdevices import TargetDevices
-from utils.config import Config
+from ev_core.sourcedevices import SourceDevices
+from ev_core.targetdevices import TargetDevices
+from ev_core.config import Config
 from utils.langutils import save_fetch, build_tree
 
 

@@ -1,8 +1,7 @@
 # https://python-evdev.readthedocs.io/en/latest/usage.html
-import evdev
-from utils.config import Config, PHYS_RE, NAME_RE, PHYS, NAME, RELPOS, VENDOR, PRODUCT, INFO
+from ev_core.config import Config, NAME
 from utils.langutils import *
-from devices.drivers.driverregistry import DEV_TYPES
+from ev_core.drivers.driverregistry import DEV_TYPES
 
 
 class TargetDevices:

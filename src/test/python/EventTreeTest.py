@@ -1,9 +1,9 @@
 import unittest
 
 from test_utils.sourceDevicesMock import SourceDevicesMock
-from devices.targetdevices import TargetDevices
-from devices.eventtree import EventTree
-from utils.config import Config
+from ev_core.targetdevices import TargetDevices
+from ev_core.eventtree import EventTree
+from ev_core.config import Config
 from utils.langutils import *
 
 

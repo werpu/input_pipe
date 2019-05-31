@@ -1,11 +1,11 @@
 import unittest
 from time import sleep
 
-from devices.drivers.keybd import VirtualKeyboard
-from devices.drivers.mouse import VirtualMouse
-from devices.drivers.xbx360 import Xbox360
-from devices.targetdevices import TargetDevices
-from utils.config import Config
+from ev_core.drivers.keybd import VirtualKeyboard
+from ev_core.drivers.mouse import VirtualMouse
+from ev_core.drivers.xbx360 import Xbox360
+from ev_core.targetdevices import TargetDevices
+from ev_core.config import Config
 from utils.evdevutils import EvDevUtils
 
 

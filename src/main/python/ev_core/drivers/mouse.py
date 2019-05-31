@@ -3,7 +3,7 @@ import stat
 from time import sleep
 
 from evdev import UInput, ecodes, AbsInfo
-from devices.drivers.basedriver import BaseDriver
+from ev_core.drivers.basedriver import BaseDriver
 
 
 class VirtualMouse(BaseDriver):
