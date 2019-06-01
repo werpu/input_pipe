@@ -22,7 +22,7 @@ class EventTree:
             targets = save_fetch(lambda: rule["targets"], [])
             self.assert_targets(targets)
 
-            last_node = build_tree(self.tree, rule_from, from_ev_type, from_ev_code, from_ev_name)
+            last_node = build_tree(self.tree, rule_from, from_ev_type, from_ev_code)
 
             for target in targets:
                 target_to = target["to"]
