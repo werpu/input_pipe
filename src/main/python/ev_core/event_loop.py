@@ -25,19 +25,19 @@ from ev_core.targetdevices import TargetDevices
 from ev_core.eventtree import EventTree
 from ev_core.config import Config
 import asyncio
-from evdev import ecodes, AbsInfo
-from evdev.events import KeyEvent, AbsEvent, RelEvent, InputEvent, SynEvent
+from evdev import ecodes
+from evdev.events import KeyEvent, AbsEvent, RelEvent
 from utils.langutils import *
 
 
 #
-# the central pipe which reacts on events from ther source devices
+# the central controller pipe which reacts on events from their source devices
 # and maps them into proper events in the target devices
 # this is sort of the central controller, which controls
 # code based on
 # https://python-evdev.readthedocs.io/en/latest/tutorial.html#reading-events-from-multiple-devices-using-asyncio
 #
-class EvDevPipe:
+class EventController:
 
     def __init__(self, config: Config):
         self.source_devices = SourceDevicesMock(config)
@@ -52,23 +52,27 @@ class EvDevPipe:
 
     def handle_events(self, src_dev):
         async for event in src_dev.async_read_loop():
-            self.resolve_event( event)
+            self.resolve_event(event)
 
     def resolve_event(self, event):
-
         root_type = self.map_type(event)
-
         target_rules = save_fetch(lambda: self.event_tree.tree[root_type][event.code], {})
-        for key in target_rules:
-            target_event = target_rules[key]
-            target_type = target_event["ev_type"]
-            target_code = target_event["ev_code"]
-            target_value = event.value
-            target_device = target_event["driver"]
-            # todo write event data
-            target_device.write(ecodes[target_type], target_code, event.value)
 
-    def map_type(self, event):
+        for key in target_rules:
+            target_code, target_device, target_type, target_value = self.get_target_data(event, key, target_rules)
+            target_device.write(ecodes.__getattribute__(target_type), target_code, target_value)
+
+    @staticmethod
+    def get_target_data(event, key, target_rules):
+        target_event = target_rules[key]
+        target_type = target_event["ev_type"]
+        target_code = target_event["ev_code"]
+        target_value = event.value
+        target_device = target_event["driver"]
+        return target_code, target_device, target_type, target_value
+
+    @staticmethod
+    def map_type(event):
         root_type = None
         if isinstance(event, KeyEvent):
             root_type = "EV_KEY"

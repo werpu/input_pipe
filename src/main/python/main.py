@@ -24,7 +24,7 @@
 
 
 from ev_core.config import Config
-from ev_core.pipe import EvDevPipe
+from ev_core.event_loop import EventController
 
-EvDevPipe(Config("../resources/devices.yaml"))
+EventController(Config("../resources/devices.yaml"))
 
