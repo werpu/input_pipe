@@ -66,20 +66,217 @@ outputs:
 # rules section, maps events from one device into another
 ##########################################################
 rules:
-  - from: digital                         # analog 1
-    from_ev: (EV_KEY), code 103 (KEY_UP)  # keyup event as coming in from evtest
+  ##################################
+  # xbox1 (partial xbox2) Mapping
+  ##################################
+  - from: digital                            # analog 1
+    from_ev: (EV_KEY), code 103 (KEY_UP)     # keyup event as coming in from evtest
     targets:
       - to: xbox1                            # artificial xbox controiler
-        to_ev: (EV_KEY), code 103 (KEY_UP)   # pad up event
-
-  - from: analog_left
-    from_ev: (EV_KEY), code 103 (KEY_UP)
+        to_ev: (EV_ABS), code 17 (ABS_HAT0Y), value -1   # pad up event
+  - from: digital
+    from_ev: (EV_KEY), code 108 (KEY_DOWN)   # keyup event as coming in from evtest
     targets:
       - to: xbox1
-        to_ev: (EV_KEY), code 103 (KEY_UP)
-      - to: xbox2
-        to_ev: (EV_KEY), code 103 (KEY_UP)
+        to_ev: (EV_ABS), code 17 (ABS_HAT0Y), value 1   # pad down event
 
+  - from: digital
+    from_ev: (EV_KEY), code 105 (KEY_LEFT)   # keyleft event as coming in from evtest
+    targets:
+      - to: xbox1
+        to_ev: (EV_ABS), code 16 (ABS_HAT0X), value -1   # pad left event
+
+  - from: digital
+    from_ev: (EV_KEY), code 106 (KEY_RIGHT)  # keyleft event as coming in from evtest
+    targets:
+      - to: xbox1
+        to_ev: (EV_ABS), code 16 (ABS_HAT0X), value 1   # pad right event
+
+  # button events
+  - from: digital
+    from_ev: (EV_KEY), code 29 (KEY_LEFTCTRL)  # btn a
+    targets:
+      - to: xbox1
+        to_ev: (EV_KEY), code 304 (BTN_SOUTH)
+  - from: digital
+      from_ev: (EV_KEY), code 56 (KEY_LEFTALT)  #btn b
+      targets:
+        - to: xbox1
+          to_ev: (EV_KEY), code 305 (BTN_EAST)
+  - from: digital
+      from_ev: (EV_KEY), code 57 (KEY_SPACE)    # btn x
+      targets:
+        - to: xbox1
+          to_ev: (EV_KEY), code 307 (BTN_NORTH)
+  - from: digital
+      from_ev: (EV_KEY), code 42 (KEY_LEFTSHIFT)  # btn y
+      targets:
+        - to: xbox1
+          to_ev: (EV_KEY), code 308 (BTN_WEST)
+  - from: digital
+      from_ev: (EV_KEY), code 44 (KEY_Z)  # btn 1l
+      targets:
+        - to: xbox1
+          to_ev: (EV_KEY), code 310 (BTN_TL)
+  - from: digital
+      from_ev: (EV_KEY), code 45 (KEY_X)  # btn 1r
+      targets:
+        - to: xbox1
+          to_ev: (EV_KEY), code 311 (BTN_TR)
+ - from: digital
+      from_ev: (EV_KEY), code 47 (KEY_V)  # btn tl
+      targets:
+        - to: xbox1
+          to_ev: (EV_KEY), code 312 (BTN_TL2)
+ - from: digital
+      from_ev: (EV_KEY), code 25 (KEY_P)  # btn tr
+      targets:
+        - to: xbox1
+          to_ev: (EV_KEY), code 313 (BTN_TR2)
+ - from: digital
+      from_ev: (EV_KEY), code 46 (KEY_C) # btn thumb l
+      targets:
+        - to: xbox1
+          to_ev: (EV_KEY), code 317 (BTN_THUMBL)
+ - from: digital
+      from_ev: (EV_KEY), code 15 (KEY_TAB) # btn thumb r
+      targets:
+        - to: xbox1
+          to_ev: (EV_KEY), code 318 (BTN_THUMBR)
+        - to: xbox2
+          to_ev: (EV_KEY), code 318 (BTN_THUMBR)
+ - from: digital
+      from_ev: (EV_KEY), code 3 (KEY_2) # sel
+      targets:
+        - to: xbox1
+          to_ev: (EV_KEY), code 314 (BTN_SELECT)
+ - from: digital
+      from_ev: (EV_KEY), code 6 (KEY_5) # start
+      targets:
+        - to: xbox1
+          to_ev: (EV_KEY), code 315 (BTN_START)
+  # TODO HOME
+
+
+  # left analog stick
+  - from: analog_left
+      from_ev: (EV_ABS), code 1 (ABS_Y)  # up down
+      targets:
+        - to: xbox1
+          to_ev: (EV_ABS), code 1 (ABS_Y)
+  - from: analog_left
+      from_ev: (EV_ABS), code 0 (ABS_X)  #up down
+      targets:
+        - to: xbox1
+          to_ev: (EV_ABS), code 0 (ABS_X)
+
+  # right analog stick
+  - from: analog_right
+      from_ev: (EV_ABS), code 1 (ABS_Y)  # up down
+      targets:
+        - to: xbox1
+          to_ev: (EV_ABS), code 4 (ABS_RY)
+        - to: xbox2
+          to_ev: (EV_ABS), code 1 (ABS_Y)
+  - from: analog_left
+      from_ev: (EV_ABS), code 1 (ABS_X)  # up down
+      targets:
+        - to: xbox1
+          to_ev: (EV_ABS), code 3 (ABS_RX)
+        - to: xbox2
+          to_ev: (EV_ABS), code 0 (ABS_X)
+
+  ##################################
+  # rest of xbox2 mapping
+  ##################################
+
+  - from: digital                            # digital
+    from_ev: (EV_KEY), code 32 (KEY_D)     # keyup event as coming in from evtest
+    targets:
+      - to: xbox2                            # artificial xbox controiler
+        to_ev: (EV_ABS), code 17 (ABS_HAT0Y), value -1   # pad up event
+  - from: digital
+    from_ev: (EV_KEY), code 33 (KEY_F)   # keyup event as coming in from evtest
+    targets:
+      - to: xbox2
+        to_ev: (EV_ABS), code 17 (ABS_HAT0Y), value 1   # pad down event
+
+  - from: digital
+    from_ev: (EV_KEY), code 34 (KEY_G)   # keyleft event as coming in from evtest
+    targets:
+      - to: xbox2
+        to_ev: (EV_ABS), code 16 (ABS_HAT0X), value -1   # pad left event
+
+  - from: digital
+    from_ev: (EV_KEY), code 19 (KEY_R)  # keyright event as coming in from evtest
+    targets:
+      - to: xbox2
+        to_ev: (EV_ABS), code 16 (ABS_HAT0X), value 1   # pad right event
+
+  # button events
+  - from: digital
+    from_ev: (EV_KEY), code 31 (KEY_S)  # btn a
+    targets:
+      - to: xbox2
+        to_ev: (EV_KEY), code 304 (BTN_SOUTH)
+  - from: digital
+      from_ev: (EV_KEY), code 30 (KEY_A)  #btn b
+      targets:
+        - to: xbox2
+          to_ev: (EV_KEY), code 305 (BTN_EAST)
+  - from: digital
+      from_ev: (EV_KEY), code 16 (KEY_Q)    # btn x
+      targets:
+        - to: xbox2
+          to_ev: (EV_KEY), code 307 (BTN_NORTH)
+  - from: digital
+      from_ev: (EV_KEY), code 17 (KEY_W)  # btn y
+      targets:
+        - to: xbox2
+          to_ev: (EV_KEY), code 308 (BTN_WEST)
+  - from: digital
+      from_ev: (EV_KEY), code 37 (KEY_K)  # btn 1l
+      targets:
+        - to: xbox2
+          to_ev: (EV_KEY), code 310 (BTN_TL)
+  - from: digital
+      from_ev: (EV_KEY), code 23 (KEY_I)  # btn 1r
+      targets:
+        - to: xbox2
+          to_ev: (EV_KEY), code 311 (BTN_TR)
+ - from: digital
+      from_ev: (EV_KEY), code 36 (KEY_J)  # btn tl
+      targets:
+        - to: xbox2
+          to_ev: (EV_KEY), code 312 (BTN_TL2)
+ - from: digital
+      from_ev: (EV_KEY), code 38 (KEY_L)  # btn tr
+      targets:
+        - to: xbox2
+          to_ev: (EV_KEY), code 313 (BTN_TR2)
+ - from: digital
+      from_ev: (EV_KEY), code 15 (KEY_TAB) # btn thumb l
+      targets:
+        - to: xbox2
+          to_ev: (EV_KEY), code 317 (BTN_THUMBL)
+ #thumbr already defined
+ - from: digital
+      from_ev: (EV_KEY), code 7 (KEY_6) # sel
+      targets:
+        - to: xbox2
+          to_ev: (EV_KEY), code 314 (BTN_SELECT)
+ - from: digital
+      from_ev: (EV_KEY), code 2 (KEY_1) # start
+      targets:
+        - to: xbox2
+          to_ev: (EV_KEY), code 315 (BTN_START)
+
+
+### special buttons connected to the analog sticks
+  - from: analog_left
+      from_ev: (EV_KEY), code 288 (BTN_TRIGGER)
+        -to: keybd
+        -to_ev: (EV_KEY), code 30 (KEY_A)
 
 
 

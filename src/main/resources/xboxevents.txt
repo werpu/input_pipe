@@ -1,0 +1,45 @@
+xbox commands
+
+A - type 1 (EV_KEY), code 304 (BTN_SOUTH), value 1
+B - type 1 (EV_KEY), code 305 (BTN_EAST), value 1
+X - type 1 (EV_KEY), code 307 (BTN_NORTH), value 1
+Y - type 1 (EV_KEY), code 308 (BTN_WEST), value 1
+
+D-UP -   type 3 (EV_ABS), code 17 (ABS_HAT0Y), value -1
+D-DOWN - type 3 (EV_ABS), code 17 (ABS_HAT0Y), value 1
+D-LEFT - type 3 (EV_ABS), code 16 (ABS_HAT0X), value -1
+D-RIGHT - type 3 (EV_ABS), code 16 (ABS_HAT0X), value 1
+
+L-A-UP - type 3 (EV_ABS), code 1 (ABS_Y), value -32262
+L-A-D - type 3 (EV_ABS), code 1 (ABS_Y), value 32262
+L-A-L - type 3 (EV_ABS), code 0 (ABS_X), value  -32262
+L-A-R - type 3 (EV_ABS), code 0 (ABS_X), value 32262
+
+R-A-UP -  type 3 (EV_ABS), code 4 (ABS_RY), value -32262
+R-A-D -  type 3 (EV_ABS), code 4 (ABS_RY), value 32262
+R-A-L -  type 3 (EV_ABS), code 3 (ABS_RX), value  -32262
+R-A-R -  type 3 (EV_ABS), code 3 (ABS_RX), value 32262
+
+
+L - type 1 (EV_KEY), code 310 (BTN_TL), value 1
+R - type 1 (EV_KEY), code 311 (BTN_TR), value 1
+
+LT - type 1 (EV_KEY), code 312 (BTN_TL2), value 1
+RT - type 1 (EV_KEY), code 313 (BTN_TR2), value 1
+
+SEL - type 1 (EV_KEY), code 314 (BTN_SELECT), value 1
+START - type 1 (EV_KEY), code 315 (BTN_START), value 1
+HOME - type 1 (EV_KEY), code 316 (BTN_MODE), value 0
+
+BT_THUMBL - type 1 (EV_KEY), code 316 (BTN_MODE), value 1
+BT_THUMBR - type 1 (EV_KEY), code 317 (BTN_THUMBL), value 1
+BT_THUMBR - type 1 (EV_KEY), code 318 (BTN_THUMBR), value 1
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,64 @@
+1u type 1 (EV_KEY), code 103 (KEY_UP),
+1d  type 1 (EV_KEY), code 108 (KEY_DOWN)
+1l type 1 (EV_KEY), code 105 (KEY_LEFT)
+1r  type 1 (EV_KEY), code 106 (KEY_RIGHT)
+
+1a type 1 (EV_KEY), code 29 (KEY_LEFTCTRL), value 0
+1b type 1 (EV_KEY), code 56 (KEY_LEFTALT), value 0
+
+1x type 1 (EV_KEY), code 57 (KEY_SPACE), value 0
+1y type 1 (EV_KEY), code 42 (KEY_LEFTSHIFT), value 0
+
+1l type 1 (EV_KEY), code 44 (KEY_Z), value 0
+1r type 1 (EV_KEY), code 45 (KEY_X), value 0
+1l type 1 (EV_KEY), code 46 (KEY_C), value 0
+1rt type 1 (EV_KEY), code 47 (KEY_V), value 0
+1bt type 1 (EV_KEY), code 25 (KEY_P), value 0
+
+
+2u  type 1 (EV_KEY), code 32 (KEY_D), value 0
+2dype 1 (EV_KEY), code 33 (KEY_F), value 0
+2ltype 1 (EV_KEY), code 34 (KEY_G), value 0
+2rtype 1 (EV_KEY), code 19 (KEY_R), value 0
+
+2a type 1 (EV_KEY), code 31 (KEY_S), value 0
+2b type 1 (EV_KEY), code 30 (KEY_A), value 0
+2xtype 1 (EV_KEY), code 16 (KEY_Q), value 0
+2ytype 1 (EV_KEY), code 17 (KEY_W), value 0
+2ltype 1 (EV_KEY), code 37 (KEY_K), value 0
+2rtype 1 (EV_KEY), code 23 (KEY_I), value 0
+2ltttype 1 (EV_KEY), code 36 (KEY_J), value 0
+2rtype 1 (EV_KEY), code 38 (KEY_L), value 0
+2bttype 1 (EV_KEY), code 15 (KEY_TAB), value 0
+
+
+1c type 1 (EV_KEY), code 3 (KEY_2), value 0
+2ctype 1 (EV_KEY), code 7 (KEY_6), value 0
+1ptype 1 (EV_KEY), code 6 (KEY_5), value 0
+2ptype 1 (EV_KEY), code 2 (KEY_1), value 0
+
+
+us1:
+
+utype 3  -
+dtype 3 (EV_ABS), code 1 (ABS_Y) +
+l type 3 (EV_ABS), code 0 (ABS_X), -
+r type 3 (EV_ABS), code 0 (ABS_X), +
+
+1 type 1 (EV_KEY), code 288 (BTN_TRIGGER), value 0
+2ype 1 (EV_KEY), code 289 (BTN_THUMB), value 0
+3
+4
+5
+6
+7
+8 294
+
+
+us2
+siehe us1
+
+
+
+
+
