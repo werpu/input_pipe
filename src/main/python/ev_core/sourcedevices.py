@@ -22,7 +22,7 @@
 
 # https://python-evdev.readthedocs.io/en/latest/usage.html
 import evdev
-from ev_core.config import Config, PHYS_RE, NAME_RE, PHYS, NAME, RELPOS, VENDOR, PRODUCT, INFO
+from ev_core.config import Config, PHYS_RE, NAME_RE, PHYS, NAME, RELPOS, VENDOR, PRODUCT, INFO, EXCLUSIVE
 from utils.evdevutils import EvDevUtils
 from utils.langutils import *
 
@@ -68,13 +68,15 @@ class SourceDevices:
     def _device_match(self, device: evdev.InputDevice):
 
         for key in save_fetch(lambda: self.config.inputs, {}):
-            name, name_re, phys, phys_re, rel_pos, vendor, product = self._get_config_input_params(key)
+            name, name_re, phys, phys_re, rel_pos, vendor, product, exclusive = self._get_config_input_params(key)
 
             device_match_string = str(self.config.inputs[key])
 
             found = self._full_match(device, name, name_re, phys, phys_re, vendor, product)
 
             if found:
+                if exclusive == "true":
+                    device.grab()
                 if save_fetch(lambda: self._matched_devices[device_match_string], False) is True:
                     return False
                 accessor_key = name or phys or name_re or phys_re or vendor or product
@@ -158,8 +160,9 @@ class SourceDevices:
         phys_re = save_fetch(lambda: self.config.inputs[key][PHYS_RE])
         vendor = save_fetch(lambda: self.config.inputs[key][INFO][1])
         product = save_fetch(lambda: self.config.inputs[key][INFO][2])
+        exclusive = save_fetch(lambda: self.config.inputs[key][EXCLUSIVE])
 
-        return name, name_re, phys, phys_re, rel_pos, vendor, product
+        return name, name_re, phys, phys_re, rel_pos, vendor, product, exclusive
 
 
 

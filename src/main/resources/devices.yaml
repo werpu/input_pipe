@@ -28,14 +28,17 @@ inputs:
 
   digital:
     name: Ultimarc I-PAC Ultimarc I-PAC
+    exclusive: true
     relpos: 1
 
   analog_left:
     name_re: ^Ultimarc.*Ultrastik\sPlayer\ 1$
+    exclusive: true
     relpos: 1
 
   analog_right:
     name_re: ^Ultimarc.*Ultrastik\sPlayer\ 2$
+    exclusive: true
     relpos: 1
 
 
