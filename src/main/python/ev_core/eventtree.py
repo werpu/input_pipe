@@ -39,7 +39,7 @@ class EventTree:
         self.tree = {}
         for rule in save_fetch(lambda: config.rules, []):
             rule_from = rule["from"]
-            from_ev_type, from_ev_code, from_ev_name = self.parse_ev(rule["from_ev"])
+            ev_type_code, from_ev_type, from_ev_code, from_ev_name = self.parse_ev(rule["from_ev"])
             targets = save_fetch(lambda: rule["targets"], [])
             self.assert_targets(targets)
 
@@ -50,7 +50,7 @@ class EventTree:
                 self.build_target_rule(last_node, rule_from, target, targetDevices, target_to)
 
     def build_target_rule(self, last_node, rule_from, target, targetDevices, target_to):
-        to_ev_type, to_ev_code, to_ev_name = self.parse_ev(target["to_ev"])
+        ev_type_code, to_ev_type, to_ev_code, to_ev_name = self.parse_ev(target["to_ev"])
 
         last_node[target_to] = save_fetch(lambda: last_node[target_to], {
             "ev_type": to_ev_type,
@@ -61,12 +61,18 @@ class EventTree:
 
     def parse_ev(self, evstr):
         splitted = [my_str.strip() for my_str in evstr.split(",")]
-        evtype = splitted[0][1:-1].strip()
+        ev_type_code = None
+        if splitted[0].find("code") is not -1:
+            type_codes = [my_str.strip() for my_str in splitted[0].split()]
+            ev_type_code = type_codes[1]
+            evtype_full = type_codes[2][1:-1].strip()
+        else:
+            evtype_full = splitted[0][1:-1].strip()
         evcodes = [my_str.strip() for my_str in splitted[1].split()]
         evcode = evcodes[1].strip()
         evname = evcodes[2][1:-1].strip()
 
-        return evtype, evcode, evname
+        return ev_type_code, evtype_full, evcode, evname
 
     @staticmethod
     def assert_targets(targets):
