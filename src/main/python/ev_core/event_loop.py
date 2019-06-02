@@ -67,7 +67,8 @@ class EventController:
         target_event = target_rules[key]
         target_type = target_event["ev_type"]
         target_code = target_event["ev_code"]
-        target_value = event.value
+        target_value = save_fetch(lambda: int(target_event["value"], event.value)) if abs(event.value) > 0 else \
+            event.value
         target_device = target_event["driver"]
         return target_code, target_device, target_type, target_value
 

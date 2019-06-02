@@ -37,6 +37,7 @@ class MyTestCase(unittest.TestCase):
         target_devices = TargetDevices(config)
         event_tree = EventTree(config, source_devices, target_devices)
         self.assertIsNotNone(save_fetch(lambda: event_tree.tree["digital"]["EV_KEY"]["103"]["xbox1"]["driver"]))
+        self.assertEqual(int(save_fetch(lambda: event_tree.tree["digital"]["EV_KEY"]["103"]["xbox1"]["value"])), -1)
         self.assertIsNotNone(save_fetch(lambda: event_tree.tree["analog_left"]["EV_KEY"]["103"]["xbox1"]["driver"]))
         self.assertIsNotNone(save_fetch(lambda: event_tree.tree["analog_left"]["EV_KEY"]["103"]["xbox2"]["driver"]))
 
