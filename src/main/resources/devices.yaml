@@ -90,6 +90,7 @@ rules:
         targets:
           - to: xbox1
             to_ev: (EV_ABS), code 16 (ABS_HAT0X), value 1
+
       - from_ev: (EV_KEY), code 29 (KEY_LEFTCTRL)
         targets:
           - to: xbox1

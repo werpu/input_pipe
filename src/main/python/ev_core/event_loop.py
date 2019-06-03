@@ -57,7 +57,11 @@ class EventController:
 
     def resolve_event(self, event):
         root_type = self.map_type(event)
-        target_rules = save_fetch(lambda: self.event_tree.tree[root_type][event.code], {})
+        if root_type is None:
+            return
+
+        source_device = "digital" # todo event root device mapping
+        target_rules = save_fetch(lambda: self.event_tree.tree[source_device][root_type][str(event.code)], {})
 
         for key in target_rules:
             target_code, target_device, target_type, target_value = self.get_target_data(event, key, target_rules)
@@ -68,7 +72,7 @@ class EventController:
         target_event = target_rules[key]
         target_type = target_event["ev_type"]
         target_code = target_event["ev_code"]
-        target_value = save_fetch(lambda: int(target_event["value"], event.value)) if abs(event.value) > 0 else \
+        target_value = save_fetch(lambda: int(target_event["value"]), event.value) if abs(event.value) > 0 else \
             event.value
         target_device = target_event["driver"]
         return target_code, target_device, target_type, target_value
@@ -76,7 +80,9 @@ class EventController:
     @staticmethod
     def map_type(event):
         root_type = None
-        if isinstance(event, KeyEvent):
+        if event.type == 1:
+            root_type = "EV_KEY"
+        elif isinstance(event, KeyEvent):
             root_type = "EV_KEY"
         elif isinstance(event, AbsEvent):
             root_type = "EV_ABS"

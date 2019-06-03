@@ -58,7 +58,10 @@ class SourceDevices:
     # externalized producer to be replaced in testing cases by mocks
     @staticmethod
     def get_available_devices():
-        return EvDevUtils.get_available_devices()
+        devices = EvDevUtils.get_available_devices()
+
+        devices.sort(key=lambda dev: save_fetch(lambda: dev.fd, "-"), reverse=True)
+        return devices
 
     # Complex device match, it basically first
     # checks for a full name or phys match
@@ -75,7 +78,7 @@ class SourceDevices:
             found = self._full_match(device, name, name_re, phys, phys_re, vendor, product)
 
             if found:
-                if exclusive == "true":
+                if exclusive:
                     device.grab()
                 if save_fetch(lambda: self._matched_devices[device_match_string], False) is True:
                     return False
