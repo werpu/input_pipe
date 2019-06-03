@@ -30,9 +30,16 @@ from ev_core.drivers.basedriver import BaseDriver
 
 class VirtualMouse(BaseDriver):
 
+    _init_cnt = 0
+
     def __init__(self):
         BaseDriver.__init__(self)
+
+        self.phys = "joydrv/virtmouse" + VirtualMouse._init_cnt.__str__()
         self.name = "virtual-mouse"
+
+        VirtualMouse._init_cnt += 1
+
         self.capabilities = {
             ecodes.EV_KEY: [
                 ecodes.BTN_LEFT,

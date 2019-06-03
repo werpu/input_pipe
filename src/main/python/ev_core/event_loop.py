@@ -19,14 +19,15 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-
-from test_utils.sourceDevicesMock import SourceDevicesMock
-from ev_core.targetdevices import TargetDevices
-from ev_core.eventtree import EventTree
-from ev_core.config import Config
 import asyncio
+
 from evdev import ecodes
 from evdev.events import KeyEvent, AbsEvent, RelEvent
+
+from ev_core.config import Config
+from ev_core.eventtree import EventTree
+from ev_core.sourcedevices import SourceDevices
+from ev_core.targetdevices import TargetDevices
 from utils.langutils import *
 
 
@@ -40,7 +41,7 @@ from utils.langutils import *
 class EventController:
 
     def __init__(self, config: Config):
-        self.source_devices = SourceDevicesMock(config)
+        self.source_devices = SourceDevices(config)
         self.target_devices = TargetDevices(config)
         self.event_tree = EventTree(config, self.source_devices, self.target_devices)
 
@@ -50,7 +51,7 @@ class EventController:
         loop = asyncio.get_event_loop()
         loop.run_forever()
 
-    def handle_events(self, src_dev):
+    async def handle_events(self, src_dev):
         async for event in src_dev.async_read_loop():
             self.resolve_event(event)
 

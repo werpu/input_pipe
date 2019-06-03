@@ -26,6 +26,14 @@ from ev_core.targetdevices import TargetDevices
 from ev_core.config import Config
 from utils.langutils import save_fetch, build_tree
 
+EV_TYPE = "ev_type"
+
+EV_CODE = "ev_code"
+
+EV_NAME = "ev_name"
+
+DRIVER = "driver"
+
 
 class EventTree:
 
@@ -54,13 +62,18 @@ class EventTree:
         ev_type_code, to_ev_type, to_ev_code, to_ev_name, value = self.parse_ev(target["to_ev"])
 
         last_node[target_to] = save_fetch(lambda: last_node[target_to], {
-            "ev_type": to_ev_type,
-            "ev_code": to_ev_code,
-            "ev_name": to_ev_name,
-            "driver": targetDevices.drivers[target_to]
+            EV_TYPE: to_ev_type,
+            EV_CODE: to_ev_code,
+            EV_NAME: to_ev_name,
+            DRIVER: save_fetch(lambda: targetDevices.drivers[target_to])
         })
+
+        if save_fetch(lambda: last_node[target_to][DRIVER]) is None:
+            print("Device "+target_to+" not found")
+            raise
         if value is not None:
             last_node[target_to]["value"] = value
+
 
     def parse_ev(self, evstr):
         splitted = [my_str.strip() for my_str in evstr.split(",")]

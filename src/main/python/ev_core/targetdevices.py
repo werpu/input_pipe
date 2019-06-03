@@ -39,8 +39,9 @@ class TargetDevices:
             driver = save_fetch(lambda: DEV_TYPES[dev_type](), None)
 
             if driver is not None:
+                driver.create()
                 self.drivers[dev_key] = driver
-                print("Output driver found for "+dev_key)
+                print("Output driver found for "+dev_key + " node created with phys " + save_fetch(lambda: driver.phys))
 
     # Fetches the associated config data
     def get_config_data(self, key):

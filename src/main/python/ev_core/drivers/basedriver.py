@@ -38,7 +38,6 @@ class BaseDriver(ABC):
         self.version = None
         self.phys = None
 
-
     def create(self):
         self.input_dev = UInput(self.capabilities,
                                 self.name,
@@ -46,7 +45,6 @@ class BaseDriver(ABC):
                                 product=self.product,
                                 version=self.version,
                                 phys=self.phys)
-
 
         return self
 
