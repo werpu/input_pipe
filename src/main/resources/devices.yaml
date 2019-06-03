@@ -321,6 +321,8 @@ rules:
           - to: keybd1
             to_ev: (EV_KEY), code 8 (KEY_6)
 
+  # TODO right stick front and side buttons
+
   # TODO macros and command sequences
   # from_ev..
         #targets:
