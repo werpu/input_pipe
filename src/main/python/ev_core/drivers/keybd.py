@@ -31,7 +31,7 @@ class VirtualKeyboard(BaseDriver):
     def __init__(self):
         BaseDriver.__init__(self)
 
-        self.phys = "joydrv/virtmouse" + VirtualKeyboard._init_cnt.__str__()
+        self.phys = "joydrv/virtkey" + VirtualKeyboard._init_cnt.__str__()
         self.name = "virtual-keyboard"
 
         VirtualKeyboard._init_cnt += 1
@@ -117,6 +117,7 @@ class VirtualKeyboard(BaseDriver):
 
     def create(self):
         self.input_dev = UInput(self.capabilities,
-                                self.name)
+                                self.name,
+                                phys=self.phys)
         self.transfer_dev_data()
         return self
