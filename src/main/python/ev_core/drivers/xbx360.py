@@ -66,9 +66,11 @@ class Xbox360(BaseDriver):
                 ecodes.BTN_MODE,
             ],
             ecodes.EV_ABS: [
-                (ecodes.ABS_X, AbsInfo(value=0, min=0, max=255, fuzz=15, flat=0, resolution=0)),
-                (ecodes.ABS_Y, AbsInfo(value=0, min=0, max=255, fuzz=15, flat=0, resolution=0)),
-                (ecodes.ABS_RX, AbsInfo(value=0, min=0, max=255, fuzz=15, flat=0, resolution=0)),
-                (ecodes.ABS_RY, AbsInfo(value=0, min=0, max=255, fuzz=15, flat=0, resolution=0))
+                (ecodes.ABS_HAT0X, AbsInfo(value=0, min=-1, max=1, fuzz=0, flat=0, resolution=0)),
+                (ecodes.ABS_HAT0Y, AbsInfo(value=0, min=-1, max=1, fuzz=0, flat=0, resolution=0)),
+                (ecodes.ABS_X, AbsInfo(value=0, min=-32262, max=32262, fuzz=15, flat=0, resolution=0)),
+                (ecodes.ABS_Y, AbsInfo(value=0, min=-32262, max=32262, fuzz=15, flat=0, resolution=0)),
+                (ecodes.ABS_RX, AbsInfo(value=0, min=-32262, max=32262, fuzz=15, flat=0, resolution=0)),
+                (ecodes.ABS_RY, AbsInfo(value=0, min=-32262, max=32262, fuzz=15, flat=0, resolution=0))
             ]
         }

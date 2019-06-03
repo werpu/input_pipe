@@ -32,12 +32,12 @@ inputs:
     relpos: 1
 
   analog_left:
-    name_re: ^Ultimarc.*Ultrastik\sPlayer\ 1$
+    name_re: ^Ultimarc.*Ultra-Stik\s+Player\s+1$
     exclusive: true
     relpos: 1
 
   analog_right:
-    name_re: ^Ultimarc.*Ultrastik\sPlayer\ 2$
+    name_re: ^Ultimarc.*Ultra-Stik\s+Player\s+2$
     exclusive: true
     relpos: 1
 
