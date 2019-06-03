@@ -48,7 +48,9 @@ class SourceDevices:
         devices = self.get_available_devices()
 
         for device in devices:
-            if self._device_match(device):
+            matched, input_dev_key = self._device_match(device)
+            if matched:
+                device.__dict__["_input_dev_key_"] = input_dev_key
                 self.devices.append(device)
         if len(self.devices) > 0:
             print("Following devices were found:")
@@ -81,15 +83,18 @@ class SourceDevices:
                 if exclusive:
                     device.grab()
                 if save_fetch(lambda: self._matched_devices[device_match_string], False) is True:
-                    return False
+                    return False, None
                 accessor_key = name or phys or name_re or phys_re or vendor or product
                 already_processed = save_fetch(lambda: self.matched[accessor_key], 1)
                 if already_processed == rel_pos:
                     self._matched_devices[device_match_string] = True
-                    return True
+                    return True, key
                 else:
                     self.matched[accessor_key] = already_processed + 1
-        return False
+        return False, None
+
+
+
 
     #
     # performs a full match on the supplied parameters

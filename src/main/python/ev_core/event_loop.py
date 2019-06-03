@@ -53,14 +53,14 @@ class EventController:
 
     async def handle_events(self, src_dev):
         for event in src_dev.async_read_loop():
-            self.resolve_event(event)
+            self.resolve_event(event, src_dev)
 
-    def resolve_event(self, event):
+    def resolve_event(self, event, src_dev):
         root_type = self.map_type(event)
         if root_type is None:
             return
 
-        source_device = "digital" # todo event root device mapping
+        source_device = src_dev.__dict__["_input_dev_key_"]
         target_rules = save_fetch(lambda: self.event_tree.tree[source_device][root_type][str(event.code)], {})
 
         for key in target_rules:
@@ -82,6 +82,10 @@ class EventController:
         root_type = None
         if event.type == 1:
             root_type = "EV_KEY"
+        elif event.type == 2:
+            root_type = "EV_REL"
+        elif event.type == 3:
+            root_type = "EV_ABS"
         elif isinstance(event, KeyEvent):
             root_type = "EV_KEY"
         elif isinstance(event, AbsEvent):
