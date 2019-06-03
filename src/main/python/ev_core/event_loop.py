@@ -86,6 +86,8 @@ class EventController:
             root_type = "EV_REL"
         elif event.type == 3:
             root_type = "EV_ABS"
+        elif event.type == 4:
+            root_type = "EV_MSC"
         elif isinstance(event, KeyEvent):
             root_type = "EV_KEY"
         elif isinstance(event, AbsEvent):

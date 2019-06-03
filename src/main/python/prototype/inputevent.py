@@ -19,3 +19,16 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
+
+from evdev import UInput, ecodes as e
+
+capabilities = {
+    e.EV_REL : (e.REL_X, e.REL_Y),
+    e.EV_KEY : (e.BTN_LEFT, e.BTN_RIGHT),
+}
+
+with UInput(capabilities) as ui:
+    ui.write(e.EV_REL, e.REL_X, 500)
+    ui.write(e.EV_REL, e.REL_Y, 500)
+    ui.write(e.EV_KEY, e.BTN_LEFT, 1)
+    ui.syn()
