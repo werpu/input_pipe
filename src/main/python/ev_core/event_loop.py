@@ -52,7 +52,7 @@ class EventController:
         loop.run_forever()
 
     async def handle_events(self, src_dev):
-        for event in src_dev.async_read_loop():
+        async for event in src_dev.async_read_loop():
             self.resolve_event(event, src_dev)
 
     def resolve_event(self, event, src_dev):
