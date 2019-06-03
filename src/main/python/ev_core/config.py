@@ -21,8 +21,7 @@
 # SOFTWARE.
 
 import yaml
-import io
-import json
+
 
 class Config:
 

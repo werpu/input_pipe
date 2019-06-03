@@ -32,5 +32,11 @@ class DeviceMock:
         self.uniq = uniq
         self.version = version
 
+    @staticmethod
+    def grab():
+        print("grabbing device")
+
+
+
 
 
