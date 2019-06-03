@@ -282,42 +282,42 @@ rules:
 
 ### special buttons connected to the analog sticks
   - from: analog_left
-    target_rules:
+    target_rules: # left panel button 1 to mouse left
       - from_ev: (EV_KEY), code 288 (BTN_TRIGGER)
         targets:
           - to: mouse1
             to_ev: (EV_KEY), code 272 (BTN_LEFT)
       - from_ev: (EV_KEY), code 289 (BTN_THUMB)
-        targets:
+        targets:  # left panel button 2 to mouse right
           - to: mouse1
             to_ev: (EV_KEY), code 273 (BTN_RIGHT)
 
       - from_ev: (EV_KEY), code 290 (BTN_THUMB2)
-        targets:
+        targets:  #front row button 1 to 1
           - to: keybd1
             to_ev: (EV_KEY), code 2 (KEY_1)
       - from_ev: (EV_KEY), code 291 (BTN_TOP)
-        targets:
+        targets: #front row button 2 to 2
           - to: keybd1
             to_ev: (EV_KEY), code 3 (KEY_2)
       - from_ev: (EV_KEY), code 292 (BTN_TOP2)
-        targets:
+        targets: #front row button 3 to 3
           - to: keybd1
             to_ev: (EV_KEY), code 4 (KEY_3)
       - from_ev: (EV_KEY), code 293 (BTN_PINKIE)
-        targets:
+        targets: #front row button 4 to 4
           - to: keybd1
             to_ev: (EV_KEY), code 5 (KEY_4)
       - from_ev: (EV_KEY), code 294 (BTN_BASE)
-        targets:
+        targets: #front row button 5 to 5
           - to: keybd1
             to_ev: (EV_KEY), code 6 (KEY_5)
       - from_ev: (EV_KEY), code 295 (BTN_BASE2)
-        targets:
+        targets: #front row button 6 to 6
           - to: keybd1
             to_ev: (EV_KEY), code 7 (KEY_6)
       - from_ev: (EV_KEY), code 295 (BTN_BASE2)
-        targets:
+        targets: #front row button 7 to 7
           - to: keybd1
             to_ev: (EV_KEY), code 8 (KEY_6)
 
