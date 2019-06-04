@@ -25,6 +25,15 @@
 
 from ev_core.config import Config
 from ev_core.event_loop import EventController
+import argparse
 
-EventController(Config("../resources/devices.yaml"))
+
+parser = argparse.ArgumentParser(description='Point to the yaml config')
+
+parser.add_argument('--config', dest='conf',
+
+                    default="./devices.yaml",
+                    help='define a vonfig file location (default: ./devices.yaml)')
+args = parser.parse_args()
+EventController(Config(args.conf))
 

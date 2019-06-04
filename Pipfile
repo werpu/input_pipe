@@ -16,6 +16,7 @@ pytest = "*"
 shiv = "*"
 pynt = "*"
 pyinstaller = "*"
+argparse = "*"
 
 [requires]
 python_version = "3.7"
