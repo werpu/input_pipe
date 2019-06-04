@@ -1,4 +1,4 @@
-# Inputm Pipe
+# Input Pipe
 
 ## What is this?
 
