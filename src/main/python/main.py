@@ -30,10 +30,11 @@ import argparse
 
 parser = argparse.ArgumentParser(description='Point to the yaml config')
 
-parser.add_argument('--config', dest='conf',
-
+parser.add_argument('--config', "-c",
+                    dest='conf',
                     default="./devices.yaml",
-                    help='define a vonfig file location (default: ./devices.yaml)')
+                    help='define a config file location (default: ./devices.yaml)')
+
 args = parser.parse_args()
 EventController(Config(args.conf))
 
