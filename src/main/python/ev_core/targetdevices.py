@@ -43,6 +43,11 @@ class TargetDevices:
                 self.drivers[dev_key] = driver
                 print("Output driver found for "+dev_key + " node created with phys " + save_fetch(lambda: driver.phys))
 
+    def close(self):
+        for key in self.drivers:
+            self.drivers[key].input_dev.close()
+
+
     # Fetches the associated config data
     def get_config_data(self, key):
         dev_key = key

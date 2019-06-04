@@ -41,15 +41,36 @@ from utils.langutils import *
 class EventController:
 
     def __init__(self, config: Config):
-        self.source_devices = SourceDevices(config)
-        self.target_devices = TargetDevices(config)
-        self.event_tree = EventTree(config, self.source_devices, self.target_devices)
+        self.source_devices = None
+        self.target_devices = None
+        self.event_tree = None
+        self.loop = None
+        self.config = config
+        self.running = False
+        self.start()
 
+    def start(self):
+        if self.running:
+            return
+        self.running = True
+        self.source_devices = SourceDevices(self.config)
+        self.target_devices = TargetDevices(self.config)
+        self.event_tree = EventTree(self.config, self.source_devices, self.target_devices)
         for src_dev in self.source_devices.devices:
             asyncio.ensure_future(self.handle_events(src_dev))
+        self.loop = asyncio.get_event_loop()
+        self.loop.run_forever()
 
-        loop = asyncio.get_event_loop()
-        loop.run_forever()
+    def stop(self):
+        if not self.running:
+            return
+        self.running = False
+        self.loop.close()
+        self.target_devices.close()
+
+    def restart(self):
+        self.stop()
+        self.start()
 
     async def handle_events(self, src_dev):
         async for event in src_dev.async_read_loop():
