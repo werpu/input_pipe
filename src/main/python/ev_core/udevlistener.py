@@ -33,13 +33,11 @@ class UdevListener:
                 break
 
         if found and action == "add":
-
             if self.restarting:
                 return
             self.restarting = True
             sleep(3)
             self.ev_ctl.restart()
             self.restarting = False
-
         elif found and action == "remove":
             self.ev_ctl.stop()
