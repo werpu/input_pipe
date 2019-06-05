@@ -77,4 +77,4 @@ class Xbox360(BaseDriver):
 
     def close(self):
         BaseDriver.close(self)
-        Xbox360._init_cnt = 0
+        Xbox360._init_cnt -= 1

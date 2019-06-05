@@ -124,4 +124,4 @@ class VirtualKeyboard(BaseDriver):
 
     def close(self):
         BaseDriver.close(self)
-        VirtualKeyboard._init_cnt = 0
+        VirtualKeyboard._init_cnt -= 1

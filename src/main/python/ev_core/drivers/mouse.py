@@ -56,4 +56,4 @@ class VirtualMouse(BaseDriver):
 
     def close(self):
         BaseDriver.close(self)
-        VirtualMouse._init_cnt = 0
+        VirtualMouse._init_cnt -= 1
