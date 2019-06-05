@@ -162,3 +162,138 @@ criteria must match.
 
 You cannot provide two name at the same time on the same device
 however.
+
+#### The Output Device Section
+Every pipe has two ends, right?
+In our case definitely. The definition of the output
+devices is the second end of the pipe.
+The output device section tells which devces the signals should 
+go to. Those are artificial devices mimicking different 
+device types.
+At the time of writing following output device types are supported
+
+* xbox 360 controller
+* mouse
+* keyboard
+
+Practically it is possible to provide additional device
+types by implementing a small driver (TODO add documentation).
+
+So how does an output section look like?
+
+```yaml
+outputs:
+
+  xbox1:
+    name: Microsoft X-Box 360 pad
+    type: xbx360
+
+  xbox2:
+    name: Microsoft X-Box 360 pad
+    type: xbx360
+
+  mouse1:
+    name: mouse
+    type: mouse
+
+  keybd1:
+    name: key1
+    type: keybd
+```
+
+The output definitions are rather simple,
+under outputs you define an output device
+by its internal key (xbox1 or keybd1) for instance.
+The next subsections are the device name exposed
+to linux and the type.
+
+Currently following types are possible:
+* xbx360 ... which generates a virtual xbox 360 controller
+* mouse ... which generates a virtual mouse to map events into mouse movements and events
+* keybd ... a virtual keyboard which lets you expose simulated keystrokes
+
+If you want to program your own driver, the drivers
+can be found in src/main/python/drivers
+
+### The Rules Section
+
+What would be a pipe without rules on how to map
+the incoming inputs to the outgoing outputs?
+
+And last but not least we are going to define those rules
+in the rules section.
+
+A rule would look like following
+
+```yaml
+  - from: digital
+    target_rules:
+      - from_ev: (EV_KEY), code 103 (KEY_UP)     # keyup event as coming in from evtest
+        targets:
+          - to: xbox1                            # artificial xbox controiler
+            to_ev: (EV_ABS), code 17 (ABS_HAT0Y), value -1   # pad up event
+
+      - from_ev: (EV_KEY), code 108 (KEY_DOWN)   # keyup event as coming in from evtest
+        targets:
+          - to: xbox1
+            to_ev: (EV_ABS), code 17 (ABS_HAT0Y), value 1   # pad down event
+
+```
+
+The structure of rules are very simple.
+You basically define a from section which tells you
+on which input device you listen to. 
+Then on each input device you define a set of target rules
+which basically consist of following parts
+
+* from_ev:  the incoming event definition (the same pattern you will see if you use **evtest**)
+* targets: a set of possible output targets
+    * to: the output device ("internal device key as defined by the outputs section")
+    * to_ev: the event as it would be seen by evtest
+        note the main difference to evtest is that the value part is optional
+        you will need it only if you want to expose a different value than what is provided from the input (aka -1 instead of 1)
+ 
+##### How Do I get the Device Names and Event Codes
+
+This is rather straight forward.
+lsinput will give you an overview of your input devices
+evtest will allow you to fetch the exposed events.
+ 
+ 
+##### Special Cases
+
+###### One Input Event Multiple Events to Different Targets
+
+```yaml
+  - from: analog_right
+    target_rules:
+      - from_ev: (EV_ABS), code 1 (ABS_Y)  # up down
+        targets:
+          - to: xbox1
+            to_ev: (EV_ABS), code 4 (ABS_RY)
+          - to: xbox2
+            to_ev: (EV_ABS), code 1 (ABS_Y)
+``
+This example maps two analog events from analog_right
+to the controllers xbox one right stick
+and xbox2 left stick
+
+###### Mapping of Values
+
+``ỳaml
+- from: digital
+    target_rules:
+      - from_ev: (EV_KEY), code 103 (KEY_UP)     # keyup event as coming in from evtest
+        targets:
+          - to: xbox1                            # artificial xbox controiler
+            to_ev: (EV_ABS), code 17 (ABS_HAT0Y), value -1   # pad up event
+``
+        
+This maps the button with the code 103 to a d-pad button press.
+The speciality of this event is that whenever the input event
+is coming in with a value of 1 (button pressed)
+it automatically is converted to -1 which is the 
+value the d-pad would expose on the xbox one controller.
+
+
+
