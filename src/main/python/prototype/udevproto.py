@@ -1,13 +1,19 @@
 import pyudev
 
 #class UdevListener:
+from asyncio import sleep
+
+
+def event_handler(action, device):
+    print(device.get("ID_VENDOR") + " " + device.get("ID_MODEL"))
+
 
 context = pyudev.Context()
+monitor = pyudev.Monitor.from_netlink(context)
+monitor.filter_by("input")
+observer = pyudev.MonitorObserver(monitor, event_handler)
+observer.start()
 
-for device in context.list_devices(subsystem='input'):
-    if device.get("ID_MODEL_ID") == "0410":
-        print(device.get("ID_VENDOR_ID"))
-        print(device.get("ID_MODEL_ID"))
-        print(device.device_type)
-
+while True:
+    sleep(5)
 

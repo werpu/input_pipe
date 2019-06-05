@@ -28,6 +28,11 @@ def save_fetch(first_order_func: callable, default=None):
         return default
 
 
+# from https://stackoverflow.com/questions/19053707/converting-snake-case-to-lower-camel-case-lowercamelcase
+def to_camel_case(snake_str):
+    components = snake_str.split('_')
+    return components[0] + ''.join(x.title() for x in components[1:])
+
 def build_tree(target, *args):
 
     curr_root = target
