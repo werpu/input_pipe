@@ -17,7 +17,7 @@ class MyTestCase(unittest.TestCase):
         self.assertTrue(eventcontroller.restarted_cnt == 0)
         listener.trigger_event("remove", device1)
         self.assertFalse(eventcontroller.started)
-        listener.trigger_event("add", device1)
+        listener.trigger_event2("add", device1)
         self.assertTrue(eventcontroller.started)
         self.assertTrue(eventcontroller.restarted_cnt > 0)
 

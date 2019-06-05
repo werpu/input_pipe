@@ -15,4 +15,7 @@ class UdevListenerMock(UdevListener):
     def trigger_event(self, action, device: UdevDeviceMock):
         self.event_handler(action, device)
 
+    def trigger_event2(self, action, device: UdevDeviceMock):
+        self.event_handler2(action, device)
+
 
