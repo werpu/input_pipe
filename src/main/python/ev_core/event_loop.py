@@ -29,7 +29,7 @@ from ev_core.eventtree import EventTree
 from ev_core.sourcedevices import SourceDevices
 from ev_core.targetdevices import TargetDevices
 from utils.langutils import *
-
+from ev_core.udevlistener import UdevListener
 
 #
 # the central controller pipe which reacts on events from their source devices
@@ -47,7 +47,9 @@ class EventController:
         self.loop = None
         self.config = config
         self.running = False
+        self.udev_listener = UdevListener(self)
         self.start()
+
 
     def start(self):
         if self.running:
@@ -56,6 +58,8 @@ class EventController:
         self.source_devices = SourceDevices(self.config)
         self.target_devices = TargetDevices(self.config)
         self.event_tree = EventTree(self.config, self.source_devices, self.target_devices)
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
         for src_dev in self.source_devices.devices:
             asyncio.ensure_future(self.handle_events(src_dev))
         self.loop = asyncio.get_event_loop()
@@ -65,16 +69,23 @@ class EventController:
         if not self.running:
             return
         self.running = False
-        self.loop.close()
+        asyncio.set_event_loop(self.loop)
+        for task in asyncio.Task.all_tasks():
+            task.cancel()
+        self.loop.call_soon_threadsafe(self.loop.stop)
         self.target_devices.close()
+        self.source_devices = None
 
     def restart(self):
         self.stop()
         self.start()
 
     async def handle_events(self, src_dev):
-        async for event in src_dev.async_read_loop():
-            self.resolve_event(event, src_dev)
+        try:
+            async for event in src_dev.async_read_loop():
+                self.resolve_event(event, src_dev)
+        except:
+            pass
 
     def resolve_event(self, event, src_dev):
         root_type = self.map_type(event)

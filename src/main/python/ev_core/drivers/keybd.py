@@ -121,3 +121,7 @@ class VirtualKeyboard(BaseDriver):
                                 phys=self.phys)
         self.transfer_dev_data()
         return self
+
+    def close(self):
+        BaseDriver.close(self)
+        VirtualKeyboard._init_cnt = 0

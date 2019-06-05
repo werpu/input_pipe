@@ -26,7 +26,7 @@
 from ev_core.config import Config
 from ev_core.event_loop import EventController
 import argparse
-
+import time
 
 parser = argparse.ArgumentParser(description='Point to the yaml config')
 
@@ -38,3 +38,5 @@ parser.add_argument('--config', "-c",
 args = parser.parse_args()
 EventController(Config(args.conf))
 
+while True:
+    time.sleep(10000)

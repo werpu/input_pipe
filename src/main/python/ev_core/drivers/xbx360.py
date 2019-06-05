@@ -74,3 +74,7 @@ class Xbox360(BaseDriver):
                 (ecodes.ABS_RY, AbsInfo(value=128, min=0, max=255, fuzz=15, flat=0, resolution=0))
             ]
         }
+
+    def close(self):
+        BaseDriver.close(self)
+        Xbox360._init_cnt = 0

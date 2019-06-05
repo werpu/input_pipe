@@ -81,7 +81,10 @@ class SourceDevices:
 
             if found:
                 if exclusive:
-                    device.grab()
+                    try:
+                        device.grab()
+                    except:
+                        pass
                 if save_fetch(lambda: self._matched_devices[device_match_string], False) is True:
                     return False, None
                 accessor_key = name or phys or name_re or phys_re or vendor or product

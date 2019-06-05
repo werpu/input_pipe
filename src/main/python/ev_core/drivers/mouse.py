@@ -53,3 +53,7 @@ class VirtualMouse(BaseDriver):
         self.transfer_dev_data()
 
         return self
+
+    def close(self):
+        BaseDriver.close(self)
+        VirtualMouse._init_cnt = 0
