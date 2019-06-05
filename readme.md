@@ -3,26 +3,49 @@
 ## What is this?
 
 To make it simple, it was developed as universal joystick mapper 
-for my personal usecase.
-The idea was to have a simple piple which can map multiple inputs
+for my personal use-case.
+The idea was to have a simple pipe, which can map multiple inputs
 into multiple outputs and provide basic device emulation for the
 outputs.
 
 ## Are there alternative solutions
 
-Yes there are, but they either provided to lack the m:n capabilities 
-(most either map from joystick to keyboard), or they 
-were buggy and EOL. Believe me, I spent several months
-trying to navigate around bugs trying to fix issues before
-I started my own mapper.
+Yes there are. But none of the existing solutions
+did fit 100% into my use case of a complex multi device m:n mapping.
+
+If you are interested, I highly can recommend
+projects like:
+
+* Moltengamepad
+* XboxDrv
+* Joy2Key
+
+and a bunch of others.
+Some of these projects might fit your needs
+others might not. But most of them
+either only support one joystick or limit themselves
+in certain ways.
+
+I probably would never have started my own project if I did not
+have hit a wall somewhere with any mapper I could find
+for my personal use-cases. 
+
+(which is a custom arcade panel
+with dozens of buttons, 2 analog sticks, 2 spinners,
+2 digital sticks and a trackball)
+
 
 ## Goals
 
 The goals were simple.
-* Easy: to maintain, this is achieved by using a high level language
 
-* Fast: given that Python is not the fastest language I had
-to chose the internal data structures carefully
+* Easy: to maintain, this is achieved by using a high level language,
+the choice of python was due to the fact that it had the 
+best non c mappings into the needed Linux APIs.
+(I never programmed Python before I started this project)
+
+* Fast: given that Python is not the fastest language, I had
+to choose the internal data structures carefully
 
 * Easily extensible, this was achieved by providing a basic device api
 
@@ -36,8 +59,8 @@ The configuration has not too many config elements and they should be easy to gr
 * Real m:n mapping no questions asked: I basically can map from any input
 to any output, given the output type is supported by an underlying 
 easy to program driver. Drivers for mouse, keyboard and an XBOX 360 controller
-type are supported. Others may be added in the furure or can be provided
-by someone who has the need for it (hey this is opensource so feel 
+type are supported. Others may be added in the future or can be provided
+by someone who has the need for it (hey this is open source so feel 
 free to participate)
 
 ## Does it work?
@@ -54,8 +77,7 @@ Not yet, setup instructions will be provided below.
 Not yet planned, this program relies heavily on the linux evdev/input mechanisms, and
 frankly spoken I need it for linux only for the time being.
 If someone wants to do a windows version, feel free to 
-fork the code and replace all the evdev bindings with DirectInput or
-SDL bindings.
+fork the code and replace all the evdev bindings with DirectInput bindings.
 
 ## Instructions
 
@@ -77,7 +99,6 @@ A general definition of which output devices of which type to generate
 Defines on what needs to happen from an input event onwards
 aka key A pressed -> rule match -> button X on virtual joystick 1 is triggered
 
-
 All of those rules are atm combined into one single big YAML file,
 you can find examples for those configurations in src/test/resources
 and src/main/resources
@@ -87,7 +108,7 @@ and src/main/resources
 
 The input device section lays out which input devices to touch and to fetch
 the events from.
-A classical input device secion looks like this
+A classical input device section looks like this
 
 ```yaml
 inputs:
@@ -273,21 +294,22 @@ evtest will allow you to fetch the exposed events.
             to_ev: (EV_ABS), code 4 (ABS_RY)
           - to: xbox2
             to_ev: (EV_ABS), code 1 (ABS_Y)
-``
+```
+
 This example maps two analog events from analog_right
 to the controllers xbox one right stick
 and xbox2 left stick
 
 ###### Mapping of Values
 
-``ỳaml
+```yaml
 - from: digital
     target_rules:
       - from_ev: (EV_KEY), code 103 (KEY_UP)     # keyup event as coming in from evtest
         targets:
           - to: xbox1                            # artificial xbox controiler
             to_ev: (EV_ABS), code 17 (ABS_HAT0Y), value -1   # pad up event
-``
+```
         
 This maps the button with the code 103 to a d-pad button press.
 The speciality of this event is that whenever the input event
@@ -295,5 +317,40 @@ is coming in with a value of 1 (button pressed)
 it automatically is converted to -1 which is the 
 value the d-pad would expose on the xbox one controller.
 
+## Usage and Setup
 
+An x64 Linux executable is provided for convenience
+in the dist folder.
+If you want to build your own executable
+use the setup.sh and build.sh build scripts.
+Prerequisites prior to installation are
+a python distribution and a properly working pipenv and 
+pyinstaller on top of it.
+
+
+starting is easy, you basically just start
+the executable and point to a config file via
+the -c parameter.
+
+Example:
+
+```bash
+./input_pipe -c ../resources/devices.yaml
+
+```
+
+Currently only the configuration command line option
+is present, this might change in the future.
+
+an ./input_pipe --help will expose all possible commands
+
+Installation:
+
+The program runs as a daemon process, hot plugging of 
+source devices is not needed, the program itself takes
+care of that (I will add the info at a later stage)
+so there is no need for udev rules.
+Just plug the program into your favorite
+startup system with a properly working yaml config
+and you are good to go.
 
