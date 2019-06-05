@@ -12,10 +12,10 @@ class UdevListenerMock(UdevListener):
         self.config = ev_ctl.config
         self.restarting = False
 
-    def trigger_event(self, action, device: UdevDeviceMock):
-        self.event_handler(action, device)
+    def trigger_event_usb(self, action, device: UdevDeviceMock):
+        self._usb_event_handler(action, device)
 
-    def trigger_event2(self, action, device: UdevDeviceMock):
-        self.event_handler2(action, device)
+    def trigger_event_input(self, action, device: UdevDeviceMock):
+        self._input_event_handler(action, device)
 
 

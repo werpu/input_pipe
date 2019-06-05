@@ -3,7 +3,13 @@ import pyudev
 from utils.langutils import *
 from time import sleep
 
-
+# Udev hotplugging listener
+# the idea is to simulate udev rules with this one
+# whenever one of our source devices is removed we need to shutdown
+# the pipe and whenever it is attached
+# we reactivate the pipe and target inputs
+# it is an all or nothing approach
+# partial piping is not yet supported
 class UdevListener:
 
     def __init__(self, ev_ctl):
@@ -17,13 +23,13 @@ class UdevListener:
         self.config = ev_ctl.config
         self.ev_ctl = ev_ctl
         self.restarting = False
-        self.observer = pyudev.MonitorObserver(monitor, self.event_handler)
-        self.observer2 = pyudev.MonitorObserver(monitor, self.event_handler2)
+        self.observer = pyudev.MonitorObserver(monitor, self._usb_event_handler)
+        self.observer2 = pyudev.MonitorObserver(monitor, self._input_event_handler)
         self.observer.start()
         self.observer2.start()
 
     # id vendor only on input level detectable in the remove case
-    def event_handler(self, action, device):
+    def _usb_event_handler(self, action, device):
         found, name = self._get_udev_base_data(device)
         found = self._match_udev_data(found, name)
 
@@ -33,7 +39,7 @@ class UdevListener:
     # in the add case we can savely work only on usb level
     # because doing that over input would put us into an endless
     # loop
-    def event_handler2(self, action, device):
+    def _input_event_handler(self, action, device):
         found, name = self._get_udev_base_data(device)
         found = self._match_udev_data(found, name)
 
@@ -61,7 +67,8 @@ class UdevListener:
                 break
         return found
 
-    def _get_udev_base_data(self, device):
+    @staticmethod
+    def _get_udev_base_data(device):
         name = (device.get("ID_VENDOR") or "____") + " " + (device.get("ID_MODEL") or "____")
         name = name.replace("_", " ")
         found = True

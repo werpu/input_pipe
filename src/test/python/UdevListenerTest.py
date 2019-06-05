@@ -15,9 +15,9 @@ class MyTestCase(unittest.TestCase):
         device1 = UdevDeviceMock("Ultimarc_UltraStik", "Ultimarc_Ultra-Stik_Player_1")
         self.assertTrue(eventcontroller.started)
         self.assertTrue(eventcontroller.restarted_cnt == 0)
-        listener.trigger_event("remove", device1)
+        listener.trigger_event_usb("remove", device1)
         self.assertFalse(eventcontroller.started)
-        listener.trigger_event2("add", device1)
+        listener.trigger_event_input("add", device1)
         self.assertTrue(eventcontroller.started)
         self.assertTrue(eventcontroller.restarted_cnt > 0)
 
