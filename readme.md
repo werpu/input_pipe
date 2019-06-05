@@ -346,7 +346,7 @@ is present, this might change in the future.
 
 an ./input_pipe --help will expose all possible commands
 
-##Installation:
+## Installation:
 
 The program runs as a daemon process, hot plugging of 
 source devices is not needed, the program itself takes
