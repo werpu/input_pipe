@@ -317,8 +317,9 @@ is coming in with a value of 1 (button pressed)
 it automatically is converted to -1 which is the 
 value the d-pad would expose on the xbox one controller.
 
-## Usage and Setup
+## Usage
 
+### Building 
 An x64 Linux executable is provided for convenience
 in the dist folder.
 If you want to build your own executable
@@ -327,6 +328,7 @@ Prerequisites prior to installation are
 a python distribution and a properly working pipenv and 
 pyinstaller on top of it.
 
+### Usage
 
 starting is easy, you basically just start
 the executable and point to a config file via
@@ -344,12 +346,13 @@ is present, this might change in the future.
 
 an ./input_pipe --help will expose all possible commands
 
-Installation:
+##Installation:
 
 The program runs as a daemon process, hot plugging of 
 source devices is not needed, the program itself takes
 care of that (I will add the info at a later stage)
 so there is no need for udev rules.
+
 Just plug the program into your favorite
 startup system with a properly working yaml config
 and you are good to go.
