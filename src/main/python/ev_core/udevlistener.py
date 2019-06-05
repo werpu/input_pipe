@@ -22,40 +22,20 @@ class UdevListener:
         self.observer.start()
         self.observer2.start()
 
+    # id vendor only on input level detectable in the remove case
     def event_handler(self, action, device):
-        name = (device.get("ID_VENDOR") or "____") + " " + (device.get("ID_MODEL") or "____")
-        name = name.replace("_", " ")
-        found = True
-        for input_key in self.config.inputs:
-            c_name, name_re, phys, phys_re, rel_pos, vendor, product, exclusive = \
-                self.config.get_config_input_params(input_key)
-
-            if c_name is not None:
-                found = found or caseless_equal(name, c_name)
-            elif name_re is not None:
-                found = found or re_match(name, name_re)
-
-            if found:
-                break
+        found, name = self._get_udev_base_data(device)
+        found = self._match_udev_data(found, name)
 
         if found and action == "remove":
             self.ev_ctl.stop()
 
+    # in the add case we can savely work only on usb level
+    # because doing that over input would put us into an endless
+    # loop
     def event_handler2(self, action, device):
-        name = (device.get("ID_VENDOR") or "____") + " " + (device.get("ID_MODEL") or "____")
-        name = name.replace("_", " ")
-        found = True
-        for input_key in self.config.inputs:
-            c_name, name_re, phys, phys_re, rel_pos, vendor, product, exclusive = \
-                self.config.get_config_input_params(input_key)
-
-            if c_name is not None:
-                found = found or caseless_equal(name, c_name)
-            elif name_re is not None:
-                found = found or re_match(name, name_re)
-
-            if found:
-                break
+        found, name = self._get_udev_base_data(device)
+        found = self._match_udev_data(found, name)
 
         if found and action == "add":
             if self.restarting:
@@ -64,3 +44,25 @@ class UdevListener:
             sleep(5)
             self.ev_ctl.restart()
             self.restarting = False
+
+    def _match_udev_data(self, found, name, vendor=None):
+        for input_key in self.config.inputs:
+            c_name, name_re, phys, phys_re, rel_pos, c_vendor, product, exclusive = \
+                self.config.get_config_input_params(input_key)
+
+            if c_name is not None:
+                found = found or caseless_equal(name, c_name)
+            # elif vendor is not None:
+            #    found = found or caseless_equal("0x"+vendor, c_vendor)
+            elif name_re is not None:
+                found = found or re_match(name, name_re)
+
+            if found:
+                break
+        return found
+
+    def _get_udev_base_data(self, device):
+        name = (device.get("ID_VENDOR") or "____") + " " + (device.get("ID_MODEL") or "____")
+        name = name.replace("_", " ")
+        found = True
+        return found, name
