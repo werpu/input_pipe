@@ -17,6 +17,7 @@ shiv = "*"
 pynt = "*"
 pyinstaller = "*"
 argparse = "*"
+virtualenv = "*"
 
 [requires]
 python_version = "3.7"
