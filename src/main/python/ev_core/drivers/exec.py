@@ -21,3 +21,5 @@ class ExecDriver(BaseDriver):
     def write(self, e_type, e_sub_type, value, meta=None):
         os.system(meta)
 
+    def close(self):
+        pass
