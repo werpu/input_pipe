@@ -22,6 +22,5 @@ class MyTestCase(unittest.TestCase):
         self.assertTrue(eventcontroller.restarted_cnt > 0)
 
 
-
 if __name__ == '__main__':
     unittest.main()

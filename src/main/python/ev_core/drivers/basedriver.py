@@ -48,7 +48,7 @@ class BaseDriver(ABC):
 
         return self
 
-    def write(self, e_type, e_sub_type, value):
+    def write(self, e_type=None, e_sub_type=None, value=None, meta=None):
         self.input_dev.write(e_type, int(e_sub_type), value)
         self.input_dev.syn()
         return self

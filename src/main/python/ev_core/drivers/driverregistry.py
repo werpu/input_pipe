@@ -23,10 +23,12 @@
 from ev_core.drivers.xbx360 import Xbox360
 from ev_core.drivers.mouse import VirtualMouse
 from ev_core.drivers.keybd import VirtualKeyboard
+from ev_core.drivers.exec import ExecDriver
 
 
 DEV_TYPES = {
     "xbx360": Xbox360,
     "keybd": VirtualKeyboard,
-    "mouse": VirtualMouse
+    "mouse": VirtualMouse,
+    "exec": ExecDriver
 }

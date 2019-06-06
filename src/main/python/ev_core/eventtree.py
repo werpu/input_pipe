@@ -34,6 +34,8 @@ EV_NAME = "ev_name"
 
 DRIVER = "driver"
 
+EV_META = "ev_meta"
+
 
 class EventTree:
 
@@ -48,7 +50,7 @@ class EventTree:
         for rule in save_fetch(lambda: config.rules, []):
             rule_from = rule["from"]
             for target_rules in rule["target_rules"]:
-                ev_type_code, from_ev_type, from_ev_code, from_ev_name, value0 = self.parse_ev(target_rules["from_ev"])
+                ev_type_code, from_ev_type, from_ev_code, from_ev_name, value0, from_ev_meta = self.parse_ev(target_rules["from_ev"])
                 targets = save_fetch(lambda: target_rules["targets"], [])
                 self.assert_targets(targets)
 
@@ -59,12 +61,13 @@ class EventTree:
                     self.build_target_rule(last_node, rule_from, target, targetDevices, target_to)
 
     def build_target_rule(self, last_node, rule_from, target, targetDevices, target_to):
-        ev_type_code, to_ev_type, to_ev_code, to_ev_name, value = self.parse_ev(target["to_ev"])
+        ev_type_code, to_ev_type, to_ev_code, to_ev_name, value, to_ev_meta = self.parse_ev(target["to_ev"])
 
         last_node[target_to] = save_fetch(lambda: last_node[target_to], {
             EV_TYPE: to_ev_type,
             EV_CODE: to_ev_code,
             EV_NAME: to_ev_name,
+            EV_META: to_ev_meta,
             DRIVER: save_fetch(lambda: targetDevices.drivers[target_to])
         })
 
@@ -74,19 +77,25 @@ class EventTree:
         if value is not None:
             last_node[target_to]["value"] = value
 
-
     def parse_ev(self, evstr):
         splitted = [my_str.strip() for my_str in evstr.split(",")]
         ev_type_code = None
+        ev_meta = None
+        ev_code = None
+        ev_name = None
         if splitted[0].find("code") is not -1:
             type_codes = [my_str.strip() for my_str in splitted[0].split()]
             ev_type_code = type_codes[1]
-            evtype_full = type_codes[2][1:-1].strip()
+            ev_type_full = type_codes[2][1:-1].strip()
+            ev_code, ev_name = self._parse_event_codes(ev_code, ev_name, splitted)
+        elif splitted[0].find("META") is not -1:
+            ev_type_full = splitted[0][1:-1].strip()
+            ev_code = None
+            ev_name = None
+            ev_meta = splitted[1].strip()
         else:
-            evtype_full = splitted[0][1:-1].strip()
-        evcodes = [my_str.strip() for my_str in splitted[1].split()]
-        evcode = evcodes[1].strip()
-        evname = evcodes[2][1:-1].strip()
+            ev_type_full = splitted[0][1:-1].strip()
+            ev_code, ev_name = self._parse_event_codes(ev_code, ev_name, splitted)
 
         value = None
         if len(splitted) > 2: #value definition exists
@@ -94,7 +103,13 @@ class EventTree:
             if value_def.find("value") is not -1:
                 value = value_def.split()[1].strip()
 
-        return ev_type_code, evtype_full, evcode, evname, value
+        return ev_type_code, ev_type_full, ev_code, ev_name, value, ev_meta
+
+    def _parse_event_codes(self, ev_code, ev_name, splitted):
+        evcodes = [my_str.strip() for my_str in splitted[1].split()]
+        ev_code = evcodes[1].strip()
+        ev_name = evcodes[2][1:-1].strip()
+        return ev_code, ev_name
 
     @staticmethod
     def assert_targets(targets):

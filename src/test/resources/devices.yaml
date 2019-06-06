@@ -64,6 +64,10 @@ outputs:
     name: key1
     type: keybd
 
+  exec1:
+    name: exec1
+    type: exec
+
 
 ##########################################################
 # rules section, maps events from one device into another
@@ -85,7 +89,12 @@ rules:
         - to: xbox2
           to_ev: (EV_KEY), code 103 (KEY_UP)
 
-
+  - from: analog_left
+    target_rules:
+      - from_ev: (EV_KEY), code 105 (KEY_UP)
+        targets:
+        - to: exec1
+          to_ev: (META), /usr/local/bin/4way
 
 
 

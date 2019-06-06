@@ -40,7 +40,9 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(int(save_fetch(lambda: event_tree.tree["digital"]["EV_KEY"]["103"]["xbox1"]["value"])), -1)
         self.assertIsNotNone(save_fetch(lambda: event_tree.tree["analog_left"]["EV_KEY"]["103"]["xbox1"]["driver"]))
         self.assertIsNotNone(save_fetch(lambda: event_tree.tree["analog_left"]["EV_KEY"]["103"]["xbox2"]["driver"]))
-
+        self.assertIsNotNone(save_fetch(lambda: event_tree.tree["analog_left"]["EV_KEY"]["105"]["exec1"]["driver"]))
+        self.assertIsNotNone(save_fetch(lambda: event_tree.tree["analog_left"]["EV_KEY"]["105"]["exec1"]["ev_meta"]))
+        self.assertIsNotNone(save_fetch(lambda: event_tree.tree["analog_left"]["EV_KEY"]["105"]["exec1"]["driver"]))
 
 
 if __name__ == '__main__':

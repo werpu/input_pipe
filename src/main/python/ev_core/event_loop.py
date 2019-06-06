@@ -25,11 +25,12 @@ from evdev import ecodes
 from evdev.events import KeyEvent, AbsEvent, RelEvent
 
 from ev_core.config import Config
-from ev_core.eventtree import EventTree
+from ev_core.eventtree import EventTree, EV_CODE, EV_META, EV_NAME, EV_TYPE, DRIVER
 from ev_core.sourcedevices import SourceDevices
 from ev_core.targetdevices import TargetDevices
-from utils.langutils import *
 from ev_core.udevlistener import UdevListener
+from utils.langutils import *
+
 
 #
 # the central controller pipe which reacts on events from their source devices
@@ -89,7 +90,7 @@ class EventController:
                 pass
 
     def resolve_event(self, event, src_dev):
-        #analog deadzone
+        # analog deadzone
         if 113 <= event.value <= 143:
             return
 
@@ -101,18 +102,19 @@ class EventController:
         target_rules = save_fetch(lambda: self.event_tree.tree[source_device][root_type][str(event.code)], {})
 
         for key in target_rules:
-            target_code, target_device, target_type, target_value = self.get_target_data(event, key, target_rules)
-            target_device.write(ecodes.__getattribute__(target_type), target_code, target_value)
+            target_code, target_device, target_type, target_value, target_meta = self.get_target_data(event, key, target_rules)
+            target_device.write(ecodes.__getattribute__(target_type), target_code, target_value, target_meta)
 
     @staticmethod
     def get_target_data(event, key, target_rules):
         target_event = target_rules[key]
-        target_type = target_event["ev_type"]
-        target_code = target_event["ev_code"]
+        target_type = target_event[EV_TYPE] or None
+        target_code = target_event[EV_CODE] or None
         target_value = save_fetch(lambda: int(target_event["value"]), event.value) if abs(event.value) > 0 else \
             event.value
-        target_device = target_event["driver"]
-        return target_code, target_device, target_type, target_value
+        target_device = target_event[DRIVER]
+        target_meta = target_event[EV_META] or None
+        return target_code, target_device, target_type, target_value, target_meta
 
     @staticmethod
     def map_type(event):

@@ -44,7 +44,7 @@ class TargetDevTestCase(unittest.TestCase):
     # config test for matching devices after creation
     def test_device_match(self):
         devices = TargetDevices(Config("../resources/devices.yaml"))
-        self.assertEqual(len(devices.drivers), 4, "3 devices found")
+        self.assertEqual(len(devices.drivers), 5, "5 devices found")
         self.assertTrue(devices.drivers["xbox1"] is not None)
         self.assertTrue(devices.drivers["xbox2"] is not None)
         self.assertTrue(devices.drivers["mouse1"] is not None)
@@ -62,6 +62,8 @@ class TargetDevTestCase(unittest.TestCase):
             for dev in EvDevUtils.get_available_devices():
                 found = found or dev.phys == device_drv.phys
         self.assertTrue(found, "device created and available")
+
+
 
 
 if __name__ == '__main__':

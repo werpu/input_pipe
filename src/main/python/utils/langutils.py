@@ -24,7 +24,7 @@ def re_match(my_str, r_exp):
 def save_fetch(first_order_func: callable, default=None):
     try:
         return first_order_func()
-    except KeyError or IndexError:
+    except:
         return default
 
 
