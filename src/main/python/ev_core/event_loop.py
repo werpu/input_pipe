@@ -88,6 +88,10 @@ class EventController:
             pass
 
     def resolve_event(self, event, src_dev):
+        #analog deadzone
+        if 113 < event.value < 143:
+            return
+
         root_type = self.map_type(event)
         if root_type is None:
             return

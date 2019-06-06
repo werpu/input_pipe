@@ -187,7 +187,7 @@ rules:
             to_ev: (EV_ABS), code 1 (ABS_Y)
 
 
-      - from_ev: (EV_ABS), code 1 (ABS_X)  # lef right
+      - from_ev: (EV_ABS), code 0 (ABS_X)  # left right
         targets:
           - to: xbox1
             to_ev: (EV_ABS), code 3 (ABS_RX)
