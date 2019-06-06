@@ -4,7 +4,7 @@
 
 To make it simple, it was developed as universal joystick mapper 
 for my personal use-case.
-The idea was to have a simple pipe, which can map multiple inputs
+The idea was to have a simple pipe/multiplexer, which can map multiple inputs
 into multiple outputs and provide basic device emulation for the
 outputs.
 
