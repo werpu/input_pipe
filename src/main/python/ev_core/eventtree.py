@@ -58,6 +58,7 @@ class EventTree:
 
                 for target in targets:
                     target_to = target["to"]
+                    ## todo hook sequence in here somehow
                     self.build_target_rule(last_node, rule_from, target, targetDevices, target_to)
 
     def build_target_rule(self, last_node, rule_from, target, targetDevices, target_to):
@@ -81,31 +82,49 @@ class EventTree:
         splitted = [my_str.strip() for my_str in evstr.split(",")]
         ev_type_code = None
         ev_meta = None
-        ev_code = None
-        ev_name = None
-        if splitted[0].find("code") is not -1:
-            type_codes = [my_str.strip() for my_str in splitted[0].split()]
-            ev_type_code = type_codes[1]
-            ev_type_full = type_codes[2][1:-1].strip()
-            ev_code, ev_name = self._parse_event_codes(ev_code, ev_name, splitted)
-        elif splitted[0].find("META") is not -1:
-            ev_type_full = splitted[0][1:-1].strip()
-            ev_code = None
-            ev_name = None
-            ev_meta = splitted[1].strip()
-        else:
-            ev_type_full = splitted[0][1:-1].strip()
-            ev_code, ev_name = self._parse_event_codes(ev_code, ev_name, splitted)
 
-        value = None
-        if len(splitted) > 2: #value definition exists
-            value_def = splitted[2]
-            if value_def.find("value") is not -1:
-                value = value_def.split()[1].strip()
+        if splitted[0].find("code") is not -1:
+            ev_code, ev_name, ev_type_code, ev_type_full = self._parse_code_def(splitted)
+        elif splitted[0].find("META") is not -1:
+            ev_code, ev_meta, ev_name, ev_type_full = self._parse_meta(splitted)
+        else:
+            ev_code, ev_name, ev_type_full = self._parse_normal_def(splitted)
+
+        value = self._parse_value(splitted)
 
         return ev_type_code, ev_type_full, ev_code, ev_name, value, ev_meta
 
-    def _parse_event_codes(self, ev_code, ev_name, splitted):
+    @staticmethod
+    def _parse_value(splitted):
+        value = None
+        if len(splitted) > 2:  # value definition exists
+            value_def = splitted[2]
+            if value_def.find("value") is not -1:
+                value = value_def.split()[1].strip()
+        return value
+
+    def _parse_normal_def(self, splitted):
+        ev_type_full = splitted[0][1:-1].strip()
+        ev_code, ev_name = self._parse_event_codes(splitted)
+        return ev_code, ev_name, ev_type_full
+
+    @staticmethod
+    def _parse_meta(splitted):
+        ev_type_full = splitted[0][1:-1].strip()
+        ev_code = None
+        ev_name = None
+        ev_meta = splitted[1].strip()
+        return ev_code, ev_meta, ev_name, ev_type_full
+
+    def _parse_code_def(self, splitted):
+        type_codes = [my_str.strip() for my_str in splitted[0].split()]
+        ev_type_code = type_codes[1]
+        ev_type_full = type_codes[2][1:-1].strip()
+        ev_code, ev_name = self._parse_event_codes(splitted)
+        return ev_code, ev_name, ev_type_code, ev_type_full
+
+    @staticmethod
+    def _parse_event_codes(splitted):
         evcodes = [my_str.strip() for my_str in splitted[1].split()]
         ev_code = evcodes[1].strip()
         ev_name = evcodes[2][1:-1].strip()
