@@ -81,15 +81,16 @@ class EventController:
         self.start()
 
     async def handle_events(self, src_dev):
-        try:
-            async for event in src_dev.async_read_loop():
+        async for event in src_dev.async_read_loop():
+            try:
                 self.resolve_event(event, src_dev)
-        except:
-            pass
+            except Exception as e:
+                print(e)
+                pass
 
     def resolve_event(self, event, src_dev):
         #analog deadzone
-        if 113 < event.value < 143:
+        if 113 <= event.value <= 143:
             return
 
         root_type = self.map_type(event)

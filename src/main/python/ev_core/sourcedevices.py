@@ -83,7 +83,8 @@ class SourceDevices:
                 if exclusive:
                     try:
                         device.grab()
-                    except:
+                    except Exception as e:
+                        print(e)
                         pass
                 if save_fetch(lambda: self._matched_devices[device_match_string], False) is True:
                     return False, None
