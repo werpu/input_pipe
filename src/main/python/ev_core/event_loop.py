@@ -103,7 +103,7 @@ class EventController:
 
         for key in target_rules:
             target_code, target_device, target_type, target_value, target_meta = self.get_target_data(event, key, target_rules)
-            target_device.write(ecodes.__getattribute__(target_type), target_code, target_value, target_meta)
+            target_device.write(save_fetch(lambda: ecodes.__getattribute__(target_type), -1), target_code, target_value, target_meta)
 
     @staticmethod
     def get_target_data(event, key, target_rules):

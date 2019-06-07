@@ -47,7 +47,6 @@ class TargetDevices:
         for key in self.drivers:
             self.drivers[key].input_dev.close()
 
-
     # Fetches the associated config data
     def get_config_data(self, key):
         dev_key = key

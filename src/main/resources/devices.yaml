@@ -64,6 +64,9 @@ outputs:
     name: key1
     type: keybd
 
+  exec1:
+    name: exec1
+    type: exec
 
 ##########################################################
 # rules section, maps events from one device into another
@@ -193,6 +196,15 @@ rules:
             to_ev: (EV_ABS), code 3 (ABS_RX)
           - to: xbox2
             to_ev: (EV_ABS), code 0 (ABS_X)
+      - from_ev: (EV_KEY), code 292 (BTN_TOP2)
+        targets: #front row button center orange left
+          - to: exec1
+            to_ev: (META), /usr/local/bin/serv4
+      - from_ev: (EV_KEY), code 291 (BTN_TOP)
+        targets: #front row center orange right
+          - to: exec1
+            to_ev: (META), /usr/local/bin/serv8
+
 
   ##################################
   # rest of xbox2 mapping

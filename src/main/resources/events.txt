@@ -58,7 +58,12 @@ r type 3 (EV_ABS), code 0 (ABS_X), +
 us2
 siehe us1
 
+orange-left
+type 1 (EV_KEY), code 292 (BTN_TOP2), value 1
 
+
+orange-right:
+type 1 (EV_KEY), code 291 (BTN_TOP), value 1
 
 
 
