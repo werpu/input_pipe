@@ -33,8 +33,5 @@ class MyTestCase(unittest.TestCase):
         self.assertNotEqual(conf.rules[0]["from"], None, "structure exists")
 
 
-
-
-
 if __name__ == '__main__':
     unittest.main()

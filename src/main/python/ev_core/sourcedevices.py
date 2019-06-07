@@ -25,7 +25,7 @@ import evdev
 from ev_core.config import Config, PHYS_RE, NAME_RE, PHYS, NAME, RELPOS, VENDOR, PRODUCT, INFO, EXCLUSIVE
 from utils.evdevutils import EvDevUtils
 from utils.langutils import *
-
+import time
 
 # A device holder class
 # determines the devices in the input devices
@@ -45,17 +45,26 @@ class SourceDevices:
         #in the fastest possible manner
         self._event_tree = {}
 
-        devices = self.get_available_devices()
+        while True:
+            print("searching for devices")
+            devices = self.get_available_devices()
 
-        for device in devices:
-            matched, input_dev_key = self._device_match(device)
-            if matched:
-                device.__dict__["_input_dev_key_"] = input_dev_key
-                self.devices.append(device)
-        if len(self.devices) > 0:
-            print("Following devices were found:")
-            for device in self.devices:
-                print("  - "+device.name)
+            for device in devices:
+                matched, input_dev_key = self._device_match(device)
+                if matched:
+                    device.__dict__["_input_dev_key_"] = input_dev_key
+                    self.devices.append(device)
+            if len(self.devices) > 0:
+                print("Following devices were found:")
+                for device in self.devices:
+                    print("  - "+device.name)
+            if len(self.devices) < len(self.config.inputs):
+                print("some devices were not found, trying again in 10 seconds")
+                time.sleep(10)
+            else:
+                print("all source devices were found")
+                print("continuing with the outputs")
+                break
 
     # externalized producer to be replaced in testing cases by mocks
     @staticmethod

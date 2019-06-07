@@ -51,7 +51,6 @@ class EventController:
         self.udev_listener = UdevListener(self)
         self.start()
 
-
     def start(self):
         if self.running:
             return
