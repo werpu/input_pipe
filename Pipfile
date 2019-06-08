@@ -18,6 +18,7 @@ pynt = "*"
 pyinstaller = "*"
 argparse = "*"
 virtualenv = "*"
+python-pidfile = "*"
 
 [requires]
 python_version = "3.7"

@@ -68,6 +68,10 @@ outputs:
     name: exec1
     type: exec
 
+  eval1:
+    name: eval1
+    type: eval
+
 ##########################################################
 # rules section, maps events from one device into another
 ##########################################################

@@ -1,0 +1,19 @@
+# Installs as /etc/systemd/system/moltengamepad.service.
+
+[Unit]
+Description=InputPipe SystemD service
+
+[Service]
+Type=simple
+ExecStart=/whatever/gamepadservice/input_pipe -c /whatever/gamepadservice/devices.yaml
+PIDFile=/tmp/input_pipe.pid
+TimeoutSec=5
+WorkingDirectory=/whatever
+ExecReload=/bin/killall -15 -- $MAINPID
+ExecStop=/usr/bin/killall -15 -- $MAINPID
+
+TimeoutStopSec=5
+KillMode=process
+
+[Install]
+WantedBy=default.target

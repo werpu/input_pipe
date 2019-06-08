@@ -27,6 +27,7 @@ from ev_core.config import Config
 from ev_core.event_loop import EventController
 import argparse
 import time
+from pidfile import PIDFile
 
 parser = argparse.ArgumentParser(description='Point to the yaml config')
 
@@ -35,8 +36,15 @@ parser.add_argument('--config', "-c",
                     default="./devices.yaml",
                     help='define a config file location (default: ./devices.yaml)')
 
-args = parser.parse_args()
-EventController(Config(args.conf))
+parser.add_argument('--pidfile', "-p",
+                    dest='pidfile',
+                    default="/tmp/input_pipe.pid",
+                    help='define a pid file location (default: /tmp/input_pipe.pid')
 
-while True:
-    time.sleep(10000)
+
+args = parser.parse_args()
+with PIDFile(args.pidfile):
+    EventController(Config(args.conf))
+
+    while True:
+        time.sleep(10000)
