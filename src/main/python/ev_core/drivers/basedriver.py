@@ -24,6 +24,8 @@ from abc import ABC, abstractmethod
 
 from evdev import UInput
 
+from ev_core.config import Config
+
 
 class BaseDriver(ABC):
 
@@ -48,7 +50,7 @@ class BaseDriver(ABC):
 
         return self
 
-    def write(self, e_type=None, e_sub_type=None, value=None, meta=None):
+    def write(self, config: Config, drivers, e_type=None, e_sub_type=None, value=None, meta=None):
         self.input_dev.write(e_type, int(e_sub_type), value)
         self.input_dev.syn()
         return self

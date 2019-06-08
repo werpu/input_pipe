@@ -1,3 +1,4 @@
+from ev_core.config import Config
 from ev_core.drivers.basedriver import BaseDriver
 import os
 
@@ -18,8 +19,9 @@ class ExecDriver(BaseDriver):
     def create(self):
         pass
 
-    def write(self, e_type, e_sub_type, value, meta=None):
-        os.system(meta)
+    def write(self, config: Config, drivers, e_type, e_sub_type, value, meta=None):
+        if value == 1:
+            os.system(meta)
 
     def close(self):
         pass
