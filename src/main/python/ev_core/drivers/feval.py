@@ -26,7 +26,7 @@ class FEvalDriver(BaseDriver):
             key = hashlib.md5(meta.encode("utf-8")).hexdigest()
             if save_fetch(lambda: self._file_data[key]) is None:
                 file = open(meta, "r")
-                self._file_data[key] = file.read()
+                self._file_data[key] = compile(file.read(), meta, "exec")
                 file.close()
 
             exec(self._file_data[key],  {
