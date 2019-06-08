@@ -63,6 +63,9 @@ class BaseDriver(ABC):
         self.input_dev.verify()
         return self
 
+    def close(self):
+        self.input_dev.close()
+
     def transfer_dev_data(self):
         self.phys = self.input_dev.phys
         self.name = self.input_dev.name

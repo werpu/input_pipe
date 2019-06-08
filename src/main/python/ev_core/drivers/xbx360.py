@@ -78,3 +78,70 @@ class Xbox360(BaseDriver):
     def close(self):
         BaseDriver.close(self)
         Xbox360._init_cnt -= 1
+
+    def press_btn_a(self):
+        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_A, 1)
+        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_A, 0)
+
+    def press_btn_b(self):
+        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_B, 1)
+        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_B, 0)
+
+    def press_btn_x(self):
+        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_X, 1)
+        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_X, 0)
+
+    def press_btn_y(self):
+        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_Y, 1)
+        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_Y, 0)
+
+    def press_btn_tl(self):
+        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_TL, 1)
+        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_TL, 0)
+
+    def press_btn_tr(self):
+        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_TR, 1)
+        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_TR, 0)
+
+    def press_btn_tl2(self):
+        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_TL2, 1)
+        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_TL2, 0)
+
+    def press_btn_tr2(self):
+        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_TR2, 1)
+        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_TR2, 0)
+
+    def press_btn_select(self):
+        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_SELECT, 1)
+        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_SELECT, 0)
+
+    def press_btn_start(self):
+        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_START, 1)
+        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_START, 0)
+
+    def press_btn_thumbl(self):
+        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_THUMBL, 1)
+        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_THUMBL, 0)
+
+    def press_btn_thumbr(self):
+        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_THUMBR, 1)
+        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_THUMBR, 0)
+
+    def press_btn_dpad_up(self):
+        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_DPAD_UP, 1)
+        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_DPAD_UP, 0)
+
+    def press_btn_dpad_down(self):
+        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_DPAD_DOWN, 1)
+        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_DPAD_DOWN, 0)
+
+    def press_btn_dpad_left(self):
+        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_DPAD_LEFT, 1)
+        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_DPAD_LEFT, 0)
+
+    def press_btn_dpad_right(self):
+        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_DPAD_RIGHT, 1)
+        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_DPAD_RIGHT, 0)
+
+
+
