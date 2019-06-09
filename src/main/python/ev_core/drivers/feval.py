@@ -37,3 +37,6 @@ class FEvalDriver(BaseDriver):
 
     def close(self):
         pass
+
+    def syn(self):
+        pass

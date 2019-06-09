@@ -63,7 +63,6 @@ outputs:
   keybd1:
     name: key1
     type: keybd
-
   exec1:
     name: exec1
     type: exec
@@ -150,12 +149,12 @@ rules:
           - to: xbox2
             to_ev: (EV_KEY), code 318 (BTN_THUMBR)
 
-      - from_ev: (EV_KEY), code 3 (KEY_2) # sel
+      - from_ev: (EV_KEY), code 6 (KEY_5) # sel
         targets:
           - to: xbox1
             to_ev: (EV_KEY), code 314 (BTN_SELECT)
 
-      - from_ev: (EV_KEY), code 6 (KEY_5) # start
+      - from_ev: (EV_KEY), code 2 (KEY_1) # start
         targets:
           - to: xbox1
             to_ev: (EV_KEY), code 315 (BTN_START)
@@ -191,15 +190,16 @@ rules:
           - to: xbox1
             to_ev: (EV_ABS), code 4 (ABS_RY)
           - to: xbox2
-            to_ev: (EV_ABS), code 1 (ABS_Y)
+            to_ev: (EV_ABS), code 1 ls(ABS_Y)
 
 
-      - from_ev: (EV_ABS), code 0 (ABS_X)  # left right
+      - from_ev: (EV_ABS), code 0 (ABS_X)  # lef right
         targets:
           - to: xbox1
             to_ev: (EV_ABS), code 3 (ABS_RX)
           - to: xbox2
             to_ev: (EV_ABS), code 0 (ABS_X)
+
       - from_ev: (EV_KEY), code 292 (BTN_TOP2)
         targets: #front row button center orange left
           - to: exec1
@@ -211,9 +211,7 @@ rules:
       - from_ev: (EV_KEY), code 290 (BTN_THUMB2) #single button right
         targets:
           - to: eval1
-            to_ev: (META), ../../test/resources/burping.py
-
-
+            to_ev: (META), ./burping.py
 
   ##################################
   # rest of xbox2 mapping
@@ -295,10 +293,18 @@ rules:
           - to: xbox2
             to_ev: (EV_KEY), code 314 (BTN_SELECT)
 
-      - from_ev: (EV_KEY), code 2 (KEY_1) # start
+      - from_ev: (EV_KEY), code 3 (KEY_2) # start
         targets:
           - to: xbox2
             to_ev: (EV_KEY), code 315 (BTN_START)
+      - from_ev: (EV_KEY), code 56 (KEY_LEFTALT) #alt f4
+        targets:
+          - to: keybd1
+            to_ev: (EV_KEY), code 56 (KEY_LEFTALT)
+      - from_ev: (EV_KEY), code 62 (KEY_F4)
+        targets:
+          - to: keybd1
+            to_ev: (EV_KEY), code 62 (KEY_F4)
 
 
 ### special buttons connected to the analog sticks
@@ -342,6 +348,7 @@ rules:
           - to: keybd1
             to_ev: (EV_KEY), code 8 (KEY_6)
 
+
   # TODO right stick front and side buttons
 
   # TODO macros and command sequences
@@ -351,7 +358,6 @@ rules:
             #sequence:
             #  - to_ev:
             #  - to_ev:
-
 
 
 

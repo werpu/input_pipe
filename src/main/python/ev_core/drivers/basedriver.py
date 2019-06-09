@@ -52,7 +52,6 @@ class BaseDriver(ABC):
 
     def write(self, config: Config, drivers, e_type=None, e_sub_type=None, value=None, meta=None):
         self.input_dev.write(e_type, int(e_sub_type), value)
-        self.input_dev.syn()
         return self
 
     def syn(self):
@@ -64,7 +63,8 @@ class BaseDriver(ABC):
         return self
 
     def close(self):
-        self.input_dev.close()
+        if self.input_dev is not None:
+            self.input_dev.close()
 
     def transfer_dev_data(self):
         self.phys = self.input_dev.phys

@@ -41,6 +41,8 @@ from utils.langutils import *
 #
 class EventController:
 
+
+
     def __init__(self, config: Config):
         self.source_devices = None
         self.target_devices = None
@@ -49,7 +51,9 @@ class EventController:
         self.config = config
         self.running = False
         self.udev_listener = UdevListener(self)
+        self.touched = {}
         self.start()
+
 
     def start(self):
         if self.running:
@@ -100,9 +104,15 @@ class EventController:
         source_device = src_dev.__dict__["_input_dev_key_"]
         target_rules = save_fetch(lambda: self.event_tree.tree[source_device][root_type][str(event.code)], {})
 
+        if event.type == ecodes.EV_SYN:
+            for phys_device in self.touched:
+                self.touched[phys_device].syn()
+            self.touched.clear()
+
         for key in target_rules:
             target_code, target_device, target_type, target_value, target_meta = self.get_target_data(event, key, target_rules)
             target_device.write(self.config, self.target_devices.drivers or {}, save_fetch(lambda: ecodes.__getattribute__(target_type), -1), target_code, target_value, target_meta)
+            self.touched[target_device.phys] = target_device
 
     @staticmethod
     def get_target_data(event, key, target_rules):
@@ -118,7 +128,9 @@ class EventController:
     @staticmethod
     def map_type(event):
         root_type = None
-        if event.type == 1:
+        if event.type == 0:
+            root_type = "EV_SYN"
+        elif event.type == 1:
             root_type = "EV_KEY"
         elif event.type == 2:
             root_type = "EV_REL"

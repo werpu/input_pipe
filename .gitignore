@@ -1,3 +1,4 @@
 *.spec
 .idea/
+_install.sh
 build/

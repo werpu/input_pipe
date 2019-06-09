@@ -25,3 +25,6 @@ class ExecDriver(BaseDriver):
 
     def close(self):
         pass
+
+    def syn(self):
+        pass
