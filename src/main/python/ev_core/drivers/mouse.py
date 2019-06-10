@@ -42,7 +42,7 @@ class VirtualMouse(BaseDriver):
 
         self.capabilities = {
             ecodes.EV_REL: (ecodes.REL_X, ecodes.REL_Y),
-            ecodes.EV_KEY: (ecodes.BTN_LEFT, ecodes.BTN_RIGHT)
+            ecodes.EV_KEY: (ecodes.BTN_LEFT, ecodes.BTN_MIDDLE, ecodes.BTN_RIGHT)
         }
 
     def create(self):
@@ -57,3 +57,25 @@ class VirtualMouse(BaseDriver):
     def close(self):
         BaseDriver.close(self)
         VirtualMouse._init_cnt -= 1
+
+    # helpers for the macros
+    def press_btn_middle(self):
+        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_MIDDLE, 1)
+        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_MIDDLE, 0)
+        self.syn()
+
+    def press_btn_left(self):
+        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_LEFT, 1)
+        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_LEFT, 0)
+        self.syn()
+
+    def press_btn_right(self):
+        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_RIGHT, 1)
+        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_RIGHT, 0)
+        self.syn()
+
+    def move(self, rel_x, rel_y):
+        BaseDriver.write(self, None, None, ecodes.EV_REL, ecodes.REL_X, rel_x)
+        BaseDriver.write(self, None, None, ecodes.EV_REL, ecodes.REL_Y, rel_y)
+        self.syn()
+

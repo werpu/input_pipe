@@ -21,6 +21,7 @@ virtualenv = "*"
 python-pidfile = "*"
 uvloop = "*"
 pika = "*"
+psutil = "*"
 
 [requires]
 python_version = "3.7"
