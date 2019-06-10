@@ -19,6 +19,7 @@ pyinstaller = "*"
 argparse = "*"
 virtualenv = "*"
 python-pidfile = "*"
+uvloop = "*"
 
 [requires]
 python_version = "3.7"

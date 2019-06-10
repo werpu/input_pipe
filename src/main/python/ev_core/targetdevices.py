@@ -45,7 +45,8 @@ class TargetDevices:
 
     def close(self):
         for key in self.drivers:
-            self.drivers[key].input_dev.close()
+            if save_fetch(lambda: self.drivers[key].input_dev) is not None:
+                self.drivers[key].input_dev.close()
 
     # Fetches the associated config data
     def get_config_data(self, key):

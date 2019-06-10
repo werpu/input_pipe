@@ -21,12 +21,12 @@
 # SOFTWARE.
 
 # https://python-evdev.readthedocs.io/en/latest/usage.html
-
+import asyncio
 
 from ev_core.config import Config
 from ev_core.event_loop import EventController
 import argparse
-import time
+import uvloop
 from pidfile import PIDFile
 
 parser = argparse.ArgumentParser(description='Point to the yaml config')
@@ -43,8 +43,9 @@ parser.add_argument('--pidfile', "-p",
 
 
 args = parser.parse_args()
+
+uvloop.install()
 with PIDFile(args.pidfile):
     EventController(Config(args.conf))
 
-    while True:
-        time.sleep(10000)
+    asyncio.get_event_loop().run_forever()
