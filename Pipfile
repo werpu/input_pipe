@@ -20,6 +20,7 @@ argparse = "*"
 virtualenv = "*"
 python-pidfile = "*"
 uvloop = "*"
+pika = "*"
 
 [requires]
 python_version = "3.7"

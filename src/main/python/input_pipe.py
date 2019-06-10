@@ -42,6 +42,12 @@ parser.add_argument('--pidfile', "-p",
                     help='define a pid file location (default: /tmp/input_pipe.pid')
 
 
+parser.add_argument('--remotekey', "-r",
+                    dest='remote_key',
+                    default="input_pipe",
+                    help='remote key for remote control functions, change only, ' +
+                         'if you run multiple instances (default: input_pipe)')
+
 args = parser.parse_args()
 
 uvloop.install()
