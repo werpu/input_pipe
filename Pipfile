@@ -20,8 +20,9 @@ argparse = "*"
 virtualenv = "*"
 python-pidfile = "*"
 uvloop = "*"
-pika = "*"
 psutil = "*"
+circuits = "*"
+
 
 [requires]
 python_version = "3.7"

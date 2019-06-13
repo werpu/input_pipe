@@ -212,6 +212,10 @@ rules:
         targets:
           - to: eval1
             to_ev: (META), ./burping.py
+      - from_ev: (EV_KEY), code 293 (BTN_PINKIE) #last grey button will trigger oskeysboard
+        targets:
+          - to: exec1
+            to_ev: (META), /usr/bin/florence
 
   ##################################
   # rest of xbox2 mapping
