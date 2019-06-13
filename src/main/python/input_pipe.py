@@ -51,16 +51,15 @@ class MainApp(Component):
                             default="./devices.yaml",
                             help='define a config file location (default: ./devices.yaml)')
 
-        parser.add_argument('--pidfile', "-p",
+        parser.add_argument('--pidfile', "-pd",
                             dest='pidfile',
                             default="/tmp/input_pipe2.pid",
                             help='define a pid file location (default: /tmp/input_pipe.pid')
 
-        parser.add_argument('--remotekey', "-r",
-                            dest='remote_key',
-                            default="input_pipe",
-                            help='remote key for remote control functions, change only, ' +
-                                 'if you run multiple instances (default: input_pipe)')
+        parser.add_argument('--port', "-p",
+                            dest='port',
+                            default="9001",
+                            help='communications port for the input_pipe (default 9001), -1 disables the server')
 
         parser.add_argument('--command', "-cm",
                             dest='command',
@@ -80,27 +79,29 @@ class MainApp(Component):
         if component == self.receiver:
             return
 
-        def initController():
-
-            with PIDFile(self.args.pidfile):
-                EventController(Config(self.args.conf))
-                asyncio.get_event_loop().run_forever()
-
         def send_command():
-            sender = Sender(self.args.remote_key)
+            sender = Sender("localhost", self.args.port)
             sender.open()
             sender.send_message(self.args.command)
 
         if self.args.server == "Y":
             uvloop.install()
 
-            print("starting command server on port: 9001")
-            self.receiver.start(process=True, link=self)
-            print("command server started")
-            initController()
+            self.init_server()
+            self.initController()
 
         else:
             send_command()
+
+    def init_server(self):
+        print("starting command server on port: 9001")
+        self.receiver.start(process=True, link=self)
+        print("command server started")
+
+    def initController(self):
+        with PIDFile(self.args.pidfile):
+            EventController(Config(self.args.conf))
+            asyncio.get_event_loop().run_forever()
 
 
 class App(Component):
