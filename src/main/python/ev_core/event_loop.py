@@ -30,7 +30,9 @@ from ev_core.sourcedevices import SourceDevices
 from ev_core.targetdevices import TargetDevices
 from ev_core.udevlistener import UdevListener
 from utils.langutils import *
-#from circuits import Component, handler
+
+
+# from circuits import Component, handler
 
 
 #
@@ -44,11 +46,8 @@ class EventController:
 
     def __init__(self, config: Config):
         self.config = config
-
         self.init()
         self.futures = []
-
-    def init(self):
         self.source_devices = None
         self.target_devices = None
         self.event_tree = None
@@ -58,6 +57,7 @@ class EventController:
         self.touched = {}
         self.start()
 
+    # starts the event loop internally
     def start(self):
         if self.running_controller:
             return
@@ -71,6 +71,7 @@ class EventController:
         for src_dev in self.source_devices.devices:
             self.futures.append(asyncio.ensure_future(self.handle_events(src_dev)))
 
+    # stops the event loop internally
     def stop(self):
         if not self.running_controller:
             return
@@ -85,6 +86,12 @@ class EventController:
     def reload(self):
         self.stop()
         self.start()
+
+    # update data, allows to change event confgurations on the fly
+    def update_data(self, new_config):
+        print("rewiring event cofiguration")
+        self.config = new_config
+        self.event_tree = EventTree(self.config, self.source_devices, self.target_devices)
 
     async def handle_events(self, src_dev):
         async for event in src_dev.async_read_loop():

@@ -22,15 +22,34 @@
 
 import yaml
 from utils.langutils import *
+import copy
 
 
-class Config():
+class Config:
 
     def __init__(self, configfile='devices.yaml'):
         self.inputs = None
         stream = open(configfile, 'r')
-        self.__dict__.update(yaml.load(stream, Loader=yaml.FullLoader))
+        self.orig_data = yaml.load(stream, Loader=yaml.FullLoader)
+        self.__dict__.update(copy.deepcopy(self.orig_data.deepCopy()))
         stream.close()
+
+    #
+    # overlays some aspects of the config
+    # useful for dynamic reconfiguration
+    #
+    def overlay(self, configfile):
+        stream = open(configfile, 'r')
+        overlaydata = yaml.load(stream, Loader=yaml.FullLoader)
+        self.reset()
+        self.__dict__.update(overlaydata)
+        stream.close()
+
+    #
+    # resets the overlays back to its original
+    #
+    def reset(self):
+        self.__dict__.update(copy.deepcopy(self.orig_data.deepCopy()))
 
     #
     # performs a full match on the supplied parameters
@@ -120,3 +139,4 @@ PRODUCT = "product"
 VERSION = "version"
 INFO = "info"
 EXCLUSIVE = "exclusive"
+

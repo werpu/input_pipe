@@ -89,21 +89,23 @@ class MainApp:
                 msg = item.decode('utf-8').strip()
                 if msg == "reload":
                     self.evtcl.reload()
-                if msg == "stop":
+                elif msg == "stop":
                     self.evtcl.stop()
                     asyncio.get_event_loop().stop()
                     sys.exit(0)
 
+                elif msg.startswith("overlay "):
+                    splitted = msg.split()
+                    s = " "
+                    filename = s.join(splitted[1:])
+                    self.config.overlay(filename)
+                    self.evtcl.update_data(self.config)
+                elif msg == "overlay_reset":
+                    self.config.reset()
+                    self.evtcl.update_data(self.config)
+
             else:
                 await asyncio.sleep(5)
-
-    def run(self):
-        if self.args.server == "Y":
-            uvloop.install()
-            self.init_server()
-            self.run_pid()
-        else:
-            self.send_command()
 
     def send_command(self):
         sender = Sender(self.args.port)
@@ -123,6 +125,14 @@ class MainApp:
             self.dispatcher = asyncio.ensure_future(self.event_dispatch())
             self.evtcl = EventController(self.config)
             asyncio.get_event_loop().run_forever()
+
+    def run(self):
+        if self.args.server == "Y":
+            uvloop.install()
+            self.init_server()
+            self.run_pid()
+        else:
+            self.send_command()
 
 
 MainApp().run()
