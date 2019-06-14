@@ -48,7 +48,7 @@ class UdevListener:
                 return
             self.restarting = True
             sleep(5)
-            self.ev_ctl.restart()
+            self.ev_ctl.reload()
             self.restarting = False
 
     def _match_udev_data(self, found, name, vendor=None):

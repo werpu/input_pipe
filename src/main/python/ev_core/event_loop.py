@@ -30,6 +30,7 @@ from ev_core.sourcedevices import SourceDevices
 from ev_core.targetdevices import TargetDevices
 from ev_core.udevlistener import UdevListener
 from utils.langutils import *
+from circuits import Component, handler
 
 
 #
@@ -42,44 +43,46 @@ from utils.langutils import *
 class EventController:
 
     def __init__(self, config: Config):
+        self.config = config
+
+        self.init()
+        self.futures = []
+
+    def init(self):
         self.source_devices = None
         self.target_devices = None
         self.event_tree = None
         self.loop = None
-        self.config = config
-        self.running = False
+        self.running_controller = False
         self.udev_listener = UdevListener(self)
         self.touched = {}
         self.start()
 
     def start(self):
-        if self.running:
+        if self.running_controller:
             return
-        self.running = True
+        self.running_controller = True
         print("scanning for source devices")
         self.source_devices = SourceDevices(self.config)
         print("creating target devices")
         self.target_devices = TargetDevices(self.config)
         self.event_tree = EventTree(self.config, self.source_devices, self.target_devices)
-        self.loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(self.loop)
+        self.futures = []
         for src_dev in self.source_devices.devices:
-            asyncio.ensure_future(self.handle_events(src_dev))
-        self.loop.run_forever()
+            self.futures.append(asyncio.ensure_future(self.handle_events(src_dev)))
 
     def stop(self):
-        if not self.running:
+        if not self.running_controller:
             return
         print("stopping event loop")
-        self.running = False
+        self.running_controller = False
         asyncio.set_event_loop(self.loop)
-        for task in asyncio.Task.all_tasks():
-            task.cancel()
-        self.loop.call_soon_threadsafe(self.loop.stop)
+        for future in self.futures:
+            future.cancel()
         self.target_devices.close()
         self.source_devices = None
 
-    def restart(self):
+    def reload(self):
         self.stop()
         self.start()
 
@@ -109,8 +112,11 @@ class EventController:
             self.touched.clear()
 
         for key in target_rules:
-            target_code, target_device, target_type, target_value, target_meta = self.get_target_data(event, key, target_rules)
-            target_device.write(self.config, self.target_devices.drivers or {}, save_fetch(lambda: ecodes.__getattribute__(target_type), -1), target_code, target_value, target_meta)
+            target_code, target_device, target_type, target_value, target_meta = self.get_target_data(event, key,
+                                                                                                      target_rules)
+            target_device.write(self.config, self.target_devices.drivers or {},
+                                save_fetch(lambda: ecodes.__getattribute__(target_type), -1), target_code, target_value,
+                                target_meta)
             self.touched[target_device.phys] = target_device
 
     @staticmethod

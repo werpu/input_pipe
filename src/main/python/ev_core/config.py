@@ -23,18 +23,18 @@
 import yaml
 from utils.langutils import *
 
-class Config:
+
+class Config():
 
     def __init__(self, configfile='devices.yaml'):
         self.inputs = None
         stream = open(configfile, 'r')
-        self.__dict__ = yaml.load(stream, Loader=yaml.FullLoader)
+        self.__dict__.update(yaml.load(stream, Loader=yaml.FullLoader))
         stream.close()
 
-        #
-        # performs a full match on the supplied parameters
-        #
-
+    #
+    # performs a full match on the supplied parameters
+    #
     @staticmethod
     def full_match(device, name, name_re, phys, phys_re, vendor, product):
         matchers = Config.get_match_map(name, name_re, phys, phys_re, product, vendor)

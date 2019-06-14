@@ -29,22 +29,19 @@ from ev_core.config import Config
 from ev_core.event_loop import EventController
 from messaging.sender import Sender
 from messaging.receiver import Receiver
-from circuits import Component, handler
+from queue import Queue
+import sys
 
+class MainApp:
 
-class MainApp(Component):
-
-    args = None
-    receiver = None
-
-    def init(self):
+    def __init__(self):
 
         parser = argparse.ArgumentParser(description='Point to the yaml config')
 
         parser.add_argument('--server', "-s",
                             dest='server',
-                            default="N",
-                            help='run inputpipe as server (default N)')
+                            default="Y",
+                            help='run inputpipe as server (default Y)')
 
         parser.add_argument('--config', "-c",
                             dest='conf',
@@ -53,13 +50,13 @@ class MainApp(Component):
 
         parser.add_argument('--pidfile', "-pd",
                             dest='pidfile',
-                            default="/tmp/input_pipe2.pid",
+                            default="/tmp/input_pipe.pid",
                             help='define a pid file location (default: /tmp/input_pipe.pid')
 
         parser.add_argument('--port', "-p",
                             dest='port',
-                            default="9001",
-                            help='communications port for the input_pipe (default 9001), -1 disables the server')
+                            default="-1",
+                            help='communications port for the input_pipe (default -1), -1 disables the command server, for security reasons the server is disabled per default')
 
         parser.add_argument('--command', "-cm",
                             dest='command',
@@ -67,48 +64,64 @@ class MainApp(Component):
                             help='command for the server (default: reload')
 
         self.args = parser.parse_args()
+        self.msg_queue = Queue()
+        port = int(self.args.port)
+        if port > -1:
+            self.receiver = Receiver(bind=("localhost", 9001), __queue=self.msg_queue)
+        else:
+            self.receiver = None
+        self.config = None
+        self.evtcl = None
 
-        self.receiver = Receiver(bind=("localhost", 9001))
-        self.register(self.receiver)
+    # Central event dispatcher
+    # which dispatches the events coming in from the event loop
+    # to their taevtergets
+    async def event_dispatch(self):
+        while True:
+            if self.msg_queue.qsize() > 0:
+                item = self.msg_queue.get()
+                msg = item.decode('utf-8').strip()
+                if msg == "reload":
+                    self.evtcl.reload()
+                if msg == "stop":
+                    self.evtcl.stop()
+                    asyncio.get_event_loop().stop()
+                    sys.exit(0)
 
-    @handler("tcp_result", channel="*")
-    def on_tcp_result(self, *args, **kwargs):
-        print(kwargs["value"].decode('utf-8'))
+            else:
+                await asyncio.sleep(5)
 
-    def started(self, component):
-        if component == self.receiver:
-            return
-
-        def send_command():
-            sender = Sender("localhost", self.args.port)
-            sender.open()
-            sender.send_message(self.args.command)
-
+    def run(self):
         if self.args.server == "Y":
             uvloop.install()
-
             self.init_server()
-            self.initController()
-
+            self.run_pid()
         else:
-            send_command()
+            self.send_command()
+
+    def send_command(self):
+        sender = Sender("localhost", self.args.port)
+        try:
+            sender.open()
+            sender.send_message(self.args.command)
+        finally:
+            sender.close()
 
     def init_server(self):
+        if self.receiver is None:
+            return
+
         print("starting command server on port: 9001")
-        self.receiver.start(process=True, link=self)
+        self.receiver.start()
         print("command server started")
 
-    def initController(self):
+    def run_pid(self):
         with PIDFile(self.args.pidfile):
-            EventController(Config(self.args.conf))
+            self.config = Config(self.args.conf)
+            asyncio.ensure_future(self.event_dispatch())
+            self.evtcl = EventController(self.config)
             asyncio.get_event_loop().run_forever()
 
 
-class App(Component):
-
-    def init(self):
-        MainApp().register(self)
-
-
-App().run()
+MainApp().run()
 
