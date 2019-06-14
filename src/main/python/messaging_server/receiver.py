@@ -3,6 +3,8 @@
 # for running updates during
 # runtime
 ####
+# thanks to https://steelkiwi.com/blog/working-tcp-sockets/ for the excellent tuorial
+
 import asyncio
 
 

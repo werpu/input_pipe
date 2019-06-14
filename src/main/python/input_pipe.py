@@ -21,7 +21,6 @@
 # SOFTWARE.
 
 import argparse
-# https://python-evdev.readthedocs.io/en/latest/usage.html
 import asyncio
 import uvloop
 from pidfile import PIDFile
@@ -75,7 +74,14 @@ class MainApp:
 
     # Central event dispatcher
     # which dispatches the events coming in from the event loop
-    # to their taevtergets
+    # to their targets
+
+    # the idea is to open a port on user request
+    # which allows for programmatic remote control
+    # of certain aspects
+    # that way dynamic game overlays will become possible
+    # or restarts on demand or even shutting down the server
+    # without init.d/systemd
     async def event_dispatch(self):
         while True:
             if self.msg_queue.qsize() > 0:
@@ -100,12 +106,8 @@ class MainApp:
             self.send_command()
 
     def send_command(self):
-        sender = Sender("localhost", self.args.port)
-        try:
-            sender.open()
-            sender.send_message(self.args.command)
-        finally:
-            sender.close()
+        sender = Sender(self.args.port)
+        sender.send_message(self.args.command)
 
     def init_server(self):
         if self.receiver is None:
@@ -118,7 +120,7 @@ class MainApp:
     def run_pid(self):
         with PIDFile(self.args.pidfile):
             self.config = Config(self.args.conf)
-            asyncio.ensure_future(self.event_dispatch())
+            self.dispatcher = asyncio.ensure_future(self.event_dispatch())
             self.evtcl = EventController(self.config)
             asyncio.get_event_loop().run_forever()
 
