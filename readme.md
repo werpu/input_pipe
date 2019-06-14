@@ -341,14 +341,11 @@ Example:
 
 ```
 
-Currently only the configuration command line option
-is present, this might change in the future.
-
-an ./input_pipe --help will expose all possible commands
+an ./input_pipe --help will expose all possible commands with additional descriptions
 
 ## Installation:
 
-The program runs as a daemon process, hot plugging of 
+The program runs as a server process, hot plugging of 
 source devices is not needed, the program itself takes
 care of that (I will add the info at a later stage)
 so there is no need for udev rules.
@@ -356,4 +353,35 @@ so there is no need for udev rules.
 Just plug the program into your favorite
 startup system with a properly working yaml config
 and you are good to go.
+
+You might however combine the startup with a startup daemon like systemd
+or init.d, for security reasons however I would recommend to run he program
+as user process not root or elevated process.
+
+
+## Remote Control
+
+The idea is that you can control a running server via commands from the command line.
+At the moment this is only possible from within the same machine for security reasons and
+per default turned off.
+
+If you want to turn it on start the server with following parameters
+
+./input_pipe -p &lt;port&gt;  -c &lt;config file&gt;
+
+where *port* is any arbitrary tcp port number for instance *9002*
+
+the server now starts with an open port 9002 where it listens for commands
+
+now to emit a command you simply call the program again with another argument sequence
+./input_pipe --server=N --command=&lt;command&gt;
+
+Where command is a supported command
+
+Following commands are supported atm:
+
+ * *stop*  stops the running server
+ * *reload* reloads and restarts the server (aka can be used to pull in config file changes without a full restart of the process)
+
+If the server receives a command it does not know it simply will ignore it.
 
