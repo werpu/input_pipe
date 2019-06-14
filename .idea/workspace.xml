@@ -4,16 +4,20 @@
     <bookmark url="file://$PROJECT_DIR$/src/main/resources/devices.yaml" line="210" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cfc920c7-1f5f-4ec5-94b3-42926262640f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/python/messaging/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/python/messaging/receiver.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/python/messaging/sender.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/python/florence_start.py" afterDir="false" />
+    <list default="true" id="cfc920c7-1f5f-4ec5-94b3-42926262640f" name="Default Changelist" comment="command server working">
+      <change afterPath="$PROJECT_DIR$/src/main/python/messaging_server/receiver.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/python/messaging_server/sender.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pipfile" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pipfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.sh" beforeDir="false" afterPath="$PROJECT_DIR$/build.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/input_pipe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/python/ev_core/event_loop.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/python/ev_core/event_loop.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/python/input_pipe.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/python/input_pipe.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/devices.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/devices.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/python/messaging/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/python/messaging_server/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/python/messaging/events.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/python/messaging/receiver.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/python/messaging/sender.py" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.idea/shelf/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,104 +27,178 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/python/messaging/receiver.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="21">
-              <caret line="27" column="34" selection-start-line="27" selection-start-column="34" selection-end-line="27" selection-end-column="34" />
-              <folding>
-                <element signature="e#70#98#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/.local/share/virtualenvs/input_pipe-0FgNP1iH/lib/python3.7/site-packages/circuits/core/events.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="915">
-              <caret line="62" column="37" selection-start-line="62" selection-start-column="33" selection-end-line="62" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/.local/share/virtualenvs/input_pipe-0FgNP1iH/lib/python3.7/site-packages/circuits/core/manager.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="137">
-              <caret line="660" selection-start-line="660" selection-end-line="660" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/python/messaging/sender.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="321">
-              <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/.local/share/virtualenvs/input_pipe-0FgNP1iH/lib/python3.7/site-packages/circuits/net/sockets.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2093">
-              <caret line="656" selection-start-line="656" selection-end-line="656" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/python/input_pipe.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18">
-              <caret line="73" selection-start-line="73" selection-end-line="73" />
-              <folding>
-                <element signature="e#1107#1122#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" selection-start-line="17" selection-end-line="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="202">
-              <caret line="1751" selection-start-line="1751" selection-end-line="1751" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/.local/share/virtualenvs/input_pipe-0FgNP1iH/lib/python3.7/site-packages/circuits/core/handlers.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1245">
-              <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/.local/share/virtualenvs/input_pipe-0FgNP1iH/lib/python3.7/site-packages/circuits/core/components.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="159">
-              <caret line="106" column="4" selection-start-line="106" selection-start-column="4" selection-end-line="106" selection-end-column="40" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.51482594">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/python/messaging_server/receiver.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="625">
+                  <caret line="25" column="30" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="30" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file:///usr/lib/python3.7/asyncio/events.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="7725">
+                  <caret line="316" column="25" selection-start-line="316" selection-start-column="12" selection-end-line="316" selection-end-column="25" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file:///usr/lib/python3.7/asyncio/streams.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="2825">
+                  <caret line="113" column="28" selection-start-line="113" selection-start-column="28" selection-end-line="113" selection-end-column="28" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$USER_HOME$/.local/share/virtualenvs/input_pipe-0FgNP1iH/lib/python3.7/site-packages/asyncio/streams.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="9925">
+                  <caret line="397" column="16" selection-start-line="397" selection-start-column="8" selection-end-line="397" selection-end-column="16" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file:///usr/lib/python3.7/asyncio/base_events.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="4475">
+                  <caret line="193" column="14" selection-start-line="193" selection-start-column="14" selection-end-line="193" selection-end-column="14" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/python/messaging_server/sender.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="675">
+                  <caret line="27" selection-start-line="27" selection-end-line="27" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file:///usr/lib/python3.7/queue.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="2925">
+                  <caret line="120" column="11" selection-start-line="120" selection-start-column="8" selection-end-line="120" selection-end-column="11" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/main/python/input_pipe.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="898">
+                  <caret line="114" column="68" selection-start-line="114" selection-start-column="68" selection-end-line="114" selection-end-column="68" />
+                  <folding>
+                    <element signature="e#1107#1122#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="43925">
+                  <caret line="1757" selection-start-line="1757" selection-end-line="1757" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/python/ev_core/udevlistener.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="475">
+                  <caret line="22" selection-start-line="22" selection-end-line="22" />
+                  <folding>
+                    <element signature="e#0#13#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="525">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/python/ev_core/config.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="2125">
+                  <caret line="86" column="24" selection-start-line="86" selection-start-column="24" selection-end-line="86" selection-end-column="24" />
+                  <folding>
+                    <element signature="e#1107#1118#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/build.sh">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="75">
+                  <caret line="3" column="20" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/_install.sh">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="100">
+                  <caret line="4" column="30" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Pipfile.lock">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="675">
+                  <caret line="27" column="42" selection-start-line="27" selection-start-column="42" selection-end-line="27" selection-end-column="42" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Pipfile">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="575">
+                  <caret line="23" selection-start-line="23" selection-end-line="23" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$USER_HOME$/.local/share/virtualenvs/input_pipe-0FgNP1iH/lib/python3.7/site-packages/asyncio/__init__.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="500">
+                  <caret line="20" selection-start-line="20" selection-end-line="20" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$USER_HOME$/.local/share/virtualenvs/input_pipe-0FgNP1iH/lib/python3.7/site-packages/asyncio/base_events.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="6900">
+                  <caret line="295" selection-start-line="295" selection-end-line="295" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -131,14 +209,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>git</find>
-      <find>UdevListener</find>
-      <find>@</find>
-      <find>except</find>
-      <find>&quot;meta&quot;</find>
-      <find>time</find>
-      <find>ecodes</find>
-      <find>md5</find>
       <find>save_fetch</find>
       <find>driver</find>
       <find>DEV_TYPES</find>
@@ -158,6 +228,17 @@
       <find>hand</find>
       <find>blocking</find>
       <find>pidfile</find>
+      <find>get</find>
+      <find>EventController</find>
+      <find>try:</find>
+      <find>started</find>
+      <find>circuits</find>
+      <find>messaging.receiver</find>
+      <find>circ</find>
+      <find>_wait</find>
+      <find>__wait_for_data</find>
+      <find>read</find>
+      <find>start_</find>
     </findStrings>
     <replaceStrings>
       <replace>config=None, drivers=None,</replace>
@@ -167,10 +248,11 @@
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/.idea</dir>
-      <dir>$PROJECT_DIR$/src/main</dir>
       <dir>$PROJECT_DIR$/src/test/python</dir>
-      <dir>$PROJECT_DIR$/src/main/python/ev_core</dir>
       <dir>$PROJECT_DIR$/src/main/python</dir>
+      <dir>$PROJECT_DIR$/src/main/python/ev_core</dir>
+      <dir>$PROJECT_DIR$/src/main</dir>
+      <dir>$PROJECT_DIR$/src</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -179,8 +261,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/venv/device.py" />
-        <option value="$PROJECT_DIR$/venv/devices.py" />
         <option value="$PROJECT_DIR$/venv/config.py" />
         <option value="$PROJECT_DIR$/venv/devices.yaml" />
         <option value="$PROJECT_DIR$/venv/hello.py" />
@@ -192,13 +272,11 @@
         <option value="$PROJECT_DIR$/test.sh" />
         <option value="$USER_HOME$/.local/share/virtualenvs/input_pipe-0FgNP1iH/lib/python3.7/site-packages/evdev/uinput.py" />
         <option value="$PROJECT_DIR$/src/main/python/ev_core/drivers/keybd.py" />
-        <option value="$PROJECT_DIR$/build.sh" />
         <option value="$PROJECT_DIR$/src/main/python/ev_core/udevlistener.py" />
         <option value="$PROJECT_DIR$/src/test/python/test_utils/udevListenerMock.py" />
         <option value="$PROJECT_DIR$/readme.md" />
         <option value="$PROJECT_DIR$/venv/readme.txt" />
         <option value="$PROJECT_DIR$/src/test/python/test_utils/exevDriverMock.py" />
-        <option value="$PROJECT_DIR$/src/main/python/utils/langutils.py" />
         <option value="$PROJECT_DIR$/src/test/resources/devices.yaml" />
         <option value="$PROJECT_DIR$/src/test/python/SourceDevicesTest.py" />
         <option value="$PROJECT_DIR$/src/test/python/TargetDevicesTest.py" />
@@ -224,19 +302,24 @@
         <option value="$PROJECT_DIR$/src/main/resources/devices.yaml" />
         <option value="$PROJECT_DIR$/src/main/python/ev_core/drivers/mouse.py" />
         <option value="$PROJECT_DIR$/src/test/python/florence_start.py" />
-        <option value="$PROJECT_DIR$/src/main/python/ev_core/event_loop.py" />
-        <option value="$PROJECT_DIR$/Pipfile" />
+        <option value="$PROJECT_DIR$/src/main/python/messaging/events.py" />
+        <option value="$PROJECT_DIR$/src/main/python/utils/langutils.py" />
+        <option value="$PROJECT_DIR$/src/main/python/ev_core/config.py" />
         <option value="$PROJECT_DIR$/src/main/python/messaging/sender.py" />
+        <option value="$PROJECT_DIR$/Pipfile" />
+        <option value="$PROJECT_DIR$/src/main/python/ev_core/event_loop.py" />
         <option value="$PROJECT_DIR$/src/main/python/messaging/receiver.py" />
+        <option value="$PROJECT_DIR$/build.sh" />
+        <option value="$PROJECT_DIR$/src/main/python/messaging_server/receiver.py" />
         <option value="$PROJECT_DIR$/src/main/python/input_pipe.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="115" />
-    <option name="y" value="88" />
-    <option name="width" value="1387" />
-    <option name="height" value="931" />
+    <option name="x" value="451" />
+    <option name="y" value="261" />
+    <option name="width" value="3402" />
+    <option name="height" value="2106" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -244,12 +327,18 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="ProjectPane" />
       <pane id="Scope">
         <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
           <expand>
             <path>
               <item name="input_pipe" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="~/PycharmProjects/input_pipe" type="442cc68d:ScopeViewTreeModel$RootNode" />
+            </path>
+            <path>
+              <item name="input_pipe" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="~/PycharmProjects/input_pipe" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="dist" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
             <path>
               <item name="input_pipe" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
@@ -280,47 +369,24 @@
               <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="python" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="ev_core" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="messaging_server" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
             <path>
               <item name="input_pipe" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="~/PycharmProjects/input_pipe" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="python" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="messaging" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="input_pipe" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="~/PycharmProjects/input_pipe" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="resources" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="input_pipe" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="~/PycharmProjects/input_pipe" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="test" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="input_pipe" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="~/PycharmProjects/input_pipe" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="test" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="python" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="venv" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/setup_helpers" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
@@ -345,7 +411,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.input_pipe">
+  <component name="RunManager" selected="Python.input_pipe _server">
     <configuration name="TestSuite" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="joydrv" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -412,6 +478,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="input_pipe _server" type="PythonConfigurationType" factoryName="Python">
+      <module name="joydrv" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/main/python" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/main/python/input_pipe.py" />
+      <option name="PARAMETERS" value="-c $PROJECT_DIR$/src/main/resources/devices.yaml --server=Y --port=9002" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="input_pipe" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="joydrv" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -457,6 +545,7 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.input_pipe _server" />
       <item itemvalue="Python.TestSuite" />
       <item itemvalue="Python.input_pipe" />
       <item itemvalue="Python.burping" />
@@ -466,9 +555,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.input_pipe" />
+        <item itemvalue="Python.TestSuite" />
         <item itemvalue="Python.receiver" />
         <item itemvalue="Python.florence_start" />
-        <item itemvalue="Python.TestSuite" />
         <item itemvalue="Python.burping" />
       </list>
     </recent_temporary>
@@ -527,7 +616,12 @@
       <workItem from="1560193920987" duration="4888000" />
       <workItem from="1560368800635" duration="6142000" />
       <workItem from="1560447245497" duration="915000" />
-      <workItem from="1560451848885" duration="14819000" />
+      <workItem from="1560451848885" duration="15636000" />
+      <workItem from="1560491790344" duration="1400000" />
+      <workItem from="1560493288947" duration="10577000" />
+      <workItem from="1560504072912" duration="2658000" />
+      <workItem from="1560507068046" duration="2911000" />
+      <workItem from="1560510834648" duration="231000" />
     </task>
     <task id="LOCAL-00001" summary="several project fixes">
       <created>1559724658771</created>
@@ -690,11 +784,32 @@
       <option name="project" value="LOCAL" />
       <updated>1560199179846</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="allowing dynamic port connections">
+      <created>1560466711736</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1560466711736</updated>
+    </task>
+    <task id="LOCAL-00025" summary="allowing dynamic port connections">
+      <created>1560467142445</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1560467142445</updated>
+    </task>
+    <task id="LOCAL-00026" summary="tcp command server now working&#10;turned off per default">
+      <created>1560503751412</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1560503751412</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82972000" />
+    <option name="totallyTimeSpent" value="101566000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -706,28 +821,29 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="115" y="88" width="1387" height="931" extended-state="0" />
+    <frame x="451" y="261" width="3402" height="2106" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22973977" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.30697533" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3246951" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.2613497" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.43435583" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.3290441" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32825485" />
-      <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.46625766" />
-      <window_info anchor="bottom" id="Python Console" order="12" weight="0.19018404" />
-      <window_info anchor="bottom" id="Messages" order="13" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32426667" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.26133335" />
+      <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="5" weight="0.32853332" />
+      <window_info anchor="bottom" id="Docker" order="6" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.5136" />
+      <window_info anchor="bottom" id="Database Changes" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.18613334" />
+      <window_info anchor="bottom" id="Python Console" order="11" weight="0.18986666" />
+      <window_info anchor="bottom" id="Messages" order="12" />
+      <window_info anchor="bottom" id="Debug" order="13" visible="true" weight="0.2192" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.24984966" />
       <window_info anchor="right" id="SciView" order="3" />
       <window_info anchor="right" id="Database" order="4" />
     </layout>
@@ -759,6 +875,56 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <ignored-roots>
       <path value="$PROJECT_DIR$/../joydrv" />
@@ -781,7 +947,9 @@
     <MESSAGE value="moving to uvloop" />
     <MESSAGE value="preparing for remoting" />
     <MESSAGE value="adding process info stuff" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding process info stuff" />
+    <MESSAGE value="allowing dynamic port connections" />
+    <MESSAGE value="tcp command server now working&#10;turned off per default" />
+    <option name="LAST_COMMIT_MESSAGE" value="tcp command server now working&#10;turned off per default" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -806,21 +974,62 @@
           <line>38</line>
           <option name="timeStamp" value="27" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/main/python/input_pipe.py</url>
+          <line>106</line>
+          <option name="timeStamp" value="58" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/main/python/messaging_server/receiver.py</url>
+          <line>17</line>
+          <option name="timeStamp" value="70" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/main/python/input_pipe.py</url>
+          <line>81</line>
+          <option name="timeStamp" value="71" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/input_pipe$TestSuite.coverage" NAME="TestSuite Coverage Results" MODIFIED="1560024055231" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/test/python" />
+    <SUITE FILE_PATH="coverage/input_pipe$TestSuite.coverage" NAME="TestSuite Coverage Results" MODIFIED="1560494073110" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/test/python" />
     <SUITE FILE_PATH="coverage/input_pipe$florence_start.coverage" NAME="florence_start Coverage Results" MODIFIED="1560196251193" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/test/python" />
     <SUITE FILE_PATH="coverage/input_pipe$hello.coverage" NAME="hello Coverage Results" MODIFIED="1559723012320" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../joydrv/src/main/python" />
+    <SUITE FILE_PATH="coverage/input_pipe$input_pipe__server.coverage" NAME="input_pipe _server Coverage Results" MODIFIED="1560511114506" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/main/python" />
     <SUITE FILE_PATH="coverage/untitled$hello.coverage" NAME="hello Coverage Results" MODIFIED="1559066885371" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv" />
     <SUITE FILE_PATH="coverage/input_pipe$playBurp.coverage" NAME="playBurp Coverage Results" MODIFIED="1560008691950" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/test/python/test_utils" />
     <SUITE FILE_PATH="coverage/input_pipe$burping.coverage" NAME="burping Coverage Results" MODIFIED="1560014094861" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/test/resources" />
-    <SUITE FILE_PATH="coverage/input_pipe$input_pipe.coverage" NAME="input_pipe Coverage Results" MODIFIED="1560466669308" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/main/python" />
+    <SUITE FILE_PATH="coverage/input_pipe$input_pipe.coverage" NAME="input_pipe Coverage Results" MODIFIED="1560505295942" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/main/python" />
     <SUITE FILE_PATH="coverage/input_pipe$receiver.coverage" NAME="receiver Coverage Results" MODIFIED="1560464820759" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/main/python/messaging" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>self.msg_queue.qsize()</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>self.msg_queue.empty()</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>self.queue</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>self.config</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>event_data == &quot;reload&quot;</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>app.components</expression-string>
         <language-id>Python</language-id>
@@ -841,160 +1050,15 @@
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
-      <expression>
-        <expression-string>(&quot;X event&quot;+ save_fetch(lambda: event.code, &quot;unknown&quot;))</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>event.code</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>device</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>device.get(&quot;ID_VENDOR_ID&quot;)</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>device.get(&quot;ID_VENDOR&quot;)</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/python/utils/langutils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/python/prototype/inputevent.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="750">
-          <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.local/share/virtualenvs/input_pipe-0FgNP1iH/lib/python3.7/site-packages/evdev/uinput.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2208">
-          <caret line="193" column="13" selection-start-line="193" selection-start-column="8" selection-end-line="193" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/python/ev_core/drivers/driverregistry.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="29" column="9" selection-start-line="29" selection-end-line="29" selection-end-column="9" />
-          <folding>
-            <element signature="e#1107#1149#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/resources/burping.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="6" column="9" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/python/utils/evdevutils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.local/share/virtualenvs/input_pipe-0FgNP1iH/lib/python3.7/site-packages/evdev/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="5" column="28" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.local/share/virtualenvs/input_pipe-0FgNP1iH/lib/python3.7/site-packages/evdev/events.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="41" column="39" selection-start-line="41" selection-start-column="36" selection-end-line="41" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.PyCharm2019.1/system/python_stubs/-1692363355/evdev/_ecodes.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="234" selection-start-line="234" selection-end-line="234" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/python/ev_core/drivers/basedriver.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="54" selection-start-line="54" selection-end-line="54" />
-          <folding>
-            <element signature="e#1107#1142#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/python/ev_core/drivers/feval.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="42" selection-start-line="42" selection-end-line="42" />
-          <folding>
-            <element signature="e#0#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_install.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="32" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="1" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/setup_helpers/inputpipe.service">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="11" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/python/ev_core/sourcedevices.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="720">
           <caret line="52" column="34" selection-start-line="52" selection-start-column="34" selection-end-line="52" selection-end-column="34" />
           <folding>
             <element signature="e#1166#1178#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/python/ev_core/udevlistener.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="705">
-          <caret line="50" column="30" selection-start-line="50" selection-start-column="30" selection-end-line="50" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1019,16 +1083,6 @@
           <caret line="93" column="33" selection-start-line="93" selection-start-column="33" selection-end-line="93" selection-end-column="33" />
           <folding>
             <element signature="e#1107#1139#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/python/ev_core/config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="27" column="8" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="8" />
-          <folding>
-            <element signature="e#1107#1118#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1105,7 +1159,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/python/messaging/__init__.py">
+    <entry file="file://$PROJECT_DIR$/src/main/python/messaging_server/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$USER_HOME$/.local/share/virtualenvs/input_pipe-0FgNP1iH/lib/python3.7/site-packages/pika/adapters/blocking_connection.py">
@@ -1122,34 +1176,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/lib/python3.7/asyncio/events.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="759" column="4" selection-start-line="759" selection-start-column="4" selection-end-line="759" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/lib/python3.7/asyncio/tasks.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-174">
-          <caret line="572" column="4" selection-start-line="572" selection-start-column="4" selection-end-line="572" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/python/ev_core/eventtree.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="428">
           <caret line="60" column="57" selection-start-line="60" selection-start-column="57" selection-end-line="60" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/python/ev_core/event_loop.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-17">
-          <caret line="66" column="52" selection-start-line="66" selection-start-column="39" selection-end-line="66" selection-end-column="52" />
-          <folding>
-            <element signature="e#1106#1120#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1167,13 +1197,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pipfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/2and3/threading.pyi">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -1188,76 +1211,217 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.local/share/virtualenvs/input_pipe-0FgNP1iH/lib/python3.7/site-packages/circuits/core/components.py">
+    <entry file="file://$PROJECT_DIR$/src/main/python/prototype/udevproto.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="106" column="4" selection-start-line="106" selection-start-column="4" selection-end-line="106" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.local/share/virtualenvs/input_pipe-0FgNP1iH/lib/python3.7/site-packages/circuits/core/events.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="915">
-          <caret line="62" column="37" selection-start-line="62" selection-start-column="33" selection-end-line="62" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.local/share/virtualenvs/input_pipe-0FgNP1iH/lib/python3.7/site-packages/circuits/core/handlers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1245">
-          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
+        <state>
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/.local/share/virtualenvs/input_pipe-0FgNP1iH/lib/python3.7/site-packages/circuits/net/sockets.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2093">
+        <state relative-caret-position="16000">
           <caret line="656" selection-start-line="656" selection-end-line="656" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
+    <entry file="file://$USER_HOME$/.local/share/virtualenvs/input_pipe-0FgNP1iH/lib/python3.7/site-packages/circuits/core/handlers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="1751" selection-start-line="1751" selection-end-line="1751" />
+        <state relative-caret-position="175">
+          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
+    <entry file="file://$USER_HOME$/.local/share/virtualenvs/input_pipe-0FgNP1iH/lib/python3.7/site-packages/circuits/core/events.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        <state relative-caret-position="512">
+          <caret line="109" selection-start-line="109" selection-end-line="109" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/python/utils/langutils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="825">
+          <caret line="36" column="16" selection-start-line="36" selection-start-column="16" selection-end-line="36" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.local/share/virtualenvs/input_pipe-0FgNP1iH/lib/python3.7/site-packages/circuits/core/components.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="457">
+          <caret line="122" selection-start-line="122" selection-end-line="122" />
         </state>
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/.local/share/virtualenvs/input_pipe-0FgNP1iH/lib/python3.7/site-packages/circuits/core/manager.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="660" selection-start-line="660" selection-end-line="660" />
+        <state relative-caret-position="457">
+          <caret line="737" column="8" selection-start-line="737" selection-start-column="8" selection-end-line="737" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/python/messaging/sender.py">
+    <entry file="file://$PROJECT_DIR$/src/main/python/ev_core/event_loop.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/python/messaging/receiver.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="27" column="34" selection-start-line="27" selection-start-column="34" selection-end-line="27" selection-end-column="34" />
+        <state relative-caret-position="1850">
+          <caret line="85" selection-start-line="85" selection-end-line="85" />
           <folding>
-            <element signature="e#70#98#0" expanded="true" />
+            <element signature="e#1106#1120#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/python/messaging/events.py" />
+    <entry file="file://$PROJECT_DIR$/venv/readme.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="10" selection-start-column="10" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/python/Pipfile">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file:///usr/lib/python3.7/asyncio/tasks.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="14375">
+          <caret line="587" column="29" selection-start-line="587" selection-start-column="15" selection-end-line="587" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/lib/python3.7/asyncio/events.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7725">
+          <caret line="316" column="25" selection-start-line="316" selection-start-column="12" selection-end-line="316" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/lib/python3.7/asyncio/streams.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2825">
+          <caret line="113" column="28" selection-start-line="113" selection-start-column="28" selection-end-line="113" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.local/share/virtualenvs/input_pipe-0FgNP1iH/lib/python3.7/site-packages/asyncio/streams.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9925">
+          <caret line="397" column="16" selection-start-line="397" selection-start-column="8" selection-end-line="397" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/lib/python3.7/asyncio/base_events.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4475">
+          <caret line="193" column="14" selection-start-line="193" selection-start-column="14" selection-end-line="193" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/python/messaging_server/sender.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/lib/python3.7/queue.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2925">
+          <caret line="120" column="11" selection-start-line="120" selection-start-column="8" selection-end-line="120" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="43925">
+          <caret line="1757" selection-start-line="1757" selection-end-line="1757" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/python/ev_core/udevlistener.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/python/ev_core/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2125">
+          <caret line="86" column="24" selection-start-line="86" selection-start-column="24" selection-end-line="86" selection-end-column="24" />
+          <folding>
+            <element signature="e#1107#1118#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="3" column="20" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pipfile.lock">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="27" column="42" selection-start-line="27" selection-start-column="42" selection-end-line="27" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pipfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="575">
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.local/share/virtualenvs/input_pipe-0FgNP1iH/lib/python3.7/site-packages/asyncio/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="500">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.local/share/virtualenvs/input_pipe-0FgNP1iH/lib/python3.7/site-packages/asyncio/base_events.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6900">
+          <caret line="295" selection-start-line="295" selection-end-line="295" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_install.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="4" column="30" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/python/messaging_server/receiver.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="625">
+          <caret line="25" column="30" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/python/input_pipe.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="73" selection-start-line="73" selection-end-line="73" />
+        <state relative-caret-position="898">
+          <caret line="114" column="68" selection-start-line="114" selection-start-column="68" selection-end-line="114" selection-end-column="68" />
           <folding>
             <element signature="e#1107#1122#0" expanded="true" />
           </folding>

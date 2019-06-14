@@ -21,7 +21,6 @@ virtualenv = "*"
 python-pidfile = "*"
 uvloop = "*"
 psutil = "*"
-circuits = "*"
 
 
 [requires]

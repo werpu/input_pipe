@@ -30,7 +30,7 @@ from ev_core.sourcedevices import SourceDevices
 from ev_core.targetdevices import TargetDevices
 from ev_core.udevlistener import UdevListener
 from utils.langutils import *
-from circuits import Component, handler
+#from circuits import Component, handler
 
 
 #

@@ -27,8 +27,8 @@ import uvloop
 from pidfile import PIDFile
 from ev_core.config import Config
 from ev_core.event_loop import EventController
-from messaging.sender import Sender
-from messaging.receiver import Receiver
+from messaging_server.sender import Sender
+from messaging_server.receiver import Receiver
 from queue import Queue
 import sys
 
@@ -111,8 +111,8 @@ class MainApp:
         if self.receiver is None:
             return
 
-        print("starting command server on port: 9001")
-        self.receiver.start()
+        print("starting command server on port: " + self.args.port)
+        asyncio.ensure_future(self.receiver.start(int(self.args.port)))
         print("command server started")
 
     def run_pid(self):
