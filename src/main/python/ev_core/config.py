@@ -39,6 +39,7 @@ class Config:
         stream = open(configfile, 'r')
         try:
             self.orig_data = yaml.load(stream, Loader=yaml.FullLoader)
+            self.overlay_stack = []
             self.__dict__.update(copy.deepcopy(self.orig_data))
         finally:
             stream.close()
@@ -51,64 +52,31 @@ class Config:
         stream = open(configfile, 'r')
         try:
             overlaydata = yaml.load(stream, Loader=yaml.FullLoader)
-            self.reset()
+            self.overlay_stack.append(overlaydata)
 
-            to_merge_rules = self.merge_rules(copy.deepcopy(self.orig_data), overlaydata)
+            to_merge_rules = self._merge_rules(copy.deepcopy(self.orig_data), overlaydata)
             self.__dict__.update(to_merge_rules)
 
         finally:
             stream.close()
 
     #
-    # the idea is to build an index which allows fast access on the existing data
-    # and then match the index with the incoming data and update
-    # the merged data accordingly
+    # handling of multiple stacked overlays, pops the last overlay from the stack
     #
-    # the algorithm is
-    # from + from_ev identical overwrite the targets rules
-    # if not then append the new rule as new entry, so a collission is always
-    # an overwrite from incoming
-    # and a missing entry is an add
-    # removal is not possible, for the time being, since this functionality is mostly used
-    # for adding new mappings or reroute new mappings, if you want to disable something
-    # rerout the entry to a custom noop eval
-    #
-    @staticmethod
-    def build_rule_idx(orig_rules):
-        rule_idx = {}
-        for rule in orig_rules["rules"]:
-            device_id = rule["from"]
-            for target_rule in rule["target_rules"]:
-                from_ev = target_rule["from_ev"]
-                rule_idx[device_id + "___" + from_ev] = target_rule
-
-        return rule_idx
-
-    def merge_rules(self, target_rules, overlay_rules):
-        rule_idx = self.build_rule_idx(target_rules)
-        for rule in overlay_rules["rules"]:
-            device_id = rule["from"]
-            for target_rule in rule["target_rules"]:
-                from_ev = target_rule["from_ev"]
-                matched_target_rule = save_fetch(lambda: rule_idx[device_id + "___" + from_ev])
-                if matched_target_rule is not None:
-                    matched_target_rule["targets"] = target_rule["targets"]
-                else:  # device must exist
-                    rule = next(x for x in target_rules["rules"] if x["from"] == device_id)
-                    new_rule_target = OrderedDict()
-                    new_rule_target["from_ev"] = from_ev
-                    new_rule_target["targets"] = target_rule["targets"]
-                    rule["target_rules"].append(new_rule_target)
-        return target_rules
-
-    def _is_device(self, x, target_rules, device_id):
-        return target_rules["rules"][x]["from"] == device_id
+    def pop_overlay(self):
+        self.__dict__.update(copy.deepcopy(self.orig_data))
+        if len(self.overlay_stack) > 0:
+            self.overlay_stack.pop(len(self.overlay_stack))
+            for overlay in self.overlay_stack:
+                to_merge_rules = self._merge_rules(copy.deepcopy(self.orig_data), overlaydata)
+                self.__dict__.update(to_merge_rules)
 
     #
     # resets the overlays back to its original
     #
-    def reset(self):
+    def reset_config(self):
         self.__dict__.update(copy.deepcopy(self.orig_data))
+        self.overlay_stack = []
 
     #
     # performs a full match on the supplied parameters
@@ -185,6 +153,48 @@ class Config:
         exclusive = save_fetch(lambda: self.inputs[key][EXCLUSIVE])
 
         return name, name_re, phys, phys_re, rel_pos, vendor, product, exclusive
+
+    #
+    # the idea is to build an index which allows fast access on the existing data
+    # and then match the index with the incoming data and update
+    # the merged data accordingly
+    #
+    # the algorithm is
+    # from + from_ev identical overwrite the targets rules
+    # if not then append the new rule as new entry, so a collission is always
+    # an overwrite from incoming
+    # and a missing entry is an add
+    # removal is not possible, for the time being, since this functionality is mostly used
+    # for adding new mappings or reroute new mappings, if you want to disable something
+    # rerout the entry to a custom noop eval
+    #
+    @staticmethod
+    def _build_rule_idx(orig_rules):
+        rule_idx = {}
+        for rule in orig_rules["rules"]:
+            device_id = rule["from"]
+            for target_rule in rule["target_rules"]:
+                from_ev = target_rule["from_ev"]
+                rule_idx[device_id + "___" + from_ev] = target_rule
+
+        return rule_idx
+
+    def _merge_rules(self, target_rules, overlay_rules):
+        rule_idx = self._build_rule_idx(target_rules)
+        for rule in overlay_rules["rules"]:
+            device_id = rule["from"]
+            for target_rule in rule["target_rules"]:
+                from_ev = target_rule["from_ev"]
+                matched_target_rule = save_fetch(lambda: rule_idx[device_id + "___" + from_ev])
+                if matched_target_rule is not None:
+                    matched_target_rule["targets"] = target_rule["targets"]
+                else:  # device must exist
+                    rule = next(x for x in target_rules["rules"] if x["from"] == device_id)
+                    new_rule_target = OrderedDict()
+                    new_rule_target["from_ev"] = from_ev
+                    new_rule_target["targets"] = target_rule["targets"]
+                    rule["target_rules"].append(new_rule_target)
+        return target_rules
 
 
 INPUTS = "inputs"

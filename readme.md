@@ -382,6 +382,14 @@ Following commands are supported atm:
 
  * *stop*  stops the running server
  * *reload* reloads and restarts the server (aka can be used to pull in config file changes without a full restart of the process)
-
+ * *overlay* adds a config overlay on top of an existing configuration
+ * *pop_overlay* removes the last added config overlay
+ * *reset_overlay* reset all overlays and restore the initial config
+ 
+ 
 If the server receives a command it does not know it simply will ignore it.
 
+
+## Overlays
+
+TODO add info here

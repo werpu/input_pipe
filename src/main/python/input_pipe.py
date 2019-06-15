@@ -93,15 +93,17 @@ class MainApp:
                     self.evtcl.stop()
                     asyncio.get_event_loop().stop()
                     sys.exit(0)
-
                 elif msg.startswith("overlay "):
                     splitted = msg.split()
                     s = " "
                     filename = s.join(splitted[1:])
                     self.config.overlay(filename)
                     self.evtcl.update_data(self.config)
-                elif msg == "overlay_reset":
-                    self.config.reset()
+                elif msg == "pop_overlay":
+                    self.config.pop_overlay()
+                    self.evtcl.update_data(self.config)
+                elif msg == "reset_overlay":
+                    self.config.reset_config()
                     self.evtcl.update_data(self.config)
 
             else:

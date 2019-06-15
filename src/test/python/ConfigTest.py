@@ -44,7 +44,7 @@ class MyTestCase(unittest.TestCase):
                                     None), "exec1")
         self.assertEqual(save_fetch(lambda: conf.rules[1]["target_rules"][1]["targets"][0]["to"],
                                     None), "bongobongo")
-        conf.reset()
+        conf.reset_config()
         self.assertEqual(save_fetch(lambda: conf.rules[2]["target_rules"][0]["targets"][0]["to_ev"],
                                     None), "(META), /usr/local/bin/4way")
         self.assertEqual(save_fetch(lambda: conf.rules[2]["target_rules"][1]["targets"][0]["to"],
