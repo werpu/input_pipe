@@ -27,10 +27,28 @@ from utils.langutils import *
 
 class MyTestCase(unittest.TestCase):
 
-    def test_something(self):
+    def test_basic_config(self):
         conf = Config("../resources/devices.yaml")
         self.assertNotEqual(save_fetch(lambda: conf.inputs["digital"]["name"], None), None, "structure exists")
         self.assertNotEqual(conf.rules[0]["from"], None, "structure exists")
+
+    def test_overlay(self):
+        conf = Config("../resources/devices.yaml")
+        conf.overlay("../resources/overlay.yaml")
+        self.assertEqual(save_fetch(lambda: conf.rules[2]["from"], None), "analog_left")
+        self.assertEqual(save_fetch(lambda: conf.rules[2]["target_rules"][0]["targets"][0]["to_ev"],
+                                    None), "(META), overlayed")
+        self.assertEqual(save_fetch(lambda: conf.rules[2]["target_rules"][0]["targets"][0]["to"],
+                                    None), "booga1")
+        self.assertEqual(save_fetch(lambda: conf.rules[2]["target_rules"][1]["targets"][0]["to"],
+                                    None), "exec1")
+        self.assertEqual(save_fetch(lambda: conf.rules[1]["target_rules"][1]["targets"][0]["to"],
+                                    None), "bongobongo")
+        conf.reset()
+        self.assertEqual(save_fetch(lambda: conf.rules[2]["target_rules"][0]["targets"][0]["to_ev"],
+                                    None), "(META), /usr/local/bin/4way")
+        self.assertEqual(save_fetch(lambda: conf.rules[2]["target_rules"][1]["targets"][0]["to"],
+                                    None), "exec1")
 
 
 if __name__ == '__main__':

@@ -95,6 +95,10 @@ rules:
         targets:
         - to: exec1
           to_ev: (META), /usr/local/bin/4way
+      - from_ev: (EV_KEY), code 108 (KEY_UP)
+        targets:
+        - to: exec1
+          to_ev: (META), /usr/local/bin/4way
 
 
 

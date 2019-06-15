@@ -1,0 +1,11 @@
+rules:
+  - from: analog_left
+    target_rules:
+      - from_ev: (EV_KEY), code 105 (KEY_UP)
+        targets:
+          - to: booga1
+            to_ev: (META), overlayed
+      - from_ev: agaga
+        targets:
+            - to: bongobongo
+              to_ev: (META), overlayed2

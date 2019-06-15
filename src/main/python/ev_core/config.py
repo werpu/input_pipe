@@ -23,16 +23,25 @@
 import yaml
 from utils.langutils import *
 import copy
+from collections import OrderedDict
 
 
+#
+# Universal configuration
+# basically the internal representation of our yaml file (1:1)
+# with some added functionality for overlaying and restoring
+# from a defunct overlay
+#
 class Config:
 
     def __init__(self, configfile='devices.yaml'):
         self.inputs = None
         stream = open(configfile, 'r')
-        self.orig_data = yaml.load(stream, Loader=yaml.FullLoader)
-        self.__dict__.update(copy.deepcopy(self.orig_data.deepCopy()))
-        stream.close()
+        try:
+            self.orig_data = yaml.load(stream, Loader=yaml.FullLoader)
+            self.__dict__.update(copy.deepcopy(self.orig_data))
+        finally:
+            stream.close()
 
     #
     # overlays some aspects of the config
@@ -40,16 +49,66 @@ class Config:
     #
     def overlay(self, configfile):
         stream = open(configfile, 'r')
-        overlaydata = yaml.load(stream, Loader=yaml.FullLoader)
-        self.reset()
-        self.__dict__.update(overlaydata)
-        stream.close()
+        try:
+            overlaydata = yaml.load(stream, Loader=yaml.FullLoader)
+            self.reset()
+
+            to_merge_rules = self.merge_rules(copy.deepcopy(self.orig_data), overlaydata)
+            self.__dict__.update(to_merge_rules)
+
+        finally:
+            stream.close()
+
+    #
+    # the idea is to build an index which allows fast access on the existing data
+    # and then match the index with the incoming data and update
+    # the merged data accordingly
+    #
+    # the algorithm is
+    # from + from_ev identical overwrite the targets rules
+    # if not then append the new rule as new entry, so a collission is always
+    # an overwrite from incoming
+    # and a missing entry is an add
+    # removal is not possible, for the time being, since this functionality is mostly used
+    # for adding new mappings or reroute new mappings, if you want to disable something
+    # rerout the entry to a custom noop eval
+    #
+    @staticmethod
+    def build_rule_idx(orig_rules):
+        rule_idx = {}
+        for rule in orig_rules["rules"]:
+            device_id = rule["from"]
+            for target_rule in rule["target_rules"]:
+                from_ev = target_rule["from_ev"]
+                rule_idx[device_id + "___" + from_ev] = target_rule
+
+        return rule_idx
+
+    def merge_rules(self, target_rules, overlay_rules):
+        rule_idx = self.build_rule_idx(target_rules)
+        for rule in overlay_rules["rules"]:
+            device_id = rule["from"]
+            for target_rule in rule["target_rules"]:
+                from_ev = target_rule["from_ev"]
+                matched_target_rule = save_fetch(lambda: rule_idx[device_id + "___" + from_ev])
+                if matched_target_rule is not None:
+                    matched_target_rule["targets"] = target_rule["targets"]
+                else:  # device must exist
+                    rule = next(x for x in target_rules["rules"] if x["from"] == device_id)
+                    new_rule_target = OrderedDict()
+                    new_rule_target["from_ev"] = from_ev
+                    new_rule_target["targets"] = target_rule["targets"]
+                    rule["target_rules"].append(new_rule_target)
+        return target_rules
+
+    def _is_device(self, x, target_rules, device_id):
+        return target_rules["rules"][x]["from"] == device_id
 
     #
     # resets the overlays back to its original
     #
     def reset(self):
-        self.__dict__.update(copy.deepcopy(self.orig_data.deepCopy()))
+        self.__dict__.update(copy.deepcopy(self.orig_data))
 
     #
     # performs a full match on the supplied parameters
@@ -139,4 +198,3 @@ PRODUCT = "product"
 VERSION = "version"
 INFO = "info"
 EXCLUSIVE = "exclusive"
-
