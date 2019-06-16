@@ -19,7 +19,7 @@ pyinstaller = "*"
 argparse = "*"
 virtualenv = "*"
 python-pidfile = "*"
-uvloop = "*"
+# uvloop = "*"
 psutil = "*"
 
 

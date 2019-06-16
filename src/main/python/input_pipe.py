@@ -22,7 +22,7 @@
 
 import argparse
 import asyncio
-import uvloop
+#import uvloop
 from pidfile import PIDFile
 from ev_core.config import Config
 from ev_core.event_loop import EventController
@@ -30,6 +30,7 @@ from messaging_server.sender import Sender
 from messaging_server.receiver import Receiver
 from queue import Queue
 import sys
+import traceback
 
 class MainApp:
 
@@ -84,30 +85,33 @@ class MainApp:
     # without init.d/systemd
     async def event_dispatch(self):
         while True:
-            if self.msg_queue.qsize() > 0:
-                item = self.msg_queue.get()
-                msg = item.decode('utf-8').strip()
-                if msg == "reload":
-                    self.evtcl.reload()
-                elif msg == "stop":
-                    self.evtcl.stop()
-                    asyncio.get_event_loop().stop()
-                    sys.exit(0)
-                elif msg.startswith("overlay "):
-                    splitted = msg.split()
-                    s = " "
-                    filename = s.join(splitted[1:])
-                    self.config.overlay(filename)
-                    self.evtcl.update_data(self.config)
-                elif msg == "pop_overlay":
-                    self.config.pop_overlay()
-                    self.evtcl.update_data(self.config)
-                elif msg == "reset_overlay":
-                    self.config.reset_config()
-                    self.evtcl.update_data(self.config)
+            try:
+                if self.msg_queue.qsize() > 0:
+                    item = self.msg_queue.get()
+                    msg = item.decode('utf-8').strip()
+                    if msg == "reload":
+                        self.evtcl.reload()
+                    elif msg == "stop":
+                        self.evtcl.stop()
+                        asyncio.get_event_loop().stop()
+                        sys.exit(0)
+                    elif msg.startswith("overlay "):
+                        splitted = msg.split()
+                        s = " "
+                        filename = s.join(splitted[1:])
+                        self.config.overlay(filename)
+                        self.evtcl.update_data(self.config)
+                    elif msg == "pop_overlay":
+                        self.config.pop_overlay()
+                        self.evtcl.update_data(self.config)
+                    elif msg == "reset_overlay":
+                        self.config.reset_config()
+                        self.evtcl.update_data(self.config)
 
-            else:
-                await asyncio.sleep(5)
+                else:
+                    await asyncio.sleep(5)
+            except:
+                traceback.print_exc()
 
     def send_command(self):
         sender = Sender(self.args.port)
@@ -130,7 +134,7 @@ class MainApp:
 
     def run(self):
         if self.args.server == "Y":
-            uvloop.install()
+            #uvloop.install()
             self.init_server()
             self.run_pid()
         else:

@@ -46,7 +46,6 @@ class EventController:
 
     def __init__(self, config: Config):
         self.config = config
-        self.init()
         self.futures = []
         self.source_devices = None
         self.target_devices = None
