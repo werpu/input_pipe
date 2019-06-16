@@ -90,26 +90,40 @@ class MainApp:
                     item = self.msg_queue.get()
                     msg = item.decode('utf-8').strip()
                     if msg == "reload":
+                        print("reloading configuration")
                         self.evtcl.reload()
+                        print("reload done")
+
                     elif msg == "stop":
+                        print("stopping running server")
                         self.evtcl.stop()
                         asyncio.get_event_loop().stop()
                         sys.exit(0)
+
                     elif msg.startswith("overlay "):
+                        print("installing overlay")
                         splitted = msg.split()
                         s = " "
                         filename = s.join(splitted[1:])
                         self.config.overlay(filename)
                         self.evtcl.update_data(self.config)
+                        print("overlay installation done")
+
                     elif msg == "pop_overlay":
+                        print("removing top overlay")
                         self.config.pop_overlay()
                         self.evtcl.update_data(self.config)
+                        print("removal done")
+
                     elif msg == "reset_overlay":
+                        print("resetting overlay")
                         self.config.reset_config()
                         self.evtcl.update_data(self.config)
+                        print("overlay reset done")
 
                 else:
-                    await asyncio.sleep(5)
+                    await asyncio.sleep(1)
+
             except:
                 traceback.print_exc()
 
