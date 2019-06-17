@@ -1,0 +1,112 @@
+# toml testing, you can use https://toolkit.site/format.html
+# for a proper cross conversion
+
+
+# MIT License
+#
+# Copyright (c) 2019 Werner Punz
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
+######################################################################
+# device definitions
+#######################################################################
+
+[inputs]
+
+  [inputs.digital]
+  name = "Ultimarc I-PAC Ultimarc I-PAC"
+  exclusive = true
+  relpos = 1.0
+
+  [inputs.analog_left]
+  name_re = "^Ultimarc.*Ultrastik\\sPlayer\\ 1$"
+  exclusive = true
+  relpos = 1.0
+
+  [inputs.analog_right]
+  name_re = "^Ultimarc.*Ultrastik\\sPlayer\\ 2$"
+  exclusive = true
+  relpos = 1.0
+
+[outputs]
+
+  [outputs.xbox1]
+  name = "Microsoft X-Box 360 pad"
+  type = "xbx360"
+
+  [outputs.xbox2]
+  name = "Microsoft X-Box 360 pad"
+  type = "xbx360"
+
+  [outputs.mouse1]
+  name = "mouse"
+  type = "mouse"
+
+  [outputs.keybd1]
+  name = "key1"
+  type = "keybd"
+
+  [outputs.exec1]
+  name = "exec1"
+  type = "exec"
+
+[[rules]]
+from = "digital"
+
+  [[rules.target_rules]]
+  from_ev = "code 1 (EV_KEY), code 103 (KEY_UP)"
+
+    [[rules.target_rules.targets]]
+    to = "xbox1"
+    to_ev = "(EV_KEY), code 103 (KEY_UP), value -1"
+
+##########################################################
+# rules section, maps events from one device into another
+##########################################################
+[[rules]]
+from = "analog_left"
+
+  [[rules.target_rules]]
+  from_ev = "(EV_KEY), code 103 (KEY_UP)"
+
+    [[rules.target_rules.targets]]
+    to = "xbox1"
+    to_ev = "(EV_KEY), code 103 (KEY_UP)"
+
+    [[rules.target_rules.targets]]
+    to = "xbox2"
+    to_ev = "(EV_KEY), code 103 (KEY_UP)"
+
+[[rules]]
+from = "analog_left"
+
+  [[rules.target_rules]]
+  from_ev = "(EV_KEY), code 105 (KEY_UP)"
+
+    [[rules.target_rules.targets]]
+    to = "exec1"
+    to_ev = "(META), /usr/local/bin/4way"
+
+  [[rules.target_rules]]
+  from_ev = "(EV_KEY), code 108 (KEY_UP)"
+
+    [[rules.target_rules.targets]]
+    to = "exec1"
+    to_ev = "(META), /usr/local/bin/4way"

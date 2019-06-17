@@ -19,7 +19,7 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-
+import json5
 import yaml
 from utils.langutils import *
 import copy
@@ -34,11 +34,15 @@ from collections import OrderedDict
 #
 class Config:
 
+    inputs = None
+    outputs = None
+    rules = None
+
     def __init__(self, configfile='devices.yaml'):
-        self.inputs = None
+
         stream = open(configfile, 'r')
         try:
-            self.orig_data = yaml.load(stream, Loader=yaml.FullLoader)
+            self.orig_data = self.load_file(stream, configfile)
             self.overlay_stack = []
             self.__dict__.update(copy.deepcopy(self.orig_data))
         finally:
@@ -51,7 +55,7 @@ class Config:
     def overlay(self, configfile):
         stream = open(configfile, 'r')
         try:
-            overlaydata = yaml.load(stream, Loader=yaml.FullLoader)
+            overlaydata = self.load_file(stream, configfile)
             self.overlay_stack.append(overlaydata)
 
             to_merge_rules = self._merge_rules(copy.deepcopy(self.orig_data), overlaydata)
@@ -60,6 +64,15 @@ class Config:
         finally:
             stream.close()
 
+    @staticmethod
+    def load_file(stream, configfile):
+        if configfile.endswith(".yaml"):
+            return yaml.load(stream, Loader=yaml.FullLoader)
+        elif configfile.endswith("json5"):
+            return json5.load(stream)
+        else:
+            raise Exception("Filetype not supported, at the momoment only yaml and json5 configurations are supported")
+
     #
     # handling of multiple stacked overlays, pops the last overlay from the stack
     #
@@ -67,8 +80,9 @@ class Config:
         self.__dict__.update(copy.deepcopy(self.orig_data))
         if len(self.overlay_stack) > 0:
             self.overlay_stack.pop(len(self.overlay_stack))
+            self.__dict__.update(copy.deepcopy(self.orig_data))
             for overlay in self.overlay_stack:
-                to_merge_rules = self._merge_rules(copy.deepcopy(self.orig_data), overlaydata)
+                to_merge_rules = self._merge_rules(copy.deepcopy(self.orig_data), overlay)
                 self.__dict__.update(to_merge_rules)
 
     #

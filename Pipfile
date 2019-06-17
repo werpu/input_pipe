@@ -19,9 +19,9 @@ pyinstaller = "*"
 argparse = "*"
 virtualenv = "*"
 python-pidfile = "*"
-# uvloop = "*"
+uvloop = "*"
 psutil = "*"
-
+json5 = "*"
 
 [requires]
 python_version = "3.7"

@@ -22,7 +22,7 @@
 
 import argparse
 import asyncio
-#import uvloop
+import uvloop
 from pidfile import PIDFile
 from ev_core.config import Config
 from ev_core.event_loop import EventController
@@ -31,6 +31,8 @@ from messaging_server.receiver import Receiver
 from queue import Queue
 import sys
 import traceback
+
+uvloop.install()
 
 class MainApp:
 
@@ -148,7 +150,7 @@ class MainApp:
 
     def run(self):
         if self.args.server == "Y":
-            #uvloop.install()
+
             self.init_server()
             self.run_pid()
         else:

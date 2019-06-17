@@ -25,7 +25,7 @@ from evdev import ecodes
 from evdev.events import KeyEvent, AbsEvent, RelEvent
 
 from ev_core.config import Config
-from ev_core.eventtree import EventTree, EV_CODE, EV_META, EV_NAME, EV_TYPE, DRIVER
+from ev_core.eventtree import EventTree, EV_CODE, EV_META, EV_TYPE, DRIVER
 from ev_core.sourcedevices import SourceDevices
 from ev_core.targetdevices import TargetDevices
 from ev_core.udevlistener import UdevListener

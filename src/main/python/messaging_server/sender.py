@@ -5,13 +5,15 @@
 ####
 import asyncio
 
+from asyncio import WriteTransport
+
 
 class SenderProtocol(asyncio.Protocol):
 
     def __init__(self, message):
         self.message  = message
 
-    def connection_made(self, transport):
+    def connection_made(self, transport: WriteTransport):
         transport.write(self.message.encode())
         transport.close()
 

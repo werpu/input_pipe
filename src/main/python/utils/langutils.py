@@ -2,6 +2,8 @@ import unicodedata
 import re
 
 
+DUMMY_DEFAULT = "__booga__"
+
 # normalizes a string into a caseless one
 def normalize_caseless(text):
     if text is None:
@@ -50,4 +52,6 @@ def merge_two_dicts(x, y):
     z.update(y)    # modifies z with y's keys and values & returns None
     return z
 
-DUMMY_DEFAULT = "__booga__"
+
+
+

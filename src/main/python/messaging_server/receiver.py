@@ -6,14 +6,17 @@
 # thanks to https://steelkiwi.com/blog/working-tcp-sockets/ for the excellent tuorial
 
 import asyncio
+from asyncio import ReadTransport
 
 
 class EventProtocol(asyncio.Protocol):
 
+    transport: ReadTransport = None
+
     def __init__(self, q):
         self.q = q
 
-    def connection_made(self, transport):
+    def connection_made(self, transport: ReadTransport):
         self.transport = transport
 
     def data_received(self, data):

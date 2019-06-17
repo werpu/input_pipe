@@ -23,8 +23,8 @@
 from evdev import UInput, ecodes as e
 
 capabilities = {
-    e.EV_REL : (e.REL_X, e.REL_Y),
-    e.EV_KEY : (e.BTN_LEFT, e.BTN_RIGHT),
+    e.EV_REL: (e.REL_X, e.REL_Y),
+    e.EV_KEY: (e.BTN_LEFT, e.BTN_RIGHT),
 }
 
 with UInput(capabilities) as ui:

@@ -20,12 +20,15 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+import time
+
 # https://python-evdev.readthedocs.io/en/latest/usage.html
 import evdev
-from ev_core.config import Config, PHYS_RE, NAME_RE, PHYS, NAME, RELPOS, VENDOR, PRODUCT, INFO, EXCLUSIVE
+
+from ev_core.config import Config
 from utils.evdevutils import EvDevUtils
 from utils.langutils import *
-import time
+
 
 # A device holder class
 # determines the devices in the input devices
