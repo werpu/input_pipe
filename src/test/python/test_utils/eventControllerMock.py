@@ -19,6 +19,7 @@ class EventControllerMock:
     def stop(self):
         self.started = False
 
-    def restart(self):
+    def reload(self):
         self.stop()
         self.start()
+
