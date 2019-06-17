@@ -22,6 +22,7 @@ python-pidfile = "*"
 uvloop = "*"
 psutil = "*"
 json5 = "*"
+toml = "*"
 
 [requires]
 python_version = "3.7"

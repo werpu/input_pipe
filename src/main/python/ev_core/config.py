@@ -20,6 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 import json5
+import toml
 import yaml
 from utils.langutils import *
 import copy
@@ -68,8 +69,10 @@ class Config:
     def load_file(stream, configfile):
         if configfile.endswith(".yaml"):
             return yaml.load(stream, Loader=yaml.FullLoader)
-        elif configfile.endswith("json5"):
+        elif configfile.endswith(".json5"):
             return json5.load(stream)
+        elif configfile.endswith(".toml"):
+            return toml.load(stream)
         else:
             raise Exception("Filetype not supported, at the momoment only yaml and json5 configurations are supported")
 

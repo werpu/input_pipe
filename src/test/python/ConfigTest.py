@@ -45,6 +45,15 @@ class MyTestCase(unittest.TestCase):
         conf.overlay("../resources/overlay.yaml")
         self._assert_overlayed_structure(conf)
 
+    def test_basic_config_toml(self):
+        conf = Config("../resources/devices.toml")
+        self._assert_basic_structure(conf)
+
+    def test_overlay_toml(self):
+        conf = Config("../resources/devices.toml")
+        conf.overlay("../resources/overlay.yaml")
+        self._assert_overlayed_structure(conf)
+
     def _assert_basic_structure(self, conf):
         self.assertNotEqual(save_fetch(lambda: conf.inputs["digital"]["name"], None), None, "structure exists")
         self.assertNotEqual(conf.rules[0]["from"], None, "structure exists")
@@ -64,7 +73,6 @@ class MyTestCase(unittest.TestCase):
                                     None), "(META), /usr/local/bin/4way")
         self.assertEqual(save_fetch(lambda: conf.rules[2]["target_rules"][1]["targets"][0]["to"],
                                     None), "exec1")
-
 
 
 if __name__ == '__main__':
