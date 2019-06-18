@@ -1,3 +1,4 @@
+# Keyboard starter for the florence keyboard
 import os
 import time
 import psutil
@@ -30,10 +31,12 @@ class OSKeyHandler:
 
     def toggle_florence(self):
         if self.florence_exists() is None:
-            self.start_florence()
             self.mouse_driver.press_btn_middle()
+            self.start_florence()
         else:
+            self.mouse_driver.press_btn_right()
             self.kill_florence()
+
 
 
 #cfg = globals()["config"]
@@ -45,5 +48,4 @@ class OSKeyHandler:
 
 drv = globals()["drivers"]
 OSKeyHandler(drv["mouse1"]).toggle_florence()
-
 

@@ -61,16 +61,19 @@ class VirtualMouse(BaseDriver):
     # helpers for the macros
     def press_btn_middle(self):
         BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_MIDDLE, 1)
+        self.syn()
         BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_MIDDLE, 0)
         self.syn()
 
     def press_btn_left(self):
         BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_LEFT, 1)
+        self.syn()
         BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_LEFT, 0)
         self.syn()
 
     def press_btn_right(self):
         BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_RIGHT, 1)
+        self.syn()
         BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_RIGHT, 0)
         self.syn()
 

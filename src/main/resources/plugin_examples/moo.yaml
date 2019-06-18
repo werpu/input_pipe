@@ -1,0 +1,12 @@
+# custom exampl,e for an eval overlay
+# overlays are small event rule parts
+# which can temporarily overlay the normal event rules
+# by replacing the device/from_ev combo with this ruleset
+# stated here
+rules:
+  - from: analog_right
+    target_rules:
+      - from_ev: (EV_KEY), code 290 (BTN_THUMB2) #single button right
+        targets:
+          - to: eval1
+            to_ev: (META), ./moo.py

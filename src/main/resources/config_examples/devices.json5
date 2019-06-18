@@ -1,0 +1,619 @@
+/* MIT License
+#
+# Copyright (c) 2019 Werner Punz
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
+######################################################################
+# device definitions
+#######################################################################
+
+This is a complex device definition in json5
+you can define and mix your device defintions in json5, toml and yaml
+according to your taste
+*/
+{
+  /**
+  * Input devices
+  */
+  inputs: {
+    digital: {
+      name: "Ultimarc I-PAC Ultimarc I-PAC",
+      exclusive: true,
+      relpos: 1
+    },
+    analog_left: {
+      name_re: "^Ultimarc.*Ultra-Stik\\s+Player\\s+1$",
+      exclusive: true,
+      relpos: 1
+    },
+    analog_right: {
+      name_re: "^Ultimarc.*Ultra-Stik\\s+Player\\s+2$",
+      exclusive: true,
+      relpos: 1
+    }
+  },
+  /**
+   * output device definitions
+   */
+  outputs: {
+    xbox1: {
+      name: "Microsoft X-Box 360 pad",
+      type: "xbx360"
+    },
+    xbox2: {
+      name: "Microsoft X-Box 360 pad",
+      type: "xbx360"
+    },
+    mouse1: {
+      name: "mouse",
+      type: "mouse"
+    },
+    keybd1: {
+      name: "key1",
+      type: "keybd"
+    },
+    exec1: {
+      name: "exec1",
+      type: "exec"
+    },
+    eval1: {
+      name: "eval1",
+      type: "eval"
+    }
+  },
+  rules: [
+    {
+      from: "digital",
+      	/*
+ 	* First set of rules mapping for the simulated pad
+      	*/
+      target_rules: [
+        {
+          from_ev: "(EV_KEY), code 103 (KEY_UP)", //key up left digital
+          targets: [
+            {
+              to: "xbox1",
+              to_ev: "(EV_ABS), code 17 (ABS_HAT0Y), value -1" //mapped to pad up
+            }
+          ]
+        },
+        {
+          from_ev: "(EV_KEY), code 108 (KEY_DOWN)", //key down left digital
+          targets: [
+            {
+              to: "xbox1",
+              to_ev: "(EV_ABS), code 17 (ABS_HAT0Y), value 1"
+            }
+          ]
+        },
+        {
+          from_ev: "(EV_KEY), code 105 (KEY_LEFT)", //left left stick digital
+          targets: [
+            {
+              to: "xbox1",
+              to_ev: "(EV_ABS), code 16 (ABS_HAT0X), value -1"
+            }
+          ]
+        },
+        {
+          from_ev: "(EV_KEY), code 106 (KEY_RIGHT)", //right left stick digital
+          targets: [
+            {
+              to: "xbox1",
+              to_ev: "(EV_ABS), code 16 (ABS_HAT0X), value 1"
+            }
+          ]
+        },
+	//BTN A
+        {
+          from_ev: "(EV_KEY), code 29 (KEY_LEFTCTRL)",
+          targets: [
+            {
+              to: "xbox1",
+              to_ev: "(EV_KEY), code 304 (BTN_SOUTH)"
+            }
+          ]
+        },
+	//BTN B
+        {
+          from_ev: "(EV_KEY), code 56 (KEY_LEFTALT)",
+          targets: [
+            {
+              to: "xbox1",
+              to_ev: "(EV_KEY), code 305 (BTN_EAST)"
+            }
+          ]
+        },
+	//BTN X
+        {
+          from_ev: "(EV_KEY), code 57 (KEY_SPACE)",
+          targets: [
+            {
+              to: "xbox1",
+              to_ev: "(EV_KEY), code 307 (BTN_NORTH)"
+            }
+          ]
+        },
+	//BTN Y
+        {
+          from_ev: "(EV_KEY), code 42 (KEY_LEFTSHIFT)",
+          targets: [
+            {
+              to: "xbox1",
+              to_ev: "(EV_KEY), code 308 (BTN_WEST)"
+            }
+          ]
+        },
+	//BTN L
+        {
+          from_ev: "(EV_KEY), code 44 (KEY_Z)",
+          targets: [
+            {
+              to: "xbox1",
+              to_ev: "(EV_KEY), code 310 (BTN_TL)"
+            }
+          ]
+        },
+	//TTN R
+        {
+          from_ev: "(EV_KEY), code 45 (KEY_X)",
+          targets: [
+            {
+              to: "xbox1",
+              to_ev: "(EV_KEY), code 311 (BTN_TR)"
+            }
+          ]
+        },
+	//BTN TL
+        {
+          from_ev: "(EV_KEY), code 47 (KEY_V)",
+          targets: [
+            {
+              to: "xbox1",
+              to_ev: "(EV_KEY), code 312 (BTN_TL2)"
+            }
+          ]
+        },
+	//BTN TR
+        {
+          from_ev: "(EV_KEY), code 25 (KEY_P)",
+          targets: [
+            {
+              to: "xbox1",
+              to_ev: "(EV_KEY), code 313 (BTN_TR2)"
+            }
+          ]
+        },
+	//THUMB LEFT
+        {
+          from_ev: "(EV_KEY), code 46 (KEY_C)",
+          targets: [
+            {
+              to: "xbox1",
+              to_ev: "(EV_KEY), code 317 (BTN_THUMBL)"
+            }
+          ]
+        },
+	//THUMB RIGHT
+        {
+          from_ev: "(EV_KEY), code 15 (KEY_TAB)",
+          targets: [
+            {
+              to: "xbox1",
+              to_ev: "(EV_KEY), code 318 (BTN_THUMBR)"
+            },
+            {
+              to: "xbox2",
+              to_ev: "(EV_KEY), code 318 (BTN_THUMBR)"
+            }
+          ]
+        },
+	//SELECT
+        {
+          from_ev: "(EV_KEY), code 6 (KEY_5)",
+          targets: [
+            {
+              to: "xbox1",
+              to_ev: "(EV_KEY), code 314 (BTN_SELECT)"
+            }
+          ]
+        },
+	//START
+        {
+          from_ev: "(EV_KEY), code 2 (KEY_1)",
+          targets: [
+            {
+              to: "xbox1",
+              to_ev: "(EV_KEY), code 315 (BTN_START)"
+            }
+          ]
+        },
+	//MODE XBOX BUTTON
+        {
+          from_ev: "(EV_KEY), code 102 (KEY_HOME)",
+          targets: [
+            {
+              to: "xbox1",
+              to_ev: "(EV_KEY), code 316 (BTN_MODE)"
+            },
+            {
+              to: "xbox2",
+              to_ev: "(EV_KEY), code 316 (BTN_MODE)"
+            }
+          ]
+        }
+      ]
+    },
+    //ANALOG STICK
+    {
+      from: "analog_left",
+      target_rules: [
+        {
+          from_ev: "(EV_ABS), code 1 (ABS_Y)",
+          targets: [
+            {
+              to: "xbox1",
+              to_ev: "(EV_ABS), code 1 (ABS_Y)"
+            }
+          ]
+        },
+        {
+          from_ev: "(EV_ABS), code 0 (ABS_X)",
+          targets: [
+            {
+              to: "xbox1",
+              to_ev: "(EV_ABS), code 0 (ABS_X)"
+            }
+          ]
+        }
+      ]
+    },
+    //ANALOG STICK RIGHT
+    {
+      from: "analog_right",
+      target_rules: [
+        {
+          from_ev: "(EV_ABS), code 1 (ABS_Y)",
+          targets: [
+            {
+              to: "xbox1",
+              to_ev: "(EV_ABS), code 4 (ABS_RY)"
+            },
+            {
+              to: "xbox2",
+              to_ev: "(EV_ABS), code 1 ls(ABS_Y)"
+            }
+          ]
+        },
+        {
+          from_ev: "(EV_ABS), code 0 (ABS_X)",
+          targets: [
+            {
+              to: "xbox1",
+              to_ev: "(EV_ABS), code 3 (ABS_RX)"
+            },
+            {
+              to: "xbox2",
+              to_ev: "(EV_ABS), code 0 (ABS_X)"
+            }
+          ]
+        },
+	//front orange button left -> 4 way switch
+        {
+          from_ev: "(EV_KEY), code 292 (BTN_TOP2)",
+          targets: [
+            {
+              to: "exec1",
+              to_ev: "(META), /usr/local/bin/serv4"
+            }
+          ]
+        },
+	//front orange button left -> 8 way switch
+        {
+          from_ev: "(EV_KEY), code 291 (BTN_TOP)",
+          targets: [
+            {
+              to: "exec1",
+              to_ev: "(META), /usr/local/bin/serv8"
+            }
+          ]
+        },
+	//button front right -> special key
+        {
+          from_ev: "(EV_KEY), code 290 (BTN_THUMB2)",
+          targets: [
+            {
+              to: "eval1",
+              to_ev: "(META), ./burping.py" //burp sound
+            }
+          ]
+        },
+        {
+          from_ev: "(EV_KEY), code 293 (BTN_PINKIE)",
+          targets: [
+            {
+              to: "eval1",
+              to_ev: "(META), ./florence.py" //on screen keyboard toggle
+            }
+          ]
+        }
+      ]
+    },
+    {
+      //digital pad2 definition (right digital)
+      from: "digital",
+      target_rules: [
+        {
+          from_ev: "(EV_KEY), code 32 (KEY_D)",
+          targets: [
+            {
+              to: "xbox2",
+              to_ev: "(EV_ABS), code 17 (ABS_HAT0Y), value -1"
+            }
+          ]
+        },
+        {
+          from_ev: "(EV_KEY), code 33 (KEY_F)",
+          targets: [
+            {
+              to: "xbox2",
+              to_ev: "(EV_ABS), code 17 (ABS_HAT0Y), value 1"
+            }
+          ]
+        },
+        {
+          from_ev: "(EV_KEY), code 34 (KEY_G)",
+          targets: [
+            {
+              to: "xbox2",
+              to_ev: "(EV_ABS), code 16 (ABS_HAT0X), value -1"
+            }
+          ]
+        },
+        {
+          from_ev: "(EV_KEY), code 19 (KEY_R)",
+          targets: [
+            {
+              to: "xbox2",
+              to_ev: "(EV_ABS), code 16 (ABS_HAT0X), value 1"
+            }
+          ]
+        },
+        {
+          from_ev: "(EV_KEY), code 31 (KEY_S)",
+          targets: [
+            {
+              to: "xbox2",
+              to_ev: "(EV_KEY), code 304 (BTN_SOUTH)"
+            }
+          ]
+        },
+	// btn A
+        {
+          from_ev: "(EV_KEY), code 30 (KEY_A)",
+          targets: [
+            {
+              to: "xbox2",
+              to_ev: "(EV_KEY), code 305 (BTN_EAST)"
+            }
+          ]
+        },
+	// B
+        {
+          from_ev: "(EV_KEY), code 16 (KEY_Q)",
+          targets: [
+            {
+              to: "xbox2",
+              to_ev: "(EV_KEY), code 307 (BTN_NORTH)"
+            }
+          ]
+        },
+	// X
+        {
+          from_ev: "(EV_KEY), code 17 (KEY_W)",
+          targets: [
+            {
+              to: "xbox2",
+              to_ev: "(EV_KEY), code 308 (BTN_WEST)"
+            }
+          ]
+        },
+	// Y
+        {
+          from_ev: "(EV_KEY), code 37 (KEY_K)",
+          targets: [
+            {
+              to: "xbox2",
+              to_ev: "(EV_KEY), code 310 (BTN_TL)"
+            }
+          ]
+        },
+	// L
+        {
+          from_ev: "(EV_KEY), code 23 (KEY_I)",
+          targets: [
+            {
+              to: "xbox2",
+              to_ev: "(EV_KEY), code 311 (BTN_TR)"
+            }
+          ]
+        },
+	// R
+        {
+          from_ev: "(EV_KEY), code 36 (KEY_J)",
+          targets: [
+            {
+              to: "xbox2",
+              to_ev: "(EV_KEY), code 312 (BTN_TL2)"
+            }
+          ]
+        },
+	// LT
+        {
+          from_ev: "(EV_KEY), code 38 (KEY_L)",
+          targets: [
+            {
+              to: "xbox2",
+              to_ev: "(EV_KEY), code 313 (BTN_TR2)"
+            }
+          ]
+        },
+	// RT
+        {
+          from_ev: "(EV_KEY), code 15 (KEY_TAB)",
+          targets: [
+            {
+              to: "xbox2",
+              to_ev: "(EV_KEY), code 317 (BTN_THUMBL)"
+            }
+          ]
+        },
+	// select
+        {
+          from_ev: "(EV_KEY), code 7 (KEY_6)",
+          targets: [
+            {
+              to: "xbox2",
+              to_ev: "(EV_KEY), code 314 (BTN_SELECT)"
+            }
+          ]
+        },
+	// start
+        {
+          from_ev: "(EV_KEY), code 3 (KEY_2)",
+          targets: [
+            {
+              to: "xbox2",
+              to_ev: "(EV_KEY), code 315 (BTN_START)"
+            }
+          ]
+        },
+	// select 1 + start 2 => alt f4
+        {
+          from_ev: "(EV_KEY), code 56 (KEY_LEFTALT)", //alt f4
+          targets: [
+            {
+              to: "keybd1",
+              to_ev: "(EV_KEY), code 56 (KEY_LEFTALT)"
+            }
+          ]
+        },
+	// player2 home -> f4
+        {
+          from_ev: "(EV_KEY), code 62 (KEY_F4)",
+          targets: [
+            {
+              to: "keybd1",
+              to_ev: "(EV_KEY), code 62 (KEY_F4)"
+            }
+          ]
+        }
+      ]
+    },
+    //mouse left (button left 2
+    {
+      from: "analog_left",
+      target_rules: [
+        {
+          from_ev: "(EV_KEY), code 288 (BTN_TRIGGER)",
+          targets: [
+            {
+              to: "mouse1",
+              to_ev: "(EV_KEY), code 272 (BTN_LEFT)"
+            }
+          ]
+        },
+	//mouse right (buttob left 1)
+        {
+          from_ev: "(EV_KEY), code 289 (BTN_THUMB)",
+          targets: [
+            {
+              to: "mouse1",
+              to_ev: "(EV_KEY), code 273 (BTN_RIGHT)"
+            }
+          ]
+        },
+        {
+          from_ev: "(EV_KEY), code 290 (BTN_THUMB2)",
+          targets: [
+            {
+              to: "keybd1",
+              to_ev: "(EV_KEY), code 2 (KEY_1)"
+            }
+          ]
+        },
+        {
+          from_ev: "(EV_KEY), code 291 (BTN_TOP)",
+          targets: [
+            {
+              to: "keybd1",
+              to_ev: "(EV_KEY), code 3 (KEY_2)"
+            }
+          ]
+        },
+        {
+          from_ev: "(EV_KEY), code 292 (BTN_TOP2)",
+          targets: [
+            {
+              to: "keybd1",
+              to_ev: "(EV_KEY), code 4 (KEY_3)"
+            }
+          ]
+        },
+        {
+          from_ev: "(EV_KEY), code 293 (BTN_PINKIE)",
+          targets: [
+            {
+              to: "keybd1",
+              to_ev: "(EV_KEY), code 5 (KEY_4)"
+            }
+          ]
+        },
+        {
+          from_ev: "(EV_KEY), code 294 (BTN_BASE)",
+          targets: [
+            {
+              to: "keybd1",
+              to_ev: "(EV_KEY), code 6 (KEY_5)"
+            }
+          ]
+        },
+        {
+          from_ev: "(EV_KEY), code 295 (BTN_BASE2)",
+          targets: [
+            {
+              to: "keybd1",
+              to_ev: "(EV_KEY), code 7 (KEY_6)"
+            }
+          ]
+        },
+        {
+          from_ev: "(EV_KEY), code 295 (BTN_BASE2)",
+          targets: [
+            {
+              to: "keybd1",
+              to_ev: "(EV_KEY), code 8 (KEY_6)"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

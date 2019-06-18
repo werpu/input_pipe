@@ -22,7 +22,7 @@
 
 import argparse
 import asyncio
-import uvloop
+# import uvloop
 from pidfile import PIDFile
 from ev_core.config import Config
 from ev_core.event_loop import EventController
@@ -32,7 +32,7 @@ from queue import Queue
 import sys
 import traceback
 
-uvloop.install()
+# uvloop.install()
 
 class MainApp:
 
