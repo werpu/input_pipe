@@ -58,7 +58,7 @@ class VirtualMouse(BaseDriver):
         BaseDriver.close(self)
         VirtualMouse._init_cnt -= 1
 
-    # helpers for the macros
+    # helpers for the exec macros
     def press_btn_middle(self):
         BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_MIDDLE, 1)
         self.syn()

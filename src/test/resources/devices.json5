@@ -70,7 +70,10 @@
           targets: [
             {
               to: "xbox1",
-              to_ev: "(EV_KEY), code 103 (KEY_UP), value -1"
+              to_ev: "(EV_KEY), code 103 (KEY_UP), value -1",
+              //recurring aka auto fire
+              periodical: 1,
+              frequency: 10
             }
           ]
         }
