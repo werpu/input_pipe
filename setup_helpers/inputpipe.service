@@ -1,4 +1,4 @@
-# Installs as /etc/systemd/system/moltengamepad.service.
+# Installs as /etc/systemd/system/inputpipe.service.
 
 [Unit]
 Description=InputPipe SystemD service
@@ -11,6 +11,7 @@ TimeoutSec=5
 WorkingDirectory=/whatever
 ExecReload=/bin/killall -15 -- $MAINPID
 ExecStop=/usr/bin/killall -15 -- $MAINPID
+Restart=on-failure
 
 TimeoutStopSec=5
 KillMode=process
