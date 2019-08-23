@@ -1,0 +1,111 @@
+#**
+# MIT License
+#
+# Copyright (c) 2019 Werner Punz
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+*#
+
+#*
+ * Some Helper macros to reduce the total loc
+ *#
+
+#*
+ * A simple mapping macro with from event, to and to event definitions
+ * which extracts into the proper json 5 definition
+ *#
+#macro( mapping from_ev, to, to_ev)
+    {
+      from_ev: $from_ev,
+      targets: [
+        {
+          to: $to,
+          to_ev: $to_ev
+        }
+      ]
+    }
+#end
+
+#macro( input_def internal_name name  exclusive relpos)
+    $internal_name: {
+      name: $name",
+      exclusive: $exclusive,
+      relpos: $relpos
+    },
+#end
+
+#macro( output_def internal_name name  type)
+    $internal_name: {
+      name: $name",
+      type: $type
+    },
+#end
+
+
+{
+  inputs: {
+    #input_def( digital "Ultimarc I-PAC Ultimarc I-PAC" true 1),
+    #input_def( analog_left "^Ultimarc.*Ultrastik\\sPlayer\\ 1$" true 1),
+    #input_def( analog_right "^Ultimarc.*Ultrastik\\sPlayer\\ 2$" true 1)
+  },
+  outputs: {
+    #output_def( xbox1 "Microsoft X-Box 360 pad" "xbx360"),
+    #output_def( xbox2 "Microsoft X-Box 360 pad" "xbx360"),
+    #output_def( mouse1 "mouse" "mouse"),
+    #output_def( keybd1 "key1" "keybd"),
+    #output_def( exec1 "exec1" "exec")
+  },
+
+  rules: [
+    {
+      from: "digital",
+      target_rules: [
+         #mapping( "code 1 (EV_KEY), code 103 (KEY_UP)", "xbox1", "(EV_KEY), code 103 (KEY_UP), value -1" ),
+      ]
+    },
+    {
+      from: "analog_left",
+      target_rules: [
+        {
+          from_ev: "(EV_KEY), code 103 (KEY_UP)",
+          targets: [
+            {
+              to: "xbox1",
+              to_ev: "(EV_KEY), code 103 (KEY_UP)"
+            },
+            {
+              to: "xbox2",
+              to_ev: "(EV_KEY), code 103 (KEY_UP)"
+            }
+          ]
+        }
+      ]
+    },
+    
+    ## macroed 4way 8 way hotkeys
+    {
+      from: "analog_left",
+      target_rules: [
+        #mapping( "(EV_KEY), code 105 (KEY_UP)", "exec1", "(META), /usr/local/bin/4way"),
+        #mapping( "(EV_KEY), code 108 (KEY_UP)" "exec1" "(META), /usr/local/bin/4way")
+      ]
+    }
+  ]
+}
+

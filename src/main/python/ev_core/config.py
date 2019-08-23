@@ -24,7 +24,9 @@ import toml
 import yaml
 from utils.langutils import *
 import copy
+import airspeed
 from collections import OrderedDict
+from io import StringIO
 
 
 #
@@ -73,8 +75,25 @@ class Config:
             return json5.load(stream)
         elif configfile.endswith(".toml"):
             return toml.load(stream)
+        elif configfile.endswith(".vtpl"):
+            return Config.load_template(stream, configfile)
         else:
             raise Exception("Filetype not supported, at the momoment only yaml and json5 configurations are supported")
+
+    #
+    # Loads a template and then once merged goes into the parsers
+    #
+    @staticmethod
+    def load_template(stream, configfile):
+        if not configfile.endsWith(".vtpl"):
+            raise Exception("Template does not have vtpl ending")
+
+        tpl = airspeed.Template("\n".join(stream.readLines()))
+        merged_template = tpl.merge({})
+        orig_file_name = configfile[:-5]
+
+        tpl_stream = StringIO(merged_template, orig_file_name)
+        return Config.load_file(tpl_stream, orig_file_name)
 
     #
     # handling of multiple stacked overlays, pops the last overlay from the stack
