@@ -318,7 +318,7 @@ is coming in with a value of 1 (button pressed)
 it automatically is converted to -1 which is the 
 value the d-pad would expose on the xbox one controller.
 
-### I don't like YAML are there any other options #####
+### I don't like YAML are there any other options? #####
 
 Yes, yaml is very restrictive in its syntax and hence other config file
 options are available
