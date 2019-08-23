@@ -36,6 +36,10 @@ DRIVER = "driver"
 
 EV_META = "ev_meta"
 
+EV_PERIODICAL = "periodical"
+
+EV_FREQUENCY = "frequency"
+
 
 class EventTree:
 
@@ -58,10 +62,12 @@ class EventTree:
 
                 for target in targets:
                     target_to = target["to"]
+                    periodical = save_fetch(lambda: target["periodical"], 0)
+                    frequency = save_fetch(lambda: target["frequency"], 10)
                     ## todo hook sequence in here somehow
-                    self.build_target_rule(last_node, rule_from, target, targetDevices, target_to)
+                    self.build_target_rule(last_node, rule_from, target, targetDevices, target_to, periodical, frequency)
 
-    def build_target_rule(self, last_node, rule_from, target, targetDevices, target_to):
+    def build_target_rule(self, last_node, rule_from, target, targetDevices, target_to, periodical, frequency):
         ev_type_code, to_ev_type, to_ev_code, to_ev_name, value, to_ev_meta = self.parse_ev(target["to_ev"])
 
         last_node[target_to] = save_fetch(lambda: last_node[target_to], {
@@ -69,6 +75,9 @@ class EventTree:
             EV_CODE: to_ev_code,
             EV_NAME: to_ev_name,
             EV_META: to_ev_meta,
+            EV_PERIODICAL: periodical,
+            EV_FREQUENCY: frequency,
+
             DRIVER: save_fetch(lambda: targetDevices.drivers[target_to])
         })
 

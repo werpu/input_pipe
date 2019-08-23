@@ -19,7 +19,8 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-
+import asyncio
+from datetime import datetime
 from abc import ABC, abstractmethod
 
 from evdev import UInput
@@ -39,6 +40,7 @@ class BaseDriver(ABC):
         self.product = None
         self.version = None
         self.phys = None
+        self.periodic_events = []
 
     def create(self):
         self.input_dev = UInput(self.capabilities,
@@ -50,8 +52,34 @@ class BaseDriver(ABC):
 
         return self
 
-    def write(self, config: Config, drivers, e_type=None, e_sub_type=None, value=None, meta=None):
-        self.input_dev.write(e_type, int(e_sub_type), value)
+    async def loop_periodical(self):
+        while len(self.periodic_events) > 0:
+            await asyncio.sleep(100e-3)
+
+            for i, val in enumerate(self.periodic_events):
+                now = datetime.now().microsecond
+                if round((now - val["last_accessed"]) / 1000) > val["frequency"]:
+                    val["last_accessed"] = now
+                    val["trigger"]()
+
+    def write(self, config: Config, drivers, e_type=None, e_sub_type=None, value=None, meta=None, periodical=0, frequncy=0):
+
+        if periodical == 0:
+            self.input_dev.write(e_type, int(e_sub_type), value)
+            return self
+        elif value == 1:
+            if len(self.periodic_events) == 0:
+                asyncio.ensure_future(self.loop_periodical())
+            self.periodic_events[e_sub_type] = []
+            self.periodic_events[e_sub_type]["frequency"] = frequncy
+            self.periodic_events[e_sub_type]["trigger"] = lambda: self.input_dev.write(e_type, int(e_sub_type), value)
+            self.periodic_events[e_sub_type]["last_accessed"] = datetime.now().microsecond
+            self.input_dev.write(e_type, int(e_sub_type), value)
+
+        else:
+            del self.periodic_events[e_sub_type]
+            self.input_dev.write(e_type, int(e_sub_type), value)
+
         return self
 
     def syn(self):

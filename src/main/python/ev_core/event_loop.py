@@ -25,7 +25,7 @@ from evdev import ecodes
 from evdev.events import KeyEvent, AbsEvent, RelEvent
 
 from ev_core.config import Config
-from ev_core.eventtree import EventTree, EV_CODE, EV_META, EV_TYPE, DRIVER
+from ev_core.eventtree import EventTree, EV_CODE, EV_META, EV_TYPE, DRIVER, EV_PERIODICAL, EV_FREQUENCY
 from ev_core.sourcedevices import SourceDevices
 from ev_core.targetdevices import TargetDevices
 from ev_core.udevlistener import UdevListener
@@ -118,11 +118,11 @@ class EventController:
             self.touched.clear()
 
         for key in target_rules:
-            target_code, target_device, target_type, target_value, target_meta = self.get_target_data(event, key,
+            target_code, target_device, target_type, target_value, target_meta, periodical, frequency = self.get_target_data(event, key,
                                                                                                       target_rules)
             target_device.write(self.config, self.target_devices.drivers or {},
                                 save_fetch(lambda: ecodes.__getattribute__(target_type), -1), target_code, target_value,
-                                target_meta)
+                                target_meta, periodical, frequency)
             self.touched[target_device.phys] = target_device
 
     @staticmethod
@@ -134,7 +134,9 @@ class EventController:
             event.value
         target_device = target_event[DRIVER]
         target_meta = target_event[EV_META] or None
-        return target_code, target_device, target_type, target_value, target_meta
+        periodical = target_event[EV_PERIODICAL]
+        freqency = target_event[EV_FREQUENCY]
+        return target_code, target_device, target_type, target_value, target_meta, periodical, freqency
 
     @staticmethod
     def map_type(event):
