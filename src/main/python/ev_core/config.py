@@ -27,6 +27,8 @@ import copy
 import airspeed
 from collections import OrderedDict
 from io import StringIO
+import os
+
 
 
 #
@@ -77,6 +79,10 @@ class Config:
             return toml.load(stream)
         elif configfile.endswith(".vtpl"):
             return Config.load_template(stream, configfile)
+        elif configfile.endswith(".tpl"):
+            return Config.load_template(stream, configfile, ".tpl")
+        elif configfile.endswith(".vm"):
+            return Config.load_template(stream, configfile, ".vm")
         else:
             raise Exception("Filetype not supported, at the momoment only yaml and json5 configurations are supported")
 
@@ -84,13 +90,14 @@ class Config:
     # Loads a template and then once merged goes into the parsers
     #
     @staticmethod
-    def load_template(stream, configfile):
-        if not configfile.endswith(".vtpl"):
+    def load_template(stream, configfile, ending=".vtpl"):
+        if not configfile.endswith(ending):
             raise Exception("Template does not have vtpl ending")
 
-        tpl = airspeed.Template(" ".join(stream.readlines()))
-        merged_template = tpl.merge({})
-        orig_file_name = configfile[:-5]
+        loader = airspeed.CachingFileLoader(os.path.dirname(os.path.abspath(configfile)))
+        tpl = loader.load_template(configfile)
+        merged_template = tpl.merge({}, loader)
+        orig_file_name = configfile[:-1 * len(ending)]
 
         tpl_stream = StringIO(merged_template)
         return Config.load_file(tpl_stream, orig_file_name)

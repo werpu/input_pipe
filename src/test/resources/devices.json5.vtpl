@@ -22,41 +22,7 @@
 # SOFTWARE.
 *#
 
-#*
- * Some Helper macros to reduce the total loc
- *#
-
-#*
- * A simple mapping macro with from event, to and to event definitions
- * which extracts into the proper json 5 definition
- *#
-#macro(mapping $from_ev $to $to_ev)
-    {
-      from_ev: "$from_ev",
-      targets: [
-        {
-          to: "$to",
-          to_ev: "$to_ev"
-        }
-      ]
-    }
-#end
-
-#macro(input_def $internal_name $name $exclusive $relpos)
-    $internal_name: {
-      name: "$name",
-      exclusive: $exclusive,
-      relpos: $relpos
-    }
-#end
-
-#macro(output_def $internal_name $name $type)
-    $internal_name: {
-      name: "$name",
-      type: "$type"
-    }
-#end
-
+#parse("macros.vm")
 
 {
   inputs: {
@@ -85,14 +51,8 @@
         {
           from_ev: "(EV_KEY), code 103 (KEY_UP)",
           targets: [
-            {
-              to: "xbox1",
-              to_ev: "(EV_KEY), code 103 (KEY_UP)"
-            },
-            {
-              to: "xbox2",
-              to_ev: "(EV_KEY), code 103 (KEY_UP)"
-            }
+            #output( "xbox1" "(EV_KEY), code 103 (KEY_UP)" ),
+            #output( "xbox2" "(EV_KEY), code 103 (KEY_UP)" )
           ]
         }
       ]
