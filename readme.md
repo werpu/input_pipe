@@ -414,6 +414,44 @@ Following commands are supported atm:
 If the server receives a command it does not know it simply will ignore it.
 
 
+
 ## Overlays
 
-TODO add info here
+### What is an overlay?
+
+Short summary, you often need a specialized functionality which only
+is used for a handful of games (or even just one).
+For this you can use a specialized configuration which is an overlay.
+An overlay does not eradicate the original configuration but simply merges
+the overlay temporarily in until it is reset.
+The overlay addes non existing items, and overwrites already existing ones
+if an overlay mapping is provided.
+
+The usecase is that for instance you want some autofire for certain games 
+or a different button setup. All of this is possible, even multipler overlays
+can be stacked, they are performed in the last added first served order, just like
+a normal stack. The first hit on the overlay stack is served, from top to bottom-
+
+### How to add an overlay dynamically?
+
+An overlay usually is added simply by using the server functionality
+
+```bash
+./input_pipe --server=N --overlay=my_overlay.yaml
+```
+
+adds an overlay to a running server.
+
+by calling 
+
+```bash
+./input_pipe --server=N --pop_overlay 
+```
+
+the last overlay on the stack is popped from the overlay stack
+
+```bash
+./input_pipe --server=N --reset_overlay
+```
+
+resets the overlays and restores the default state
