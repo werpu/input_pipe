@@ -85,14 +85,14 @@ class Config:
     #
     @staticmethod
     def load_template(stream, configfile):
-        if not configfile.endsWith(".vtpl"):
+        if not configfile.endswith(".vtpl"):
             raise Exception("Template does not have vtpl ending")
 
-        tpl = airspeed.Template("\n".join(stream.readLines()))
+        tpl = airspeed.Template(" ".join(stream.readlines()))
         merged_template = tpl.merge({})
         orig_file_name = configfile[:-5]
 
-        tpl_stream = StringIO(merged_template, orig_file_name)
+        tpl_stream = StringIO(merged_template)
         return Config.load_file(tpl_stream, orig_file_name)
 
     #

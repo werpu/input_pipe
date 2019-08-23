@@ -30,53 +30,53 @@
  * A simple mapping macro with from event, to and to event definitions
  * which extracts into the proper json 5 definition
  *#
-#macro( mapping from_ev, to, to_ev)
+#macro(mapping $from_ev $to $to_ev)
     {
-      from_ev: $from_ev,
+      from_ev: "$from_ev",
       targets: [
         {
-          to: $to,
-          to_ev: $to_ev
+          to: "$to",
+          to_ev: "$to_ev"
         }
       ]
     }
 #end
 
-#macro( input_def internal_name name  exclusive relpos)
+#macro(input_def $internal_name $name $exclusive $relpos)
     $internal_name: {
-      name: $name",
+      name: "$name",
       exclusive: $exclusive,
       relpos: $relpos
-    },
+    }
 #end
 
-#macro( output_def internal_name name  type)
+#macro(output_def $internal_name $name $type)
     $internal_name: {
-      name: $name",
-      type: $type
-    },
+      name: "$name",
+      type: "$type"
+    }
 #end
 
 
 {
   inputs: {
-    #input_def( digital "Ultimarc I-PAC Ultimarc I-PAC" true 1),
-    #input_def( analog_left "^Ultimarc.*Ultrastik\\sPlayer\\ 1$" true 1),
-    #input_def( analog_right "^Ultimarc.*Ultrastik\\sPlayer\\ 2$" true 1)
+    #input_def( "digital" "Ultimarc I-PAC Ultimarc I-PAC" "true" "1"),
+    #input_def( "analog_left" "^Ultimarc.*Ultrastik\\sPlayer\\ 1$" "true" "1"),
+    #input_def( "analog_right" "^Ultimarc.*Ultrastik\\sPlayer\\ 2$" "true" "1")
   },
   outputs: {
-    #output_def( xbox1 "Microsoft X-Box 360 pad" "xbx360"),
-    #output_def( xbox2 "Microsoft X-Box 360 pad" "xbx360"),
-    #output_def( mouse1 "mouse" "mouse"),
-    #output_def( keybd1 "key1" "keybd"),
-    #output_def( exec1 "exec1" "exec")
+    #output_def( "xbox1" "Microsoft X-Box 360 pad" "xbx360"),
+    #output_def( "xbox2" "Microsoft X-Box 360 pad" "xbx360"),
+    #output_def( "mouse1" "mouse" "mouse"),
+    #output_def( "keybd1" "key1" "keybd"),
+    #output_def( "exec1" "exec1" "exec")
   },
 
   rules: [
     {
       from: "digital",
       target_rules: [
-         #mapping( "code 1 (EV_KEY), code 103 (KEY_UP)", "xbox1", "(EV_KEY), code 103 (KEY_UP), value -1" ),
+         #mapping( "code 1 (EV_KEY), code 103 (KEY_UP)"  "xbox1"  "(EV_KEY), code 103 (KEY_UP), value -1" ),
       ]
     },
     {
@@ -97,12 +97,12 @@
         }
       ]
     },
-    
+
     ## macroed 4way 8 way hotkeys
     {
       from: "analog_left",
       target_rules: [
-        #mapping( "(EV_KEY), code 105 (KEY_UP)", "exec1", "(META), /usr/local/bin/4way"),
+        #mapping( "(EV_KEY), code 105 (KEY_UP)" "exec1" "(META), /usr/local/bin/4way") ,
         #mapping( "(EV_KEY), code 108 (KEY_UP)" "exec1" "(META), /usr/local/bin/4way")
       ]
     }

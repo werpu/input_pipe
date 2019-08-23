@@ -31,6 +31,10 @@ class MyTestCase(unittest.TestCase):
         conf = Config("../resources/devices.yaml")
         self._assert_basic_structure(conf)
 
+    def test_basic_template(self):
+        conf = Config("../resources/devices.json5.vtpl")
+        self._assert_basic_structure(conf)
+        
     def test_overlay(self):
         conf = Config("../resources/devices.yaml")
         conf.overlay("../resources/overlay.yaml")
