@@ -343,14 +343,6 @@ https://velocity.apache.org/engine/1.7/user-guide.html
 
 ## Usage
 
-### Building 
-An x64 Linux executable is provided for convenience
-in the dist folder.
-If you want to build your own executable
-use the setup.sh and build.sh build scripts.
-Prerequisites prior to installation are
-a python distribution and a properly working pipenv and 
-pyinstaller on top of it.
 
 ### Usage
 
@@ -455,3 +447,13 @@ the last overlay on the stack is popped from the overlay stack
 ```
 
 resets the overlays and restores the default state
+
+
+## Building 
+An x64 Linux executable is provided for convenience
+in the dist folder.
+If you want to build your own executable
+use the setup.sh and build.sh build scripts.
+Prerequisites prior to installation are
+a python distribution and a properly working pipenv and 
+pyinstaller on top of it.
