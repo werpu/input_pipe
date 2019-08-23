@@ -274,6 +274,30 @@ which basically consist of following parts
         note the main difference to evtest is that the value part is optional
         you will need it only if you want to expose a different value than what is provided from the input (aka -1 instead of 1)
  
+##### I don't like yaml  are there any other options #####
+
+Yes, yaml is very restrictive in its syntax and hence other config file
+options are available
+
+At the moment following config file languages are supported:
+
+* YAML 
+* JSON5 (highly recommended)
+* TOML
+* Velocity with a combination of the options above
+
+Velocity is the only option which is not a direct config file
+but a template which then gets merged into one of the config options above.
+The reason for templating support is extended syntax and macros which
+goes beyound what a simple configuration can provided.
+
+Several examples of the configurations are provided in the sources
+and testcases, for further info regarding velocity see:
+https://velocity.apache.org/engine/1.7/user-guide.html
+
+(TODO additional info will be added here, Velocity support is a work in progress)
+
+
 ##### How Do I get the Device Names and Event Codes
 
 This is rather straight forward.
