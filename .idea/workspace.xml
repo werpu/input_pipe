@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cfc920c7-1f5f-4ec5-94b3-42926262640f" name="Default Changelist" comment="burp test was broken">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/plugin_examples/a-toggle.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/plugin_examples/b-toggle.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/input_pipe" beforeDir="false" afterPath="$PROJECT_DIR$/dist/input_pipe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/python/ev_core/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/python/ev_core/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/python/input_pipe.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/python/input_pipe.py" afterDir="false" />
+    <list default="true" id="cfc920c7-1f5f-4ec5-94b3-42926262640f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/resources/plugin_examples/b-toggle.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin_examples/b-toggle.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -327,14 +321,7 @@
       <workItem from="1566643789137" duration="5473000" />
       <workItem from="1566661297292" duration="2477000" />
       <workItem from="1566664467308" duration="3624000" />
-      <workItem from="1566672336958" duration="2324000" />
-    </task>
-    <task id="LOCAL-00010" summary="improving the error handling">
-      <created>1559844567120</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1559844567121</updated>
+      <workItem from="1566672336958" duration="2496000" />
     </task>
     <task id="LOCAL-00011" summary="adding an exev driver to the mix to allow the triggering of external commands">
       <created>1559849429022</created>
@@ -672,7 +659,14 @@
       <option name="project" value="LOCAL" />
       <updated>1566672713101</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="adding remove overlay function">
+      <created>1566674711601</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1566674711602</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TodoView">
@@ -728,7 +722,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/../joydrv" />
     </ignored-roots>
-    <MESSAGE value="overlays implemented" />
     <MESSAGE value="another build for the fans" />
     <MESSAGE value="stacked overlays basic impl, adding info" />
     <MESSAGE value="overlays now working" />
@@ -753,7 +746,8 @@
     <MESSAGE value="adding velocity config examples" />
     <MESSAGE value="burp test was broken" />
     <MESSAGE value="permanent toggle now working" />
-    <option name="LAST_COMMIT_MESSAGE" value="permanent toggle now working" />
+    <MESSAGE value="adding remove overlay function" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding remove overlay function" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

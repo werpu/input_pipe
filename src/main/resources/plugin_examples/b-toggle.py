@@ -6,7 +6,7 @@ import os
 cfg = globals()["config"]
 drv = globals()["drivers"]
 
-if "a_autofire_press" in cfg:
+if "b_autofire_press" in cfg:
     del cfg["b_autofire_press"]
     os.system("/home/werpu/gamepadservice/reset.sh")
     pass
