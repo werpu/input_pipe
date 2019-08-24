@@ -40,6 +40,7 @@ class BaseDriver(ABC):
         self.product = None
         self.version = None
         self.phys = None
+        self.bustype = None
         self.periodic_events = []
 
     def create(self):
@@ -62,17 +63,18 @@ class BaseDriver(ABC):
                     val["last_accessed"] = now
                     val["trigger"]()
 
-    def write(self, config: Config, drivers, e_type=None, e_sub_type=None, value=None, meta=None, periodical=0, frequncy=0):
+    def write(self, config: Config, drivers, e_type=None, e_sub_type=None, value=None, meta=None, periodical=0, frequency=0):
 
         if periodical == 0:
             self.input_dev.write(e_type, int(e_sub_type), value)
             return self
-        elif value == 1:
+        # Autofire
+        elif value > 0:
             if len(self.periodic_events) == 0:
                 asyncio.ensure_future(self.loop_periodical())
             self.periodic_events[e_sub_type] = []
-            self.periodic_events[e_sub_type]["frequency"] = frequncy
-            self.periodic_events[e_sub_type]["trigger"] = lambda: self.input_dev.write(e_type, int(e_sub_type), value)
+            self.periodic_events[e_sub_type]["frequency"] = frequency
+            self.periodic_events[e_sub_type]["trigger"] = lambda: self.trigger(e_type, e_sub_type, value)
             self.periodic_events[e_sub_type]["last_accessed"] = datetime.now().microsecond
             self.input_dev.write(e_type, int(e_sub_type), value)
 
@@ -81,6 +83,14 @@ class BaseDriver(ABC):
             self.input_dev.write(e_type, int(e_sub_type), value)
 
         return self
+
+    # a trigger function to be reused as a lambda for the autofire
+    def trigger(self, e_type, e_sub_type, value):
+        self.input_dev.write(e_type, int(e_sub_type), value)
+        self.syn()
+        self.input_dev.write(e_type, int(e_sub_type), 0)
+        self.syn()
+
 
     def syn(self):
         self.input_dev.syn()
