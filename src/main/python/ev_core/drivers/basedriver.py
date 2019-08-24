@@ -137,7 +137,8 @@ class BaseDriver(ABC):
                 for key in self.auto_triggers:
                     now = datetime.now().microsecond
                     val = self.auto_triggers[key]
-                    if round(abs(now - val[LAST_ACCESSED]) / 1000) > val[FREQUENCY]:
+                    access_difference = round(abs(now - val[LAST_ACCESSED]) / 1000)
+                    if access_difference > val[FREQUENCY]:
                         val[LAST_ACCESSED] = now
                         val[TRIGGER]()
                         # 100ms delay because some emulators do not accept input which is lower than that
