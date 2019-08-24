@@ -26,7 +26,19 @@ from abc import ABC, abstractmethod
 from evdev import UInput
 from ev_core.config import Config
 
+# CONSTANTS used by this file
+STD_DELAY = 100e-3
+LAST_ACCESSED = "last_accessed"
+TRIGGER = "trigger"
+FREQUENCY = "frequency"
+TRIGGER_OFF = "trigger_off"
 
+
+###################################################################################
+# Base Driver, this is the base for all our drivers
+# it implements the basic driver mechanisms and provides various helpers
+# Also it implements the device event forwarding and auto trigger/fire mechanisms
+###################################################################################
 class BaseDriver(ABC):
 
     @abstractmethod
@@ -40,7 +52,7 @@ class BaseDriver(ABC):
         self.version = None
         self.phys = None
         self.bustype = None
-        self.periodic_events = dict()
+        self.auto_triggers = dict()
 
     def create(self):
         self.input_dev = UInput(self.capabilities,
@@ -56,27 +68,46 @@ class BaseDriver(ABC):
     # handles all kind of writes, single writes and auto triggers
     def write(self, config: Config, drivers, e_type=None, e_sub_type=None, value=None, meta=None, periodical=0, frequency=0):
 
-        if periodical == 0:
+        auto_trigger_button_pressed, auto_trigger_button_released, auto_trigger_button_toggle, auto_trigger_press_ongoing, no_auto_trigger = self._calculate_toggle_state(
+            e_sub_type, periodical, value)
+
+        # Normal state first which is 90% of all triggers hence needs to be processed first
+        if no_auto_trigger:
             self.input_dev.write(e_type, int(e_sub_type), value)
             return self
 
-        # Autotrigger
-        elif periodical > 0 and value == 1:
-            if len(self.periodic_events) == 0:
+        # Autotrigger states
+        elif auto_trigger_button_pressed:
+            if len(self.auto_triggers) == 0:
                 asyncio.ensure_future(self._loop_periodical())
-            elif e_sub_type in self.periodic_events:
-                return
-            self._register_autotrigger(e_sub_type, e_type, frequency, value)
+            elif e_sub_type in self.auto_triggers:
+                return self
+            self._register_auto_trigger(e_sub_type, e_type, frequency, value)
             self.input_dev.write(e_type, int(e_sub_type), value)
 
-        elif periodical > 0 and value > 1 and e_sub_type in self.periodic_events:
-            return
+        elif auto_trigger_press_ongoing:
+            return self
 
-        else:
+        elif auto_trigger_button_released:
             self._deregister_auto_trigger(e_sub_type)
             self.input_dev.write(e_type, int(e_sub_type), value)
 
+        elif auto_trigger_button_toggle:
+            self._toggle_auto_trigger(e_sub_type, e_type, frequency, value)
+
+        else:
+            self.input_dev.write(e_type, int(e_sub_type), value)
+
         return self
+
+    # calculate the toggle states for the auto fire function
+    def _calculate_toggle_state(self, e_sub_type, periodical, value):
+        no_auto_trigger = periodical == 0
+        auto_trigger_button_pressed = periodical == 1 and value == 1
+        auto_trigger_button_released = periodical == 1 and value == 0
+        auto_trigger_press_ongoing = periodical == 1 and value > 1 and e_sub_type in self.auto_triggers
+        auto_trigger_button_toggle = periodical == 2 and value == 1
+        return auto_trigger_button_pressed, auto_trigger_button_released, auto_trigger_button_toggle, auto_trigger_press_ongoing, no_auto_trigger
 
     def syn(self):
         self.input_dev.syn()
@@ -100,38 +131,49 @@ class BaseDriver(ABC):
 
     # periodic loop which triggers the autofire
     async def _loop_periodical(self):
-        while len(self.periodic_events) > 0:
-            await asyncio.sleep(100e-3)
+        while len(self.auto_triggers) > 0:
+            await asyncio.sleep(STD_DELAY)
             try:
-                for key in self.periodic_events:
+                for key in self.auto_triggers:
                     now = datetime.now().microsecond
-                    val = self.periodic_events[key]
-                    if round(abs(now - val["last_accessed"]) / 1000) > val["frequency"]:
-                        val["last_accessed"] = now
-                        val["trigger"]()
-                        await asyncio.sleep(100e-3)
-                        val["trigger_off"]()
+                    val = self.auto_triggers[key]
+                    if round(abs(now - val[LAST_ACCESSED]) / 1000) > val[FREQUENCY]:
+                        val[LAST_ACCESSED] = now
+                        val[TRIGGER]()
+                        # 100ms delay because some emulators do not accept input which is lower than that
+                        # between button up and button down
+                        await asyncio.sleep(STD_DELAY)
+                        val[TRIGGER_OFF]()
             # we would get somtimes a collection changed exception, we safely can ignore that
             # (race condition due to external delete and await in the loop
             except Exception as e:
                 pass
 
     def _deregister_auto_trigger(self, e_sub_type):
-        del self.periodic_events[e_sub_type]
+        del self.auto_triggers[e_sub_type]
 
-    def _register_autotrigger(self, e_sub_type, e_type, frequency, value):
-        # register autofire
-        self.periodic_events[e_sub_type] = dict()
-        self.periodic_events[e_sub_type]["frequency"] = frequency
-        self.periodic_events[e_sub_type]["trigger"] = lambda: self._trigger(e_type, e_sub_type, value)
-        self.periodic_events[e_sub_type]["trigger_off"] = lambda: self._trigger_off(e_type, e_sub_type, value)
-        self.periodic_events[e_sub_type]["last_accessed"] = datetime.now().microsecond
+    # registers an auto trigger into our trigger dictionary
+    def _register_auto_trigger(self, e_sub_type, e_type, frequency, value):
+        self.auto_triggers[e_sub_type] = dict()
+        self.auto_triggers[e_sub_type][FREQUENCY] = frequency
+        self.auto_triggers[e_sub_type][TRIGGER] = lambda: self._button_down(e_type, e_sub_type, value)
+        self.auto_triggers[e_sub_type][TRIGGER_OFF] = lambda: self._button_up(e_type, e_sub_type, value)
+        self.auto_triggers[e_sub_type][LAST_ACCESSED] = datetime.now().microsecond
 
-    # a trigger function to be reused as a lambda for the autofire
-    def _trigger(self, e_type, e_sub_type, value):
+    # simulates a button down
+    def _button_down(self, e_type, e_sub_type, value):
         self.input_dev.write(e_type, int(e_sub_type), value)
         self.syn()
 
-    def _trigger_off(self, e_type, e_sub_type, value):
+    # simulates a button up
+    def _button_up(self, e_type, e_sub_type, value):
         self.input_dev.write(e_type, int(e_sub_type), 0)
         self.syn()
+
+    # toggles the auto triggers either on or off
+    def _toggle_auto_trigger(self, e_sub_type, e_type, frequency, value):
+        if e_sub_type in self.auto_triggers:
+            del self.auto_triggers[e_sub_type]
+        else:
+            self. _register_auto_trigger(e_sub_type, e_type, frequency, value)
+
