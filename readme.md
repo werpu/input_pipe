@@ -399,8 +399,9 @@ Following commands are supported atm:
 
  * *stop*  stops the running server
  * *reload* reloads and restarts the server (aka can be used to pull in config file changes without a full restart of the process)
- * *overlay* adds a config overlay on top of an existing configuration
+ * *overlay &lt;filename&gt;* adds a config overlay on top of an existing configuration
  * *pop_overlay* removes the last added config overlay
+ * *remove_overlay &lt;filename&gt;* removes the  config overlay specified by the filename given
  * *reset_overlay* reset all overlays and restore the initial config
  
  
@@ -441,7 +442,13 @@ by calling
 ./input_pipe --server=N --command=pop_overlay 
 ```
 
+
 the last overlay on the stack is popped from the overlay stack
+
+```bash
+./input_pipe --server=N --command="remove_overlay my_overlay.yaml"
+```
+removes an overlay independend of its overlay stack position
 
 ```bash
 ./input_pipe --server=N --command=reset_overlay

@@ -61,9 +61,12 @@ class Config:
         stream = open(configfile, 'r')
         try:
             overlaydata = self.load_file(stream, configfile)
-            self.overlay_stack.append(overlaydata)
+            overlay_meta = dict()
+            overlay_meta["data"] = overlaydata
+            overlay_meta["file"] = configfile
+            self.overlay_stack.append(overlay_meta)
 
-            to_merge_rules = self._merge_rules(copy.deepcopy(self.orig_data), overlaydata)
+            to_merge_rules = self._merge_rules(copy.deepcopy(self.orig_data), overlay_meta)
             self.__dict__.update(to_merge_rules)
 
         finally:
@@ -109,10 +112,17 @@ class Config:
         self.__dict__.update(copy.deepcopy(self.orig_data))
         if len(self.overlay_stack) > 0:
             self.overlay_stack.pop(len(self.overlay_stack))
-            self.__dict__.update(copy.deepcopy(self.orig_data))
-            for overlay in self.overlay_stack:
-                to_merge_rules = self._merge_rules(copy.deepcopy(self.orig_data), overlay)
-                self.__dict__.update(to_merge_rules)
+            self._update_rules()
+
+    def _update_rules(self):
+        self.__dict__.update(copy.deepcopy(self.orig_data))
+        for overlay in self.overlay_stack:
+            to_merge_rules = self._merge_rules(copy.deepcopy(self.orig_data), overlay)
+            self.__dict__.update(to_merge_rules)
+
+    def remove_overlay(self, filename):
+        self.overlay_stack = list(filter(lambda x: x != filename, self.overlay_stack))
+        self._update_rules()
 
     #
     # resets the overlays back to its original
@@ -222,9 +232,9 @@ class Config:
 
         return rule_idx
 
-    def _merge_rules(self, target_rules, overlay_rules):
+    def _merge_rules(self, target_rules, overlay_data):
         rule_idx = self._build_rule_idx(target_rules)
-        for rule in overlay_rules["rules"]:
+        for rule in overlay_data["data"]["rules"]:
             device_id = rule["from"]
             for target_rule in rule["target_rules"]:
                 from_ev = target_rule["from_ev"]

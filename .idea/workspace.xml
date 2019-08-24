@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cfc920c7-1f5f-4ec5-94b3-42926262640f" name="Default Changelist" comment="">
+    <list default="true" id="cfc920c7-1f5f-4ec5-94b3-42926262640f" name="Default Changelist" comment="burp test was broken">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/plugin_examples/a-toggle.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/plugin_examples/b-toggle.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/python/ev_core/drivers/basedriver.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/python/ev_core/drivers/basedriver.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/input_pipe" beforeDir="false" afterPath="$PROJECT_DIR$/dist/input_pipe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/python/ev_core/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/python/ev_core/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/python/input_pipe.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/python/input_pipe.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -157,7 +162,29 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/main/python/input_pipe.py" />
-      <option name="PARAMETERS" value="-c $PROJECT_DIR$/src/main/resources/devices.yaml --server=N --port=9002 --command=stop" />
+      <option name="PARAMETERS" value="--server=N --port=9002 --command=stop" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="input_pipe_cmd_overlay" type="PythonConfigurationType" factoryName="Python">
+      <module name="joydrv" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/main/python" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/main/python/input_pipe.py" />
+      <option name="PARAMETERS" value="--server=N --port=9002 --command=&quot;overlay $USER_HOME$/gamepadservice/cowoverlay.yaml&quot;" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -198,6 +225,7 @@
     <list>
       <item itemvalue="Python.input_pipe _server" />
       <item itemvalue="Python.input_pipe_cmd_exit" />
+      <item itemvalue="Python.input_pipe_cmd_overlay" />
       <item itemvalue="Python.TestSuite" />
       <item itemvalue="Python.input_pipe" />
       <item itemvalue="Python.florence_start" />
@@ -297,42 +325,9 @@
       <workItem from="1566641308312" duration="2077000" />
       <workItem from="1566643407776" duration="327000" />
       <workItem from="1566643789137" duration="5473000" />
-      <workItem from="1566661297292" duration="1971000" />
-    </task>
-    <task id="LOCAL-00005" summary="smaller refactoring">
-      <created>1559747155461</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1559747155461</updated>
-    </task>
-    <task id="LOCAL-00006" summary="smaller refactoring">
-      <created>1559747493310</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1559747493310</updated>
-    </task>
-    <task id="LOCAL-00007" summary="improving the docs">
-      <created>1559761861784</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1559761861784</updated>
-    </task>
-    <task id="LOCAL-00008" summary="improving the docs">
-      <created>1559763059024</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1559763059024</updated>
-    </task>
-    <task id="LOCAL-00009" summary="improving the docs">
-      <created>1559763171490</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1559763171490</updated>
+      <workItem from="1566661297292" duration="2477000" />
+      <workItem from="1566664467308" duration="3624000" />
+      <workItem from="1566672336958" duration="2324000" />
     </task>
     <task id="LOCAL-00010" summary="improving the error handling">
       <created>1559844567120</created>
@@ -642,7 +637,42 @@
       <option name="project" value="LOCAL" />
       <updated>1566663047721</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="improving the basedriver trigger code&#10;adding toggle triggers to the mix">
+      <created>1566663281220</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1566663281220</updated>
+    </task>
+    <task id="LOCAL-00055" summary="auto fire overlay example added">
+      <created>1566663546588</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1566663546588</updated>
+    </task>
+    <task id="LOCAL-00056" summary="adding velocity config examples">
+      <created>1566663698882</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1566663698882</updated>
+    </task>
+    <task id="LOCAL-00057" summary="burp test was broken">
+      <created>1566665273632</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1566665273632</updated>
+    </task>
+    <task id="LOCAL-00058" summary="permanent toggle now working">
+      <created>1566672713100</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1566672713101</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TodoView">
@@ -698,10 +728,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/../joydrv" />
     </ignored-roots>
-    <MESSAGE value="tcp command server now working&#10;turned off per default" />
-    <MESSAGE value="moving the server code to asyncio,&#10;because the circuit lib was not packagable&#10;the code is simpler that way anyway" />
-    <MESSAGE value="Send command now working as well, the full message stack now works, yiehaa" />
-    <MESSAGE value="adding docs" />
     <MESSAGE value="overlays implemented" />
     <MESSAGE value="another build for the fans" />
     <MESSAGE value="stacked overlays basic impl, adding info" />
@@ -723,33 +749,53 @@
     <MESSAGE value="updating the readme regarding the current state" />
     <MESSAGE value="adding executable" />
     <MESSAGE value="improving the basedriver trigger code&#10;adding toggle triggers to the mix" />
-    <option name="LAST_COMMIT_MESSAGE" value="improving the basedriver trigger code&#10;adding toggle triggers to the mix" />
+    <MESSAGE value="auto fire overlay example added" />
+    <MESSAGE value="adding velocity config examples" />
+    <MESSAGE value="burp test was broken" />
+    <MESSAGE value="permanent toggle now working" />
+    <option name="LAST_COMMIT_MESSAGE" value="permanent toggle now working" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/main/python/input_pipe.py</url>
-          <line>156</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+        <line-breakpoint suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/test/python/florence_start.py</url>
           <line>11</line>
           <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/main/resources/plugin_examples/burping.py</url>
+          <line>9</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/main/python/ev_core/event_loop.py</url>
+          <line>119</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/main/python/input_pipe.py</url>
+          <line>165</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/main/python/input_pipe.py</url>
+          <line>141</line>
+          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/input_pipe$input_pipe__server.coverage" NAME="input_pipe _server Coverage Results" MODIFIED="1566648794943" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/main/python" />
-    <SUITE FILE_PATH="coverage/input_pipe$input_pipe_cmd_exit.coverage" NAME="input_pipe_cmd_exit Coverage Results" MODIFIED="1560710978972" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/main/python" />
+    <SUITE FILE_PATH="coverage/input_pipe$input_pipe__server.coverage" NAME="input_pipe _server Coverage Results" MODIFIED="1566667478034" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/main/python" />
     <SUITE FILE_PATH="coverage/input_pipe$receiver.coverage" NAME="receiver Coverage Results" MODIFIED="1560464820759" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/main/python/messaging" />
+    <SUITE FILE_PATH="coverage/input_pipe$input_pipe_cmd_exit.coverage" NAME="input_pipe_cmd_exit Coverage Results" MODIFIED="1566665883015" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/main/python" />
     <SUITE FILE_PATH="coverage/input_pipe$Unittests_for_ConfigTest_MyTestCase_test_overlay.coverage" NAME="Unittests for ConfigTest.MyTestCase.test_overlay Coverage Results" MODIFIED="1560628845054" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/test/python" />
     <SUITE FILE_PATH="coverage/input_pipe$playBurp.coverage" NAME="playBurp Coverage Results" MODIFIED="1560008691950" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/test/python/test_utils" />
     <SUITE FILE_PATH="coverage/untitled$hello.coverage" NAME="hello Coverage Results" MODIFIED="1559066885371" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv" />
     <SUITE FILE_PATH="coverage/input_pipe$hello.coverage" NAME="hello Coverage Results" MODIFIED="1559723012320" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../joydrv/src/main/python" />
-    <SUITE FILE_PATH="coverage/input_pipe$TestSuite.coverage" NAME="TestSuite Coverage Results" MODIFIED="1566663260482" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/test/python" />
+    <SUITE FILE_PATH="coverage/input_pipe$input_pipe_cmd_overlay.coverage" NAME="input_pipe_cmd_overlay Coverage Results" MODIFIED="1566666009339" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/main/python" />
+    <SUITE FILE_PATH="coverage/input_pipe$TestSuite.coverage" NAME="TestSuite Coverage Results" MODIFIED="1566674440942" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/test/python" />
     <SUITE FILE_PATH="coverage/input_pipe$Unittests_for_ConfigTest_MyTestCase_test_basic_config.coverage" NAME="Unittests for ConfigTest.MyTestCase.test_basic_config Coverage Results" MODIFIED="1560602600980" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/test/python" />
     <SUITE FILE_PATH="coverage/input_pipe$input_pipe.coverage" NAME="input_pipe Coverage Results" MODIFIED="1560693338605" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/main/python" />
     <SUITE FILE_PATH="coverage/input_pipe$florence_start.coverage" NAME="florence_start Coverage Results" MODIFIED="1560799289590" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/test/python" />

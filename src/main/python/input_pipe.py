@@ -111,6 +111,15 @@ class MainApp:
                         self.evtcl.update_data(self.config)
                         print("overlay installation done")
 
+                    elif msg.startswith("remove_overlay "):
+                        print("removing overlay")
+                        splitted = msg.split()
+                        s = " "
+                        filename = s.join(splitted[1:])
+                        self.config.remove_overlay(filename)
+                        self.evtcl.update_data(self.config)
+                        print("overlay removal done")
+
                     elif msg == "pop_overlay":
                         print("removing top overlay")
                         self.config.pop_overlay()
