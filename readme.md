@@ -430,7 +430,7 @@ a normal stack. The first hit on the overlay stack is served, from top to bottom
 An overlay usually is added simply by using the server functionality
 
 ```bash
-./input_pipe --server=N --overlay=my_overlay.yaml
+./input_pipe --server=N --command="overlay my_overlay.yaml"
 ```
 
 adds an overlay to a running server.
@@ -438,13 +438,13 @@ adds an overlay to a running server.
 by calling 
 
 ```bash
-./input_pipe --server=N --pop_overlay 
+./input_pipe --server=N --command=pop_overlay 
 ```
 
 the last overlay on the stack is popped from the overlay stack
 
 ```bash
-./input_pipe --server=N --reset_overlay
+./input_pipe --server=N --command=reset_overlay
 ```
 
 resets the overlays and restores the default state

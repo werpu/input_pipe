@@ -21,7 +21,7 @@ class FEvalDriver(BaseDriver):
     def create(self):
         pass
 
-    def write(self, config: Config, drivers, e_type, e_sub_type, value, meta=None):
+    def write(self, config: Config, drivers, e_type, e_sub_type, value, meta=None, periodical=0, frequency=0):
         if value == 1:
             key = hashlib.md5(meta.encode("utf-8")).hexdigest()
             if save_fetch(lambda: self._file_data[key]) is None:
