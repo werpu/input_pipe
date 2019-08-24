@@ -176,5 +176,7 @@ class BaseDriver(ABC):
         if e_sub_type in self.auto_triggers:
             del self.auto_triggers[e_sub_type]
         else:
+            if len(self.auto_triggers) == 0:
+                asyncio.ensure_future(self._loop_periodical())
             self. _register_auto_trigger(e_sub_type, e_type, frequency, value)
 
