@@ -35,7 +35,8 @@
             {
               to: "xbox1",
               to_ev: "(EV_KEY), code 304 (BTN_SOUTH)",
-              // auto fire
+              // auto fire, periodical 1 means that the button needs to be constantly pressed,
+              // 2 would mean autofire toggle
               periodical: 1,
               frequency: 200
             }
