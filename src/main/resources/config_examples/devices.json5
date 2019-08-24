@@ -23,10 +23,6 @@
 ######################################################################
 # device definitions
 #######################################################################
-
-This is a complex device definition in json5
-you can define and mix your device defintions in json5, toml and yaml
-according to your taste
 */
 {
   /**
@@ -127,7 +123,10 @@ according to your taste
           targets: [
             {
               to: "xbox1",
-              to_ev: "(EV_KEY), code 304 (BTN_SOUTH)"
+              to_ev: "(EV_KEY), code 304 (BTN_SOUTH)",
+	      // auto fire
+	      periodical: 1,
+              frequency: 200
             }
           ]
         },
@@ -341,7 +340,7 @@ according to your taste
           targets: [
             {
               to: "eval1",
-              to_ev: "(META), ./burping.py" //burp sound
+              to_ev: "(META), /home/werpu/gamepadservice/burping.py" //burp sound
             }
           ]
         },
@@ -350,7 +349,7 @@ according to your taste
           targets: [
             {
               to: "eval1",
-              to_ev: "(META), ./florence.py" //on screen keyboard toggle
+              to_ev: "(META), /home/werpu/gamepadservice/florence.py" //on screen keyboard toggle
             }
           ]
         }

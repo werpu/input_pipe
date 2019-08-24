@@ -19,12 +19,11 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
+
 import asyncio
 from datetime import datetime
 from abc import ABC, abstractmethod
-
 from evdev import UInput
-
 from ev_core.config import Config
 
 
@@ -41,7 +40,7 @@ class BaseDriver(ABC):
         self.version = None
         self.phys = None
         self.bustype = None
-        self.periodic_events = []
+        self.periodic_events = dict()
 
     def create(self):
         self.input_dev = UInput(self.capabilities,
@@ -53,44 +52,31 @@ class BaseDriver(ABC):
 
         return self
 
-    async def loop_periodical(self):
-        while len(self.periodic_events) > 0:
-            await asyncio.sleep(100e-3)
-
-            for i, val in enumerate(self.periodic_events):
-                now = datetime.now().microsecond
-                if round((now - val["last_accessed"]) / 1000) > val["frequency"]:
-                    val["last_accessed"] = now
-                    val["trigger"]()
-
+    # Central write handler
+    # handles all kind of writes, single writes and auto triggers
     def write(self, config: Config, drivers, e_type=None, e_sub_type=None, value=None, meta=None, periodical=0, frequency=0):
 
         if periodical == 0:
             self.input_dev.write(e_type, int(e_sub_type), value)
             return self
-        # Autofire
-        elif value > 0:
+
+        # Autotrigger
+        elif periodical > 0 and value == 1:
             if len(self.periodic_events) == 0:
-                asyncio.ensure_future(self.loop_periodical())
-            self.periodic_events[e_sub_type] = []
-            self.periodic_events[e_sub_type]["frequency"] = frequency
-            self.periodic_events[e_sub_type]["trigger"] = lambda: self.trigger(e_type, e_sub_type, value)
-            self.periodic_events[e_sub_type]["last_accessed"] = datetime.now().microsecond
+                asyncio.ensure_future(self._loop_periodical())
+            elif e_sub_type in self.periodic_events:
+                return
+            self._register_autotrigger(e_sub_type, e_type, frequency, value)
             self.input_dev.write(e_type, int(e_sub_type), value)
 
+        elif periodical > 0 and value > 1 and e_sub_type in self.periodic_events:
+            return
+
         else:
-            del self.periodic_events[e_sub_type]
+            self._deregister_auto_trigger(e_sub_type)
             self.input_dev.write(e_type, int(e_sub_type), value)
 
         return self
-
-    # a trigger function to be reused as a lambda for the autofire
-    def trigger(self, e_type, e_sub_type, value):
-        self.input_dev.write(e_type, int(e_sub_type), value)
-        self.syn()
-        self.input_dev.write(e_type, int(e_sub_type), 0)
-        self.syn()
-
 
     def syn(self):
         self.input_dev.syn()
@@ -111,3 +97,41 @@ class BaseDriver(ABC):
         self.vendor = self.input_dev.vendor
         self.bustype = self.input_dev.bustype
         self.product = self.input_dev.product
+
+    # periodic loop which triggers the autofire
+    async def _loop_periodical(self):
+        while len(self.periodic_events) > 0:
+            await asyncio.sleep(100e-3)
+            try:
+                for key in self.periodic_events:
+                    now = datetime.now().microsecond
+                    val = self.periodic_events[key]
+                    if round(abs(now - val["last_accessed"]) / 1000) > val["frequency"]:
+                        val["last_accessed"] = now
+                        val["trigger"]()
+                        await asyncio.sleep(100e-3)
+                        val["trigger_off"]()
+            # we would get somtimes a collection changed exception, we safely can ignore that
+            # (race condition due to external delete and await in the loop
+            except Exception as e:
+                pass
+
+    def _deregister_auto_trigger(self, e_sub_type):
+        del self.periodic_events[e_sub_type]
+
+    def _register_autotrigger(self, e_sub_type, e_type, frequency, value):
+        # register autofire
+        self.periodic_events[e_sub_type] = dict()
+        self.periodic_events[e_sub_type]["frequency"] = frequency
+        self.periodic_events[e_sub_type]["trigger"] = lambda: self._trigger(e_type, e_sub_type, value)
+        self.periodic_events[e_sub_type]["trigger_off"] = lambda: self._trigger_off(e_type, e_sub_type, value)
+        self.periodic_events[e_sub_type]["last_accessed"] = datetime.now().microsecond
+
+    # a trigger function to be reused as a lambda for the autofire
+    def _trigger(self, e_type, e_sub_type, value):
+        self.input_dev.write(e_type, int(e_sub_type), value)
+        self.syn()
+
+    def _trigger_off(self, e_type, e_sub_type, value):
+        self.input_dev.write(e_type, int(e_sub_type), 0)
+        self.syn()

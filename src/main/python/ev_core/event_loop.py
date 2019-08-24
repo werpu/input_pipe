@@ -102,7 +102,7 @@ class EventController:
 
     def resolve_event(self, event, src_dev):
         # analog deadzone
-        if 113 <= event.value <= 143:
+        if 100 <= event.value <= 143:
             return
 
         root_type = self.map_type(event)
@@ -116,10 +116,8 @@ class EventController:
             for phys_device in self.touched:
                 self.touched[phys_device].syn()
             self.touched.clear()
-
         for key in target_rules:
-            target_code, target_device, target_type, target_value, target_meta, periodical, frequency = self.get_target_data(event, key,
-                                                                                                      target_rules)
+            target_code, target_device, target_type, target_value, target_meta, periodical, frequency = EventController.get_target_data(event, key, target_rules)
             target_device.write(self.config, self.target_devices.drivers or {},
                                 save_fetch(lambda: ecodes.__getattribute__(target_type), -1), target_code, target_value,
                                 target_meta, periodical, frequency)
