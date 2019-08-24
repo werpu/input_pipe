@@ -65,8 +65,9 @@ free to participate)
 
 ## Does it work?
 
-Yes as the time of writing I have it working but no final version yet
-so smaller adjustments still might be needed on my side.
+Yes it works and is function complete, but still might have minor bugs (none that I am aware of atm)
+The documentation is still very basic and I will extend it in the upcoming weeks before
+tagging 1.0.
 
 ## Automated setup?
 
