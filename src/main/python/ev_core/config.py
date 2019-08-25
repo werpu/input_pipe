@@ -46,12 +46,16 @@ class Config:
     def __init__(self, configfile='devices.yaml'):
 
         stream = open(configfile, 'r')
+
         try:
             self.orig_data = self.load_file(stream, configfile)
             self.overlay_stack = []
             self.__dict__.update(copy.deepcopy(self.orig_data))
         finally:
             stream.close()
+
+        self.plugin_data = dict()
+        self.orig_data["plugin_data"] = dict()
 
     #
     # overlays some aspects of the config
@@ -65,9 +69,10 @@ class Config:
             overlay_meta["data"] = overlaydata
             overlay_meta["file"] = configfile
             self.overlay_stack.append(overlay_meta)
-
+            plugin_data = self.plugin_data
             to_merge_rules = self._merge_rules(copy.deepcopy(self.orig_data), overlay_meta)
             self.__dict__.update(to_merge_rules)
+            self.plugin_data = plugin_data
 
         finally:
             stream.close()
@@ -116,9 +121,11 @@ class Config:
 
     def _update_rules(self):
         self.__dict__.update(copy.deepcopy(self.orig_data))
+        plugin_data = self.plugin_data
         for overlay in self.overlay_stack:
             to_merge_rules = self._merge_rules(copy.deepcopy(self.orig_data), overlay)
             self.__dict__.update(to_merge_rules)
+        self.plugin_data = plugin_data
 
     def remove_overlay(self, filename):
         self.overlay_stack = list(filter(lambda x: x != filename, self.overlay_stack))
@@ -228,7 +235,9 @@ class Config:
             device_id = rule["from"]
             for target_rule in rule["target_rules"]:
                 from_ev = target_rule["from_ev"]
-                rule_idx[device_id + "___" + from_ev] = target_rule
+                for target in target_rule["targets"]:
+                    to = target["to"]
+                    rule_idx[device_id + "___" + from_ev + "___" + to] = target_rule
 
         return rule_idx
 
@@ -238,15 +247,18 @@ class Config:
             device_id = rule["from"]
             for target_rule in rule["target_rules"]:
                 from_ev = target_rule["from_ev"]
-                matched_target_rule = save_fetch(lambda: rule_idx[device_id + "___" + from_ev])
-                if matched_target_rule is not None:
-                    matched_target_rule["targets"] = target_rule["targets"]
-                else:  # device must exist
-                    rule = next(x for x in target_rules["rules"] if x["from"] == device_id)
-                    new_rule_target = OrderedDict()
-                    new_rule_target["from_ev"] = from_ev
-                    new_rule_target["targets"] = target_rule["targets"]
-                    rule["target_rules"].append(new_rule_target)
+
+                for target in target_rule["targets"]:
+                    to = target["to"]
+                    matched_target_rule = save_fetch(lambda: device_id + "___" + from_ev + "___" + to)
+                    if matched_target_rule is not None:
+                        rule_idx[matched_target_rule]["targets"] = target_rule["targets"]
+                    else:  # device must exist
+                        rule = next(x for x in target_rules["rules"] if x["from"] == device_id)
+                        new_rule_target = OrderedDict()
+                        new_rule_target["from_ev"] = from_ev
+                        new_rule_target["targets"] = target_rule["targets"]
+                        rule["target_rules"].append(new_rule_target)
         return target_rules
 
 
