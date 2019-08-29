@@ -22,10 +22,13 @@
 
 from evdev import UInput, ecodes
 from ev_core.drivers.basedriver import BaseDriver
+import time
 
 
 class VirtualKeyboard(BaseDriver):
-
+    """
+    Virtual keyboard simulates and forwards keystrokes to the running event queue
+    """
     _init_cnt = 0
 
     def __init__(self):
@@ -121,6 +124,14 @@ class VirtualKeyboard(BaseDriver):
                                 phys=self.phys)
         self.transfer_dev_data()
         return self
+
+    def press_keys(self, *argv):
+        for key in argv:
+            self.write(self, None, None, ecodes.EV_KEY, key, 1)
+        self.syn()
+        time.sleep(100e-3)
+        for key in argv:
+            self.write(self, None, None, ecodes.EV_KEY, key, 0)
 
     def close(self):
         BaseDriver.close(self)
