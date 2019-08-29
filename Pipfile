@@ -4,6 +4,8 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+virtualenv = "*"
+pyinstaller = "*"
 
 [packages]
 evdev = "*"
@@ -15,9 +17,7 @@ python-uinput = "*"
 pytest = "*"
 shiv = "*"
 pynt = "*"
-pyinstaller = "*"
 argparse = "*"
-virtualenv = "*"
 python-pidfile = "*"
 uvloop = "*"
 psutil = "*"

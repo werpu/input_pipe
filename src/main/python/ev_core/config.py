@@ -247,11 +247,12 @@ class Config:
             device_id = rule["from"]
             for target_rule in rule["target_rules"]:
                 from_ev = target_rule["from_ev"]
+                rule_idx = self._handle_replace(device_id, from_ev, target_rules, rule_idx, target_rule)
 
                 for target in target_rule["targets"]:
                     to = target["to"]
                     matched_target_rule = save_fetch(lambda: device_id + "___" + from_ev + "___" + to)
-                    if matched_target_rule is not None:
+                    if matched_target_rule in rule_idx:
                         rule_idx[matched_target_rule]["targets"] = target_rule["targets"]
                     else:  # device must exist
                         rule = next(x for x in target_rules["rules"] if x["from"] == device_id)
@@ -260,6 +261,36 @@ class Config:
                         new_rule_target["targets"] = target_rule["targets"]
                         rule["target_rules"].append(new_rule_target)
         return target_rules
+
+    def _handle_replace(self, device_id, from_ev, target_rules, rule_idx, target_rule):
+        if "replace" in target_rule and target_rule["replace"] == "all":
+            rules = target_rules["rules"]
+            final_rule = None
+
+            filtered_rules = [rule for rule in rules if self._filter_rule(rule, device_id, from_ev)]
+            final_removal_arr = []
+            for filtered_rule in filtered_rules:
+                final_removal_arr.extend([filtered_target_rule for filtered_target_rule in filtered_rule["target_rules"] if filtered_target_rule["from_ev"] == from_ev])
+
+            for final_removal_rule in final_removal_arr:
+                for filtered_rule in filtered_rules:
+                    filtered_rule["target_rules"].remove(final_removal_rule)
+
+            rule_idx = self._build_rule_idx(target_rules)
+
+        return rule_idx
+
+    @staticmethod
+    def _filter_rule(rule, device_id, from_ev):
+        if rule["from"] == device_id:
+            rules_ = rule["target_rules"]
+            for target_rule in rules_:
+                if target_rule["from_ev"] == from_ev:
+                    return True
+                else:
+                    pass
+        else:
+            return False
 
 
 INPUTS = "inputs"

@@ -33,7 +33,8 @@ class VirtualKeyboard(BaseDriver):
 
     def __init__(self):
         BaseDriver.__init__(self)
-
+        self.create_node = True
+        self.bustype = "BUS_USB"
         self.phys = "joydrv/virtkey" + VirtualKeyboard._init_cnt.__str__()
         self.name = "virtual-keyboard"
 
@@ -127,11 +128,14 @@ class VirtualKeyboard(BaseDriver):
 
     def press_keys(self, *argv):
         for key in argv:
-            self.write(self, None, None, ecodes.EV_KEY, key, 1)
-        self.syn()
+            self.write(None, None, ecodes.EV_KEY, key, 1)
+            self.syn()
+            time.sleep(10e-3)
         time.sleep(100e-3)
         for key in argv:
-            self.write(self, None, None, ecodes.EV_KEY, key, 0)
+            self.write(None, None, ecodes.EV_KEY, key, 0)
+            self.syn()
+            time.sleep(10e-3)
 
     def close(self):
         BaseDriver.close(self)

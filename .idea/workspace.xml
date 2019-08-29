@@ -3,9 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="cfc920c7-1f5f-4ec5-94b3-42926262640f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipfile" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/input_pipe" beforeDir="false" afterPath="$PROJECT_DIR$/dist/input_pipe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/python/ev_core/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/python/ev_core/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/python/input_pipe.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/python/input_pipe.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/python/ev_core/drivers/keybd.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/python/ev_core/drivers/keybd.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/python/ev_core/drivers/mouse.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/python/ev_core/drivers/mouse.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/python/ev_core/drivers/xbx360.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/python/ev_core/drivers/xbx360.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -28,7 +31,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/setup_helpers" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../uae_exporter" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
@@ -325,21 +328,18 @@
       <workItem from="1566661297292" duration="2477000" />
       <workItem from="1566664467308" duration="3624000" />
       <workItem from="1566672336958" duration="2580000" />
-      <workItem from="1566717092218" duration="5603000" />
-    </task>
-    <task id="LOCAL-00012" summary="code cleanup">
-      <created>1559850764732</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1559850764732</updated>
-    </task>
-    <task id="LOCAL-00013" summary="forgot the close">
-      <created>1559851835581</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1559851835581</updated>
+      <workItem from="1566717092218" duration="5759000" />
+      <workItem from="1566887136471" duration="234000" />
+      <workItem from="1566887897222" duration="999000" />
+      <workItem from="1566888919100" duration="1404000" />
+      <workItem from="1566921646026" duration="601000" />
+      <workItem from="1567015742719" duration="17000" />
+      <workItem from="1567015774178" duration="609000" />
+      <workItem from="1567016479658" duration="192000" />
+      <workItem from="1567059621793" duration="2410000" />
+      <workItem from="1567065425729" duration="14000" />
+      <workItem from="1567065530595" duration="2109000" />
+      <workItem from="1567073745498" duration="4495000" />
     </task>
     <task id="LOCAL-00014" summary="new exec driver and exec functionality with a small example&#10;how to trigger it">
       <created>1559887340102</created>
@@ -670,7 +670,21 @@
       <option name="project" value="LOCAL" />
       <updated>1566674894374</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="additional overlay fixes">
+      <created>1566725703447</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1566725703447</updated>
+    </task>
+    <task id="LOCAL-00062" summary="needed extensions for c64 support">
+      <created>1567065601291</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1567065601292</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TodoView">
@@ -726,8 +740,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/../joydrv" />
     </ignored-roots>
-    <MESSAGE value="stacked overlays basic impl, adding info" />
-    <MESSAGE value="overlays now working" />
     <MESSAGE value="improving output" />
     <MESSAGE value="removed styleguide warnings and unused imports" />
     <MESSAGE value="adding support for json5 which i like more than yaml" />
@@ -751,7 +763,9 @@
     <MESSAGE value="permanent toggle now working" />
     <MESSAGE value="adding remove overlay function" />
     <MESSAGE value="small example fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="small example fix" />
+    <MESSAGE value="additional overlay fixes" />
+    <MESSAGE value="needed extensions for c64 support" />
+    <option name="LAST_COMMIT_MESSAGE" value="needed extensions for c64 support" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -765,11 +779,6 @@
           <url>file://$PROJECT_DIR$/src/main/resources/plugin_examples/burping.py</url>
           <line>9</line>
           <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/main/python/ev_core/event_loop.py</url>
-          <line>119</line>
-          <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/main/python/input_pipe.py</url>
@@ -785,7 +794,7 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/input_pipe$input_pipe__server.coverage" NAME="input_pipe _server Coverage Results" MODIFIED="1566723394829" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/main/python" />
+    <SUITE FILE_PATH="coverage/input_pipe$input_pipe__server.coverage" NAME="input_pipe _server Coverage Results" MODIFIED="1567078016311" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/main/python" />
     <SUITE FILE_PATH="coverage/input_pipe$receiver.coverage" NAME="receiver Coverage Results" MODIFIED="1560464820759" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/main/python/messaging" />
     <SUITE FILE_PATH="coverage/input_pipe$input_pipe_cmd_exit.coverage" NAME="input_pipe_cmd_exit Coverage Results" MODIFIED="1566665883015" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/main/python" />
     <SUITE FILE_PATH="coverage/input_pipe$Unittests_for_ConfigTest_MyTestCase_test_overlay.coverage" NAME="Unittests for ConfigTest.MyTestCase.test_overlay Coverage Results" MODIFIED="1560628845054" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/test/python" />

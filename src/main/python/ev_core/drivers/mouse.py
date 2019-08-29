@@ -22,6 +22,7 @@
 
 import os
 import stat
+import time
 from time import sleep
 
 from evdev import UInput, ecodes, AbsInfo
@@ -60,25 +61,28 @@ class VirtualMouse(BaseDriver):
 
     # helpers for the exec macros
     def press_btn_middle(self):
-        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_MIDDLE, 1)
+        self.write(None, None, ecodes.EV_KEY, ecodes.BTN_MIDDLE, 1)
         self.syn()
-        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_MIDDLE, 0)
+        time.sleep(100e-3)
+        self.write(None, None, ecodes.EV_KEY, ecodes.BTN_MIDDLE, 0)
         self.syn()
 
     def press_btn_left(self):
-        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_LEFT, 1)
+        self.write(None, None, ecodes.EV_KEY, ecodes.BTN_LEFT, 1)
         self.syn()
-        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_LEFT, 0)
+        time.sleep(100e-3)
+        self.write(None, None, ecodes.EV_KEY, ecodes.BTN_LEFT, 0)
         self.syn()
 
     def press_btn_right(self):
-        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_RIGHT, 1)
+        self.write(None, None, ecodes.EV_KEY, ecodes.BTN_RIGHT, 1)
         self.syn()
-        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_RIGHT, 0)
+        time.sleep(100e-3)
+        self.write(None, None, ecodes.EV_KEY, ecodes.BTN_RIGHT, 0)
         self.syn()
 
     def move(self, rel_x, rel_y):
-        BaseDriver.write(self, None, None, ecodes.EV_REL, ecodes.REL_X, rel_x)
-        BaseDriver.write(self, None, None, ecodes.EV_REL, ecodes.REL_Y, rel_y)
+        self.write(None, None, ecodes.EV_REL, ecodes.REL_X, rel_x)
+        self.write(None, None, ecodes.EV_REL, ecodes.REL_Y, rel_y)
         self.syn()
 

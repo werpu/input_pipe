@@ -20,6 +20,7 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
+import time
 
 from evdev import ecodes, AbsInfo
 from ev_core.drivers.basedriver import BaseDriver
@@ -80,99 +81,111 @@ class Xbox360(BaseDriver):
         Xbox360._init_cnt -= 1
 
     def press_btn_a(self):
-        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_A, 1)
+        self.write(None, None, ecodes.EV_KEY, ecodes.BTN_A, 1)
         self.syn()
-        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_A, 0)
+        time.sleep(100e-3)
+        self.write(None, None, ecodes.EV_KEY, ecodes.BTN_A, 0)
         self.syn()
 
     def press_btn_b(self):
-        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_B, 1)
+        self.write(None, None, ecodes.EV_KEY, ecodes.BTN_B, 1)
         self.syn()
-        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_B, 0)
+        time.sleep(100e-3)
+        self.write(None, None, ecodes.EV_KEY, ecodes.BTN_B, 0)
         self.syn()
 
     def press_btn_x(self):
-        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_X, 1)
+        self.write(None, None, ecodes.EV_KEY, ecodes.BTN_X, 1)
         self.syn()
-        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_X, 0)
+        time.sleep(100e-3)
+        self.write(None, None, ecodes.EV_KEY, ecodes.BTN_X, 0)
         self.syn()
 
     def press_btn_y(self):
-        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_Y, 1)
+        self.write(None, None, ecodes.EV_KEY, ecodes.BTN_Y, 1)
         self.syn()
-        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_Y, 0)
+        time.sleep(100e-3)
+        self.write(None, None, ecodes.EV_KEY, ecodes.BTN_Y, 0)
         self.syn()
 
     def press_btn_tl(self):
-        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_TL, 1)
+        self.write(None, None, ecodes.EV_KEY, ecodes.BTN_TL, 1)
         self.syn()
-        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_TL, 0)
+        time.sleep(100e-3)
+        self.write(None, None, ecodes.EV_KEY, ecodes.BTN_TL, 0)
         self.syn()
 
     def press_btn_tr(self):
-        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_TR, 1)
+        self.write(None, None, ecodes.EV_KEY, ecodes.BTN_TR, 1)
         self.syn()
-        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_TR, 0)
+        self.write(None, None, ecodes.EV_KEY, ecodes.BTN_TR, 0)
         self.syn()
 
     def press_btn_tl2(self):
-        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_TL2, 1)
+        self.write(None, None, ecodes.EV_KEY, ecodes.BTN_TL2, 1)
         self.syn()
-        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_TL2, 0)
+        time.sleep(100e-3)
+        self.write(None, None, ecodes.EV_KEY, ecodes.BTN_TL2, 0)
         self.syn()
 
     def press_btn_tr2(self):
-        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_TR2, 1)
+        self.write(None, None, ecodes.EV_KEY, ecodes.BTN_TR2, 1)
         self.syn()
-        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_TR2, 0)
+        time.sleep(100e-3)
+        self.write(None, None, ecodes.EV_KEY, ecodes.BTN_TR2, 0)
         self.syn()
 
     def press_btn_select(self):
-        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_SELECT, 1)
+        self.write(None, None, ecodes.EV_KEY, ecodes.BTN_SELECT, 1)
         self.syn()
-        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_SELECT, 0)
+        time.sleep(100e-3)
+        self.write(None, None, ecodes.EV_KEY, ecodes.BTN_SELECT, 0)
         self.syn()
 
     def press_btn_start(self):
-        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_START, 1)
+        self.write(None, None, ecodes.EV_KEY, ecodes.BTN_START, 1)
         self.syn()
-        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_START, 0)
+        time.sleep(100e-3)
+        self.write(None, None, ecodes.EV_KEY, ecodes.BTN_START, 0)
         self.syn()
 
     def press_btn_thumbl(self):
-        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_THUMBL, 1)
+        self.write(None, None, ecodes.EV_KEY, ecodes.BTN_THUMBL, 1)
         self.syn()
-        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_THUMBL, 0)
+        time.sleep(100e-3)
+        self.write(None, None, ecodes.EV_KEY, ecodes.BTN_THUMBL, 0)
         self.syn()
 
     def press_btn_thumbr(self):
-        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_THUMBR, 1)
+        self.write(None, None, ecodes.EV_KEY, ecodes.BTN_THUMBR, 1)
         self.syn()
-        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_THUMBR, 0)
+        time.sleep(100e-3)
+        self.write(None, None, ecodes.EV_KEY, ecodes.BTN_THUMBR, 0)
         self.syn()
 
     def press_btn_dpad_up(self):
-        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_DPAD_UP, 1)
+        self.write(None, None, ecodes.EV_KEY, ecodes.BTN_DPAD_UP, 1)
         self.syn()
-        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_DPAD_UP, 0)
+        self.write(None, None, ecodes.EV_KEY, ecodes.BTN_DPAD_UP, 0)
         self.syn()
 
     def press_btn_dpad_down(self):
-        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_DPAD_DOWN, 1)
+        self.write(None, None, ecodes.EV_KEY, ecodes.BTN_DPAD_DOWN, 1)
         self.syn()
-        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_DPAD_DOWN, 0)
+        self.write(None, None, ecodes.EV_KEY, ecodes.BTN_DPAD_DOWN, 0)
         self.syn()
 
     def press_btn_dpad_left(self):
-        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_DPAD_LEFT, 1)
+        self.write(None, None, ecodes.EV_KEY, ecodes.BTN_DPAD_LEFT, 1)
         self.syn()
-        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_DPAD_LEFT, 0)
+        self.write(None, None, ecodes.EV_KEY, ecodes.BTN_DPAD_LEFT, 0)
         self.syn()
 
     def press_btn_dpad_right(self):
-        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_DPAD_RIGHT, 1)
+        self.write(None, None, ecodes.EV_KEY, ecodes.BTN_DPAD_RIGHT, 1)
         self.syn()
-        BaseDriver.write(self, None, None, ecodes.EV_KEY, ecodes.BTN_DPAD_RIGHT, 0)
+        time.sleep(100e-3)
+        self.write(None, None, ecodes.EV_KEY, ecodes.BTN_DPAD_RIGHT, 0)
         self.syn()
 
 
