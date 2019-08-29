@@ -128,7 +128,7 @@ class Config:
         self.plugin_data = plugin_data
 
     def remove_overlay(self, filename):
-        self.overlay_stack = list(filter(lambda x: x != filename, self.overlay_stack))
+        self.overlay_stack = list(filter(lambda x: x["file"] != filename, self.overlay_stack))
         self._update_rules()
 
     #
