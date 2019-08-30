@@ -34,6 +34,8 @@ import traceback
 import json
 
 # uvloop.install()
+from utils.langutils import send_notification
+
 
 class MainApp:
 
@@ -93,7 +95,7 @@ class MainApp:
                     item = self.msg_queue.get()
                     msg = item.decode('utf-8').strip()
                     if msg == "reload":
-                        print("reloading configuration")
+                        send_notification("reloading configuration")
                         self.evtcl.reload()
                         print("reload done")
 
@@ -104,31 +106,31 @@ class MainApp:
                         sys.exit(0)
 
                     elif msg.startswith("overlay "):
-                        print("installing overlay")
                         splitted = msg.split()
                         s = " "
                         filename = s.join(splitted[1:])
+                        send_notification("installing overlay: " + filename)
                         self.config.overlay(filename)
                         self.evtcl.update_data(self.config)
                         print("overlay installation done")
 
                     elif msg.startswith("remove_overlay "):
-                        print("removing overlay")
                         splitted = msg.split()
                         s = " "
                         filename = s.join(splitted[1:])
+                        send_notification("removing overlay: " + filename)
                         self.config.remove_overlay(filename)
                         self.evtcl.update_data(self.config)
                         print("overlay removal done")
 
                     elif msg == "pop_overlay":
-                        print("removing top overlay")
+                        send_notification("removing top overlay")
                         self.config.pop_overlay()
                         self.evtcl.update_data(self.config)
                         print("removal done")
 
                     elif msg == "reset_overlay":
-                        print("resetting overlay")
+                        send_notification("resetting overlay")
                         self.config.reset_config()
                         self.evtcl.update_data(self.config)
                         print("overlay reset done")

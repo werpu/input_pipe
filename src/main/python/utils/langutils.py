@@ -1,3 +1,4 @@
+import os
 import unicodedata
 import re
 
@@ -53,5 +54,7 @@ def merge_two_dicts(x, y):
     return z
 
 
-
+def send_notification(msg):
+    # os.system('notify-send ' + "'"+msg+"'")
+    print(msg)
 

@@ -30,7 +30,6 @@ from io import StringIO
 import os
 
 
-
 #
 # Universal configuration
 # basically the internal representation of our yaml file (1:1)
