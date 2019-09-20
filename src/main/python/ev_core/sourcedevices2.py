@@ -45,6 +45,10 @@ class EventHandler(pyinotify.ProcessEvent):
             return
         print("scanning for source devices")
 
+        # wait 2 seconds for the nodes to catch up
+        # sometimes some subdevices need a little bit of time
+        # to have their nodes created
+        sleep(2)
         devices = self.get_available_devices()
 
         for device in devices:
