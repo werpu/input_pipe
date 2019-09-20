@@ -21,7 +21,7 @@
 # SOFTWARE.
 
 # the event tree the base data structure for our event pipe
-from ev_core.sourcedevices import SourceDevices
+from ev_core.sourcedevices2 import SourceDevices2
 from ev_core.targetdevices import TargetDevices
 from ev_core.config import Config
 from utils.langutils import save_fetch, build_tree
@@ -43,7 +43,7 @@ EV_FREQUENCY = "frequency"
 
 class EventTree:
 
-    def __init__(self, config: Config, sourceDevices: SourceDevices, targetDevices: TargetDevices):
+    def __init__(self, config: Config, sourceDevices: SourceDevices2, targetDevices: TargetDevices):
         # format <from>, <ev_type>, <code> <to> <eventobject>*
         # now id an event is issued we translate the event data beginning
         # from the source over the event type into fine grained mappings

@@ -1,4 +1,4 @@
-from ev_core.udevlistener import UdevListener
+from test_utils.udevlistener import UdevListener
 from test_utils.eventControllerMock import EventControllerMock
 from test_utils.udevDeviceMock import UdevDeviceMock
 

@@ -22,6 +22,8 @@
 
 import unittest
 
+import asyncio
+
 from test_utils.sourceDevicesMock import SourceDevicesMock
 from ev_core.config import Config
 
@@ -30,11 +32,19 @@ class MyTestCase(unittest.TestCase):
 
     def test_device_parsing(self):
 
-        devices = SourceDevicesMock(Config("../resources/devices.yaml"))
-        self.assertTrue(len(devices.devices) == 3)
-        self.assertEqual(devices.devices[2].name, 'Ultimarc UltraStik Ultimarc UltraStik Player 2')
-        self.assertEqual(devices.devices[1].name, 'Ultimarc UltraStik Ultimarc UltraStik Player 1')
-        self.assertEqual(devices.devices[0].name, 'Ultimarc I-PAC Ultimarc I-PAC')
+        self.devices = SourceDevicesMock(Config("../resources/devices.yaml"))
+
+        asyncio.run(self.assertAll())
+
+    async def assertAll(self):
+
+        while not self.devices.all_found:
+            await asyncio.sleep(5)
+
+        self.assertTrue(len(self.devices.devices) == 3)
+        self.assertEqual(self.devices.devices[2].name, 'Ultimarc UltraStik Ultimarc UltraStik Player 2')
+        self.assertEqual(self.devices.devices[1].name, 'Ultimarc UltraStik Ultimarc UltraStik Player 1')
+        self.assertEqual(self.devices.devices[0].name, 'Ultimarc I-PAC Ultimarc I-PAC')
 
 
 if __name__ == '__main__':

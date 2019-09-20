@@ -26,9 +26,8 @@ from evdev.events import KeyEvent, AbsEvent, RelEvent
 
 from ev_core.config import Config
 from ev_core.eventtree import EventTree, EV_CODE, EV_META, EV_TYPE, DRIVER, EV_PERIODICAL, EV_FREQUENCY
-from ev_core.sourcedevices import SourceDevices
+from ev_core.sourcedevices2 import SourceDevices2
 from ev_core.targetdevices import TargetDevices
-from ev_core.udevlistener import UdevListener
 from utils.langutils import *
 
 
@@ -52,18 +51,32 @@ class EventController:
         self.event_tree = None
         self.loop = None
         self.running_controller = False
-        self.udev_listener = UdevListener(self)
         self.touched = {}
         self.start()
+
+        self.config.event_emitter.on("handler_stop", lambda: self.stop())
+        self.config.event_emitter.on("handler_start", lambda: self.start())
+        self.config.event_emitter.on("handler_restart", lambda: self.restart())
 
     # starts the event loop internally
     def start(self):
         if self.running_controller:
             return
+
+        if self.source_devices is None:
+            self.source_devices = SourceDevices2(self.config)
+
+        if not self.source_devices.all_found:
+            print("waiting for matching devices to be plugged in")
+            return
+
         self.running_controller = True
-        print("scanning for source devices")
-        self.source_devices = SourceDevices(self.config)
+
         print("creating target devices")
+        if self.source_devices.all_found:
+            asyncio.ensure_future(self.create_devices())
+
+    async def create_devices(self):
         self.target_devices = TargetDevices(self.config)
         self.event_tree = EventTree(self.config, self.source_devices, self.target_devices)
         self.futures = []
@@ -72,15 +85,26 @@ class EventController:
 
     # stops the event loop internally
     def stop(self):
+        asyncio.ensure_future(self.cleanup())
+
+    async def cleanup(self):
+        await asyncio.sleep(1)
         if not self.running_controller:
             return
         print("stopping event loop")
         self.running_controller = False
-        asyncio.set_event_loop(self.loop)
+
+        save_call(lambda: self.close_all_devices())
+
         for future in self.futures:
             future.cancel()
+        print("source devices closed")
+        print("target devices closed and deleted")
+        print("event loop stopped")
+
+    def close_all_devices(self):
         self.target_devices.close()
-        self.source_devices = None
+        self.source_devices.close()
 
     def reload(self):
         self.stop()

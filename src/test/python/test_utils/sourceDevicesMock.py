@@ -20,15 +20,15 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from ev_core.sourcedevices import SourceDevices
+from ev_core.sourcedevices2 import SourceDevices2
 from ev_core.config import Config
 from test_utils.deviceMock import DeviceMock
 
 
-class SourceDevicesMock(SourceDevices):
+class SourceDevicesMock(SourceDevices2):
 
     def __init__(self, config: Config):
-        SourceDevices.__init__(self, config)
+        SourceDevices2.__init__(self, config)
 
     def get_available_devices(self):
         return [

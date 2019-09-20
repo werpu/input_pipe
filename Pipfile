@@ -23,6 +23,8 @@ uvloop = "*"
 psutil = "*"
 json5 = "*"
 toml = "*"
+pyinotify = "*"
+pymitter = "*"
 
 [requires]
 python_version = "3.7"

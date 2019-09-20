@@ -22,6 +22,8 @@
 import json5
 import toml
 import yaml
+from pymitter import EventEmitter
+
 from utils.langutils import *
 import copy
 import airspeed
@@ -55,6 +57,7 @@ class Config:
 
         self.plugin_data = dict()
         self.orig_data["plugin_data"] = dict()
+        self.event_emitter = EventEmitter()
 
     #
     # overlays some aspects of the config

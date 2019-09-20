@@ -31,6 +31,21 @@ def save_fetch(first_order_func: callable, default=None):
         return default
 
 
+def save_call(first_order_func: callable, max_retries=10):
+    done = False
+    cnt = 0
+    while cnt < max_retries and not done:
+        try:
+            first_order_func()
+            done = True
+        except Exception:
+            cnt += 1
+            if cnt == 10:
+                raise Exception
+
+
+
+
 # from https://stackoverflow.com/questions/19053707/converting-snake-case-to-lower-camel-case-lowercamelcase
 def to_camel_case(snake_str):
     components = snake_str.split('_')
