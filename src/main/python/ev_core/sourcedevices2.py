@@ -138,7 +138,6 @@ class EventHandler(pyinotify.ProcessEvent):
         self.matched_paths = {}
         self._matched_devices = {}
 
-
     """
     Complex device match, it basically first
     checks for a full name or phys match
@@ -148,7 +147,7 @@ class EventHandler(pyinotify.ProcessEvent):
     """
     def _device_match(self, device: evdev.InputDevice):
         for key in save_fetch(lambda: self.config.inputs, {}):
-            name, name_re, phys, phys_re, rel_pos, vendor, product, exclusive = self.config.get_config_input_params(key)
+            name, name_re, phys, phys_re, rel_pos, vendor, product, exclusive, i_max, i_min, i_deadzone = self.config.get_config_input_params(key)
 
             device_match_string = str(self.config.inputs[key])
 

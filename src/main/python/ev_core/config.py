@@ -213,8 +213,11 @@ class Config:
         vendor = save_fetch(lambda: self.inputs[key][INFO][1])
         product = save_fetch(lambda: self.inputs[key][INFO][2])
         exclusive = save_fetch(lambda: self.inputs[key][EXCLUSIVE])
+        i_max = save_fetch(lambda: self.inputs[key][MAX])
+        i_min = save_fetch(lambda: self.inputs[key][MIN])
+        i_deadzone = save_fetch(lambda: self.inputs[key][DEADZONE])
 
-        return name, name_re, phys, phys_re, rel_pos, vendor, product, exclusive
+        return name, name_re, phys, phys_re, rel_pos, vendor, product, exclusive, i_max, i_min, i_deadzone
 
     #
     # the idea is to build an index which allows fast access on the existing data
@@ -306,3 +309,7 @@ PRODUCT = "product"
 VERSION = "version"
 INFO = "info"
 EXCLUSIVE = "exclusive"
+MAX = "max"
+MIN = "min"
+DEADZONE = "deadzone"
+

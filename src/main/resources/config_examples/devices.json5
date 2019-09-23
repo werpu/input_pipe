@@ -37,7 +37,10 @@
     analog_left: {
       name_re: "^Ultimarc.*Ultra-Stik\\s+Player\\s+1$",
       exclusive: true,
-      relpos: 1
+      relpos: 1,
+      max: 255,
+      min: 0,
+      deadzone: 18
     },
     analog_right: {
       name_re: "^Ultimarc.*Ultra-Stik\\s+Player\\s+2$",

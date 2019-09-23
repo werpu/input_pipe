@@ -30,10 +30,6 @@ from ev_core.sourcedevices2 import SourceDevices2
 from ev_core.targetdevices import TargetDevices
 from utils.langutils import *
 
-
-# from circuits import Component, handler
-
-
 #
 # the central controller pipe which reacts on events from their source devices
 # and maps them into proper events in the target devices
@@ -41,6 +37,13 @@ from utils.langutils import *
 # code based on
 # https://python-evdev.readthedocs.io/en/latest/tutorial.html#reading-events-from-multiple-devices-using-asyncio
 #
+MIN = "min"
+MAX = "max"
+DEAD_ZONE = "deadzone"
+ANALOG_CENTER = 127
+REL_DEAD_ZONE = 18
+
+
 class EventController:
 
     def __init__(self, config: Config):
@@ -56,7 +59,7 @@ class EventController:
 
         self.config.event_emitter.on("handler_stop", lambda: self.stop())
         self.config.event_emitter.on("handler_start", lambda: self.start())
-        self.config.event_emitter.on("handler_restart", lambda: self.restart())
+        self.config.event_emitter.on("handler_restart", lambda: self.reload())
 
     # starts the event loop internally
     def start(self):
@@ -126,14 +129,23 @@ class EventController:
 
     def resolve_event(self, event, src_dev):
         # analog deadzone
-        if 100 <= event.value <= 143:
-            return
+        source_device = src_dev.__dict__["_input_dev_key_"]
+        i_dead_zone = save_fetch(lambda: self.config.inputs[source_device][DEAD_ZONE])
+        if i_dead_zone is not None:
+            i_max = save_fetch(lambda: self.config.inputs[source_device][MAX], 255)
+            i_min = save_fetch(lambda: self.config.inputs[source_device][MIN], 0)
+
+            i_center = round((i_max - i_min) / 2)
+
+            if i_center - i_dead_zone <= event.value <= i_center + i_dead_zone:
+                # deadzone events should be triggered to the center
+                # to avoid positional spilling
+                event.value = ANALOG_CENTER
 
         root_type = self.map_type(event)
         if root_type is None:
             return
 
-        source_device = src_dev.__dict__["_input_dev_key_"]
         target_rules = save_fetch(lambda: self.event_tree.tree[source_device][root_type][str(event.code)], {})
 
         if event.type == ecodes.EV_SYN:
