@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cfc920c7-1f5f-4ec5-94b3-42926262640f" name="Default Changelist" comment="adding missing keycodes and notifications">
+    <list default="true" id="cfc920c7-1f5f-4ec5-94b3-42926262640f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/plugin_examples/exponential_translate.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/input_pipe" beforeDir="false" afterPath="$PROJECT_DIR$/dist/input_pipe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/python/ev_core/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/python/ev_core/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/python/ev_core/drivers/basedriver.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/python/ev_core/drivers/basedriver.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/python/ev_core/drivers/exec.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/python/ev_core/drivers/exec.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/python/ev_core/drivers/feval.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/python/ev_core/drivers/feval.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/python/ev_core/event_loop.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/python/ev_core/event_loop.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/python/ev_core/sourcedevices2.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/python/ev_core/sourcedevices2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/config_examples/devices.json5" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config_examples/devices.json5" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -368,14 +370,9 @@
       <workItem from="1568990082837" duration="66000" />
       <workItem from="1568990399211" duration="803000" />
       <workItem from="1569180015547" duration="2899000" />
-      <workItem from="1569218061308" duration="1874000" />
-    </task>
-    <task id="LOCAL-00016" summary="proper support for systemd added">
-      <created>1560007339028</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1560007339028</updated>
+      <workItem from="1569218061308" duration="1909000" />
+      <workItem from="1569691116823" duration="1605000" />
+      <workItem from="1569692746421" duration="3606000" />
     </task>
     <task id="LOCAL-00017" summary="adding macro capabilities">
       <created>1560017240695</created>
@@ -713,7 +710,14 @@
       <option name="project" value="LOCAL" />
       <updated>1567163808566</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="improving the deadzone handling">
+      <created>1569221846694</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1569221846695</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -760,7 +764,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/../joydrv" />
     </ignored-roots>
-    <MESSAGE value="adding support for json5 which i like more than yaml" />
     <MESSAGE value="support for json5 and toml added, because&#10;i dont like yaml, the problem  is editors&#10;always add tabs and then the parser&#10;stops parsing, json5 is a really nice format&#10;so is toml and both dont have this problem&#10;You also can mix the languages how you like&#10;writing the main config in one writing overlays&#10;in another language" />
     <MESSAGE value="smaller fixes in the drivers, cleaning up the dir structure&#10;to make it easier for the users to find things" />
     <MESSAGE value="adding velocity template support&#10;(ongoing work, not working yet)" />
@@ -785,7 +788,8 @@
     <MESSAGE value="needed extensions for c64 support" />
     <MESSAGE value="fixing a few overlay issues" />
     <MESSAGE value="adding missing keycodes and notifications" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding missing keycodes and notifications" />
+    <MESSAGE value="improving the deadzone handling" />
+    <option name="LAST_COMMIT_MESSAGE" value="improving the deadzone handling" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -829,7 +833,7 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/input_pipe$input_pipe__server.coverage" NAME="input_pipe _server Coverage Results" MODIFIED="1569220006664" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/main/python" />
+    <SUITE FILE_PATH="coverage/input_pipe$input_pipe__server.coverage" NAME="input_pipe _server Coverage Results" MODIFIED="1569700927472" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/main/python" />
     <SUITE FILE_PATH="coverage/input_pipe$receiver.coverage" NAME="receiver Coverage Results" MODIFIED="1560464820759" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/main/python/messaging" />
     <SUITE FILE_PATH="coverage/input_pipe$input_pipe_cmd_exit.coverage" NAME="input_pipe_cmd_exit Coverage Results" MODIFIED="1566665883015" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/main/python" />
     <SUITE FILE_PATH="coverage/input_pipe$Unittests_for_ConfigTest_MyTestCase_test_overlay.coverage" NAME="Unittests for ConfigTest.MyTestCase.test_overlay Coverage Results" MODIFIED="1560628845054" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/test/python" />

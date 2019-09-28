@@ -156,7 +156,7 @@ class EventController:
             target_code, target_device, target_type, target_value, target_meta, periodical, frequency = EventController.get_target_data(event, key, target_rules)
             target_device.write(self.config, self.target_devices.drivers or {},
                                 save_fetch(lambda: ecodes.__getattribute__(target_type), -1), target_code, target_value,
-                                target_meta, periodical, frequency)
+                                target_meta, periodical, frequency, event)
             self.touched[target_device.phys] = target_device
 
     @staticmethod

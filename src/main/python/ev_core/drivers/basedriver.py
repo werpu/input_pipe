@@ -66,7 +66,7 @@ class BaseDriver(ABC):
 
     # Central write handler
     # handles all kind of writes, single writes and auto triggers
-    def write(self, config: Config, drivers, e_type=None, e_sub_type=None, value=None, meta=None, periodical=0, frequency=0):
+    def write(self, config: Config, drivers, e_type=None, e_sub_type=None, value=None, meta=None, periodical=0, frequency=0, event=None):
 
         auto_trigger_button_pressed, auto_trigger_button_released, auto_trigger_button_toggle, auto_trigger_press_ongoing, no_auto_trigger = self._calculate_toggle_state(
             e_sub_type, periodical, value)
