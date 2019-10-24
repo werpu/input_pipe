@@ -48,7 +48,21 @@ class TargetDevices:
             if save_fetch(lambda: self.drivers[key].input_dev) is not None:
                 self.drivers[key].input_dev.close()
 
-    # Fetches the associated config data
+    '''
+    @returns a given driver from a key
+    for further processing
+    '''
+    def get_driver(self, key):
+        return self.drivers[key]
+
+    '''
+    Fetches the associated config data
+    and returns it
+    @param key ... the device key
+    @returns dev_key the device key from key
+    @returns dev_name the device name from key
+    @returns dev_type the device tyoe
+    '''
     def get_config_data(self, key):
         dev_key = key
         dev_name = save_fetch(lambda: self.config.outputs[key][NAME], None)

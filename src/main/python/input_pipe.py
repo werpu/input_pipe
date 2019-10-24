@@ -135,6 +135,14 @@ class MainApp:
                         self.evtcl.update_data(self.config)
                         print("overlay reset done")
 
+                    #trigger an inout
+                    elif msg.startswith("trigger_input "):
+                        splitted = msg.split()
+                        s = " "
+                        evstr = s.join(splitted[1:])
+                        self.evtcl.trigger_external_event(evstr)
+                        print("external inout triggered")
+
                 else:
                     await asyncio.sleep(1)
 

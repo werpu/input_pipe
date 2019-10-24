@@ -20,11 +20,15 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 import asyncio
+import json
+import time
 
 from evdev import ecodes
 from evdev.events import KeyEvent, AbsEvent, RelEvent
 
 from ev_core.config import Config
+from ev_core.drivers.feval import FEvalDriver
+from ev_core.drivers.keybd import VirtualKeyboard
 from ev_core.eventtree import EventTree, EV_CODE, EV_META, EV_TYPE, DRIVER, EV_PERIODICAL, EV_FREQUENCY
 from ev_core.sourcedevices2 import SourceDevices2
 from ev_core.targetdevices import TargetDevices
@@ -127,6 +131,38 @@ class EventController:
                 print(e)
                 pass
 
+    ''' 
+    Triggers an external event
+    
+    the idea is to get external events from the command server
+    ala send_event {'to': 'mouse1', 'event': '(EV_KEY), code 272 (BTN_LEFT)'} 
+    '''
+    def trigger_external_event(self, event_data_string):
+        try:
+            data = json.loads(event_data_string)
+            driver = self.target_devices.get_driver(data["to"])
+            if driver is None:
+                raise Exception("driver not found omitting external event request")
+            # we now have to split the event
+            ev_type_code, ev_type_full, ev_code, ev_name, value, ev_meta = EventTree.parse_ev(data["event"])
+
+            if isinstance(driver, VirtualKeyboard):
+                driver.press_keys(key=value)
+            else:
+                driver.write(self.config, self.target_devices.drivers or {},
+                             save_fetch(lambda: ecodes.__getattribute__(ev_type_full), -1),
+                             ev_code, int(value), ev_meta, 0, 0, None).syn()
+
+                if int(value) == 1 and ev_type_full == 'EV_KEY':
+                    time.sleep(50e-3)
+                    driver.write(self.config, self.target_devices.drivers or {},
+                                 save_fetch(lambda: ecodes.__getattribute__(ev_type_full), -1),
+                                 ev_code, int(0), ev_meta, 0, 0, None).syn()
+
+        except Exception:
+            print("Error in json parsing for " + event_data_string + " no event emitted ")
+        pass
+
     def resolve_event(self, event, src_dev):
         # analog deadzone
         source_device = src_dev.__dict__["_input_dev_key_"]
@@ -153,7 +189,8 @@ class EventController:
                 self.touched[phys_device].syn()
             self.touched.clear()
         for key in target_rules:
-            target_code, target_device, target_type, target_value, target_meta, periodical, frequency = EventController.get_target_data(event, key, target_rules)
+            target_code, target_device, target_type, target_value, target_meta, periodical, frequency = \
+                EventController.get_target_data(event, key, target_rules)
             target_device.write(self.config, self.target_devices.drivers or {},
                                 save_fetch(lambda: ecodes.__getattribute__(target_type), -1), target_code, target_value,
                                 target_meta, periodical, frequency, event)

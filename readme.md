@@ -403,11 +403,10 @@ Following commands are supported atm:
  * *pop_overlay* removes the last added config overlay
  * *remove_overlay &lt;filename&gt;* removes the  config overlay specified by the filename given
  * *reset_overlay* reset all overlays and restore the initial config
+ * *trigger_input* sends an input command evdev style to the output device
  
  
 If the server receives a command it does not know it simply will ignore it.
-
-
 
 ## Overlays
 
@@ -455,6 +454,42 @@ removes an overlay independend of its overlay stack position
 ```
 
 resets the overlays and restores the default state
+
+
+### triggering inputs
+
+this feature is currently experimental and be aware if you use the command server 
+this is a major security hole for the time being.
+You basically can send any abitrary command to your output devices
+
+
+example 
+
+
+```bash
+./input_pipe -command="trigger_input  {'to': 'xbox1', 'event': '(EV_KEY), code 272 (BTN_LEFT)'}" 
+```
+
+So what happens here is that basically by sending this command to the input_pipe server
+you will issue a button press of trigger left on the output controller xbox1 
+hence simulating an xbox button press of the left trigger.
+
+The idea for this is that you basically can run external programs like 
+keyboards which then can send artificial keystrokes into your emulator or
+any other running program served by the multiplexer.
+
+So this is a preparation for future functionality.
+
+### General note on the server functionality
+
+Note, use the server function with care if you are security sensitive, or at least
+tighten the security around the server so that it accepts maybe only connections
+from localhost only. 
+
+In future versions I probably will tighten the security somewhat on the server
+but at the time being I want to implement features first.
+Just a fair warning, you will run an open port with no security whatsever except
+what the app provides within its constraints (which is not much)
 
 
 ## Building 
