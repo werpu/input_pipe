@@ -146,18 +146,18 @@ class EventController:
             # we now have to split the event
             ev_type_code, ev_type_full, ev_code, ev_name, value, ev_meta = EventTree.parse_ev(data["event"])
 
-            if isinstance(driver, VirtualKeyboard):
-                driver.press_keys(key=value)
-            else:
+            #if isinstance(driver, VirtualKeyboard):
+            #    driver.press_keys(key=value)
+            #else:
+            driver.write(self.config, self.target_devices.drivers or {},
+                         save_fetch(lambda: ecodes.__getattribute__(ev_type_full), -1),
+                         ev_code, int(value), ev_meta, 0, 0, None).syn()
+
+            if int(value) == 1 and ev_type_full == 'EV_KEY':
+                time.sleep(50e-3)
                 driver.write(self.config, self.target_devices.drivers or {},
                              save_fetch(lambda: ecodes.__getattribute__(ev_type_full), -1),
-                             ev_code, int(value), ev_meta, 0, 0, None).syn()
-
-                if int(value) == 1 and ev_type_full == 'EV_KEY':
-                    time.sleep(50e-3)
-                    driver.write(self.config, self.target_devices.drivers or {},
-                                 save_fetch(lambda: ecodes.__getattribute__(ev_type_full), -1),
-                                 ev_code, int(0), ev_meta, 0, 0, None).syn()
+                             ev_code, int(0), ev_meta, 0, 0, None).syn()
 
         except Exception:
             print("Error in json parsing for " + event_data_string + " no event emitted ")

@@ -117,7 +117,10 @@ class VirtualKeyboard(BaseDriver):
                 ecodes.KEY_NUMERIC_7,
                 ecodes.KEY_NUMERIC_8,
                 ecodes.KEY_NUMERIC_9,
-                ecodes.KEY_NUMERIC_0
+                ecodes.KEY_NUMERIC_0,
+                ecodes.KEY_KPASTERISK,
+                ecodes.KEY_COMMA,
+                ecodes.KEY_KPCOMMA
             ]
         }
 
