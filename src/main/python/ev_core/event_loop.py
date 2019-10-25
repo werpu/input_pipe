@@ -153,14 +153,14 @@ class EventController:
                          save_fetch(lambda: ecodes.__getattribute__(ev_type_full), -1),
                          ev_code, int(value), ev_meta, 0, 0, None).syn()
 
-            for cnt in range(6):
-                time.sleep(40e-3)
+            for cnt in range(10):
+                time.sleep(50e-3)
                 driver.write(self.config, self.target_devices.drivers or {},
                              save_fetch(lambda: ecodes.__getattribute__(ev_type_full), -1),
                              ev_code, int(2), ev_meta, 0, 0, None).syn()
 
             if int(value) == 1 and ev_type_full == 'EV_KEY':
-                time.sleep(40e-3)
+                time.sleep(100e-3)
                 driver.write(self.config, self.target_devices.drivers or {},
                              save_fetch(lambda: ecodes.__getattribute__(ev_type_full), -1),
                              ev_code, int(0), ev_meta, 0, 0, None).syn()
