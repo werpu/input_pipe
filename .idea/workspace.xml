@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cfc920c7-1f5f-4ec5-94b3-42926262640f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/plugin_examples/exponential_translate.py" afterDir="false" />
+    <list default="true" id="cfc920c7-1f5f-4ec5-94b3-42926262640f" name="Default Changelist" comment="adding input remote control for external keyboards">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/input_pipe" beforeDir="false" afterPath="$PROJECT_DIR$/dist/input_pipe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/python/ev_core/drivers/basedriver.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/python/ev_core/drivers/basedriver.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/python/ev_core/drivers/exec.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/python/ev_core/drivers/exec.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/python/ev_core/drivers/feval.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/python/ev_core/drivers/feval.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/python/ev_core/drivers/keybd.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/python/ev_core/drivers/keybd.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/python/ev_core/event_loop.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/python/ev_core/event_loop.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config_examples/devices.json5" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config_examples/devices.json5" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -372,28 +368,17 @@
       <workItem from="1569180015547" duration="2899000" />
       <workItem from="1569218061308" duration="1909000" />
       <workItem from="1569691116823" duration="1605000" />
-      <workItem from="1569692746421" duration="3606000" />
-    </task>
-    <task id="LOCAL-00017" summary="adding macro capabilities">
-      <created>1560017240695</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1560017240695</updated>
-    </task>
-    <task id="LOCAL-00018" summary="adding macro helpers">
-      <created>1560024127437</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1560024127438</updated>
-    </task>
-    <task id="LOCAL-00019" summary="syn fixes for the drivers">
-      <created>1560108333465</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1560108333465</updated>
+      <workItem from="1569692746421" duration="4317000" />
+      <workItem from="1571853933125" duration="1017000" />
+      <workItem from="1571855578518" duration="598000" />
+      <workItem from="1571899934982" duration="4037000" />
+      <workItem from="1571925411058" duration="1608000" />
+      <workItem from="1571927425810" duration="5335000" />
+      <workItem from="1571934232097" duration="4406000" />
+      <workItem from="1571984326195" duration="3115000" />
+      <workItem from="1572001490805" duration="33000" />
+      <workItem from="1572002029167" duration="873000" />
+      <workItem from="1572003139681" duration="1479000" />
     </task>
     <task id="LOCAL-00020" summary="syn fixes for the drivers">
       <created>1560108514585</created>
@@ -717,7 +702,28 @@
       <option name="project" value="LOCAL" />
       <updated>1569221846695</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="allow signal translations via drivers">
+      <created>1569707928779</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1569707928780</updated>
+    </task>
+    <task id="LOCAL-00067" summary="adding input remote control for external keyboards">
+      <created>1571932055651</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1571932055651</updated>
+    </task>
+    <task id="LOCAL-00068" summary="adding keycodes, remote keyboard now working">
+      <created>1571945142154</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1571945142155</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -764,9 +770,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/../joydrv" />
     </ignored-roots>
-    <MESSAGE value="support for json5 and toml added, because&#10;i dont like yaml, the problem  is editors&#10;always add tabs and then the parser&#10;stops parsing, json5 is a really nice format&#10;so is toml and both dont have this problem&#10;You also can mix the languages how you like&#10;writing the main config in one writing overlays&#10;in another language" />
-    <MESSAGE value="smaller fixes in the drivers, cleaning up the dir structure&#10;to make it easier for the users to find things" />
-    <MESSAGE value="adding velocity template support&#10;(ongoing work, not working yet)" />
     <MESSAGE value="adding additional info regarding alternative configurations" />
     <MESSAGE value="adding overlay information" />
     <MESSAGE value="moving the build info down" />
@@ -789,7 +792,10 @@
     <MESSAGE value="fixing a few overlay issues" />
     <MESSAGE value="adding missing keycodes and notifications" />
     <MESSAGE value="improving the deadzone handling" />
-    <option name="LAST_COMMIT_MESSAGE" value="improving the deadzone handling" />
+    <MESSAGE value="allow signal translations via drivers" />
+    <MESSAGE value="adding input remote control for external keyboards" />
+    <MESSAGE value="adding keycodes, remote keyboard now working" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding keycodes, remote keyboard now working" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -806,12 +812,12 @@
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/main/python/input_pipe.py</url>
-          <line>168</line>
+          <line>176</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/main/python/input_pipe.py</url>
-          <line>144</line>
+          <line>152</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="python-line">
@@ -821,7 +827,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/main/python/ev_core/drivers/keybd.py</url>
-          <line>131</line>
+          <line>154</line>
           <option name="timeStamp" value="36" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -829,11 +835,16 @@
           <line>33</line>
           <option name="timeStamp" value="67" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/main/python/ev_core/event_loop.py</url>
+          <line>187</line>
+          <option name="timeStamp" value="68" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/input_pipe$input_pipe__server.coverage" NAME="input_pipe _server Coverage Results" MODIFIED="1569700927472" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/main/python" />
+    <SUITE FILE_PATH="coverage/input_pipe$input_pipe__server.coverage" NAME="input_pipe _server Coverage Results" MODIFIED="1572004108201" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/main/python" />
     <SUITE FILE_PATH="coverage/input_pipe$receiver.coverage" NAME="receiver Coverage Results" MODIFIED="1560464820759" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/main/python/messaging" />
     <SUITE FILE_PATH="coverage/input_pipe$input_pipe_cmd_exit.coverage" NAME="input_pipe_cmd_exit Coverage Results" MODIFIED="1566665883015" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/main/python" />
     <SUITE FILE_PATH="coverage/input_pipe$Unittests_for_ConfigTest_MyTestCase_test_overlay.coverage" NAME="Unittests for ConfigTest.MyTestCase.test_overlay Coverage Results" MODIFIED="1560628845054" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/test/python" />
