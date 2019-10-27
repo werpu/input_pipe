@@ -140,7 +140,7 @@ class VirtualKeyboard(BaseDriver):
                 ecodes.KEY_KPEQUAL,
                 ecodes.KEY_KPASTERISK,
                 ecodes.KEY_COMMA,
-                ecodes.KEY_KPCOMMA
+                ecodes.KEY_EQUAL
             ]
         }
 

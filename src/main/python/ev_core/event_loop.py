@@ -153,12 +153,14 @@ class EventController:
                          save_fetch(lambda: ecodes.__getattribute__(ev_type_full), -1),
                          ev_code, int(value), ev_meta, 0, 0, None).syn()
 
-            for cnt in range(10):
-                time.sleep(50e-3)
-                driver.write(self.config, self.target_devices.drivers or {},
-                             save_fetch(lambda: ecodes.__getattribute__(ev_type_full), -1),
-                             ev_code, int(2), ev_meta, 0, 0, None).syn()
+            if data["long"] is not None and data["long"] == "true": #long press expected
+                for cnt in range(10):
+                    time.sleep(50e-3)
+                    driver.write(self.config, self.target_devices.drivers or {},
+                                 save_fetch(lambda: ecodes.__getattribute__(ev_type_full), -1),
+                                 ev_code, int(2), ev_meta, 0, 0, None).syn()
 
+            #release
             if int(value) == 1 and ev_type_full == 'EV_KEY':
                 time.sleep(100e-3)
                 driver.write(self.config, self.target_devices.drivers or {},

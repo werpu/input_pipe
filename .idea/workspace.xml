@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cfc920c7-1f5f-4ec5-94b3-42926262640f" name="Default Changelist" comment="adding input remote control for external keyboards">
+    <list default="true" id="cfc920c7-1f5f-4ec5-94b3-42926262640f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/input_pipe" beforeDir="false" afterPath="$PROJECT_DIR$/dist/input_pipe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/python/ev_core/drivers/keybd.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/python/ev_core/drivers/keybd.py" afterDir="false" />
@@ -378,21 +378,10 @@
       <workItem from="1571984326195" duration="3115000" />
       <workItem from="1572001490805" duration="33000" />
       <workItem from="1572002029167" duration="873000" />
-      <workItem from="1572003139681" duration="1479000" />
-    </task>
-    <task id="LOCAL-00020" summary="syn fixes for the drivers">
-      <created>1560108514585</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1560108514585</updated>
-    </task>
-    <task id="LOCAL-00021" summary="moving to uvloop">
-      <created>1560170066852</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1560170066852</updated>
+      <workItem from="1572003139681" duration="4849000" />
+      <workItem from="1572028999122" duration="886000" />
+      <workItem from="1572032726926" duration="191000" />
+      <workItem from="1572200776161" duration="3616000" />
     </task>
     <task id="LOCAL-00022" summary="preparing for remoting">
       <created>1560171182713</created>
@@ -723,7 +712,21 @@
       <option name="project" value="LOCAL" />
       <updated>1571945142155</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="several remote control fixes for keyboards">
+      <created>1572004642252</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1572004642253</updated>
+    </task>
+    <task id="LOCAL-00070" summary="fixing up the event loop for the coleco emulation">
+      <created>1572008403938</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1572008403939</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -770,8 +773,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/../joydrv" />
     </ignored-roots>
-    <MESSAGE value="adding additional info regarding alternative configurations" />
-    <MESSAGE value="adding overlay information" />
     <MESSAGE value="moving the build info down" />
     <MESSAGE value="allowing splitted config files" />
     <MESSAGE value="adding idea on how to implement auto fire" />
@@ -795,7 +796,9 @@
     <MESSAGE value="allow signal translations via drivers" />
     <MESSAGE value="adding input remote control for external keyboards" />
     <MESSAGE value="adding keycodes, remote keyboard now working" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding keycodes, remote keyboard now working" />
+    <MESSAGE value="several remote control fixes for keyboards" />
+    <MESSAGE value="fixing up the event loop for the coleco emulation" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixing up the event loop for the coleco emulation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -837,14 +840,24 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/main/python/ev_core/event_loop.py</url>
-          <line>187</line>
+          <line>189</line>
           <option name="timeStamp" value="68" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/main/python/ev_core/event_loop.py</url>
+          <line>155</line>
+          <option name="timeStamp" value="69" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/main/python/ev_core/event_loop.py</url>
+          <line>141</line>
+          <option name="timeStamp" value="70" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/input_pipe$input_pipe__server.coverage" NAME="input_pipe _server Coverage Results" MODIFIED="1572004108201" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/main/python" />
+    <SUITE FILE_PATH="coverage/input_pipe$input_pipe__server.coverage" NAME="input_pipe _server Coverage Results" MODIFIED="1572203661381" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/main/python" />
     <SUITE FILE_PATH="coverage/input_pipe$receiver.coverage" NAME="receiver Coverage Results" MODIFIED="1560464820759" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/main/python/messaging" />
     <SUITE FILE_PATH="coverage/input_pipe$input_pipe_cmd_exit.coverage" NAME="input_pipe_cmd_exit Coverage Results" MODIFIED="1566665883015" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/main/python" />
     <SUITE FILE_PATH="coverage/input_pipe$Unittests_for_ConfigTest_MyTestCase_test_overlay.coverage" NAME="Unittests for ConfigTest.MyTestCase.test_overlay Coverage Results" MODIFIED="1560628845054" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/test/python" />
