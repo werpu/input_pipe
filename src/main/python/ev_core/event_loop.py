@@ -65,8 +65,12 @@ class EventController:
         self.config.event_emitter.on("handler_start", lambda: self.start())
         self.config.event_emitter.on("handler_restart", lambda: self.reload())
 
-    # starts the event loop internally
     def start(self):
+        """
+        starts the event loop and waits for devices
+        to be plugged in if there are none present
+        :return: void
+        """
         if self.running_controller:
             return
 
@@ -84,6 +88,11 @@ class EventController:
             asyncio.ensure_future(self.create_devices())
 
     async def create_devices(self):
+        """
+        creates the virtual devices
+        defined in our configuration
+        :return: void
+        """
         self.target_devices = TargetDevices(self.config)
         self.event_tree = EventTree(self.config, self.source_devices, self.target_devices)
         self.futures = []
@@ -92,9 +101,19 @@ class EventController:
 
     # stops the event loop internally
     def stop(self):
+        """
+        stops the event loop
+        :return: void
+        """
         asyncio.ensure_future(self.cleanup())
 
     async def cleanup(self):
+        """
+        Resource cleanup
+        to be able to start again with
+        a clean slate
+        :return:
+        """
         await asyncio.sleep(1)
         if not self.running_controller:
             return
@@ -110,6 +129,10 @@ class EventController:
         print("event loop stopped")
 
     def close_all_devices(self):
+        """
+        Close all existing virtual devices
+        :return: void
+        """
         self.target_devices.close()
         self.source_devices.close()
 
@@ -131,13 +154,16 @@ class EventController:
                 print(e)
                 pass
 
-    ''' 
-    Triggers an external event
-    
-    the idea is to get external events from the command server
-    ala send_event {'to': 'mouse1', 'event': '(EV_KEY), code 272 (BTN_LEFT)'} 
-    '''
     def trigger_external_event(self, event_data_string):
+        """
+         Triggers an external event
+
+         the idea is to get external events from the command server
+         ala send_event {'to': 'mouse1', 'event': '(EV_KEY), code 272 (BTN_LEFT)'}
+
+        :param event_data_string:
+        :return:
+        """
         try:
             data = json.loads(event_data_string)
             driver = self.target_devices.get_driver(data["to"])
@@ -160,7 +186,7 @@ class EventController:
                                  save_fetch(lambda: ecodes.__getattribute__(ev_type_full), -1),
                                  ev_code, int(2), ev_meta, 0, 0, None).syn()
 
-            #release
+            # release
             if int(value) == 1 and ev_type_full == 'EV_KEY':
                 time.sleep(100e-3)
                 driver.write(self.config, self.target_devices.drivers or {},
@@ -172,6 +198,16 @@ class EventController:
         pass
 
     def resolve_event(self, event, src_dev):
+        """
+        central event translation methid
+        reacts on an incoming event translates
+        it and sends the translated data off
+        to the receiving driver
+
+        :param event: the incoming event
+        :param src_dev: the issuing source device
+        :return: void
+        """
         # analog deadzone
         source_device = src_dev.__dict__["_input_dev_key_"]
         i_dead_zone = save_fetch(lambda: self.config.inputs[source_device][DEAD_ZONE])

@@ -79,6 +79,10 @@
     translate: {
       name: "translate",
       type: "eval"
+    },
+    serial0: {
+      name: "serial0",
+      type: "serial"
     }
   },
   rules: [
@@ -283,10 +287,6 @@
         {
           from_ev: "(EV_ABS), code 0 (ABS_X)",
           targets: [
-            {
-              to: "translate",
-              to_ev: "(META), /home/werpu/PycharmProjects/input_pipe/src/main/resources/plugin_examples/exponential_translate.py"
-            },
             {
               to: "xbox1",
               to_ev: "(EV_ABS), code 0 (ABS_X)"

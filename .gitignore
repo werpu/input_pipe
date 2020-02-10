@@ -2,3 +2,7 @@
 .idea/
 _install.sh
 build/
+.venv
+.venvlib
+.vscode
+__pycache__

@@ -5,6 +5,7 @@ verify_ssl = true
 
 [dev-packages]
 virtualenv = "*"
+pylint = "*"
 pyinstaller = "*"
 
 [packages]
@@ -25,6 +26,8 @@ json5 = "*"
 toml = "*"
 pyinotify = "*"
 pymitter = "*"
+airspeed = "*"
+serial = "*"
 
 [requires]
-python_version = "3.7"
+python_version = "3.7.3"
