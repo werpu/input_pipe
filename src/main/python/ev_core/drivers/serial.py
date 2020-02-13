@@ -1,38 +1,11 @@
-import serial as serial
-
+import sys
 from ev_core.config import Config
 from ev_core.drivers.basedriver import BaseDriver
-import os
 import serial
 
-JOY_0 = 0x0
-JOY_1 = 0x1
-KEYBD = 0x2
-MOUSE = 0x3
-
-
-# inputs
-BTN_A = 0x1
-BTN_B = 0x2
-BTN_X = 0x3
-BTN_Y = 0x4
-BTN_L = 0x5
-BTN_R = 0x6
-BTN_LT = 0x7
-BTN_RT = 0x8
-BTN_SEL = 0x9
-BTN_STRT = 0xA
-BTN_HL = 0xB
-BTN_HR = 0xC
-BTN_HT = 0xD
-BTN_HB = 0xE
-BTN_LS = 0xF
-BTN_RS = 0x10
-
-AL_Y = 11
-AL_X = 12
-AR_Y = 13
-AR_X = 14
+TARGET_JOY = 0x0
+TARGET_KEYBD = 0x1
+TARGET_MOUSE = 0x2
 
 class SerialDriver(BaseDriver):
     """
@@ -41,29 +14,52 @@ class SerialDriver(BaseDriver):
     the joystick emulation to external devices
     """
     _init_cnt = 0
-    port = "/dev/serial0"
-    ser = None
 
     def __init__(self):
         self.phys = "serial" + SerialDriver._init_cnt.__str__()
         SerialDriver._init_cnt += 1
-        self.name = "serial0"
-        self.ser = serial.Serial('/dev/ttyS0', 9600)
-        pass
+        self.name = "serial"
+        self.ser = None
 
-    def create(self):
-        pass
+    def create(self, meta="/dev/serial0"):
+        try:
+            self.ser = serial.Serial(meta, 9600)
+        except RuntimeError:
+            print("Error: ", sys.exc_info()[0])
 
     def write(self, config: Config, drivers, e_type, e_sub_type, value, meta=None, periodical=0, frequency=0, event=None):
         """
         # hook the serial code here
         # if value == 1:
         #    os.system(meta)
+        # todo add marker bytes here for stream reovery on the client side
+        # a double byte combinatin of ffxff should do the trick
+        """
+        ev_list = [127, 127, e_type, int(e_sub_type), value < 0, 0, abs(value)]
+        data = bytearray(ev_list)
+        num_bytes = self.ser.write(data)
+        self.ser.flush()
+        print(num_bytes)
+        """
+        Example:
+            (EV_ABS), code 17 (ABS_HAT0Y), value -1
+            e_type: EV_ABS - actual 3
+            e_sub_type: 17
+            value: 0/1 - value -1    
         """
 
     def close(self):
+        """
+        close connection
+        :return:
+        """
         self.ser.close()
+        pass
 
     def syn(self):
+        """
+        flush... identical to joystick syn
+        :return:
+        """
         self.ser.flush()
-
+        pass

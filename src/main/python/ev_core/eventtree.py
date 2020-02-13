@@ -129,6 +129,17 @@ class EventTree:
 
     @staticmethod
     def _parse_code_def(splitted):
+        """
+
+        (EV_KEY), code 310 (BTN_TL) =>
+            ev_code: 310
+            ev_name: BTN_TL
+            ev_type_code: EV_KEY
+            ev_type_full: code 310 (BTN_TL)
+
+        :param splitted:
+        :return:
+        """
         type_codes = [my_str.strip() for my_str in splitted[0].split()]
         ev_type_code = type_codes[1]
         ev_type_full = type_codes[2][1:-1].strip()
@@ -137,8 +148,11 @@ class EventTree:
 
     @staticmethod
     def _parse_event_codes(splitted):
+        # split the rest apart
         evcodes = [my_str.strip() for my_str in splitted[1].split()]
+        # event code number
         ev_code = evcodes[1].strip()
+        # event name
         ev_name = evcodes[2][1:-1].strip()
         return ev_code, ev_name
 

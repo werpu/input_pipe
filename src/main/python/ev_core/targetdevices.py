@@ -34,12 +34,12 @@ class TargetDevices:
         self.drivers = {}
 
         for key in config.outputs:
-            dev_key, dev_name, dev_type = self.get_config_data(key)
+            dev_key, dev_name, dev_type, dev_meta = self.get_config_data(key)
 
             driver = save_fetch(lambda: DEV_TYPES[dev_type](), None)
 
             if driver is not None:
-                driver.create()
+                driver.create(dev_meta)
                 self.drivers[dev_key] = driver
                 print("Output driver found for "+dev_key + " node created with phys " + save_fetch(lambda: driver.phys))
 
@@ -67,6 +67,7 @@ class TargetDevices:
         dev_key = key
         dev_name = save_fetch(lambda: self.config.outputs[key][NAME], None)
         dev_type = save_fetch(lambda: self.config.outputs[key]["type"], None)
+        meta = save_fetch(lambda: self.config.outputs[key]["meta"], None)
 
-        return dev_key, dev_name, dev_type
+        return dev_key, dev_name, dev_type, meta
 

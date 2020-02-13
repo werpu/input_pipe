@@ -46,7 +46,7 @@ class VirtualMouse(BaseDriver):
             ecodes.EV_KEY: (ecodes.BTN_LEFT, ecodes.BTN_MIDDLE, ecodes.BTN_RIGHT)
         }
 
-    def create(self):
+    def create(self, meta=None):
 
         self.input_dev = UInput(self.capabilities,
                                 self.name,

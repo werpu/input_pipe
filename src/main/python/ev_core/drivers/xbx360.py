@@ -76,6 +76,9 @@ class Xbox360(BaseDriver):
             ]
         }
 
+    def create(self, meta=None):
+        BaseDriver.create(self)
+
     def close(self):
         BaseDriver.close(self)
         Xbox360._init_cnt -= 1

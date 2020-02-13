@@ -18,7 +18,7 @@ class FEvalDriver(BaseDriver):
         FEvalDriver._init_cnt += 1
         self._file_data = {}
 
-    def create(self):
+    def create(self, meta=None):
         pass
 
     def write(self, config: Config, drivers, e_type, e_sub_type, value, meta=None, periodical=0, frequency=0, event=None):

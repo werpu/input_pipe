@@ -144,7 +144,7 @@ class VirtualKeyboard(BaseDriver):
             ]
         }
 
-    def create(self):
+    def create(self, meta=None):
         self.input_dev = UInput(self.capabilities,
                                 self.name,
                                 phys=self.phys)

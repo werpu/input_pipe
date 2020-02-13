@@ -81,8 +81,9 @@
       type: "eval"
     },
     serial0: {
-      name: "serial0",
-      type: "serial"
+      name: "serial",
+      type: "serial",
+      meta: "/dev/serial0"
     }
   },
   rules: [
@@ -98,6 +99,10 @@
             {
               to: "xbox1",
               to_ev: "(EV_ABS), code 17 (ABS_HAT0Y), value -1" //mapped to pad up
+            },
+            {
+              to: "serial0",
+              to_ev: "(EV_ABS), code 17 (ABS_HAT0Y), value -1"
             }
           ]
         },
@@ -135,8 +140,8 @@
             {
               to: "xbox1",
               to_ev: "(EV_KEY), code 304 (BTN_SOUTH)",
-	      // auto fire
-	      periodical: 1,
+	          // auto fire
+	          periodical: 1,
               frequency: 200
             }
           ]
