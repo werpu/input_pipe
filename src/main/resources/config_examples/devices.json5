@@ -89,16 +89,18 @@
   rules: [
     {
       from: "digital",
-      	/*
- 	* First set of rules mapping for the simulated pad
-      	*/
+      /*
+      * First set of rules mapping for the simulated pad
+       */
       target_rules: [
         {
-          from_ev: "(EV_KEY), code 103 (KEY_UP)", //key up left digital
+          from_ev: "(EV_KEY), code 103 (KEY_UP)",
+          //key up left digital
           targets: [
             {
               to: "xbox1",
-              to_ev: "(EV_ABS), code 17 (ABS_HAT0Y), value -1" //mapped to pad up
+              to_ev: "(EV_ABS), code 17 (ABS_HAT0Y), value -1"
+              //mapped to pad up
             },
             {
               to: "serial0",
@@ -107,126 +109,180 @@
           ]
         },
         {
-          from_ev: "(EV_KEY), code 108 (KEY_DOWN)", //key down left digital
+          from_ev: "(EV_KEY), code 108 (KEY_DOWN)",
+          //key down left digital
           targets: [
             {
               to: "xbox1",
+              to_ev: "(EV_ABS), code 17 (ABS_HAT0Y), value 1"
+            },
+            {
+              to: "serial0",
               to_ev: "(EV_ABS), code 17 (ABS_HAT0Y), value 1"
             }
           ]
         },
         {
-          from_ev: "(EV_KEY), code 105 (KEY_LEFT)", //left left stick digital
+          from_ev: "(EV_KEY), code 105 (KEY_LEFT)",
+          //left left stick digital
           targets: [
             {
               to: "xbox1",
+              to_ev: "(EV_ABS), code 16 (ABS_HAT0X), value -1"
+            },
+            {
+              to: "serial0",
               to_ev: "(EV_ABS), code 16 (ABS_HAT0X), value -1"
             }
           ]
         },
         {
-          from_ev: "(EV_KEY), code 106 (KEY_RIGHT)", //right left stick digital
+          from_ev: "(EV_KEY), code 106 (KEY_RIGHT)",
+          //right left stick digital
           targets: [
             {
               to: "xbox1",
               to_ev: "(EV_ABS), code 16 (ABS_HAT0X), value 1"
+            },
+            {
+              to: "serial0",
+              to_ev: "(EV_ABS), code 16 (ABS_HAT0X), value 1"
             }
           ]
         },
-	//BTN A
+        //BTN A
         {
           from_ev: "(EV_KEY), code 29 (KEY_LEFTCTRL)",
           targets: [
             {
               to: "xbox1",
               to_ev: "(EV_KEY), code 304 (BTN_SOUTH)",
-	          // auto fire
-	          periodical: 1,
+              // auto fire
+              periodical: 1,
+              frequency: 200
+            },
+            {
+              to: "serial0",
+              to_ev: "(EV_KEY), code 304 (BTN_SOUTH)",
+              // auto fire
+              periodical: 1,
               frequency: 200
             }
           ]
         },
-	//BTN B
+        //BTN B
         {
           from_ev: "(EV_KEY), code 56 (KEY_LEFTALT)",
           targets: [
             {
               to: "xbox1",
               to_ev: "(EV_KEY), code 305 (BTN_EAST)"
+            },
+            {
+              to: "serial0",
+              to_ev: "(EV_KEY), code 305 (BTN_EAST)"
             }
           ]
         },
-	//BTN X
+        //BTN X
         {
           from_ev: "(EV_KEY), code 57 (KEY_SPACE)",
           targets: [
             {
               to: "xbox1",
               to_ev: "(EV_KEY), code 307 (BTN_NORTH)"
+            },
+            {
+              to: "serial0",
+              to_ev: "(EV_KEY), code 307 (BTN_NORTH)"
             }
           ]
         },
-	//BTN Y
+        //BTN Y
         {
           from_ev: "(EV_KEY), code 42 (KEY_LEFTSHIFT)",
           targets: [
             {
               to: "xbox1",
               to_ev: "(EV_KEY), code 308 (BTN_WEST)"
+            },
+            {
+              to: "serial0",
+              to_ev: "(EV_KEY), code 308 (BTN_WEST)"
             }
           ]
         },
-	//BTN L
+        //BTN L
         {
           from_ev: "(EV_KEY), code 44 (KEY_Z)",
           targets: [
             {
               to: "xbox1",
               to_ev: "(EV_KEY), code 310 (BTN_TL)"
+            },
+            {
+              to: "serial0",
+              to_ev: "(EV_KEY), code 310 (BTN_TL)"
             }
           ]
         },
-	//TTN R
+        //TTN R
         {
           from_ev: "(EV_KEY), code 45 (KEY_X)",
           targets: [
             {
               to: "xbox1",
               to_ev: "(EV_KEY), code 311 (BTN_TR)"
+            },
+            {
+              to: "serial0",
+              to_ev: "(EV_KEY), code 311 (BTN_TR)"
             }
           ]
         },
-	//BTN TL
+        //BTN TL
         {
           from_ev: "(EV_KEY), code 47 (KEY_V)",
           targets: [
             {
               to: "xbox1",
               to_ev: "(EV_KEY), code 312 (BTN_TL2)"
+            },
+            {
+              to: "serial0",
+              to_ev: "(EV_KEY), code 312 (BTN_TL2)"
             }
           ]
         },
-	//BTN TR
+        //BTN TR
         {
           from_ev: "(EV_KEY), code 25 (KEY_P)",
           targets: [
             {
               to: "xbox1",
               to_ev: "(EV_KEY), code 313 (BTN_TR2)"
+            },
+            {
+              to: "serial0",
+              to_ev: "(EV_KEY), code 313 (BTN_TR2)"
             }
           ]
         },
-	//THUMB LEFT
+        //THUMB LEFT
         {
           from_ev: "(EV_KEY), code 46 (KEY_C)",
           targets: [
             {
               to: "xbox1",
               to_ev: "(EV_KEY), code 317 (BTN_THUMBL)"
+            },
+            {
+              to: "serial0",
+              to_ev: "(EV_KEY), code 317 (BTN_THUMBL)"
             }
           ]
         },
-	//THUMB RIGHT
+        //THUMB RIGHT
         {
           from_ev: "(EV_KEY), code 15 (KEY_TAB)",
           targets: [
@@ -237,30 +293,42 @@
             {
               to: "xbox2",
               to_ev: "(EV_KEY), code 318 (BTN_THUMBR)"
+            },
+            {
+              to: "serial0",
+              to_ev: "(EV_KEY), code 318 (BTN_THUMBR)"
             }
           ]
         },
-	//SELECT
+        //SELECT
         {
           from_ev: "(EV_KEY), code 6 (KEY_5)",
           targets: [
             {
               to: "xbox1",
               to_ev: "(EV_KEY), code 314 (BTN_SELECT)"
+            },
+            {
+              to: "serial0",
+              to_ev: "(EV_KEY), code 314 (BTN_SELECT)"
             }
           ]
         },
-	//START
+        //START
         {
           from_ev: "(EV_KEY), code 2 (KEY_1)",
           targets: [
             {
               to: "xbox1",
               to_ev: "(EV_KEY), code 315 (BTN_START)"
+            },
+            {
+              to: "serial0",
+              to_ev: "(EV_KEY), code 315 (BTN_START)"
             }
           ]
         },
-	//MODE XBOX BUTTON
+        //MODE XBOX BUTTON
         {
           from_ev: "(EV_KEY), code 102 (KEY_HOME)",
           targets: [
@@ -270,6 +338,10 @@
             },
             {
               to: "xbox2",
+              to_ev: "(EV_KEY), code 316 (BTN_MODE)"
+            },
+            {
+              to: "serial0",
               to_ev: "(EV_KEY), code 316 (BTN_MODE)"
             }
           ]
@@ -283,8 +355,12 @@
         {
           from_ev: "(EV_ABS), code 1 (ABS_Y)",
           targets: [
-            {
+           /* {
               to: "xbox1",
+              to_ev: "(EV_ABS), code 1 (ABS_Y)"
+            },*/
+            {
+              to: "serial0",
               to_ev: "(EV_ABS), code 1 (ABS_Y)"
             }
           ]
@@ -292,8 +368,12 @@
         {
           from_ev: "(EV_ABS), code 0 (ABS_X)",
           targets: [
-            {
+           /* {
               to: "xbox1",
+              to_ev: "(EV_ABS), code 0 (ABS_X)"
+            },*/
+            {
+              to: "serial0",
               to_ev: "(EV_ABS), code 0 (ABS_X)"
             }
           ]
@@ -314,6 +394,10 @@
             {
               to: "xbox2",
               to_ev: "(EV_ABS), code 1 ls(ABS_Y)"
+            },
+            {
+              to: "serial0",
+              to_ev: "(EV_ABS), code 4 (ABS_RY)"
             }
           ]
         },
@@ -327,10 +411,14 @@
             {
               to: "xbox2",
               to_ev: "(EV_ABS), code 0 (ABS_X)"
+            },
+            {
+              to: "serial0",
+              to_ev: "(EV_ABS), code 3 (ABS_RX)"
             }
           ]
         },
-	//front orange button left -> 4 way switch
+        //front orange button left -> 4 way switch
         {
           from_ev: "(EV_KEY), code 292 (BTN_TOP2)",
           targets: [
@@ -340,7 +428,7 @@
             }
           ]
         },
-	//front orange button left -> 8 way switch
+        //front orange button left -> 8 way switch
         {
           from_ev: "(EV_KEY), code 291 (BTN_TOP)",
           targets: [
@@ -350,13 +438,14 @@
             }
           ]
         },
-	//button front right -> special key
+        //button front right -> special key
         {
           from_ev: "(EV_KEY), code 290 (BTN_THUMB2)",
           targets: [
             {
               to: "eval1",
-              to_ev: "(META), /home/werpu/gamepadservice/burping.py" //burp sound
+              to_ev: "(META), /home/werpu/gamepadservice/burping.py"
+              //burp sound
             }
           ]
         },
@@ -365,7 +454,8 @@
           targets: [
             {
               to: "eval1",
-              to_ev: "(META), /home/werpu/gamepadservice/florence.py" //on screen keyboard toggle
+              to_ev: "(META), /home/werpu/gamepadservice/florence.py"
+              //on screen keyboard toggle
             }
           ]
         }
@@ -420,7 +510,7 @@
             }
           ]
         },
-	// btn A
+        // btn A
         {
           from_ev: "(EV_KEY), code 30 (KEY_A)",
           targets: [
@@ -430,7 +520,7 @@
             }
           ]
         },
-	// B
+        // B
         {
           from_ev: "(EV_KEY), code 16 (KEY_Q)",
           targets: [
@@ -440,7 +530,7 @@
             }
           ]
         },
-	// X
+        // X
         {
           from_ev: "(EV_KEY), code 17 (KEY_W)",
           targets: [
@@ -450,7 +540,7 @@
             }
           ]
         },
-	// Y
+        // Y
         {
           from_ev: "(EV_KEY), code 37 (KEY_K)",
           targets: [
@@ -460,7 +550,7 @@
             }
           ]
         },
-	// L
+        // L
         {
           from_ev: "(EV_KEY), code 23 (KEY_I)",
           targets: [
@@ -470,7 +560,7 @@
             }
           ]
         },
-	// R
+        // R
         {
           from_ev: "(EV_KEY), code 36 (KEY_J)",
           targets: [
@@ -480,7 +570,7 @@
             }
           ]
         },
-	// LT
+        // LT
         {
           from_ev: "(EV_KEY), code 38 (KEY_L)",
           targets: [
@@ -490,7 +580,7 @@
             }
           ]
         },
-	// RT
+        // RT
         {
           from_ev: "(EV_KEY), code 15 (KEY_TAB)",
           targets: [
@@ -500,7 +590,7 @@
             }
           ]
         },
-	// select
+        // select
         {
           from_ev: "(EV_KEY), code 7 (KEY_6)",
           targets: [
@@ -510,7 +600,7 @@
             }
           ]
         },
-	// start
+        // start
         {
           from_ev: "(EV_KEY), code 3 (KEY_2)",
           targets: [
@@ -520,9 +610,10 @@
             }
           ]
         },
-	// select 1 + start 2 => alt f4
+        // select 1 + start 2 => alt f4
         {
-          from_ev: "(EV_KEY), code 56 (KEY_LEFTALT)", //alt f4
+          from_ev: "(EV_KEY), code 56 (KEY_LEFTALT)",
+          //alt f4
           targets: [
             {
               to: "keybd1",
@@ -530,7 +621,7 @@
             }
           ]
         },
-	// player2 home -> f4
+        // player2 home -> f4
         {
           from_ev: "(EV_KEY), code 62 (KEY_F4)",
           targets: [
@@ -555,7 +646,7 @@
             }
           ]
         },
-	//mouse right (buttob left 1)
+        //mouse right (buttob left 1)
         {
           from_ev: "(EV_KEY), code 289 (BTN_THUMB)",
           targets: [
