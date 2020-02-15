@@ -29,6 +29,13 @@
   * Input devices
   */
   inputs: {
+     /*second match after the first, responsible for delivering
+    the mouse signals, unfortunately same name*/
+    trackball_paddle_y: {
+      phys: "usb-0000:01:00.0-1.1.2/input1", //mouse handler
+      exclusive: true,
+      relpos: 1
+    },
     digital: {
       name: "Ultimarc I-PAC Ultimarc I-PAC",
       exclusive: true,
@@ -87,6 +94,31 @@
     }
   },
   rules: [
+    {
+      from: "trackball_paddle_y",
+      target_rules: [
+        {
+          from_ev: "(EV_REL), code 0 (REL_X)",
+          targets: [
+            {
+              to: "serial0",
+              to_ev: "(EV_REL), code 0 (REL_X)"
+              //mapped to pad up
+            }
+          ]
+        },
+        {
+          from_ev: "(EV_REL), code 1 (REL_Y)",
+          targets: [
+            {
+              to: "serial0",
+              to_ev: "(EV_REL), code 1 (REL_Y)"
+              //mapped to pad up
+            }
+          ]
+        }
+      ]
+    },
     {
       from: "digital",
       /*
@@ -643,15 +675,23 @@
             {
               to: "mouse1",
               to_ev: "(EV_KEY), code 272 (BTN_LEFT)"
+            },
+            {
+              to: "serial0",
+              to_ev: "(EV_KEY), code 272 (BTN_LEFT)"
             }
           ]
         },
-        //mouse right (buttob left 1)
+        //mouse right (button left 1)
         {
           from_ev: "(EV_KEY), code 289 (BTN_THUMB)",
           targets: [
             {
               to: "mouse1",
+              to_ev: "(EV_KEY), code 273 (BTN_RIGHT)"
+            },
+            {
+              to: "serial0",
               to_ev: "(EV_KEY), code 273 (BTN_RIGHT)"
             }
           ]

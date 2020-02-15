@@ -146,6 +146,7 @@ class EventHandler(pyinotify.ProcessEvent):
     which is the relativ device in multiple matches
     """
     def _device_match(self, device: evdev.InputDevice):
+
         for key in save_fetch(lambda: self.config.inputs, {}):
             name, name_re, phys, phys_re, rel_pos, vendor, product, exclusive, i_max, i_min, i_deadzone = self.config.get_config_input_params(key)
 
