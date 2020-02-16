@@ -184,174 +184,42 @@
       //digital pad2 definition (right digital)
       from: "digital",
       target_rules: [
-        {
-          from_ev: "(EV_KEY), code 32 (KEY_D)",
-          targets: [
-            {
-              to: "xbox2",
-              to_ev: "(EV_ABS), code 17 (ABS_HAT0Y), value -1"
-            }
-          ]
-        },
-        {
-          from_ev: "(EV_KEY), code 33 (KEY_F)",
-          targets: [
-            {
-              to: "xbox2",
-              to_ev: "(EV_ABS), code 17 (ABS_HAT0Y), value 1"
-            }
-          ]
-        },
-        {
-          from_ev: "(EV_KEY), code 34 (KEY_G)",
-          targets: [
-            {
-              to: "xbox2",
-              to_ev: "(EV_ABS), code 16 (ABS_HAT0X), value -1"
-            }
-          ]
-        },
-        {
-          from_ev: "(EV_KEY), code 19 (KEY_R)",
-          targets: [
-            {
-              to: "xbox2",
-              to_ev: "(EV_ABS), code 16 (ABS_HAT0X), value 1"
-            }
-          ]
-        },
-        {
-          from_ev: "(EV_KEY), code 31 (KEY_S)",
-          targets: [
-            {
-              to: "xbox2",
-              to_ev: "(EV_KEY), code 304 (BTN_SOUTH)"
-            }
-          ]
-        },
-        // btn A
-        {
-          from_ev: "(EV_KEY), code 30 (KEY_A)",
-          targets: [
-            {
-              to: "xbox2",
-              to_ev: "(EV_KEY), code 305 (BTN_EAST)"
-            }
-          ]
-        },
-        // B
-        {
-          from_ev: "(EV_KEY), code 16 (KEY_Q)",
-          targets: [
-            {
-              to: "xbox2",
-              to_ev: "(EV_KEY), code 307 (BTN_NORTH)"
-            }
-          ]
-        },
-        // X
-        {
-          from_ev: "(EV_KEY), code 17 (KEY_W)",
-          targets: [
-            {
-              to: "xbox2",
-              to_ev: "(EV_KEY), code 308 (BTN_WEST)"
-            }
-          ]
-        },
-        // Y
-        {
-          from_ev: "(EV_KEY), code 37 (KEY_K)",
-          targets: [
-            {
-              to: "xbox2",
-              to_ev: "(EV_KEY), code 310 (BTN_TL)"
-            }
-          ]
-        },
-        // L
-        {
-          from_ev: "(EV_KEY), code 23 (KEY_I)",
-          targets: [
-            {
-              to: "xbox2",
-              to_ev: "(EV_KEY), code 311 (BTN_TR)"
-            }
-          ]
-        },
-        // R
-        {
-          from_ev: "(EV_KEY), code 36 (KEY_J)",
-          targets: [
-            {
-              to: "xbox2",
-              to_ev: "(EV_KEY), code 312 (BTN_TL2)"
-            }
-          ]
-        },
-        // LT
-        {
-          from_ev: "(EV_KEY), code 38 (KEY_L)",
-          targets: [
-            {
-              to: "xbox2",
-              to_ev: "(EV_KEY), code 313 (BTN_TR2)"
-            }
-          ]
-        },
-        // RT
-        {
-          from_ev: "(EV_KEY), code 15 (KEY_TAB)",
-          targets: [
-            {
-              to: "xbox2",
-              to_ev: "(EV_KEY), code 317 (BTN_THUMBL)"
-            }
-          ]
-        },
+        //hat y up joystick2
+        #mapping( "(EV_KEY), code 32 (KEY_D)" "xbox2" "(EV_ABS), code 17 (ABS_HAT0Y), value -1" ),
+        //hat y down joystick2
+        #mapping( "(EV_KEY), code 33 (KEY_F)" "xbox2" "(EV_ABS), code 17 (ABS_HAT0Y), value 1" ),
+        //hat left joystick2
+        #mapping( "(EV_KEY), code 34 (KEY_G)" "xbox2" "(EV_ABS), code 16 (ABS_HAT0X), value -1" ),
+        //hat right joystick2
+        #mapping( "(EV_KEY), code 19 (KEY_R)" "xbox2" "(EV_ABS), code 16 (ABS_HAT0X), value 1" ),
+        //js2 btn A
+        #mapping( "(EV_KEY), code 31 (KEY_S)" "xbox2" "(EV_KEY), code 304 (BTN_SOUTH)" ),
+        //js2 btn B
+        #mapping( "(EV_KEY), code 30 (KEY_A)" "xbox2" "(EV_KEY), code 305 (BTN_EAST)" ),
+        // js2  btn Y
+        #mapping( "(EV_KEY), code 16 (KEY_Q)" "xbox2" "(EV_KEY), code 307 (BTN_NORTH)" ),
+        // js2 btn X
+        #mapping( "(EV_KEY), code 17 (KEY_W)" "xbox2" "(EV_KEY), code 308 (BTN_WEST)" ),
+        // js2 btn L
+        #mapping( "(EV_KEY), code 37 (KEY_K)" "xbox2" "(EV_KEY), code 310 (BTN_TL)" ),
+        // js2 btn r
+        #mapping( "(EV_KEY), code 23 (KEY_I)" "xbox2" "(EV_KEY), code 310 (BTN_TR)" ),
+        //js2 btn LT
+        #mapping( "(EV_KEY), code 36 (KEY_J)" "xbox2" "(EV_KEY), code 312 (BTN_TL2)" ),
+        //js2 btn RT
+        #mapping( "(EV_KEY), code 38 (KEY_L)" "xbox2" "(EV_KEY), code 313 (BTN_TR2)" ),
+        //js2 thumbl
+        #mapping( "(EV_KEY), code 15 (KEY_TAB)" "xbox2" "(EV_KEY), code 317 (BTN_THUMBL)" ),
         // select
-        {
-          from_ev: "(EV_KEY), code 7 (KEY_6)",
-          targets: [
-            {
-              to: "xbox2",
-              to_ev: "(EV_KEY), code 314 (BTN_SELECT)"
-            }
-          ]
-        },
+        #mapping( "(EV_KEY), code 7 (KEY_6)" "xbox2" "(EV_KEY), code 314 (BTN_SELECT)" ),
         // start
-        {
-          from_ev: "(EV_KEY), code 3 (KEY_2)",
-          targets: [
-            {
-              to: "xbox2",
-              to_ev: "(EV_KEY), code 315 (BTN_START)"
-            }
-          ]
-        },
+        #mapping( "(EV_KEY), code 3 (KEY_2)" "xbox2" "(EV_KEY), code 315 (BTN_START)" ),
+
         // select 1 + start 2 => alt f4
-        {
-          from_ev: "(EV_KEY), code 56 (KEY_LEFTALT)",
-          //alt f4
-          targets: [
+        #mapping( "(EV_KEY), code 56 (KEY_LEFTALT)" "serial0" "(EV_KEY), code 56 (KEY_LEFTALT)" ),
 
-            {
-              to: "serial0",
-              to_ev: "(EV_KEY), code 56 (KEY_LEFTALT)"
-            }
-          ]
-        },
         // player2 home -> f4
-        {
-          from_ev: "(EV_KEY), code 62 (KEY_F4)",
-          targets: [
-
-            {
-              to: "serial0",
-              to_ev: "(EV_KEY), code 62 (KEY_F4)"
-            }
-          ]
-        }
+        #mapping( "(EV_KEY), code 62 (KEY_F4)" "serial0" "(EV_KEY), code 62 (KEY_F4)" ),
       ]
     },
     //mouse left (button left 2
