@@ -25,6 +25,7 @@
 #######################################################################
 */
 #parse("macros.vm")
+
 {
   /**
   * Input devices
@@ -226,97 +227,17 @@
     {
       from: "analog_left",
       target_rules: [
-        {
-          from_ev: "(EV_KEY), code 288 (BTN_TRIGGER)",
-          targets: [
-
-            {
-              to: "serial0",
-              to_ev: "(EV_KEY), code 272 (BTN_LEFT)"
-            }
-          ]
-        },
         //mouse right (button left 1)
-        {
-          from_ev: "(EV_KEY), code 289 (BTN_THUMB)",
-          targets: [
-
-            {
-              to: "serial0",
-              to_ev: "(EV_KEY), code 273 (BTN_RIGHT)"
-            }
-          ]
-        },
-        {
-          from_ev: "(EV_KEY), code 290 (BTN_THUMB2)",
-          targets: [
-
-            {
-              to: "serial0",
-              to_ev: "(EV_KEY), code 2 (KEY_1)"
-            }
-          ]
-        },
-        {
-          from_ev: "(EV_KEY), code 291 (BTN_TOP)",
-          targets: [
-
-             {
-              to: "serial0",
-              to_ev: "(EV_KEY), code 3 (KEY_2)"
-            }
-          ]
-        },
-        {
-          from_ev: "(EV_KEY), code 292 (BTN_TOP2)",
-          targets: [
-
-             {
-              to: "serial0",
-              to_ev: "(EV_KEY), code 4 (KEY_3)"
-            }
-          ]
-        },
-        {
-          from_ev: "(EV_KEY), code 293 (BTN_PINKIE)",
-          targets: [
-
-            {
-              to: "serial0",
-              to_ev: "(EV_KEY), code 5 (KEY_4)"
-            }
-          ]
-        },
-        {
-          from_ev: "(EV_KEY), code 294 (BTN_BASE)",
-          targets: [
-
-            {
-              to: "serial0",
-              to_ev: "(EV_KEY), code 6 (KEY_5)"
-            }
-          ]
-        },
-        {
-          from_ev: "(EV_KEY), code 295 (BTN_BASE2)",
-          targets: [
-
-             {
-              to: "serial0",
-              to_ev: "(EV_KEY), code 7 (KEY_6)"
-            }
-          ]
-        },
-        {
-          from_ev: "(EV_KEY), code 295 (BTN_BASE2)",
-          targets: [
-
-            {
-              to: "serial0",
-              to_ev: "(EV_KEY), code 8 (KEY_7)"
-            }
-          ]
-        }
+        #mapping( "(EV_KEY), code 288 (BTN_TRIGGER)" "serial0" "(EV_KEY), code 272 (BTN_LEFT)" ),
+        //mouse btn right
+        #mapping( "(EV_KEY), code 289 (BTN_THUMB)" "serial0" "(EV_KEY), code 273 (BTN_RIGHT)" ),
+        #mapping( "(EV_KEY), code 290 (BTN_THUMB2)" "serial0" "(EV_KEY), code 2 (KEY_1)" ),
+        #mapping( "(EV_KEY), code 291 (BTN_TOP)" "serial0" "(EV_KEY), code 3 (KEY_2)" ),
+        #mapping( "(EV_KEY), code 291 (BTN_TOP2)" "serial0" "(EV_KEY), code 4 (KEY_3)" ),
+        #mapping( "(EV_KEY), code 293 (BTN_PINKIE)" "serial0" "(EV_KEY), code 5 (KEY_4)" ),
+        #mapping( "(EV_KEY), code 294 (BTN_BASE)" "serial0" "(EV_KEY), code 6 (KEY_5)" ),
+        #mapping( "(EV_KEY), code 295 (BTN_BASE2)" "serial0" "(EV_KEY), code 7 (KEY_6)" ),
+        #mapping( "(EV_KEY), code 296 (BTN_WHATEVER)" "serial0" "(EV_KEY), code 8 (KEY_9)" )
       ]
     }
   ]
