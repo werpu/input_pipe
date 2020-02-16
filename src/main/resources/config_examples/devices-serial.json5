@@ -59,12 +59,22 @@
    * output device definitions
    */
   outputs: {
-
+    xbox1: {
+      name: "Microsoft X-Box 360 pad",
+      type: "xbx360"
+    },
     xbox2: {
       name: "Microsoft X-Box 360 pad",
       type: "xbx360"
     },
-
+    mouse1: {
+      name: "mouse",
+      type: "mouse"
+    },
+    keybd1: {
+      name: "key1",
+      type: "keybd"
+    },
     exec1: {
       name: "exec1",
       type: "exec"
@@ -120,6 +130,11 @@
           //key up left digital
           targets: [
             {
+              to: "xbox1",
+              to_ev: "(EV_ABS), code 17 (ABS_HAT0Y), value -1"
+              //mapped to pad up
+            },
+            {
               to: "serial0",
               to_ev: "(EV_ABS), code 17 (ABS_HAT0Y), value -1"
             }
@@ -129,7 +144,10 @@
           from_ev: "(EV_KEY), code 108 (KEY_DOWN)",
           //key down left digital
           targets: [
-
+            {
+              to: "xbox1",
+              to_ev: "(EV_ABS), code 17 (ABS_HAT0Y), value 1"
+            },
             {
               to: "serial0",
               to_ev: "(EV_ABS), code 17 (ABS_HAT0Y), value 1"
@@ -140,7 +158,10 @@
           from_ev: "(EV_KEY), code 105 (KEY_LEFT)",
           //left left stick digital
           targets: [
-
+            {
+              to: "xbox1",
+              to_ev: "(EV_ABS), code 16 (ABS_HAT0X), value -1"
+            },
             {
               to: "serial0",
               to_ev: "(EV_ABS), code 16 (ABS_HAT0X), value -1"
@@ -151,7 +172,10 @@
           from_ev: "(EV_KEY), code 106 (KEY_RIGHT)",
           //right left stick digital
           targets: [
-
+            {
+              to: "xbox1",
+              to_ev: "(EV_ABS), code 16 (ABS_HAT0X), value 1"
+            },
             {
               to: "serial0",
               to_ev: "(EV_ABS), code 16 (ABS_HAT0X), value 1"
@@ -162,6 +186,13 @@
         {
           from_ev: "(EV_KEY), code 29 (KEY_LEFTCTRL)",
           targets: [
+            {
+              to: "xbox1",
+              to_ev: "(EV_KEY), code 304 (BTN_SOUTH)",
+              // auto fire
+              periodical: 1,
+              frequency: 200
+            },
             {
               to: "serial0",
               to_ev: "(EV_KEY), code 304 (BTN_SOUTH)",
@@ -176,6 +207,10 @@
           from_ev: "(EV_KEY), code 56 (KEY_LEFTALT)",
           targets: [
             {
+              to: "xbox1",
+              to_ev: "(EV_KEY), code 305 (BTN_EAST)"
+            },
+            {
               to: "serial0",
               to_ev: "(EV_KEY), code 305 (BTN_EAST)"
             }
@@ -185,6 +220,10 @@
         {
           from_ev: "(EV_KEY), code 57 (KEY_SPACE)",
           targets: [
+            {
+              to: "xbox1",
+              to_ev: "(EV_KEY), code 307 (BTN_NORTH)"
+            },
             {
               to: "serial0",
               to_ev: "(EV_KEY), code 307 (BTN_NORTH)"
@@ -196,6 +235,10 @@
           from_ev: "(EV_KEY), code 42 (KEY_LEFTSHIFT)",
           targets: [
             {
+              to: "xbox1",
+              to_ev: "(EV_KEY), code 308 (BTN_WEST)"
+            },
+            {
               to: "serial0",
               to_ev: "(EV_KEY), code 308 (BTN_WEST)"
             }
@@ -205,6 +248,10 @@
         {
           from_ev: "(EV_KEY), code 44 (KEY_Z)",
           targets: [
+            {
+              to: "xbox1",
+              to_ev: "(EV_KEY), code 310 (BTN_TL)"
+            },
             {
               to: "serial0",
               to_ev: "(EV_KEY), code 310 (BTN_TL)"
@@ -216,6 +263,10 @@
           from_ev: "(EV_KEY), code 45 (KEY_X)",
           targets: [
             {
+              to: "xbox1",
+              to_ev: "(EV_KEY), code 311 (BTN_TR)"
+            },
+            {
               to: "serial0",
               to_ev: "(EV_KEY), code 311 (BTN_TR)"
             }
@@ -225,6 +276,10 @@
         {
           from_ev: "(EV_KEY), code 47 (KEY_V)",
           targets: [
+            {
+              to: "xbox1",
+              to_ev: "(EV_KEY), code 312 (BTN_TL2)"
+            },
             {
               to: "serial0",
               to_ev: "(EV_KEY), code 312 (BTN_TL2)"
@@ -236,6 +291,10 @@
           from_ev: "(EV_KEY), code 25 (KEY_P)",
           targets: [
             {
+              to: "xbox1",
+              to_ev: "(EV_KEY), code 313 (BTN_TR2)"
+            },
+            {
               to: "serial0",
               to_ev: "(EV_KEY), code 313 (BTN_TR2)"
             }
@@ -246,6 +305,10 @@
           from_ev: "(EV_KEY), code 46 (KEY_C)",
           targets: [
             {
+              to: "xbox1",
+              to_ev: "(EV_KEY), code 317 (BTN_THUMBL)"
+            },
+            {
               to: "serial0",
               to_ev: "(EV_KEY), code 317 (BTN_THUMBL)"
             }
@@ -255,6 +318,10 @@
         {
           from_ev: "(EV_KEY), code 15 (KEY_TAB)",
           targets: [
+            {
+              to: "xbox1",
+              to_ev: "(EV_KEY), code 318 (BTN_THUMBR)"
+            },
             {
               to: "xbox2",
               to_ev: "(EV_KEY), code 318 (BTN_THUMBR)"
@@ -270,6 +337,10 @@
           from_ev: "(EV_KEY), code 6 (KEY_5)",
           targets: [
             {
+              to: "xbox1",
+              to_ev: "(EV_KEY), code 314 (BTN_SELECT)"
+            },
+            {
               to: "serial0",
               to_ev: "(EV_KEY), code 314 (BTN_SELECT)"
             }
@@ -280,6 +351,10 @@
           from_ev: "(EV_KEY), code 2 (KEY_1)",
           targets: [
             {
+              to: "xbox1",
+              to_ev: "(EV_KEY), code 315 (BTN_START)"
+            },
+            {
               to: "serial0",
               to_ev: "(EV_KEY), code 315 (BTN_START)"
             }
@@ -289,6 +364,10 @@
         {
           from_ev: "(EV_KEY), code 102 (KEY_HOME)",
           targets: [
+            {
+              to: "xbox1",
+              to_ev: "(EV_KEY), code 316 (BTN_MODE)"
+            },
             {
               to: "xbox2",
               to_ev: "(EV_KEY), code 316 (BTN_MODE)"
@@ -340,10 +419,10 @@
         {
           from_ev: "(EV_ABS), code 1 (ABS_Y)",
           targets: [
-            /*{
+            {
               to: "xbox1",
               to_ev: "(EV_ABS), code 4 (ABS_RY)"
-            },*/
+            },
             {
               to: "xbox2",
               to_ev: "(EV_ABS), code 1 ls(ABS_Y)"
@@ -357,10 +436,10 @@
         {
           from_ev: "(EV_ABS), code 0 (ABS_X)",
           targets: [
-           /* {
+            {
               to: "xbox1",
               to_ev: "(EV_ABS), code 3 (ABS_RX)"
-            },*/
+            },
             {
               to: "xbox2",
               to_ev: "(EV_ABS), code 0 (ABS_X)"
@@ -377,7 +456,7 @@
           targets: [
             {
               to: "exec1",
-              to_ev: "(META), /home/pi/jstools/4way.sh"
+              to_ev: "(META), /usr/local/bin/serv4"
             }
           ]
         },
@@ -387,7 +466,7 @@
           targets: [
             {
               to: "exec1",
-              to_ev: "(META), /home/pi/jstools/8way.sh"
+              to_ev: "(META), /usr/local/bin/serv8"
             }
           ]
         },
@@ -568,9 +647,8 @@
           from_ev: "(EV_KEY), code 56 (KEY_LEFTALT)",
           //alt f4
           targets: [
-
             {
-              to: "serial0",
+              to: "keybd1",
               to_ev: "(EV_KEY), code 56 (KEY_LEFTALT)"
             }
           ]
@@ -579,9 +657,8 @@
         {
           from_ev: "(EV_KEY), code 62 (KEY_F4)",
           targets: [
-
             {
-              to: "serial0",
+              to: "keybd1",
               to_ev: "(EV_KEY), code 62 (KEY_F4)"
             }
           ]
@@ -595,7 +672,10 @@
         {
           from_ev: "(EV_KEY), code 288 (BTN_TRIGGER)",
           targets: [
-
+            {
+              to: "mouse1",
+              to_ev: "(EV_KEY), code 272 (BTN_LEFT)"
+            },
             {
               to: "serial0",
               to_ev: "(EV_KEY), code 272 (BTN_LEFT)"
@@ -606,7 +686,10 @@
         {
           from_ev: "(EV_KEY), code 289 (BTN_THUMB)",
           targets: [
-
+            {
+              to: "mouse1",
+              to_ev: "(EV_KEY), code 273 (BTN_RIGHT)"
+            },
             {
               to: "serial0",
               to_ev: "(EV_KEY), code 273 (BTN_RIGHT)"
@@ -616,9 +699,8 @@
         {
           from_ev: "(EV_KEY), code 290 (BTN_THUMB2)",
           targets: [
-
             {
-              to: "serial0",
+              to: "keybd1",
               to_ev: "(EV_KEY), code 2 (KEY_1)"
             }
           ]
@@ -626,9 +708,8 @@
         {
           from_ev: "(EV_KEY), code 291 (BTN_TOP)",
           targets: [
-
-             {
-              to: "serial0",
+            {
+              to: "keybd1",
               to_ev: "(EV_KEY), code 3 (KEY_2)"
             }
           ]
@@ -636,9 +717,8 @@
         {
           from_ev: "(EV_KEY), code 292 (BTN_TOP2)",
           targets: [
-
-             {
-              to: "serial0",
+            {
+              to: "keybd1",
               to_ev: "(EV_KEY), code 4 (KEY_3)"
             }
           ]
@@ -646,9 +726,8 @@
         {
           from_ev: "(EV_KEY), code 293 (BTN_PINKIE)",
           targets: [
-
             {
-              to: "serial0",
+              to: "keybd1",
               to_ev: "(EV_KEY), code 5 (KEY_4)"
             }
           ]
@@ -656,9 +735,8 @@
         {
           from_ev: "(EV_KEY), code 294 (BTN_BASE)",
           targets: [
-
             {
-              to: "serial0",
+              to: "keybd1",
               to_ev: "(EV_KEY), code 6 (KEY_5)"
             }
           ]
@@ -666,9 +744,8 @@
         {
           from_ev: "(EV_KEY), code 295 (BTN_BASE2)",
           targets: [
-
-             {
-              to: "serial0",
+            {
+              to: "keybd1",
               to_ev: "(EV_KEY), code 7 (KEY_6)"
             }
           ]
@@ -676,10 +753,9 @@
         {
           from_ev: "(EV_KEY), code 295 (BTN_BASE2)",
           targets: [
-
             {
-              to: "serial0",
-              to_ev: "(EV_KEY), code 8 (KEY_7)"
+              to: "keybd1",
+              to_ev: "(EV_KEY), code 8 (KEY_6)"
             }
           ]
         }

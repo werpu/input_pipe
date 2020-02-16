@@ -20,7 +20,7 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-*#
+#
 
 #*
  * Some Helper macros to reduce the total loc
@@ -46,9 +46,74 @@
     }
 #end
 
+#macro(forward $from_ev $to)
+    {
+      from_ev: "$from_ev",
+      targets: [
+        #output( $to $from_ev )
+      ]
+    }
+
+#end
+
+#macro(af_mapping $from_ev $to $to_ev $periodical $frequency)
+    {
+      from_ev: "$from_ev",
+      targets: [
+        {
+            to: "$to",
+            to_ev: "$to_ev",
+            //autofire
+            periodical: $periodical,
+            frequency: $frequency
+        }
+      ]
+    }
+#end
+
+
 #macro(input_def $internal_name $name $exclusive $relpos)
     $internal_name: {
       name: "$name",
+      exclusive: $exclusive,
+      relpos: $relpos
+    }
+#end
+
+#macro(input_def_re $internal_name $name $exclusive $relpos)
+    $internal_name: {
+      name_re: "$name",
+      exclusive: $exclusive,
+      relpos: $relpos
+    }
+#end
+
+
+#macro(input_def_min_max $internal_name $name $exclusive $relpos $min $max $deadzone)
+    $internal_name: {
+      name: "$name",
+      exclusive: $exclusive,
+      relpos: $relpos,
+      min: $min
+      max: $max,
+      deadzone: $deadzone
+    }
+#end
+
+#macro(input_def_mm_re $internal_name $name $exclusive $relpos $min $max $deadzone)
+    $internal_name: {
+      name_re: "$name",
+      exclusive: $exclusive,
+      relpos: $relpos,
+      min: $min,
+      max: $max,
+      deadzone: $deadzone
+    }
+#end
+
+#macro(input_def_phys $internal_name $phys $exclusive $relpos)
+    $internal_name: {
+      phys: "$phys",
       exclusive: $exclusive,
       relpos: $relpos
     }
@@ -58,5 +123,13 @@
     $internal_name: {
       name: "$name",
       type: "$type"
+    }
+#end
+
+#macro(output_def_meta $internal_name $name $type $meta)
+    $internal_name: {
+      name: "$name",
+      type: "$type",
+      meta: "$meta"
     }
 #end

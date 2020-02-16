@@ -110,6 +110,11 @@ class Config:
         orig_file_name = configfile[:-1 * len(ending)]
 
         tpl_stream = StringIO(merged_template)
+        print("Velocity Macro found!")
+        print("Merging template to final configuration: ")
+        print("------ final configuration begin ------")
+        print(tpl_stream.getvalue())
+        print("------ final configuration end ------")
         return Config.load_file(tpl_stream, orig_file_name)
 
     #

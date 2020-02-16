@@ -63,7 +63,7 @@
       from: "analog_left",
       target_rules: [
         #mapping( "(EV_KEY), code 105 (KEY_UP)" "exec1" "(META), /usr/local/bin/4way") ,
-        #mapping( "(EV_KEY), code 108 (KEY_UP)" "exec1" "(META), /usr/local/bin/4way")
+        #mapping( "(EV_KEY), code 108 (KEY_UP)" "exec1" "(META), /usr/local/bin/8way")
       ]
     }
   ]
