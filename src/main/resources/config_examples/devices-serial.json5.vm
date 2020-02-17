@@ -36,8 +36,9 @@
 
     #input_def_phys( "trackball_paddle_y" "usb-0000:01:00.0-1.1.2/input1" "true" "1"),
     #input_def( "digital" "Ultimarc I-PAC Ultimarc I-PAC" "true" "1"),
+    #input_def( "spinner_l" "Ultimarc SpinTrak" "true" "1"),
     #input_def_mm_re( "analog_left" "^Ultimarc.*Ultra-Stik\\\\s+Player\\\\s+1$" "true" "1" "0" "255" "18"),
-    #input_def_re( "analog_right" "^Ultimarc.*Ultra-Stik\\\\s+Player\\\\s+2$" "true" "1")
+    #input_def_mm_re( "analog_right" "^Ultimarc.*Ultra-Stik\\\\s+Player\\\\s+2$" "true" "1" "0" "255" "18")
 
   },
 
@@ -67,8 +68,8 @@
     {
       from: "trackball_paddle_y",
       target_rules: [
-        #mapping( "(EV_REL), code 0 (REL_X)" "serial0" "(EV_REL), code 0 (REL_X)" ),
-        #mapping( "(EV_REL), code 1 (REL_Y)" "serial0" "(EV_REL), code 1 (REL_Y)" )
+        #forward( "(EV_REL), code 0 (REL_X)" "serial0" ),
+        #forward( "(EV_REL), code 1 (REL_Y)" "serial0" )
       ]
     },
     {
@@ -132,10 +133,20 @@
             #output("xbox2" "(EV_KEY), code 316 (BTN_MODE)"),
             #output("serial0" "(EV_KEY), code 316 (BTN_MODE)")
           ]
-        }
+        },
+
+        //paddle left
+        #forward( "(EV_REL), code 0 (REL_X)" "serial0" )
       ]
     },
 
+    //SPINNER L
+    {
+      from: "spinner_l",
+      target_rules: [
+        #forward( "(EV_REL), code 0 (REL_X)" "serial0" )
+      ]
+    },
 
     //ANALOG STICK
 
