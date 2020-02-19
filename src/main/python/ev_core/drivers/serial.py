@@ -11,11 +11,12 @@ TARGET_JOY = 0x0
 TARGET_KEYBD = 0x1
 TARGET_MOUSE = 0x2
 
+
 class SerialDriver(BaseDriver):
     """
-    Serial driver, for a UART connextion
+    Serial driver, for a UART connection
     to an external board providing
-    the joystick emulation to external devices
+    the joystick emulation to external devices via a simple serial protocol
     """
     _init_cnt = 0
 
