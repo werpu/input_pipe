@@ -129,6 +129,8 @@
         //MODE XBOX BUTTON
         {
           from_ev: "(EV_KEY), code 102 (KEY_HOME)",
+
+          //multiple targets at once
           targets: [
             #output("xbox2" "(EV_KEY), code 316 (BTN_MODE)"),
             #output("serial0" "(EV_KEY), code 316 (BTN_MODE)")
