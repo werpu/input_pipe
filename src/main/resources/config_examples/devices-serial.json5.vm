@@ -47,8 +47,7 @@
    */
   outputs: {
 
-     #output_def( "xbox2" "Microsoft X-Box 360 pad" "xbx360"),
-     /**
+    /**
      * register an execution driver for external script execution of shell scripts
      */
      #output_def( "exec1" "Execution Driver" "exec"),
@@ -60,7 +59,8 @@
      * Register a serial line uart communications driver to our first
      * external board
      */
-     #output_def_meta( "serial0" "Serial Line 0 (first external joystick)" "serial" "/dev/serial0")
+     #output_def_meta( "serial0" "Serial Line 0 (first external joystick, kbd, mouse)" "serial" "/dev/serial0"),
+     #output_def_meta( "serial1" "Serial Line 1 (second external joystick)" "serial" "/dev/serial1")
 
 
   },
@@ -132,7 +132,7 @@
 
           //multiple targets at once
           targets: [
-            #output("xbox2" "(EV_KEY), code 316 (BTN_MODE)"),
+            #output("serial1" "(EV_KEY), code 316 (BTN_MODE)"),
             #output("serial0" "(EV_KEY), code 316 (BTN_MODE)")
           ]
         },
@@ -166,14 +166,14 @@
         {
           from_ev: "(EV_ABS), code 1 (ABS_Y)",
           targets: [
-            #output("xbox2" "(EV_ABS), code 1 (ABS_Y)"),
+            #output("serial1" "(EV_ABS), code 1 (ABS_Y)"),
             #output("serial0" "(EV_ABS), code 4 (ABS_RY)")
           ]
         },
         {
           from_ev: "(EV_ABS), code 0 (ABS_X)",
           targets: [
-            #output("xbox2" "(EV_ABS), code 0 (ABS_X)"),
+            #output("serial1" "(EV_ABS), code 0 (ABS_X)"),
             #output("serial0" "(EV_ABS), code 3 (ABS_RX)")
           ]
         },
@@ -192,42 +192,40 @@
       ]
     },
 
-    // ----------- todo progress with the mapping from here onwards for the full definition -------
-
     {
       //digital pad2 definition (right digital)
       from: "digital",
       target_rules: [
         //hat y up joystick2
-        #mapping( "(EV_KEY), code 32 (KEY_D)" "xbox2" "(EV_ABS), code 17 (ABS_HAT0Y), value -1" ),
+        #mapping( "(EV_KEY), code 32 (KEY_D)" "serial1" "(EV_ABS), code 17 (ABS_HAT0Y), value -1" ),
         //hat y down joystick2
-        #mapping( "(EV_KEY), code 33 (KEY_F)" "xbox2" "(EV_ABS), code 17 (ABS_HAT0Y), value 1" ),
+        #mapping( "(EV_KEY), code 33 (KEY_F)" "serial1" "(EV_ABS), code 17 (ABS_HAT0Y), value 1" ),
         //hat left joystick2
-        #mapping( "(EV_KEY), code 34 (KEY_G)" "xbox2" "(EV_ABS), code 16 (ABS_HAT0X), value -1" ),
+        #mapping( "(EV_KEY), code 34 (KEY_G)" "serial1" "(EV_ABS), code 16 (ABS_HAT0X), value -1" ),
         //hat right joystick2
-        #mapping( "(EV_KEY), code 19 (KEY_R)" "xbox2" "(EV_ABS), code 16 (ABS_HAT0X), value 1" ),
+        #mapping( "(EV_KEY), code 19 (KEY_R)" "serial1" "(EV_ABS), code 16 (ABS_HAT0X), value 1" ),
         //js2 btn A
-        #mapping( "(EV_KEY), code 31 (KEY_S)" "xbox2" "(EV_KEY), code 304 (BTN_SOUTH)" ),
+        #mapping( "(EV_KEY), code 31 (KEY_S)" "serial1" "(EV_KEY), code 304 (BTN_SOUTH)" ),
         //js2 btn B
-        #mapping( "(EV_KEY), code 30 (KEY_A)" "xbox2" "(EV_KEY), code 305 (BTN_EAST)" ),
+        #mapping( "(EV_KEY), code 30 (KEY_A)" "serial1" "(EV_KEY), code 305 (BTN_EAST)" ),
         // js2  btn Y
-        #mapping( "(EV_KEY), code 16 (KEY_Q)" "xbox2" "(EV_KEY), code 307 (BTN_NORTH)" ),
+        #mapping( "(EV_KEY), code 16 (KEY_Q)" "serial1" "(EV_KEY), code 307 (BTN_NORTH)" ),
         // js2 btn X
-        #mapping( "(EV_KEY), code 17 (KEY_W)" "xbox2" "(EV_KEY), code 308 (BTN_WEST)" ),
+        #mapping( "(EV_KEY), code 17 (KEY_W)" "serial1" "(EV_KEY), code 308 (BTN_WEST)" ),
         // js2 btn L
-        #mapping( "(EV_KEY), code 37 (KEY_K)" "xbox2" "(EV_KEY), code 310 (BTN_TL)" ),
+        #mapping( "(EV_KEY), code 37 (KEY_K)" "serial1" "(EV_KEY), code 310 (BTN_TL)" ),
         // js2 btn r
-        #mapping( "(EV_KEY), code 23 (KEY_I)" "xbox2" "(EV_KEY), code 310 (BTN_TR)" ),
+        #mapping( "(EV_KEY), code 23 (KEY_I)" "serial1" "(EV_KEY), code 310 (BTN_TR)" ),
         //js2 btn LT
-        #mapping( "(EV_KEY), code 36 (KEY_J)" "xbox2" "(EV_KEY), code 312 (BTN_TL2)" ),
+        #mapping( "(EV_KEY), code 36 (KEY_J)" "serial1" "(EV_KEY), code 312 (BTN_TL2)" ),
         //js2 btn RT
-        #mapping( "(EV_KEY), code 38 (KEY_L)" "xbox2" "(EV_KEY), code 313 (BTN_TR2)" ),
+        #mapping( "(EV_KEY), code 38 (KEY_L)" "serial1" "(EV_KEY), code 313 (BTN_TR2)" ),
         //js2 thumbl
-        #mapping( "(EV_KEY), code 15 (KEY_TAB)" "xbox2" "(EV_KEY), code 317 (BTN_THUMBL)" ),
+        #mapping( "(EV_KEY), code 15 (KEY_TAB)" "serial1" "(EV_KEY), code 317 (BTN_THUMBL)" ),
         // select
-        #mapping( "(EV_KEY), code 7 (KEY_6)" "xbox2" "(EV_KEY), code 314 (BTN_SELECT)" ),
+        #mapping( "(EV_KEY), code 7 (KEY_6)" "serial1" "(EV_KEY), code 314 (BTN_SELECT)" ),
         // start
-        #mapping( "(EV_KEY), code 3 (KEY_2)" "xbox2" "(EV_KEY), code 315 (BTN_START)" ),
+        #mapping( "(EV_KEY), code 3 (KEY_2)" "serial1" "(EV_KEY), code 315 (BTN_START)" ),
 
         // select 1 + start 2 => alt f4
         #mapping( "(EV_KEY), code 56 (KEY_LEFTALT)" "serial0" "(EV_KEY), code 56 (KEY_LEFTALT)" ),
@@ -236,6 +234,7 @@
         #mapping( "(EV_KEY), code 62 (KEY_F4)" "serial0" "(EV_KEY), code 62 (KEY_F4)" ),
       ]
     },
+
     //mouse left (button left 2
     {
       from: "analog_left",

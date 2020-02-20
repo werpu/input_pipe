@@ -41,7 +41,7 @@ class TargetDevices:
             if driver is not None:
                 driver.create(dev_meta)
                 self.drivers[dev_key] = driver
-                print("Output driver found for "+dev_key + " node created with phys " + save_fetch(lambda: driver.phys))
+                print("  - Output driver found for "+dev_name+" ( "+dev_type +" )"+ " node created with phys " + save_fetch(lambda: driver.phys))
 
     def close(self):
         for key in self.drivers:
