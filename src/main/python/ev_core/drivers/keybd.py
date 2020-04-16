@@ -40,6 +40,15 @@ class VirtualKeyboard(BaseDriver):
 
         VirtualKeyboard._init_cnt += 1
 
+        # codes = []
+        # for key, keyVal in ecodes.ecodes.items():
+        #    if key.startswith("KEY_"):
+        #        try:
+        #            codes.append(keyVal)
+        #        except:
+        #            print("found")
+        #print(codes)
+
         self.capabilities = {
             ecodes.EV_KEY: [
                 ecodes.KEY_0,
@@ -140,7 +149,21 @@ class VirtualKeyboard(BaseDriver):
                 ecodes.KEY_KPEQUAL,
                 ecodes.KEY_KPASTERISK,
                 ecodes.KEY_COMMA,
-                ecodes.KEY_EQUAL
+                ecodes.KEY_EQUAL,
+                ecodes.KEY_COMMA,
+                ecodes.KEY_EQUAL,
+                ecodes.KEY_SEMICOLON,
+                ecodes.KEY_DOT,
+                ecodes.KEY_MINUS,
+                ecodes.KEY_SLASH,
+                ecodes.KEY_BACKSLASH,
+                ecodes.KEY_BACK,
+                ecodes.KEY_BREAK,
+                ecodes.KEY_PRINT,
+                ecodes.KEY_MINUS,
+                ecodes.KEY_SCROLLLOCK,
+                ecodes.KEY_PAGEUP,
+                ecodes.KEY_PAGEDOWN
             ]
         }
 
