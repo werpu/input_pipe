@@ -30,6 +30,6 @@ class Receiver:
 
     async def start(self, port):
         q = self.queue
-
-        await (asyncio.get_event_loop()).create_server(protocol_factory=lambda: EventProtocol(q), host="localhost", port=port)
+        # look at all network interfaces
+        await (asyncio.get_event_loop()).create_server(protocol_factory=lambda: EventProtocol(q), host=None, port=port)
 
