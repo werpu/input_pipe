@@ -159,7 +159,7 @@ class VirtualKeyboard(BaseDriver):
                 ecodes.KEY_BACKSLASH,
                 ecodes.KEY_BACK,
                 ecodes.KEY_BREAK,
-                ecodes.KEY_PRIfNT,
+                ecodes.KEY_PRINT,
                 ecodes.KEY_MINUS,
                 ecodes.KEY_SCROLLLOCK,
                 ecodes.KEY_PAGEUP,

@@ -29,6 +29,7 @@ from ev_core.event_loop import EventController
 from messaging_server.sender import Sender
 from messaging_server.receiver import Receiver
 from queue import Queue
+from announcer.announcer import Announcer
 import sys
 import traceback
 import json
@@ -77,6 +78,8 @@ class MainApp:
             self.receiver = None
         self.config = None
         self.evtcl = None
+
+        self.annnouncer = Announcer()
 
     # Central event dispatcher
     # which dispatches the events coming in from the event loop
@@ -160,6 +163,8 @@ class MainApp:
         print("starting command server on port: " + self.args.port)
         asyncio.ensure_future(self.receiver.start(int(self.args.port)))
         print("command server started")
+        print("announcing its existence")
+        self.annnouncer.start()
 
     def run_pid(self):
         with PIDFile(self.args.pidfile):
