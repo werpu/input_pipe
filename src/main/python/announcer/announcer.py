@@ -3,6 +3,8 @@ import json
 import threading
 from subprocess import check_output
 
+from announcer.periodictask import periodic_task
+
 
 class Announcer:
 
@@ -29,9 +31,10 @@ class Announcer:
         self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
         self.socket.sendto(b, ('255.255.255.255', 12345))
 
+    @periodic_task(10)
     def run(self):
         self.announce()
-        threading.Timer(5, self.run).start()
+        # threading.Timer(5, self.run).start()
 
     def start(self):
         self.run()
