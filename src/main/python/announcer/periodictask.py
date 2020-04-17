@@ -5,10 +5,11 @@ import threading
 
 # from https://gist.github.com/Depado/7925679
 # Function wrapper
-def periodic_task(interval, times = -1):
+def periodic_task(interval, times=-1):
     def outer_wrap(function):
         def wrap(*args, **kwargs):
             stop = threading.Event()
+
             def inner_wrap():
                 i = 0
                 while i != times and not stop.isSet():
