@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="cfc920c7-1f5f-4ec5-94b3-42926262640f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/input_pipe" beforeDir="false" afterPath="$PROJECT_DIR$/dist/input_pipe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/python/announcer/announcer.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/python/announcer/announcer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/python/announcer/periodictask.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/python/announcer/periodictask.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/python/input_pipe.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/python/input_pipe.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -390,6 +393,8 @@
       <workItem from="1587056597216" duration="5077000" />
       <workItem from="1587153061383" duration="3553000" />
       <workItem from="1587157489065" duration="472000" />
+      <workItem from="1587192045464" duration="3928000" />
+      <workItem from="1587306772036" duration="1098000" />
     </task>
     <task id="LOCAL-00025" summary="allowing dynamic port connections">
       <created>1560467142445</created>
@@ -867,7 +872,7 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/input_pipe$input_pipe__server.coverage" NAME="input_pipe _server Coverage Results" MODIFIED="1587157870356" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/main/python" />
+    <SUITE FILE_PATH="coverage/input_pipe$input_pipe__server.coverage" NAME="input_pipe _server Coverage Results" MODIFIED="1587308295175" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/main/python" />
     <SUITE FILE_PATH="coverage/input_pipe$receiver.coverage" NAME="receiver Coverage Results" MODIFIED="1560464820759" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/main/python/messaging" />
     <SUITE FILE_PATH="coverage/input_pipe$input_pipe_cmd_exit.coverage" NAME="input_pipe_cmd_exit Coverage Results" MODIFIED="1566665883015" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/main/python" />
     <SUITE FILE_PATH="coverage/input_pipe$Unittests_for_ConfigTest_MyTestCase_test_overlay.coverage" NAME="Unittests for ConfigTest.MyTestCase.test_overlay Coverage Results" MODIFIED="1560628845054" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/test/python" />

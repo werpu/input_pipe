@@ -79,7 +79,7 @@ class MainApp:
         self.config = None
         self.evtcl = None
 
-        self.annnouncer = Announcer()
+        self.annnouncer = Announcer(server_port=port)
 
     # Central event dispatcher
     # which dispatches the events coming in from the event loop

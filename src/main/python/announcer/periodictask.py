@@ -5,6 +5,8 @@ import threading
 
 # from https://gist.github.com/Depado/7925679
 # Function wrapper
+# you can annotate an arbitrary function
+# as periodical in its own thread
 def periodic_task(interval, times=-1):
     def outer_wrap(function):
         def wrap(*args, **kwargs):

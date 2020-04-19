@@ -31,10 +31,9 @@ class Announcer:
         self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
         self.socket.sendto(b, ('255.255.255.255', 12345))
 
-    @periodic_task(10)
+    @periodic_task(5)
     def run(self):
         self.announce()
-        # threading.Timer(5, self.run).start()
 
     def start(self):
         self.run()
