@@ -175,6 +175,7 @@ class VirtualKeyboard(BaseDriver):
         self.transfer_dev_data()
         return self
 
+
     def press_keys(self, *argv):
         for key in argv:
             self.write(None, None, ecodes.EV_KEY, key, 1)

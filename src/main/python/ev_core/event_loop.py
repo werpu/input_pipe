@@ -156,7 +156,7 @@ class EventController:
 
     def trigger_external_event(self, event_data_string):
         """
-         Triggers an external event
+         Triggers an external event coming in from the network
 
          the idea is to get external events from the command server
          ala send_event {'to': 'mouse1', 'event': '(EV_KEY), code 272 (BTN_LEFT)'}
@@ -172,9 +172,6 @@ class EventController:
             # we now have to split the event
             ev_type_code, ev_type_full, ev_code, ev_name, value, ev_meta = EventTree.parse_ev(data["event"])
 
-            #if isinstance(driver, VirtualKeyboard):
-            #    driver.press_keys(key=value)
-            #else:
             driver.write(self.config, self.target_devices.drivers or {},
                          save_fetch(lambda: ecodes.__getattribute__(ev_type_full), -1),
                          ev_code, int(value), ev_meta, 0, 0, None).syn()
@@ -185,13 +182,6 @@ class EventController:
                     driver.write(self.config, self.target_devices.drivers or {},
                                  save_fetch(lambda: ecodes.__getattribute__(ev_type_full), -1),
                                  ev_code, int(2), ev_meta, 0, 0, None).syn()
-
-            # release
-            if int(value) == 1 and ev_type_full == 'EV_KEY':
-                time.sleep(100e-3)
-                driver.write(self.config, self.target_devices.drivers or {},
-                             save_fetch(lambda: ecodes.__getattribute__(ev_type_full), -1),
-                             ev_code, int(0), ev_meta, 0, 0, None).syn()
 
         except Exception:
             print("Error in json parsing for " + event_data_string + " no event emitted ")

@@ -74,6 +74,7 @@ class MainApp:
         port = int(self.args.port)
         if port > -1:
             self.receiver = Receiver(bind=("localhost", 9001), __queue=self.msg_queue)
+            self.receiver.on("data_available", lambda: self.remote_event_dispatch())
         else:
             self.receiver = None
         self.config = None
@@ -81,7 +82,7 @@ class MainApp:
 
         self.annnouncer = Announcer(server_port=port)
 
-    # Central event dispatcher
+    # Central remote event dispatcher
     # which dispatches the events coming in from the event loop
     # to their targets
 
@@ -91,66 +92,62 @@ class MainApp:
     # that way dynamic game overlays will become possible
     # or restarts on demand or even shutting down the server
     # without init.d/systemd
-    async def event_dispatch(self):
-        while True:
-            try:
-                if self.msg_queue.qsize() > 0:
-                    item = self.msg_queue.get()
-                    msg = item.decode('utf-8').strip()
-                    if msg == "reload":
-                        send_notification("reloading configuration")
-                        self.evtcl.reload()
-                        print("reload done")
+    def remote_event_dispatch(self):
+        try:
+            while self.msg_queue.qsize() > 0:
+                item = self.msg_queue.get()
+                msg = item.decode('utf-8').strip()
+                if msg == "reload":
+                    send_notification("reloading configuration")
+                    self.evtcl.reload()
+                    print("reload done")
 
-                    elif msg == "stop":
-                        print("stopping running server")
-                        self.evtcl.stop()
-                        asyncio.get_event_loop().stop()
-                        sys.exit(0)
+                elif msg == "stop":
+                    print("stopping running server")
+                    self.evtcl.stop()
+                    asyncio.get_event_loop().stop()
+                    sys.exit(0)
 
-                    elif msg.startswith("overlay "):
-                        splitted = msg.split()
-                        s = " "
-                        filename = s.join(splitted[1:])
-                        send_notification("installing overlay: " + filename)
-                        self.config.overlay(filename)
-                        self.evtcl.update_data(self.config)
-                        print("overlay installation done")
+                elif msg.startswith("overlay "):
+                    splitted = msg.split()
+                    s = " "
+                    filename = s.join(splitted[1:])
+                    send_notification("installing overlay: " + filename)
+                    self.config.overlay(filename)
+                    self.evtcl.update_data(self.config)
+                    print("overlay installation done")
 
-                    elif msg.startswith("remove_overlay "):
-                        splitted = msg.split()
-                        s = " "
-                        filename = s.join(splitted[1:])
-                        send_notification("removing overlay: " + filename)
-                        self.config.remove_overlay(filename)
-                        self.evtcl.update_data(self.config)
-                        print("overlay removal done")
+                elif msg.startswith("remove_overlay "):
+                    splitted = msg.split()
+                    s = " "
+                    filename = s.join(splitted[1:])
+                    send_notification("removing overlay: " + filename)
+                    self.config.remove_overlay(filename)
+                    self.evtcl.update_data(self.config)
+                    print("overlay removal done")
 
-                    elif msg == "pop_overlay":
-                        send_notification("removing top overlay")
-                        self.config.pop_overlay()
-                        self.evtcl.update_data(self.config)
-                        print("removal done")
+                elif msg == "pop_overlay":
+                    send_notification("removing top overlay")
+                    self.config.pop_overlay()
+                    self.evtcl.update_data(self.config)
+                    print("removal done")
 
-                    elif msg == "reset_overlay":
-                        send_notification("resetting overlay")
-                        self.config.reset_config()
-                        self.evtcl.update_data(self.config)
-                        print("overlay reset done")
+                elif msg == "reset_overlay":
+                    send_notification("resetting overlay")
+                    self.config.reset_config()
+                    self.evtcl.update_data(self.config)
+                    print("overlay reset done")
 
-                    #trigger an inout
-                    elif msg.startswith("trigger_input "):
-                        splitted = msg.split()
-                        s = " "
-                        evstr = s.join(splitted[1:])
-                        self.evtcl.trigger_external_event(evstr)
-                        print("external inout triggered")
+                #trigger an inout
+                elif msg.startswith("trigger_input "):
+                    splitted = msg.split()
+                    s = " "
+                    evstr = s.join(splitted[1:])
+                    self.evtcl.trigger_external_event(evstr)
+                    print("external inout triggered")
 
-                else:
-                    await asyncio.sleep(1)
-
-            except:
-                traceback.print_exc()
+        except:
+            traceback.print_exc()
 
     def send_command(self):
         sender = Sender(self.args.port)
@@ -169,7 +166,7 @@ class MainApp:
     def run_pid(self):
         with PIDFile(self.args.pidfile):
             self.config = Config(self.args.conf)
-            self.dispatcher = asyncio.ensure_future(self.event_dispatch())
+            # self.dispatcher = asyncio.ensure_future(self.event_dispatch())
             self.evtcl = EventController(self.config)
             asyncio.get_event_loop().run_forever()
 
