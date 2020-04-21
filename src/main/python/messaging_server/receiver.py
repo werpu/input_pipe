@@ -22,6 +22,15 @@ class EventProtocol(asyncio.Protocol):
     def connection_made(self, transport: ReadTransport):
         self.transport = transport
 
+    ##
+    # the idea is to use events for the incoming event transmission
+    # into the subsystem, that way we can avoid loops
+    # and timeouts to dispatch the incoming events properly
+    # and let the runtime deal with the ugly details
+    # we also will get more performance that way
+    # because the dispatch code now is triggered really
+    # on demand in a coroutine
+    ##
     def data_received(self, data):
         self.q.put(data)
         self.event_emitter.emit("data_available")

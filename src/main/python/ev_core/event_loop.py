@@ -27,8 +27,6 @@ from evdev import ecodes
 from evdev.events import KeyEvent, AbsEvent, RelEvent
 
 from ev_core.config import Config
-from ev_core.drivers.feval import FEvalDriver
-from ev_core.drivers.keybd import VirtualKeyboard
 from ev_core.eventtree import EventTree, EV_CODE, EV_META, EV_TYPE, DRIVER, EV_PERIODICAL, EV_FREQUENCY
 from ev_core.sourcedevices2 import SourceDevices2
 from ev_core.targetdevices import TargetDevices
@@ -189,7 +187,7 @@ class EventController:
 
     def resolve_event(self, event, src_dev):
         """
-        central event translation methid
+        central event translation method
         reacts on an incoming event translates
         it and sends the translated data off
         to the receiving driver

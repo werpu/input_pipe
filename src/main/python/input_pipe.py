@@ -32,9 +32,7 @@ from queue import Queue
 from announcer.announcer import Announcer
 import sys
 import traceback
-import json
 
-# uvloop.install()
 from utils.langutils import send_notification
 
 
@@ -73,14 +71,15 @@ class MainApp:
         self.msg_queue = Queue()
         port = int(self.args.port)
         if port > -1:
-            self.receiver = Receiver(bind=("localhost", 9001), __queue=self.msg_queue)
+            self.receiver = Receiver(bind=("localhost", port), __queue=self.msg_queue)
             self.receiver.on("data_available", lambda: self.remote_event_dispatch())
+            self.annnouncer = Announcer(server_port=port)
         else:
             self.receiver = None
         self.config = None
         self.evtcl = None
 
-        self.annnouncer = Announcer(server_port=port)
+
 
     # Central remote event dispatcher
     # which dispatches the events coming in from the event loop
@@ -166,7 +165,6 @@ class MainApp:
     def run_pid(self):
         with PIDFile(self.args.pidfile):
             self.config = Config(self.args.conf)
-            # self.dispatcher = asyncio.ensure_future(self.event_dispatch())
             self.evtcl = EventController(self.config)
             asyncio.get_event_loop().run_forever()
 
