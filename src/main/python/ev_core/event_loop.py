@@ -174,6 +174,9 @@ class EventController:
                          save_fetch(lambda: ecodes.__getattribute__(ev_type_full), -1),
                          ev_code, int(value), ev_meta, 0, 0, None).syn()
 
+            ## TODO probably not needed anymore, we dan drop this one and simplify
+            ## the protocol a little bit, long presses are now hanndled
+            ## with a series of consecutive presses sent by the input
             if data["long"] is not None and data["long"] == "true": #long press expected
                 for cnt in range(10):
                     time.sleep(50e-3)
@@ -238,8 +241,8 @@ class EventController:
         target_device = target_event[DRIVER]
         target_meta = target_event[EV_META] or None
         periodical = target_event[EV_PERIODICAL]
-        freqency = target_event[EV_FREQUENCY]
-        return target_code, target_device, target_type, target_value, target_meta, periodical, freqency
+        frequency = target_event[EV_FREQUENCY]
+        return target_code, target_device, target_type, target_value, target_meta, periodical, frequency
 
     @staticmethod
     def map_type(event):
