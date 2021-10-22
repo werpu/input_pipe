@@ -63,14 +63,14 @@ class MyTestCase(unittest.TestCase):
         self.assertNotEqual(conf.rules[0]["from"], None, "structure exists")
 
     def _assert_overlayed_structure(self, conf):
-        self.assertEqual(save_fetch(lambda: conf.rules[2]["from"], None), "analog_left")
-        self.assertEqual(save_fetch(lambda: conf.rules[2]["target_rules"][0]["targets"][0]["to_ev"],
+        self.assertEqual(save_fetch(lambda: conf.rules[1]["from"], None), "analog_left")
+        self.assertEqual(save_fetch(lambda: conf.rules[1]["target_rules"][1]["targets"][0]["to_ev"],
                                     None), "(META), overlayed")
-        self.assertEqual(save_fetch(lambda: conf.rules[2]["target_rules"][0]["targets"][0]["to"],
+        self.assertEqual(save_fetch(lambda: conf.rules[1]["target_rules"][1]["targets"][0]["to"],
                                     None), "booga1")
         self.assertEqual(save_fetch(lambda: conf.rules[2]["target_rules"][1]["targets"][0]["to"],
                                     None), "exec1")
-        self.assertEqual(save_fetch(lambda: conf.rules[1]["target_rules"][1]["targets"][0]["to"],
+        self.assertEqual(save_fetch(lambda: conf.rules[1]["target_rules"][2]["targets"][0]["to"],
                                     None), "bongobongo")
         conf.reset_config()
         self.assertEqual(save_fetch(lambda: conf.rules[2]["target_rules"][0]["targets"][0]["to_ev"],
