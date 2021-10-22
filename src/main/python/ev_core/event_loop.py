@@ -138,9 +138,9 @@ class EventController:
         self.stop()
         self.start()
 
-    # update data, allows to change event confgurations on the fly
+    # update data, allows to change event configurations on the fly
     def update_data(self, new_config):
-        print("rewiring event cofiguration")
+        print("rewiring event configuration")
         self.config = new_config
         self.event_tree = EventTree(self.config, self.source_devices, self.target_devices)
 

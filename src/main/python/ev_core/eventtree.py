@@ -43,18 +43,25 @@ EV_FREQUENCY = "frequency"
 
 class EventTree:
 
-    def __init__(self, config: Config, sourceDevices: SourceDevices2, targetDevices: TargetDevices):
-        # format <from>, <ev_type>, <code> <to> <eventobject>*
+    # The event tree
+    # The basic data structure holding the parsing tree for the event mapping
+    # functionality see __init__ comments
+
+    def __init__(self, config: Config, source_devices: SourceDevices2, target_devices: TargetDevices):
+        # format <from>, <ev_type>, <code> <to> <event_object>*
         # now id an event is issued we translate the event data beginning
         # from the source over the event type into fine grained mappings
         # and then an evdev event object is returned with all the needed data
         # from the mapping to issue an event
+        #
+        # TODO we will need event sequences and meta 2 for 3 finger combinations
 
         self.tree = {}
         for rule in save_fetch(lambda: config.rules, []):
             rule_from = rule["from"]
             for target_rules in rule["target_rules"]:
-                ev_type_code, from_ev_type, from_ev_code, from_ev_name, value0, from_ev_meta = self.parse_ev(target_rules["from_ev"])
+                ev_type_code, from_ev_type, from_ev_code, from_ev_name, value0, from_ev_meta = \
+                    self.parse_ev(target_rules["from_ev"])
                 targets = save_fetch(lambda: target_rules["targets"], [])
                 self.assert_targets(targets)
 
@@ -64,10 +71,11 @@ class EventTree:
                     target_to = target["to"]
                     periodical = save_fetch(lambda: target["periodical"], 0)
                     frequency = save_fetch(lambda: target["frequency"], 10)
-                    ## todo hook sequence in here somehow
-                    self.build_target_rule(last_node, rule_from, target, targetDevices, target_to, periodical, frequency)
+                    # todo hook sequence in here somehow
+                    self.build_target_rule(last_node, rule_from, target, target_devices, target_to, periodical,
+                                           frequency)
 
-    def build_target_rule(self, last_node, rule_from, target, targetDevices, target_to, periodical, frequency):
+    def build_target_rule(self, last_node, rule_from, target, target_devices, target_to, periodical, frequency):
         ev_type_code, to_ev_type, to_ev_code, to_ev_name, value, to_ev_meta = self.parse_ev(target["to_ev"])
 
         last_node[target_to] = save_fetch(lambda: last_node[target_to], {
@@ -78,7 +86,7 @@ class EventTree:
             EV_PERIODICAL: periodical,
             EV_FREQUENCY: frequency,
 
-            DRIVER: save_fetch(lambda: targetDevices.drivers[target_to])
+            DRIVER: save_fetch(lambda: target_devices.drivers[target_to])
         })
 
         if save_fetch(lambda: last_node[target_to][DRIVER]) is None:
@@ -88,78 +96,78 @@ class EventTree:
             last_node[target_to]["value"] = value
 
     @staticmethod
-    def parse_ev(evstr):
-        splitted = [my_str.strip() for my_str in evstr.split(",")]
+    def parse_ev(ev_str):
+        # An incoming event string is parsed the string must be in the format
+        # <from>, <ev_type>, <code> <to> <event_object>
+        #
+        # :param ev_str: the incoming event string
+        # :return: the parsed data: ev_type_code, ev_type_full, ev_code, ev_name, value, ev_meta
+
+        split = [my_str.strip() for my_str in ev_str.split(",")]
         ev_type_code = None
         ev_meta = None
 
-        if splitted[0].find("code") != -1:
-            ev_code, ev_name, ev_type_code, ev_type_full = EventTree._parse_code_def(splitted)
-        elif splitted[0].find("META") != -1:
-            ev_code, ev_meta, ev_name, ev_type_full = EventTree._parse_meta(splitted)
+        if split[0].find("code") is not -1:
+            ev_code, ev_name, ev_type_code, ev_type_full = EventTree._parse_code_def(split)
+        elif split[0].find("META") is not -1:
+            ev_code, ev_meta, ev_name, ev_type_full = EventTree._parse_meta(split)
         else:
-            ev_code, ev_name, ev_type_full = EventTree._parse_normal_def(splitted)
+            ev_code, ev_name, ev_type_full = EventTree._parse_normal_def(split)
 
-        value = EventTree._parse_value(splitted)
+        value = EventTree._parse_value(split)
 
         return ev_type_code, ev_type_full, ev_code, ev_name, value, ev_meta
 
     @staticmethod
-    def _parse_value(splitted):
+    def _parse_value(split):
         value = None
-        if len(splitted) > 2:  # value definition exists
-            value_def = splitted[2]
-            if value_def.find("value") != -1:
+        if len(split) > 2:  # value definition exists
+            value_def = split[2]
+            if value_def.find("value") is not -1:
                 value = value_def.split()[1].strip()
         return value
 
     @staticmethod
-    def _parse_normal_def(splitted):
-        ev_type_full = splitted[0][1:-1].strip()
-        ev_code, ev_name = EventTree._parse_event_codes(splitted)
+    def _parse_normal_def(split):
+        ev_type_full = split[0][1:-1].strip()
+        ev_code, ev_name = EventTree._parse_event_codes(split)
         return ev_code, ev_name, ev_type_full
 
     @staticmethod
-    def _parse_meta(splitted):
-        ev_type_full = splitted[0][1:-1].strip()
+    def _parse_meta(split):
+        ev_type_full = split[0][1:-1].strip()
         ev_code = None
         ev_name = None
-        ev_meta = splitted[1].strip()
+        ev_meta = split[1].strip()
         return ev_code, ev_meta, ev_name, ev_type_full
 
     @staticmethod
-    def _parse_code_def(splitted):
-        """
-
-        (EV_KEY), code 310 (BTN_TL) =>
-            ev_code: 310
-            ev_name: BTN_TL
-            ev_type_code: EV_KEY
-            ev_type_full: code 310 (BTN_TL)
-
-        :param splitted:
-        :return:
-        """
-        type_codes = [my_str.strip() for my_str in splitted[0].split()]
+    def _parse_code_def(split):
+        # (EV_KEY), code 310 (BTN_TL) =>
+        #     ev_code: 310
+        #     ev_name: BTN_TL
+        #     ev_type_code: EV_KEY
+        #     ev_type_full: code 310 (BTN_TL)
+        #
+        # :param split:
+        # :return:
+        type_codes = [my_str.strip() for my_str in split[0].split()]
         ev_type_code = type_codes[1]
         ev_type_full = type_codes[2][1:-1].strip()
-        ev_code, ev_name = EventTree._parse_event_codes(splitted)
+        ev_code, ev_name = EventTree._parse_event_codes(split)
         return ev_code, ev_name, ev_type_code, ev_type_full
 
     @staticmethod
-    def _parse_event_codes(splitted):
+    def _parse_event_codes(split):
         # split the rest apart
-        evcodes = [my_str.strip() for my_str in splitted[1].split()]
+        ev_codes = [my_str.strip() for my_str in split[1].split()]
         # event code number
-        ev_code = evcodes[1].strip()
+        ev_code = ev_codes[1].strip()
         # event name
-        ev_name = evcodes[2][1:-1].strip()
+        ev_name = ev_codes[2][1:-1].strip()
         return ev_code, ev_name
 
     @staticmethod
     def assert_targets(targets):
         if len(targets) == 0:
             raise ValueError("No targets in rule defined")
-
-
-
