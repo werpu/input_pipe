@@ -93,9 +93,9 @@ class EventTree:
         ev_type_code = None
         ev_meta = None
 
-        if splitted[0].find("code") is not -1:
+        if splitted[0].find("code") != -1:
             ev_code, ev_name, ev_type_code, ev_type_full = EventTree._parse_code_def(splitted)
-        elif splitted[0].find("META") is not -1:
+        elif splitted[0].find("META") != -1:
             ev_code, ev_meta, ev_name, ev_type_full = EventTree._parse_meta(splitted)
         else:
             ev_code, ev_name, ev_type_full = EventTree._parse_normal_def(splitted)
@@ -109,7 +109,7 @@ class EventTree:
         value = None
         if len(splitted) > 2:  # value definition exists
             value_def = splitted[2]
-            if value_def.find("value") is not -1:
+            if value_def.find("value") != -1:
                 value = value_def.split()[1].strip()
         return value
 
