@@ -77,7 +77,7 @@ class Xbox360(BaseDriver):
         }
 
     def create(self, meta=None):
-        BaseDriver.create(self)
+        return BaseDriver.create(self)
 
     def close(self):
         BaseDriver.close(self)
