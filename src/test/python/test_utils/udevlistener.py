@@ -54,9 +54,9 @@ class UdevListener:
 
     def _match_udev_data(self, found, name, vendor=None):
         for input_key in self.config.inputs:
-            c_name, name_re, phys, phys_re, rel_pos, c_vendor, product, exclusive = \
+            c_name, name_re, phys, phys_re, rel_pos, c_vendor, product, exclusive, i_max, i_min, deadzone = \
                 self.config.get_config_input_params(input_key)
-
+            # todo assert for i_max, i_min, deadzone
             if c_name is not None:
                 found = found or caseless_equal(name, c_name)
             # elif vendor is not None:
