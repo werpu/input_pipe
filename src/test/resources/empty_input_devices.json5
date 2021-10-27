@@ -1,0 +1,111 @@
+/**
+# MIT License
+#
+# Copyright (c) 2019 Werner Punz
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+*/
+{
+  inputs: {
+  /*no inputs as special case, we can use such a combination for
+  command server only without mapping*/
+  },
+  outputs: {
+    xbox1: {
+      name: "Microsoft X-Box 360 pad",
+      type: "xbx360"
+    },
+    xbox2: {
+      name: "Microsoft X-Box 360 pad",
+      type: "xbx360"
+    },
+    mouse1: {
+      name: "mouse",
+      type: "mouse"
+    },
+    keybd1: {
+      name: "key1",
+      type: "keybd"
+    },
+    exec1: {
+      name: "exec1",
+      type: "exec"
+    }
+  },
+  rules: [
+    {
+      from: "digital",
+      target_rules: [
+        {
+          from_ev: "code 1 (EV_KEY), code 103 (KEY_UP)",
+          targets: [
+            {
+              to: "xbox1",
+              to_ev: "(EV_KEY), code 103 (KEY_UP), value -1",
+              //recurring aka auto fire
+              periodical: 1,
+              frequency: 10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      from: "analog_left",
+      target_rules: [
+        {
+          from_ev: "(EV_KEY), code 103 (KEY_UP)",
+          targets: [
+            {
+              to: "xbox1",
+              to_ev: "(EV_KEY), code 103 (KEY_UP)"
+            },
+            {
+              to: "xbox2",
+              to_ev: "(EV_KEY), code 103 (KEY_UP)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      from: "analog_left",
+      target_rules: [
+        {
+          from_ev: "(EV_KEY), code 105 (KEY_UP)",
+          targets: [
+            {
+              to: "exec1",
+              to_ev: "(META), /usr/local/bin/4way"
+            }
+          ]
+        },
+        {
+          from_ev: "(EV_KEY), code 108 (KEY_UP)",
+          targets: [
+            {
+              to: "exec1",
+              to_ev: "(META), /usr/local/bin/4way"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

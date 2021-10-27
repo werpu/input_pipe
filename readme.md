@@ -467,7 +467,7 @@ example
 
 
 ```bash
-./input_pipe -command="trigger_input  {'to': 'xbox1', 'event': '(EV_KEY), code 272 (BTN_LEFT)'}" 
+./input_pipe  --server=N -p9002  -command="trigger_input  {'to': 'xbox1', 'event': '(EV_KEY), code 272 (BTN_LEFT), value 1'}" 
 ```
 
 So what happens here is that basically by sending this command to the input_pipe server

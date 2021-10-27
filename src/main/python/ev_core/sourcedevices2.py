@@ -31,7 +31,7 @@ class EventHandler(pyinotify.ProcessEvent):
         self.matched_paths = {}
         self._matched_devices = {}
         self.config = config
-        self.all = False
+        self.all = len(config.orig_data["inputs"]) == 0
         self.init_if_plugged_in()
 
     def reset(self):

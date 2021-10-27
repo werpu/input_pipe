@@ -164,7 +164,9 @@ class VirtualKeyboard(BaseDriver):
                 ecodes.KEY_SCROLLLOCK,
                 ecodes.KEY_PAGEUP,
                 ecodes.KEY_PAGEDOWN,
-                ecodes.KEY_DOLLAR
+                ecodes.KEY_DOLLAR,
+                ecodes.KEY_SPACE,
+                ecodes.KEY_BACKSPACE
             ]
         }
 

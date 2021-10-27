@@ -174,18 +174,19 @@ class EventController:
                          save_fetch(lambda: ecodes.__getattribute__(ev_type_full), -1),
                          ev_code, int(value), ev_meta, 0, 0, None).syn()
 
-            ## TODO probably not needed anymore, we dan drop this one and simplify
-            ## the protocol a little bit, long presses are now hanndled
-            ## with a series of consecutive presses sent by the input
-            if data["long"] is not None and data["long"] == "true": #long press expected
+            # TODO probably not needed anymore, we dan drop this one and simplify
+            # the protocol a little bit, long presses are now hanndled
+            # with a series of consecutive presses sent by the input
+            if ('long' in data) and data["long"] == "true": #long press expected
                 for cnt in range(10):
                     time.sleep(50e-3)
                     driver.write(self.config, self.target_devices.drivers or {},
                                  save_fetch(lambda: ecodes.__getattribute__(ev_type_full), -1),
                                  ev_code, int(2), ev_meta, 0, 0, None).syn()
 
-        except Exception:
-            print("Error in json parsing for " + event_data_string + " no event emitted ")
+        except BaseException as err:
+            print(f"Error in incoming event: {event_data_string}" )
+            print(f"Details: {err=}, {type(err)=}")
         pass
 
     def resolve_event(self, event, src_dev):
