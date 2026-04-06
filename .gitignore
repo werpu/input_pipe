@@ -9,3 +9,5 @@ __pycache__
 CLAUDE.md
 key_server_mac/*.spec
 key_server_mac/dist
+key_server_mac/dist_go
+key_server_mac/dist_py
