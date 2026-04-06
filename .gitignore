@@ -7,3 +7,5 @@ build/
 .vscode
 __pycache__
 CLAUDE.md
+key_server_mac/*.spec
+key_server_mac/dist
