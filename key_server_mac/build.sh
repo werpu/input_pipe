@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip install pynput pyinstaller
-pyinstaller -s -n key_server --onefile --distpath ./dist/ key_server.py
-pyinstaller -s -n key_client --onefile --distpath ./dist/ key_client.py
-deactivate
+# Builds both Go client and Python server+client.
+# Use build_go.sh or build_python.sh to build individually.
+set -e
+bash build_go.sh
+bash build_python.sh

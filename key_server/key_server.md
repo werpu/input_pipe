@@ -32,7 +32,7 @@ Creates a single virtual keyboard device via uinput and listens for JSON keystro
 
 **Protocol:**
 
-Each connection sends one JSON object and closes:
+Each connection sends one or more newline-terminated JSON objects, then closes:
 
 ```json
 {"event": "(EV_KEY), code 28 (KEY_ENTER)"}
@@ -64,8 +64,10 @@ Sends a single keystroke command to a running `key_server`.
 **Usage:**
 
 ```bash
-./dist/key_client <host> <port> "<event>" [long]
+./dist/key_client <host> <port> "<event>[;<event>...]"
 ```
+
+Separate multiple keystrokes with `;`. Append `:long` for a long press.
 
 **Examples:**
 
@@ -74,32 +76,19 @@ Sends a single keystroke command to a running `key_server`.
 ./dist/key_client localhost 9003 "(EV_KEY), code 28 (KEY_ENTER)"
 
 # Held Enter key (long press)
-./dist/key_client localhost 9003 "(EV_KEY), code 28 (KEY_ENTER)" long
+./dist/key_client localhost 9003 "(EV_KEY), code 28 (KEY_ENTER):long"
 
 # Arrow up
 ./dist/key_client localhost 9003 "(EV_KEY), code 103 (KEY_UP)"
 
-# Letter A
-./dist/key_client localhost 9003 "(EV_KEY), code 30 (KEY_A)"
+# Type "hello" + Enter in one connection
+./dist/key_client localhost 9003 "(EV_KEY), code 35 (KEY_H);(EV_KEY), code 18 (KEY_E);(EV_KEY), code 38 (KEY_L);(EV_KEY), code 38 (KEY_L);(EV_KEY), code 24 (KEY_O);(EV_KEY), code 28 (KEY_ENTER)"
 ```
 
-Alternatively, `netcat` works just as well since the protocol is plain TCP:
+Alternatively, `netcat` works for single keystrokes:
 
 ```bash
-echo -n '{"event": "(EV_KEY), code 28 (KEY_ENTER)"}' | nc <host> 9003
-```
-
-## Sending a sequence
-
-```bash
-#!/usr/bin/env bash
-C="./dist/key_client localhost 9003"
-
-$C "(EV_KEY), code 20 (KEY_T)"
-$C "(EV_KEY), code 18 (KEY_E)"
-$C "(EV_KEY), code 31 (KEY_S)"
-$C "(EV_KEY), code 20 (KEY_T)"
-$C "(EV_KEY), code 28 (KEY_ENTER)"
+printf '{"event": "(EV_KEY), code 28 (KEY_ENTER)"}\n' | nc <host> 9003
 ```
 
 ## Common key codes

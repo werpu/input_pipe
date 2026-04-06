@@ -36,6 +36,8 @@ Add the terminal (or the `key_server` executable itself) to the allowed list.
 
 **Protocol** (identical to the Linux version):
 
+Each connection sends one or more newline-terminated JSON objects, then closes:
+
 ```json
 {"event": "(EV_KEY), code 28 (KEY_ENTER)"}
 {"event": "(EV_KEY), code 28 (KEY_ENTER)", "long": "true"}
@@ -56,16 +58,20 @@ Identical to the Linux client — pure stdlib, no platform dependencies.
 **Usage:**
 
 ```bash
-./dist/key_client <host> <port> "<event>" [long]
+./dist/key_client <host> <port> "<event>[;<event>...]"
 ```
+
+Separate multiple keystrokes with `;`. Append `:long` for a long press.
 
 **Examples:**
 
 ```bash
 ./dist/key_client localhost 9003 "(EV_KEY), code 28 (KEY_ENTER)"
-./dist/key_client localhost 9003 "(EV_KEY), code 28 (KEY_ENTER)" long
+./dist/key_client localhost 9003 "(EV_KEY), code 28 (KEY_ENTER):long"
 ./dist/key_client localhost 9003 "(EV_KEY), code 103 (KEY_UP)"
-./dist/key_client localhost 9003 "(EV_KEY), code 30 (KEY_A)"
+
+# Type "hello" + Enter in one connection
+./dist/key_client localhost 9003 "(EV_KEY), code 35 (KEY_H);(EV_KEY), code 18 (KEY_E);(EV_KEY), code 38 (KEY_L);(EV_KEY), code 38 (KEY_L);(EV_KEY), code 24 (KEY_O);(EV_KEY), code 28 (KEY_ENTER)"
 ```
 
 ## Supported keys

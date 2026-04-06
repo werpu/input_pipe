@@ -2,11 +2,15 @@
 """
 key_server.py — minimal TCP keyboard injection server.
 
-Protocol (same as input_pipe trigger_input):
-  {"event": "(EV_KEY), code 28 (KEY_ENTER)"}
-  {"event": "(EV_KEY), code 28 (KEY_ENTER)", "long": "true"}
+Full input_pipe trigger_input protocol:
+  trigger_input {"to": "keybd1", "event": "(EV_KEY), code 28 (KEY_ENTER), value 1", "long": "false"}
+  trigger_input {"to": "keybd1", "event": "(EV_KEY), code 28 (KEY_ENTER), value 0", "long": "false"}
 
 "to" is accepted but ignored — there is only one virtual keyboard device.
+value 1 = key down, value 0 = key up, value 2 = repeat.
+Omitting value performs a full press+release in one message (legacy).
+
+Multiple newline-terminated messages may be sent on a single connection.
 
 Usage:
   python key_server.py          # listens on default port 9003
@@ -52,32 +56,63 @@ CAPS = {
 
 
 def parse_event(ev_str):
-    """'(EV_KEY), code 28 (KEY_ENTER)' → (ev_type_int, ev_code_int)"""
+    """
+    '(EV_KEY), code 28 (KEY_ENTER), value 1' → (ev_type_int, ev_code_int, value_or_None)
+    value is None when the ', value N' suffix is absent.
+    """
     parts = [s.strip() for s in ev_str.split(",")]
     ev_type = getattr(ecodes, parts[0][1:-1])   # strip parens → EV_KEY
     ev_code = int(parts[1].split()[1])           # "code 28 (KEY_ENTER)" → 28
-    return ev_type, ev_code
+    value = None
+    if len(parts) >= 3 and parts[2].startswith("value"):
+        value = int(parts[2].split()[1])
+    return ev_type, ev_code, value
 
 
-async def press(ui, ev_type, ev_code, long=False):
-    ui.write(ev_type, ev_code, 1)
-    ui.syn()
-    if long:
-        for _ in range(10):
-            await asyncio.sleep(DELAY)
-            ui.write(ev_type, ev_code, 2)
-            ui.syn()
-    await asyncio.sleep(DELAY)
-    ui.write(ev_type, ev_code, 0)
-    ui.syn()
+async def press(ui, ev_type, ev_code, value, long=False):
+    if value == 1:
+        ui.write(ev_type, ev_code, 1)
+        ui.syn()
+        if long:
+            for _ in range(10):
+                await asyncio.sleep(DELAY)
+                ui.write(ev_type, ev_code, 2)
+                ui.syn()
+    elif value == 0:
+        ui.write(ev_type, ev_code, 0)
+        ui.syn()
+    elif value == 2:
+        ui.write(ev_type, ev_code, 2)
+        ui.syn()
+    else:
+        # legacy: no value → full press+release
+        ui.write(ev_type, ev_code, 1)
+        ui.syn()
+        if long:
+            for _ in range(10):
+                await asyncio.sleep(DELAY)
+                ui.write(ev_type, ev_code, 2)
+                ui.syn()
+        await asyncio.sleep(DELAY)
+        ui.write(ev_type, ev_code, 0)
+        ui.syn()
 
 
 async def handle(reader, writer, ui):
     try:
-        data = await reader.read(4096)
-        msg = json.loads(data.decode("utf-8").strip())
-        ev_type, ev_code = parse_event(msg["event"])
-        await press(ui, ev_type, ev_code, long=str(msg.get("long", "false")).lower() == "true")
+        while True:
+            line = await reader.readline()
+            if not line:
+                break
+            line = line.strip()
+            if not line:
+                continue
+            text = line.decode("utf-8")
+            if text.startswith("trigger_input "):
+                text = text[len("trigger_input "):]
+            msg = json.loads(text)
+            ev_type, ev_code, value = parse_event(msg["event"])
+            await press(ui, ev_type, ev_code, value, long=str(msg.get("long", "false")).lower() == "true")
     except Exception as e:
         print(f"error: {e}")
     finally:

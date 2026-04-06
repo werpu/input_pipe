@@ -2,11 +2,15 @@
 """
 key_server.py — minimal TCP keyboard injection server for macOS.
 
-Protocol (same as Linux key_server):
-  {"event": "(EV_KEY), code 28 (KEY_ENTER)"}
-  {"event": "(EV_KEY), code 28 (KEY_ENTER)", "long": "true"}
+Full input_pipe trigger_input protocol:
+  trigger_input {"to": "keybd1", "event": "(EV_KEY), code 28 (KEY_ENTER), value 1", "long": "false"}
+  trigger_input {"to": "keybd1", "event": "(EV_KEY), code 28 (KEY_ENTER), value 0", "long": "false"}
 
-"to" is accepted but ignored.
+"to" is accepted but ignored — there is only one virtual keyboard device.
+value 1 = key down, value 0 = key up, value 2 = repeat.
+Omitting value performs a full press+release in one message (legacy).
+
+Multiple newline-terminated messages may be sent on a single connection.
 
 Usage:
   python key_server.py          # listens on default port 9003
@@ -65,31 +69,58 @@ for _d in "0123456789":
 
 
 def parse_event(ev_str):
-    """'(EV_KEY), code 28 (KEY_ENTER)' → pynput key"""
+    """
+    '(EV_KEY), code 28 (KEY_ENTER), value 1' → (pynput_key, value_or_None)
+    value is None when the ', value N' suffix is absent.
+    """
     parts = [s.strip() for s in ev_str.split(",")]
     key_name = parts[1].split()[2][1:-1]   # "code 28 (KEY_ENTER)" → "KEY_ENTER"
     key = KEY_MAP.get(key_name)
     if key is None:
         raise ValueError(f"unknown key: {key_name}")
-    return key
+    value = None
+    if len(parts) >= 3 and parts[2].startswith("value"):
+        value = int(parts[2].split()[1])
+    return key, value
 
 
-async def press(key, long=False):
-    keyboard.press(key)
-    if long:
-        for _ in range(10):
-            await asyncio.sleep(DELAY)
-            keyboard.press(key)
-    await asyncio.sleep(DELAY)
-    keyboard.release(key)
+async def press(key, value, long=False):
+    if value == 1:
+        keyboard.press(key)
+        if long:
+            for _ in range(10):
+                await asyncio.sleep(DELAY)
+                keyboard.press(key)
+    elif value == 0:
+        keyboard.release(key)
+    elif value == 2:
+        keyboard.press(key)   # repeat
+    else:
+        # legacy: no value → full press+release
+        keyboard.press(key)
+        if long:
+            for _ in range(10):
+                await asyncio.sleep(DELAY)
+                keyboard.press(key)
+        await asyncio.sleep(DELAY)
+        keyboard.release(key)
 
 
 async def handle(reader, writer):
     try:
-        data = await reader.read(4096)
-        msg = json.loads(data.decode("utf-8").strip())
-        key = parse_event(msg["event"])
-        await press(key, long=str(msg.get("long", "false")).lower() == "true")
+        while True:
+            line = await reader.readline()
+            if not line:
+                break
+            line = line.strip()
+            if not line:
+                continue
+            text = line.decode("utf-8")
+            if text.startswith("trigger_input "):
+                text = text[len("trigger_input "):]
+            msg = json.loads(text)
+            key, value = parse_event(msg["event"])
+            await press(key, value, long=str(msg.get("long", "false")).lower() == "true")
     except Exception as e:
         print(f"error: {e}")
     finally:
@@ -98,7 +129,7 @@ async def handle(reader, writer):
 
 async def main(port):
     print(f"listening on port {port}")
-    server = await asyncio.start_server(handle, host=None, port=port)
+    server = await asyncio.start_server(handle, host="0.0.0.0", port=port)
     async with server:
         await server.serve_forever()
 
