@@ -23,9 +23,12 @@ Requires Accessibility permission:
 import asyncio
 import json
 import argparse
+import socket
 from pynput.keyboard import Controller, Key, KeyCode
 
-DELAY = 50e-3  # seconds between press/release and long-press repeats
+DELAY = 50e-3        # seconds between press/release and long-press repeats
+UDP_PORT = 12345     # multipad announcer port
+ANNOUNCE_INTERVAL = 5
 
 keyboard = Controller()
 
@@ -75,7 +78,7 @@ def parse_event(ev_str):
     """
     parts = [s.strip() for s in ev_str.split(",")]
     key_name = parts[1].split()[2][1:-1]   # "code 28 (KEY_ENTER)" → "KEY_ENTER"
-    key = KEY_MAP.get(key_name)
+    key = KEY_MAP.get(key_name) or KEY_MAP.get("KEY_" + key_name)
     if key is None:
         raise ValueError(f"unknown key: {key_name}")
     value = None
@@ -107,11 +110,15 @@ async def press(key, value, long=False):
 
 
 async def handle(reader, writer):
+    addr = writer.get_extra_info("peername")
+    print(f"connection from {addr}")
     try:
         while True:
             line = await reader.readline()
             if not line:
+                print(f"connection closed by {addr}")
                 break
+            print(f"raw: {line!r}")
             line = line.strip()
             if not line:
                 continue
@@ -120,6 +127,8 @@ async def handle(reader, writer):
                 text = text[len("trigger_input "):]
             msg = json.loads(text)
             key, value = parse_event(msg["event"])
+            action = {1: "down", 0: "up", 2: "repeat"}.get(value, "press")
+            print(f"key {key} {action}")
             await press(key, value, long=str(msg.get("long", "false")).lower() == "true")
     except Exception as e:
         print(f"error: {e}")
@@ -127,8 +136,30 @@ async def handle(reader, writer):
         writer.close()
 
 
+def local_ip():
+    """Return the outbound IP without making a real connection."""
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(("8.8.8.8", 80))
+        return s.getsockname()[0]
+    except Exception:
+        return "127.0.0.1"
+    finally:
+        s.close()
+
+
+async def announcer(tcp_port):
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    sock.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+    msg = json.dumps({"msg": "pipe_location", "ip": local_ip(), "port": str(tcp_port)}).encode()
+    while True:
+        sock.sendto(msg, ("255.255.255.255", UDP_PORT))
+        await asyncio.sleep(ANNOUNCE_INTERVAL)
+
+
 async def main(port):
     print(f"listening on port {port}")
+    asyncio.ensure_future(announcer(port))
     server = await asyncio.start_server(handle, host="0.0.0.0", port=port)
     async with server:
         await server.serve_forever()

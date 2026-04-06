@@ -20,9 +20,12 @@ Usage:
 import asyncio
 import json
 import argparse
+import socket
 from evdev import UInput, ecodes
 
-DELAY = 50e-3  # seconds between press/release and long-press repeats
+DELAY = 50e-3        # seconds between press/release and long-press repeats
+UDP_PORT = 12345     # multipad announcer port
+ANNOUNCE_INTERVAL = 5
 
 CAPS = {
     ecodes.EV_KEY: [
@@ -119,9 +122,31 @@ async def handle(reader, writer, ui):
         writer.close()
 
 
+def local_ip():
+    """Return the outbound IP without making a real connection."""
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(("8.8.8.8", 80))
+        return s.getsockname()[0]
+    except Exception:
+        return "127.0.0.1"
+    finally:
+        s.close()
+
+
+async def announcer(tcp_port):
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    sock.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+    msg = json.dumps({"msg": "pipe_location", "ip": local_ip(), "port": str(tcp_port)}).encode()
+    while True:
+        sock.sendto(msg, ("255.255.255.255", UDP_PORT))
+        await asyncio.sleep(ANNOUNCE_INTERVAL)
+
+
 async def main(port):
     ui = UInput(CAPS, name="key-server-kbd")
     print(f"listening on port {port}")
+    asyncio.ensure_future(announcer(port))
     server = await asyncio.start_server(lambda r, w: handle(r, w, ui), host=None, port=port)
     async with server:
         await server.serve_forever()

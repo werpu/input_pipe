@@ -32,6 +32,9 @@ import (
 	"time"
 )
 
+const udpPort = 12345
+const announceInterval = 5 * time.Second
+
 const delay = 50 * time.Millisecond
 
 // Linux KEY_* name → macOS CGKeyCode (HIToolbox virtual key codes)
@@ -139,9 +142,11 @@ func pressKey(code C.CGKeyCode, value int, long bool) {
 
 func handleConn(conn net.Conn) {
 	defer conn.Close()
+	fmt.Printf("connection from %s\n", conn.RemoteAddr())
 	scanner := bufio.NewScanner(conn)
 	for scanner.Scan() {
 		line := strings.TrimSpace(scanner.Text())
+		fmt.Printf("raw: %q\n", line)
 		if line == "" {
 			continue
 		}
@@ -156,10 +161,53 @@ func handleConn(conn net.Conn) {
 		keyName, value := parseEvent(m.Event)
 		code, ok := keyMap[keyName]
 		if !ok {
+			code, ok = keyMap["KEY_"+keyName]
+		}
+		if !ok {
 			fmt.Fprintf(os.Stderr, "unknown key: %s\n", keyName)
 			continue
 		}
+		actions := map[int]string{1: "down", 0: "up", 2: "repeat"}
+		action, found := actions[value]
+		if !found {
+			action = "press"
+		}
+		fmt.Printf("key %s %s\n", keyName, action)
 		pressKey(code, value, strings.ToLower(m.Long) == "true")
+	}
+}
+
+// localIP returns the preferred outbound IP without making a real connection.
+func localIP() string {
+	conn, err := net.Dial("udp", "8.8.8.8:80")
+	if err != nil {
+		return "127.0.0.1"
+	}
+	defer conn.Close()
+	return conn.LocalAddr().(*net.UDPAddr).IP.String()
+}
+
+func announce(tcpPort int) {
+	dst := &net.UDPAddr{IP: net.IPv4bcast, Port: udpPort}
+	sock, err := net.DialUDP("udp", nil, dst)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "announcer: %v\n", err)
+		return
+	}
+	defer sock.Close()
+	sock.SetWriteBuffer(1024)
+
+	type announcement struct {
+		Msg  string `json:"msg"`
+		IP   string `json:"ip"`
+		Port string `json:"port"`
+	}
+	msg, _ := json.Marshal(announcement{"pipe_location", localIP(), fmt.Sprintf("%d", tcpPort)})
+
+	ticker := time.NewTicker(announceInterval)
+	defer ticker.Stop()
+	for range ticker.C {
+		sock.Write(msg)
 	}
 }
 
@@ -173,6 +221,7 @@ func main() {
 		os.Exit(1)
 	}
 	fmt.Printf("listening on port %d\n", *port)
+	go announce(*port)
 	for {
 		conn, err := ln.Accept()
 		if err != nil {

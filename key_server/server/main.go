@@ -25,6 +25,9 @@ import (
 	"github.com/bendahl/uinput"
 )
 
+const udpPort = 12345
+const announceInterval = 5 * time.Second
+
 const delay = 50 * time.Millisecond
 
 // Linux key codes: KEY_* name → uinput key code (= Linux input event code)
@@ -168,6 +171,39 @@ func handleConn(conn net.Conn, kb uinput.Keyboard) {
 	}
 }
 
+// localIP returns the preferred outbound IP without making a real connection.
+func localIP() string {
+	conn, err := net.Dial("udp", "8.8.8.8:80")
+	if err != nil {
+		return "127.0.0.1"
+	}
+	defer conn.Close()
+	return conn.LocalAddr().(*net.UDPAddr).IP.String()
+}
+
+func announce(tcpPort int) {
+	dst := &net.UDPAddr{IP: net.IPv4bcast, Port: udpPort}
+	sock, err := net.DialUDP("udp", nil, dst)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "announcer: %v\n", err)
+		return
+	}
+	defer sock.Close()
+
+	type announcement struct {
+		Msg  string `json:"msg"`
+		IP   string `json:"ip"`
+		Port string `json:"port"`
+	}
+	msg, _ := json.Marshal(announcement{"pipe_location", localIP(), fmt.Sprintf("%d", tcpPort)})
+
+	ticker := time.NewTicker(announceInterval)
+	defer ticker.Stop()
+	for range ticker.C {
+		sock.Write(msg)
+	}
+}
+
 func main() {
 	port := flag.Int("p", 9003, "port to listen on")
 	flag.Parse()
@@ -185,6 +221,7 @@ func main() {
 		os.Exit(1)
 	}
 	fmt.Printf("listening on port %d\n", *port)
+	go announce(*port)
 	for {
 		conn, err := ln.Accept()
 		if err != nil {
