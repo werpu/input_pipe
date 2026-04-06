@@ -82,7 +82,7 @@ Overlays are useful when certain games need a different button layout or autofir
 
 ## Triggering inputs programmatically
 
-The `trigger_input` command injects a synthetic event directly into an output device. The argument is a JSON-like dict using evtest-style event strings:
+The `trigger_input` command injects a synthetic event directly into an output device. The argument is a JSON object using evtest-style event strings:
 
 ```bash
 ./input_pipe --server=N --command="trigger_input {'to': 'xbox1', 'event': '(EV_KEY), code 272 (BTN_LEFT)'}"
@@ -91,6 +91,68 @@ The `trigger_input` command injects a synthetic event directly into an output de
 This causes a left-trigger button press on the `xbox1` virtual controller.
 
 **Security note:** There is no authentication on the command server — this is intentional for private local network use cases. Anyone who can reach the port can inject arbitrary input events or stop the process. Keep the port firewalled from untrusted networks.
+
+---
+
+## trigger_input wire protocol
+
+This section documents the full protocol used when sending events over a raw TCP connection — as used by the **Multipad** touchpad client.
+
+### Wire format
+
+```
+trigger_input <json>\n
+```
+
+The message is a single line: the literal string `trigger_input`, a space, then a JSON object. No framing or length prefix — newline-terminated.
+
+### JSON fields
+
+| Field   | Type   | Required | Description |
+|---------|--------|----------|-------------|
+| `to`    | string | yes      | Target output device name as defined in the config (e.g. `"keybd1"`) |
+| `event` | string | yes      | evtest-style event string — see format below |
+| `long`  | string | no       | `"true"` to simulate a held key (see below) |
+
+### Event string format
+
+```
+(EV_KEY), code <linux_code> (<name>), value <v>
+```
+
+- `<linux_code>` — numeric Linux input event code (e.g. `28`)
+- `<name>` — symbolic key name (e.g. `KEY_ENTER`)
+- `value` suffix — controls key state:
+  - `value 1` — key down
+  - `value 0` — key up
+  - `value 2` — key repeat (auto-generated on long press, see below)
+
+When no `value` suffix is present the server interprets the event as a single press without explicit up/down state.
+
+### Long-press simulation (`"long": "true"`)
+
+When `long` is `"true"`, after the initial key-down event the server automatically sends **10 repeat events** (`value 2`) with **50 ms delays** between each, simulating a physically held key. The client is responsible for sending a separate key-up event afterwards.
+
+### Examples
+
+```bash
+# Key down — press Enter
+echo -n 'trigger_input {"to": "keybd1", "event": "(EV_KEY), code 28 (KEY_ENTER), value 1", "long": "false"}' | nc <host> 9002
+
+# Key up — release Enter
+echo -n 'trigger_input {"to": "keybd1", "event": "(EV_KEY), code 28 (KEY_ENTER), value 0", "long": "false"}' | nc <host> 9002
+
+# Long-press Enter (sends value 1 + 10x value 2 at 50 ms intervals)
+echo -n 'trigger_input {"to": "keybd1", "event": "(EV_KEY), code 28 (KEY_ENTER), value 1", "long": "true"}' | nc <host> 9002
+
+# SHIFT + A (two separate key-down messages followed by two key-up messages)
+echo -n 'trigger_input {"to": "keybd1", "event": "(EV_KEY), code 42 (KEY_LEFTSHIFT), value 1", "long": "false"}' | nc <host> 9002
+echo -n 'trigger_input {"to": "keybd1", "event": "(EV_KEY), code 30 (KEY_A), value 1", "long": "false"}' | nc <host> 9002
+echo -n 'trigger_input {"to": "keybd1", "event": "(EV_KEY), code 30 (KEY_A), value 0", "long": "false"}' | nc <host> 9002
+echo -n 'trigger_input {"to": "keybd1", "event": "(EV_KEY), code 42 (KEY_LEFTSHIFT), value 0", "long": "false"}' | nc <host> 9002
+```
+
+Use `evtest` or the Linux kernel header `linux/input-event-codes.h` to look up key codes.
 
 ---
 
@@ -125,28 +187,26 @@ From the same machine or any other host that can reach port 9002:
 
 ```bash
 # Press and release the Enter key
-./dist/input_pipe --server=N --command="trigger_input {'to': 'keybd1', 'event': '(EV_KEY), code 28 (KEY_ENTER)'}"
+echo -n 'trigger_input {"to": "keybd1", "event": "(EV_KEY), code 28 (KEY_ENTER), value 1", "long": "false"}' | nc <host> 9002
+echo -n 'trigger_input {"to": "keybd1", "event": "(EV_KEY), code 28 (KEY_ENTER), value 0", "long": "false"}' | nc <host> 9002
 
 # Press and release the letter 'A' (KEY_A = code 30)
-./dist/input_pipe --server=N --command="trigger_input {'to': 'keybd1', 'event': '(EV_KEY), code 30 (KEY_A)'}"
-
-# Press and release the spacebar (KEY_SPACE = code 57)
-./dist/input_pipe --server=N --command="trigger_input {'to': 'keybd1', 'event': '(EV_KEY), code 57 (KEY_SPACE)'}"
+echo -n 'trigger_input {"to": "keybd1", "event": "(EV_KEY), code 30 (KEY_A), value 1", "long": "false"}' | nc <host> 9002
+echo -n 'trigger_input {"to": "keybd1", "event": "(EV_KEY), code 30 (KEY_A), value 0", "long": "false"}' | nc <host> 9002
 ```
-
-Use `evtest` or refer to the Linux kernel header `linux/input-event-codes.h` to look up key codes for any key you need.
 
 ### 4. Scripting a sequence
 
-Because each `trigger_input` call is a separate command, wrap them in a shell script to send a sequence:
-
 ```bash
 #!/usr/bin/env bash
-CMD="./dist/input_pipe --server=N --command"
+HOST=<host>
+PORT=9002
 KBD="keybd1"
 
 send_key() {
-  $CMD "trigger_input {'to': '$KBD', 'event': '(EV_KEY), code $1 ($2)'}"
+  local code=$1 name=$2
+  echo -n "trigger_input {\"to\": \"$KBD\", \"event\": \"(EV_KEY), code $code ($name), value 1\", \"long\": \"false\"}" | nc "$HOST" "$PORT"
+  echo -n "trigger_input {\"to\": \"$KBD\", \"event\": \"(EV_KEY), code $code ($name), value 0\", \"long\": \"false\"}" | nc "$HOST" "$PORT"
 }
 
 send_key 20 KEY_T
