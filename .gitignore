@@ -6,3 +6,4 @@ build/
 .venvlib
 .vscode
 __pycache__
+CLAUDE.md
